@@ -1,0 +1,67 @@
+[core]
+	editor = nvim
+	autocrlf = false
+	symlinks = true
+	longPaths = true
+	excludesfile = 
+[user]
+	name = Joe Schr
+	email = joe.vandelay@gmail.com
+[push]
+	default = simple
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	feat = merge --no-ff --no-commit
+	me = merge
+	pu = pull
+	# lg = log --graph --oneline --decorate
+	lg = !"git lg1"
+	lg1 = !"git lg1-specific "
+
+	lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
+	; reflog
+	re = gitk --all --date-order $(git log -g --pretty=%H)
+	sh = stash save
+	type = cat-file -t
+	dump = cat-file -p
+	; delete local branch
+	bd = branch -D
+	; delete remote branch
+	brd = push origin --delete
+	# Push the new branch, set local branch to track the new remote
+	bmkr = push --set-upstream origin
+    unadd = reset HEAD
+    unstage = reset
+    uncommit = reset --soft HEAD^
+    staged = diff --cached
+    ctags = "!.git/hooks/ctags"uncommit = reset HEAD^
+	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold white){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
+[rerere]
+	enabled = true
+[merge]
+	tool = p4merge
+[diff]
+	tool = p4merge
+[mergetool]
+	keepTemporaries = false
+	prompt = false
+[http]
+	sslVerify = false
+	cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[winUpdater]
+	recentlySeenVersion = 2.15.1.windows.2
+[credential]
+	helper = wincred
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
