@@ -12,6 +12,8 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 SSH_ENV=$HOME/.ssh/environment
+
+export EDITOR="nvim"
 export REACT_EDITOR=code
 # start the ssh-agent
 function start_agent {
