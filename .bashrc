@@ -90,8 +90,12 @@ alias gmf='git merge --squash '
 alias gcv='git ci -v '
 alias gri='git revise --interactive '
 
+# adds yarn global binaries to path
+export PATH="$PATH:`yarn global bin`"
+
 # install git-revise
 alias install-git-revise='sudo apt update && sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget  && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz && tar -xf Python-3.7.3.tar.xz && cd Python-3.7.3 && ./configure --enable-optimizations --with-ensurepip=install  && make -j 8 && sudo make altinstall && python3.7 --version && pip3 install --user git-revise && git revise --version'
 
 alias config='/usr/bin/git --git-dir=/home/chrx/.cfg/ --work-tree=/home/chrx'
 . ~/.bashrc.local
+
