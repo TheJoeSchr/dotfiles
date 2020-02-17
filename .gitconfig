@@ -10,8 +10,8 @@
 [push]
 	default = simple
 [alias]
-	co = checkout
-	ci = commit
+	go = checkout
+	co = commit
 	st = status
 	br = branch
 	feat = merge --no-ff --no-commit
