@@ -99,6 +99,11 @@ alias install-git-revise='sudo apt update && sudo apt install -y build-essential
 alias config='/usr/bin/git --git-dir=/home/chrx/.cfg/ --work-tree=/home/chrx'
 alias cls="clear"
 
+# find largest folder/file quickly (seperated in subdirs)
+alias duckS='du -ckSh * | sort -rh | head'
+# find largest folder/file quickly (summarized)
+alias ducks='du -cksh * | sort -rh | head'
+
 # source local commands
 . ~/.bashrc.local
 
