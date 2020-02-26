@@ -1,20 +1,48 @@
 # vi mode in bash!!!
 set -o vi
 
+# adds yarn global binaries to path"
+export PATH="$PATH:`yarn global bin --offline`"
+
 if [ "$OS" == "Windows_NT" ]; then
-        . ~/.bashrc.win
+  alias config="`which git` --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
+  . ~/.bashrc.win
 else
-        . ~/.fzf.bash
+  alias config="`which git`  --git-dir=~/.dotfiles-cfg/ --work-tree=$HOME"
+  . ~/.fzf.bash
+  # show git branch with nice colors
+  force_color_prompt=yes
+  parse_git_branch() {
+   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  }
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\n\$ '
+  #if [ "$color_prompt" = yes ]; then
+  #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\n\$ '
+  #else
+  ##color_prompt if is not working on docker...
+  #  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\n\$ '
+  #fi
+  unset color_prompt force_color_prompt
 fi
 
+# Use bash-completion, if available
 if [ -f /etc/bash_completion ]; then
- . /etc/bash_completion
+  . /etc/bash_completion
 fi
+
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+. /usr/share/bash-completion/bash_completion
 
 SSH_ENV=$HOME/.ssh/environment
 
 export EDITOR="nvim"
 export REACT_EDITOR=code
+
+# Setting for the new UTF-8 terminal support in TMUX
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # start the ssh-agent
 function start_agent {
         echo "Initializing new SSH agent..."
@@ -90,13 +118,9 @@ alias gmf='git merge --squash '
 alias gcv='git ci -v '
 alias gri='git revise --interactive '
 
-# adds yarn global binaries to path
-export PATH="$PATH:`yarn global bin --offline`"
-
 # install git-revise
 alias install-git-revise='sudo apt update && sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget  && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz && tar -xf Python-3.7.3.tar.xz && cd Python-3.7.3 && ./configure --enable-optimizations --with-ensurepip=install  && make -j 8 && sudo make altinstall && python3.7 --version && pip3 install --user git-revise && git revise --version'
 
-alias config='/usr/bin/git --git-dir=/home/chrx/.cfg/ --work-tree=/home/chrx'
 alias cls="clear"
 
 # find largest folder/file quickly (seperated in subdirs)

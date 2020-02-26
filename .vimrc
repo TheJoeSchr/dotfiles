@@ -156,7 +156,7 @@ else
   "  set solarized
   syntax enable
   set background=light
-  " colorscheme solarized
+  colorscheme solarized
   " solarized airline
   let g:airline_solarized_bg='dark'
   " " https://stackoverflow.com/questions/1457540/how-to-navigate-in-large-project-in-vim
