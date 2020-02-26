@@ -8,7 +8,7 @@ if [ "$OS" == "Windows_NT" ]; then
   alias config="`which git` --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
   . ~/.bashrc.win
 else
-  alias config="`which git`  --git-dir=~/.dotfiles-cfg/ --work-tree=$HOME"
+  alias config="`which git`  --git-dir=$HOME/.dotfiles-cfg/ --work-tree=$HOME"
   . ~/.fzf.bash
   # show git branch with nice colors
   force_color_prompt=yes
