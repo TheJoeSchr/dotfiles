@@ -131,3 +131,5 @@ alias ducks='du -cksh * | sort -rh | head'
 # source local commands
 . ~/.bashrc.local
 
+# for docker postgraphile
+export UID;
