@@ -1,3 +1,11 @@
+" automagically plug.vim
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ~/.config/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall
+endif
+
 " Must stand before other uses
 " Map Leader to Space
 let mapleader="\\"
@@ -240,4 +248,9 @@ else
   " ------------------ COC ------------------
   " ------------------ CamelCase ------------------
   call camelcasemotion#CreateMotionMappings('<leader>')
+  set directory=~/.vim/swap
+  if empty(glob('~/.vim/swap'))
+      silent !mkdir -p ~/.vim/swap
+  endif
+set directory=$HOME/.vim/tmp
 endif
