@@ -1,3 +1,6 @@
+mkdir ~/.config 
+mkdir ~/.config/nvim
+ 
 ln -s ~/.vimrc ~/.config/nvim/init.vim 
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
