@@ -36,6 +36,8 @@ fi
 SSH_ENV=$HOME/.ssh/environment
 
 # for docker postgraphile
+export TERMINAL=xfce4-terminal;
+# for docker postgraphile
 export UID;
 
 export EDITOR="nvim"
