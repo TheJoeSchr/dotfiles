@@ -35,6 +35,9 @@ fi
 
 SSH_ENV=$HOME/.ssh/environment
 
+# for docker postgraphile
+export UID;
+
 export EDITOR="nvim"
 export REACT_EDITOR=code
 
@@ -131,5 +134,3 @@ alias ducks='du -cksh * | sort -rh | head'
 # source local commands
 . ~/.bashrc.local
 
-# for docker postgraphile
-export UID;
