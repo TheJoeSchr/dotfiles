@@ -77,13 +77,15 @@ map F <Plug>Sneak_S
 
 let g:sneak#label = 1
 
+" ============== only VSCODE ===================
 if exists('g:vscode')
-  " VSCode extension
-
-  " ============== PLUGINS VSCODE ===================
+  " -------------- PLUGINS only for VSCODE -------------------
   call plug#begin('~/.vim/plugged')
     Plug 'justinmk/vim-sneak'
     Plug 'bkad/CamelCaseMotion'
+    " Fuzzy Find, use :ctrlp or <c-p> 
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
 
     " - f scoping
     Plug 'unblevable/quick-scope'   
@@ -125,8 +127,8 @@ else
     Plug 'thinca/vim-fontzoom'
 
     " Fuzzy Find, use :ctrlp or <c-p> 
-    " Plug 'ctrlpvim/ctrlp.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
 
     " yankring with alt+p && alt+shift+p && use :yanks
     Plug 'maxbrunsfeld/vim-yankstack'
@@ -177,12 +179,6 @@ else
   " ============ Mappings =============
   " ---------------- FZF -----------------
   nnoremap <C-p> :FZF<Cr>
-  " This is the default extra key bindings
-  let g:fzf_action = {
-    \ 'ctrl-t': 'tab split',
-    \ 'ctrl-x': 'split',
-    \ 'ctrl-v': 'vsplit' }
-
   " An action can be a reference to a function that processes selected lines
   function! s:build_quickfix_list(lines)
     call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
@@ -195,6 +191,7 @@ else
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-x': 'split',
     \ 'ctrl-v': 'vsplit' }
+
 
   " Default fzf layout
   " - down / up / left / right
@@ -254,3 +251,22 @@ else
   endif
 set directory=$HOME/.vim/tmp
 endif
+
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+    " For use with ack.vim 
+    let g:ackprg = 'rg --vimgrep --no-heading'
+    " shortcut: <C-p>a
+    nmap <leader>r :Rg           
+    nnoremap <C-p>a :Rg 
+    
+    " Adds command :Rg 
+    command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview(), <bang>0)
+
+endif
+
+source ~/.vimrc.local
