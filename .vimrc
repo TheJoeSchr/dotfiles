@@ -70,6 +70,10 @@ let g:sneak#label = 2
 
 if exists('g:vscode')
   " VSCode extension
+  set langmenu=en_US
+  let $LANG = 'en_US'
+  source $VIMRUNTIME/delmenu.vim
+  source $VIMRUNTIME/menu.vim
 
   " ============== PLUGINS VSCODE ===================
   call plug#begin('~/.vim/plugged')
