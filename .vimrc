@@ -64,10 +64,9 @@ nmap <M-P> <Plug>yankstack_substitute_newer_paste
 
 " --------- SNEAK-----------
 " replace f with Sneak
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
-
-let g:sneak#label = 1
+map fs <Plug>Sneak_s
+map Fs <Plug>Sneak_S
+let g:sneak#label = 2
 
 if exists('g:vscode')
   " VSCode extension
