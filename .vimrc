@@ -1,25 +1,24 @@
 " ==================
 " GLOBAL SETTINGS:
 " ==================
-" enter the current millenium &
-" don't bother with vi compatibility
+
+" NOCOMPATIBLE:
+" enter the current millenium, vi not used
 set nocompatible
 
 "
-" LEADER: 
+" LEADER IS "SPACE": 
 " ==================
-"
+" 
 " Must stand before other uses
 " Maps leader to \
 let mapleader="\\"
-
-
-" Mape Space to None
+" Map SPACE to None
 " Without that, pressing <Space> will not behave like other keys as mapleader. 
 " <Space> in normal mode is mapped to <right>. 
 " Just press <space> a couple of times in a row and you will see undesired behaviour.
 nnoremap <SPACE> <Nop>
-" Maps space to \
+" Maps SPACE to \
 map <Space> \
 " Exclude in select mode, so space can be used to replace 
 " placeholder text in a snippet.
@@ -106,6 +105,8 @@ set wildmenu
 " ==================
 " from various sources over time
 
+" Terminal Mode: Escape with SHIFT+ESC
+:tnoremap <C-\><Esc> <C-\><C-n>
 " set vim swap directory
 set directory=~/.vim/swap
   if empty(glob('~/.vim/swap'))
