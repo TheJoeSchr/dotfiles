@@ -88,6 +88,8 @@ docker-armageddon() {
 
 # always attach and never create unsused empty sessions
 alias tmux='tmux attach'
+# access original tmux (eg for tmux ls)
+alias tmux-org='/usr/bin/tmux'
 
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
