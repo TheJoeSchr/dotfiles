@@ -151,14 +151,14 @@ imap kj <Esc>
 " Paste in visual mode without yanking the old value
 " like `xnoremap p pgvy` but works with register
 " xnoremap p pgv"@=v:register.'y'<cr>
-xnoremap <expr> p 'pgv"'.v:register.'y`>'
+" xnoremap <expr> p 'pgv"'.v:register.'y`>'
 
 " replace currently selected text with default register
 " without yanking it
 " vnoremap <leader>p "_dP
 
 " delete without yanking
-vnoremap <leader>d "_d
+" vnoremap <leader>d "_d
 
 " When you move the cursor down (or up), the cursor will jump from one visual line to the next. Normally you can press j to move down one physical line, or gj to move down one displayed line.
 noremap  <buffer> <silent> k gk
@@ -187,6 +187,8 @@ if !exists('g:vscode')
     " >============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
     
     " NATIVE ONLY:
+    " -- linter (works with elint)
+    Plug 'dense-analysis/ale'
     " -- emulate vscode-vim stuff
     Plug 'ericbn/vim-solarized'
     Plug 'tpope/vim-surround'
@@ -209,6 +211,8 @@ if !exists('g:vscode')
     Plug 'bling/vim-airline'
     " airline theme
     Plug 'vim-airline/vim-airline-themes'
+    " TMUX
+    Plug 'christoomey/vim-tmux-navigator'
 
     " AUTOCOMPLETION: basially port of vscode autocompletion
     " https://github.com/neoclide/coc.nvim
@@ -290,7 +294,22 @@ if !exists('g:vscode')
   " ---------------- YANKSTACK -----------------
   nmap <M-p> <Plug>yankstack_substitute_older_paste
   nmap <M-P> <Plug>yankstack_substitute_newer_paste
+  " ---------------- ALEl ----------------------
+  " fix files on save
+  let g:ale_fix_on_save = 1
 
+  " lint after 1000ms after changes are made both on insert mode and normal mode
+  let g:ale_lint_on_text_changed = 'always'
+  let g:ale_lint_delay = 1000
+
+  " use nice symbols for errors and warnings
+  let g:ale_sign_error = '✗\ '
+  let g:ale_sign_warning = '⚠\ '
+
+  " fixer configurations
+  let g:ale_fixers = {
+  \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \}
   " ---------------- FZF -----------------
   nnoremap <C-p> :FZF<Cr>
   " An action can be a reference to a function that processes selected lines
