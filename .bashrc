@@ -86,6 +86,9 @@ docker-armageddon() {
         docker rmi -f $(docker images -qa)
 }
 
+# always attach and never create unsused empty sessions
+alias tmux='tmux attach'
+
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
 alias ls='ls -F --color --show-control-chars'
