@@ -86,11 +86,6 @@ docker-armageddon() {
         docker rmi -f $(docker images -qa)
 }
 
-# always attach and never create unsused empty sessions
-alias tmux='tmux attach'
-# access original tmux (eg for tmux ls)
-alias tmux-org='/usr/bin/tmux'
-
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
 alias ls='ls -F --color --show-control-chars'
@@ -138,6 +133,12 @@ alias duckS='du -ckSh * | sort -rh | head'
 # find largest folder/file quickly (summarized)
 alias ducks='du -cksh * | sort -rh | head'
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # source local commands
 . ~/.bashrc.local
 
+# put into .bashrc.local on tmux systems
+# tmux attach -t base || tmux new -s base
