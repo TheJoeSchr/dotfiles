@@ -6,6 +6,8 @@ export PATH="$PATH:`yarn global bin --offline`"
 
 if [ "$OS" == "Windows_NT" ]; then
   alias config="`which git` --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
+  # Add tmux path (not working so far)
+  export PATH="$PATH:/c/msys64/usr/bin/"
   . ~/.bashrc.win
 else
   alias config="`which git`  --git-dir=$HOME/.dotfiles-cfg/ --work-tree=$HOME"
