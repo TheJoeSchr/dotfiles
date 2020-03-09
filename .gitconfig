@@ -39,6 +39,7 @@
     staged = diff --cached
     ctags = "!.git/hooks/ctags"uncommit = reset HEAD^
 	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold white){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
+    show-file-history = log --follow -p -- 
 [rerere]
 	enabled = true
 [merge]
