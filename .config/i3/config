@@ -165,3 +165,8 @@ bindsym F10 exec amixer -q -D pulse sset Master 5%+ on
 exec_always --no-startup-id xscreensaver-command -exit &
 exec_always --no-startup-id xscreensaver -no-splash &
 exec_always --no-startup-id xss-lock -- i3lock &
+# exec_always --no-startup-id xfsettingsd
+# exec_always --no-startup-id xbindkeys_autostart
+exec_always --no-startup-id xfce4-volumed
+exec_always --no-startup-id xfce4-power-manager
+exec_always --no-startup-id galliumos-update-notifier

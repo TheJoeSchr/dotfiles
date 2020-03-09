@@ -2,7 +2,7 @@
 set -o vi
 
 # adds yarn global binaries to path"
-export PATH="$PATH:`yarn global bin --offline`"
+export PATH="$PATH:`yarn global bin --offline`:~/.local/bin"
 
 if [ "$OS" == "Windows_NT" ]; then
   alias config="`which git` --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"

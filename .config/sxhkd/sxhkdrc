@@ -59,9 +59,11 @@ XF86TouchpadToggle
 	(synclient | grep "TouchpadOff.*1" && synclient TouchpadOff=0) || synclient TouchpadOff=1
 XF86Touchpad{Off,On}
 	synclient TouchpadOff={1,0}
-XF86MonBrightnessDown
+# XF86MonBrightnessDown
+ISO_Level3_Shift + F6
 	xbacklight -dec 15
-XF86MonBrightnessUp
+# XF86MonBrightnessUp
+ISO_Level3_Shift + F7
 	xbacklight -inc 15
 
 # Recording
