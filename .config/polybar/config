@@ -64,7 +64,7 @@ font-3 = Symbola:pixelsize=9;1
 modules-left = bspwm xwindow
 ;modules-center =
 ; modules-right = mpd volume mutt-wizard wlan eth battery date
-modules-right = volume wlan battery date
+modules-right = wlan battery volume date powermenu
 
 tray-position = right
 tray-padding = 0
