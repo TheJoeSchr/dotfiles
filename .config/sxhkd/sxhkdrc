@@ -161,8 +161,8 @@ super + F4
 # super + F7
 # 	td-toggle
 # sync email
-super + F8
-	mailsync
+# super + F8
+# 	mailsync
 # Mount a USB drive or Android device
 super + {F9,F10}
 	{dmenumount,dmenuumount}
@@ -190,8 +190,8 @@ super + space
 #
 
 # set the window state
-#super + {t,shift + t,s}
-#bspc node -t {tiled,pseudo_tiled,floating}
+super + {t,shift + t,s}
+    bspc node -t {tiled,pseudo_tiled,floating}
 
 super + shift + space
 	bspc node focused -t \~floating
@@ -224,8 +224,8 @@ super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} ^{1-9,10}
 
 # preselect the direction
-#super + {u,o}
-#bspc node -p {south,east}
+super + {u,o}
+    bspc node -p {south,east}
 
 # preselect the ratio
 super + ctrl + {1-9}
@@ -236,8 +236,8 @@ super + ctrl + space
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-#super + space
-#bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+super + space
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 # expand a window by moving one of its side outward
 super + shift + {y,u,i,o}
@@ -256,16 +256,17 @@ super + shift + d
 super { ,+ shift }+ z
 	bspc config window_gap $(($(bspc config window_gap) {+,-} 3))
 
-super + u
+super + ctrl + u
 	cat /tmp/dropdown | xargs -I win bspc node win --flag hidden;bspc node -f win
 
 # Make a windoww sticky/non-sticky
-super + o
+super + ctrl + o
 	bspc node -g sticky={on,off}
 
 # remove and restore polybar
-#super + b
-#\{ pgrep polybar && \{ killall polybar ; bspc config top_padding 0 \} \} || \{ launch_polybar ; bspc config top_padding 24 \}
+super + shift + ctrl + b
+\{ pgrep polybar && \{ killall polybar ; bspc config top_padding 0 \} \} || \{ launch_polybar ; bspc config top_padding 24 \}
+
 
 super + {i,o}
 	bspc node -f {prev,next}.local

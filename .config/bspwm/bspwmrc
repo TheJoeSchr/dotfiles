@@ -41,3 +41,7 @@ bspc config external_rules_command "$(which floaters)"
 
 # setting keyboard to international
 setxkbmap -layout us -variant altgr-intl -option nodeadkeys
+
+sxhkd &
+launch_polybar
+nitrogen --restore &

@@ -64,7 +64,7 @@ font-3 = Symbola:pixelsize=9;1
 modules-left = bspwm xwindow
 ;modules-center =
 ; modules-right = mpd volume mutt-wizard wlan eth battery date
-modules-right = wlan battery volume date powermenu
+modules-right = wlan battery cpu date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -183,18 +183,18 @@ label-urgent = %index%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-; [module/mpd]
-; type = internal/mpd
-; format-online = <label-song>  <label-time>
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <label-time>
 
-; click-left = $TERMINAL -e ncmpcpp
-; click-right = mpc toggle
+click-left = $TERMINAL -e ncmpcpp
+click-right = mpc toggle
 
-; label-song =  %artist% - %title%
-; label-song-maxlen = 70
-; label-song-ellipsis = true
+label-song =  %artist% - %title%
+label-song-maxlen = 70
+label-song-ellipsis = true
 
-; format-paused-foreground = ${colors.gray}
+format-paused-foreground = ${colors.gray}
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -380,9 +380,9 @@ type = custom/menu
 
 format-spacing = 1
 
-label-open = 
+label-open = OFF
 label-open-foreground = ${colors.darkmagenta}
-label-close =  cancel
+label-close = cancel
 label-close-foreground = ${colors.darkmagenta}
 label-separator = |
 label-separator-foreground = ${colors.gray}
@@ -395,10 +395,10 @@ menu-0-1-exec = menu-open-2
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
 menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-1-exec = reboot
 
 menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
+menu-2-0-exec = poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
