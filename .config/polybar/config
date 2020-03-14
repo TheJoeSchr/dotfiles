@@ -64,7 +64,7 @@ font-3 = Symbola:pixelsize=9;1
 modules-left = bspwm xwindow
 ;modules-center =
 ; modules-right = mpd volume mutt-wizard wlan eth battery date
-modules-right = wlan battery cpu date powermenu
+modules-right = wlan battery cpu powermenu date
 
 tray-position = right
 tray-padding = 0
@@ -279,11 +279,11 @@ label-disconnected-foreground = ${colors.gray}
 type = internal/date
 interval = 60
 
-date = "%Y %b %d (%a)"
-time = "%I:%M%p"
+date = " %d.%b.%Y"
+; time-alt = "%I:%M%p"
 
 # If you're not living in a country where AM and PM is used you can add -alt to the time above this line and comment it using ;, then you can remove the -alt to the time under this line and uncomment it.
-;time-alt = " at %H:%M"
+time= "%H:%M"
 ;time-alt = %H:%M:%S
 ;time-alt = %H:%M:%S
 
@@ -291,7 +291,7 @@ format-prefix = " "
 format-prefix-foreground = ${colors.gray}
 format-underline = ${colors.blue}
 
-label = %date% %time%
+label = %date% | %time%
 
 [module/volume]
 type = internal/alsa
@@ -380,8 +380,8 @@ type = custom/menu
 
 format-spacing = 1
 
-label-open = OFF
-label-open-foreground = ${colors.darkmagenta}
+label-open = PWROFF
+label-open-foreground = ${colors.darkyellow}
 label-close = cancel
 label-close-foreground = ${colors.darkmagenta}
 label-separator = |
