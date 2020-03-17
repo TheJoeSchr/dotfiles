@@ -392,7 +392,10 @@ if !exists('g:vscode')
 
   " Always show the signcolumn, otherwise it would shift the text each time
   " diagnostics appear/become resolved.
-  set signcolumn=yes
+  " actually don't know patch number, just know not working with nvim 0.2
+  if has('patch8.1.1068')
+    set signcolumn=yes
+  endif
 
   " Use tab for trigger completion with characters ahead and navigate.
   " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
