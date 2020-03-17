@@ -29,10 +29,10 @@ super + v
 	$TERMINAL -e nvim
 ctrl + alt + n
 	$TERMINAL -e nvim
-# volume controles
+# volume controls
 super + shift + a
-	# $TERMINAL -e alsamixer; pkill -RTMIN+10 $STATUSBAR
     pavucontrol
+	# $TERMINAL -e alsamixer; pkill -RTMIN+10 $STATUSBAR
 # # camera
 # super + shift + c
 # 	mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title='mpvfloat' /dev/video0
@@ -65,10 +65,10 @@ XF86TouchpadToggle
 XF86Touchpad{Off,On}
 	synclient TouchpadOff={1,0}
 # XF86MonBrightnessDown
-ISO_Level3_Shift + F6
+super + F6
 	xbacklight -dec 15
 # XF86MonBrightnessUp
-ISO_Level3_Shift + F7
+super + F7
 	xbacklight -inc 15
 
 # Recording
@@ -103,18 +103,19 @@ super + {_,shift +} bracketleft
 	mpc seek -{10,120}
 # Increase volume
 super + {equal,plus}
-	amixer sset Master {5,15}%+; pkill -RTMIN+10 $STATUSBAR
+	amixer sset Headphone {5,15}%+; pkill -RTMIN+10 $STATUSBAR
+	# amixer sset Master {5,15}%+; pkill -RTMIN+10 $STATUSBAR
 # Decrease volume
 super {_,shift +} + minus
-	amixer sset Master {5,15}%-; pkill -RTMIN+10 $STATUSBAR
+	amixer sset Headphone {5,15}%-; pkill -RTMIN+10 $STATUSBAR
 super + shift + m
-	amixer sset Master toggle; pkill -RTMIN+10 $STATUSBAR
+	amixer sset Headphone toggle; pkill -RTMIN+10 $STATUSBAR
 
 # Audiokeys
 XF86AudioMute
-	amixer sset Master toggle; pkill -RTMIN+10 $STATUSBAR
+	amixer sset Headphone toggle; pkill -RTMIN+10 $STATUSBAR
 XF86Audio{Raise,Lower}Volume
-	amixer sset Master 5%{+,-}; pkill -RTMIN+10 $STATUSBAR
+	amixer sset Headphone 5%{+,-}; pkill -RTMIN+10 $STATUSBAR
 XF86Audio{Next,Prev}
 	mpc {next,prev}
 XF86Audio{Pause,Play,Stop}
@@ -247,12 +248,17 @@ super + ctrl + space
 # cancel the preselection for the focused desktop
 super + space
     bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+#
+# move/resize
+#
 
 # expand a window by moving one of its side outward
-super + shift + {y,u,i,o}
+super + shift + {h,j,k,l}
 	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
