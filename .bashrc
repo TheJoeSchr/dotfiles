@@ -138,6 +138,13 @@ alias duckS='du -ckSh * | sort -rh | head'
 # find largest folder/file quickly (summarized)
 alias ducks='du -cksh * | sort -rh | head'
 
+# kill grep
+function killgrep {
+  echo kill $(ps aux | grep "$1" | awk '{print $2}');
+  kill $(ps aux | grep "$1" | awk '{print $2}');
+}
+export -f killgrep
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
