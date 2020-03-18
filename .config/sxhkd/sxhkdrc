@@ -73,11 +73,6 @@ super + F7
 
 # Recording
 # Take screenshot
-Print
-	maim pic-full-$(date '+%y%m%d-%H%M-%S').png
-# Pick screenshot type
-shift + Print
-	maimpick
 # Print: Record audio or video; Del: kill recording
 # super + Print
 # 	dmenurecord
@@ -158,7 +153,12 @@ super + F3
 # Hibernate
 super + F4
 	prompt 'Susbend computer?' 'sudo -A pm-suspend'
-# super + F5 is unbound.
+# Print
+super + F5
+	maimpick pic-full-$(date '+%y%m%d-%H%M-%S').png
+# Pick screenshot type
+super + shift +F5
+	maimpick
 # Start torrent daemon/open interface
 # super + F6
 # 	torwrap
