@@ -152,5 +152,26 @@ export NVM_DIR="$HOME/.nvm"
 # source local commands
 . ~/.bashrc.local
 
-# put into .bashrc.local on tmux systems
-# tmux attach -t base || tmux new -s base
+# -- EXAMPLES BASHRC.LOCAL 
+
+# ## TMUX
+# alias tmux-init="tmux attach -t base || tmux new -s base"
+# clear
+
+# # confirm start of tmux 
+# read -p "Start tmux (N/y)? " -n 1 -r
+# echo    
+# if [[ $REPLY =~ ^[Yy]$ ]]
+# then
+#   tmux-init
+# fi
+# clear
+
+# ## POSTGRAPHILE DOCKER 
+# export PG_DUMP="docker-compose exec -T db pg_dump"
+
+# ## ALIASES
+# # show battery
+# alias battery="acpi -b"
+# alias pip="pip3"
+
