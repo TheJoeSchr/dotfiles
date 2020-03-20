@@ -43,5 +43,5 @@ bspc config external_rules_command "$(which floaters)"
 setxkbmap -layout us -variant altgr-intl -option nodeadkeys
 
 sxhkd &
-launch_polybar
+launch_polybar &
 nitrogen --restore &
