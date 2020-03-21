@@ -3,6 +3,10 @@
 touch .vimrc.local
 touch .bashrc.local
 
+
+# launchpad for appgrid (gallium os
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 241FE6973B765FAE
+
 sudo apt update
 
 sudo galliumos-update
@@ -11,18 +15,6 @@ sudo galliumos-update
 sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 # buildtools
 sudo apt install -y xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake pkg-config glib-2.0 autoconf automake pkg-config libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2
-
-# download my dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-echo ".cfg" >> .gitignore
-git clone --bare git@bitbucket.org:JozephS/dotfiles.git $HOME/.cfg
-
-mkdir .config-backup/.ssh
-mkdir --parents .config-backup/.config/vlc
-mkdir -p .config-backup && config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-
-config config --local status.showUntrackedFiles no
-. .bashrc
 
 # TODO download .ssh/ folder
 chmod 600 .ssh/*
