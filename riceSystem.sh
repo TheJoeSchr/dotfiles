@@ -3,8 +3,11 @@
 touch .vimrc.local
 touch .bashrc.local
 
+# lazygit
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 68CCF87596E97291
+sudo add-apt-repository ppa:lazygit-team/release
 
-# launchpad for appgrid (gallium os
+# launchpad for appgrid (gallium os needed?)
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 241FE6973B765FAE
 
 sudo apt update
@@ -12,7 +15,7 @@ sudo apt update
 sudo galliumos-update
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass
+sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit
 
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
@@ -118,7 +121,8 @@ sudo dpkg -i ripgrep_11.0.2_amd64.deb
 # start for inital plugin setup
 nvim &
 
-#power line fonts
+
+# powerline fonts
 cd ~/Downloads
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts
