@@ -81,13 +81,13 @@ function csh {
         cmd "/C $arg"
 }
 ## removes docker lock ups hardcore mode
-removecontainers() {
+docker-removecontainers() {
         docker stop $(docker ps -aq)
         docker rm $(docker ps -aq)
 }
 
 docker-armageddon() {
-        removecontainers
+        docker-removecontainers
         docker network prune -f
         docker rmi -f $(docker images --filter dangling=true -qa)
         docker volume rm $(docker volume ls --filter dangling=true -q)
@@ -161,9 +161,9 @@ export NVM_DIR="$HOME/.nvm"
 # alias tmux-init="tmux attach -t base || tmux new -s base"
 # clear
 
-# # confirm start of tmux 
-# read -p "Start tmux (N/y)? " -n 1 -r
-# echo    
+# # confirm start of tmux
+# read -p "Start tmux (N/y)? " -n 2 -r -s -t 4
+# echo
 # if [[ $REPLY =~ ^[Yy]$ ]]
 # then
 #   tmux-init
