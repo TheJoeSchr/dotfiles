@@ -12,13 +12,13 @@ sudo apt update
 sudo galliumos-update
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight
+sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass
 
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
 # suggested package from inital install
-sudo apt install -y debian-keyring g++-multilib g++-7-multilib gcc-7-doc libstdc++6-7-dbg gcc-multilib autoconf automake libtool flex bison gdb gcc-doc apache2 | lighttpd | httpd libstdc++-7-doc ctags vim-scripts python-greenlet-doc python-greenlet-dev python-greenlet-dbg python-crypto-doc python3-greenlet-dbg libkf5wallet-bin python-secretstorage-doc python-setuptools-doc dwm stterm surf
+sudo apt install -y debian-keyring g++-multilib g++-7-multilib gcc-7-doc libstdc++6-7-dbg gcc-multilib autoconf automake libtool flex bison gdb gcc-doc  lighttpd  libstdc++-7-doc ctags vim-scripts python-greenlet-doc python-greenlet-dev python-greenlet-dbg python-crypto-doc python3-greenlet-dbg libkf5wallet-bin python-secretstorage-doc python-setuptools-doc dwm stterm surf
 
 # buildtools & dependencies
 sudo apt install -y xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake pkg-config glib-2.0 autoconf automake pkg-config libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2
@@ -105,7 +105,7 @@ rm yarn.lock
 # neovim (latest)
 cd ~/Downloads
 wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-chmod u+x nvim.appimage && rm /usr/bin/nvim && mv nvim.appimage /usr/bin/nvim
+chmod u+x nvim.appimage && sudo rm /usr/bin/nvim && sudo mv nvim.appimage /usr/bin/nvim
 # sets accesss rights so normal user can start it
 sudo chown $USER  /usr/bin/nvim
 
