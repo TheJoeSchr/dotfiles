@@ -3,10 +3,9 @@
 # call with 
 # curl -Lks https://bitbucket.org/JozephS/dotfiles/raw/master/install-cfg.sh | /bin/bash
 
-git clone --bare git clone git@bitbucket.org:JozephS/dotfiles.git $HOME/.cfg
-function config {
-   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
-}
+git clone --bare git@bitbucket.org:JozephS/dotfiles.git $HOME/.cfg
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME" 
+
 mkdir -p .config-backup
 config checkout
 if [ $? = 0 ]; then
