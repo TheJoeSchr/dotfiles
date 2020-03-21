@@ -97,7 +97,7 @@ docker-armageddon() {
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
 alias ls='ls -F --color --show-control-chars'
-alias ll='ls -l'
+alias ll='ls -alk'
 
 ## git stuff ##
         # git status
