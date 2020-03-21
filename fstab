@@ -1,0 +1,19 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+/dev/mapper/galliumos--vg-root /               ext4    discard,relatime,errors=remount-ro 0       1
+# /boot/efi was on /dev/mmcblk0p1 during installation
+UUID=7A55-9222  /boot/efi       vfat    umask=0077      0       1
+
+# swap
+/dev/swap_vg/lvswap swap swap defaults 0 0
+
+
+# auto mount my usbsticks
+UUID=67fb63a7-06ed-465d-ad69-1845697e38b2  /media/fastusb ext4 defaults,user,noauto 0 0
+
+UUID=1644e90b-8433-4c31-a3f5-3785a40b4805 /media/slimstick ext4 defaults,user,auto,exec 0 0
