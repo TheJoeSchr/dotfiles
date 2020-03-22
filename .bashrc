@@ -94,6 +94,7 @@ docker-armageddon() {
         docker rmi -f $(docker images -qa)
 }
 
+alias e="vi"
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
 alias ls='ls -F --color --show-control-chars'
@@ -155,22 +156,12 @@ export NVM_DIR="$HOME/.nvm"
 # source local commands
 . ~/.bashrc.local
 
-# -- EXAMPLES BASHRC.LOCAL 
+# -- EXAMPLES BASHRC.LOCAL
 
 # ## TMUX
 # alias tmux-init="tmux attach -t base || tmux new -s base"
-# clear
 
-# # confirm start of tmux
-# read -p "Start tmux (N/y)? " -n 2 -r -s -t 4
-# echo
-# if [[ $REPLY =~ ^[Yy]$ ]]
-# then
-#   tmux-init
-# fi
-# clear
-
-# ## POSTGRAPHILE DOCKER 
+# ## POSTGRAPHILE DOCKER
 # export PG_DUMP="docker-compose exec -T db pg_dump"
 
 # ## ALIASES
@@ -178,3 +169,16 @@ export NVM_DIR="$HOME/.nvm"
 # alias battery="acpi -b"
 # alias pip="pip3"
 
+# # # default start of tmux, with option to break
+# read -t 3 -n 1 -p "Start tmux (n/Y)? " answer
+# [ -z "$answer" ] && answer="Y"  # 'yes' efault choice
+# echo
+# case ${answer:0:1} in
+#     n|N )
+#         echo "No Tmux"
+#         ;;
+#     * )
+#         echo "Starting tmux-init"
+#         tmux-init
+#     ;;
+# esac
