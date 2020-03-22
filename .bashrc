@@ -100,6 +100,8 @@ alias less='less -r'
 alias ls='ls -F --color --show-control-chars'
 alias ll='ls -alk'
 
+# ssh-add
+alias ssh-add="ssh-add ~/.ssh/*"
 ## git stuff ##
         # git status
 alias gs='git status '
