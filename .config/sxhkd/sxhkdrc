@@ -91,13 +91,13 @@ XF86Touchpad{Off,On}
 # 	mpc seek -{10,120}
 # Increase volume
 super + {equal, F10}
-	amixer sset Master 2+;
+	amixer sset Headphone 1+; amixer sset Speaker 1+;
 # Decrease volume
 super  + {minus, F9}
-	amixer sset Master 2-;
+	amixer sset Headphone 1-; amixer sset Speaker 1-;
 
 super + shift + m
-	amixer sset Master toggle; pkill -RTMIN+10 $STATUSBAR
+	amixer sset Headphone toggle; amixer sset Speaker toggle; pkill -RTMIN+10 $STATUSBAR
 
 # Audiokeys
 XF86AudioMute
