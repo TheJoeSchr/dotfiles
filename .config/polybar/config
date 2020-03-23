@@ -380,26 +380,29 @@ type = custom/menu
 
 format-spacing = 1
 
-label-open = PWROFF
+; label-open = PWROFF
+label-open = ⏼FF
 label-open-foreground = ${colors.darkyellow}
-label-close = cancel
+; label-close = cancel
+label-close = ⏎  cancel
 label-close-foreground = ${colors.darkmagenta}
 label-separator = |
 label-separator-foreground = ${colors.gray}
+format-underline = ${colors.green}
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
 menu-0-1 = power off
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = cancel
+menu-1-0 = ⏎ cancel
 menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
+menu-1-1 = ⚠ REBOOT
 menu-1-1-exec = sudo -A reboot
 
-menu-2-0 = power off
+menu-2-0 = ⚠ POWER OFF
 menu-2-0-exec = sudo -A poweroff
-menu-2-1 = cancel
+menu-2-1 = ⏎ cancel
 menu-2-1-exec = menu-open-0
 
 [settings]
