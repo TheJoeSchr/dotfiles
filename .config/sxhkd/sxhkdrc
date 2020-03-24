@@ -122,7 +122,7 @@ XF86PowerOff
 XF86Calculator
 	$TERMINAL -e bc
 XF86Sleep
-	prompt 'Hibernate computer?' 'sudo -A pm-hibernate'
+	prompt 'Put computer to sleep?' 'sudo -A pm-suspend'
 XF86WWW
 	$BROWSER
 XF86DOS
@@ -148,7 +148,7 @@ super + F3
 	displayselect
 # Hibernate
 super + F4
-	prompt 'Susbend computer?' 'sudo -A pm-suspend'
+	prompt 'Put computer to sleep?' 'sudo -A pm-suspend'
 # Print
 super + F5
 	maimpick pic-full-$(date '+%y%m%d-%H%M-%S').png
