@@ -7,20 +7,20 @@
 set nocompatible
 
 "
-" LEADER IS "SPACE": 
+" LEADER IS "SPACE":
 " ==================
-" 
+"
 " Must stand before other uses
 " Maps leader to \
 let mapleader="\\"
 " Map SPACE to None
-" Without that, pressing <Space> will not behave like other keys as mapleader. 
-" <Space> in normal mode is mapped to <right>. 
+" Without that, pressing <Space> will not behave like other keys as mapleader.
+" <Space> in normal mode is mapped to <right>.
 " Just press <space> a couple of times in a row and you will see undesired behaviour.
 nnoremap <SPACE> <Nop>
 " Maps SPACE to \
 map <Space> \
-" Exclude in select mode, so space can be used to replace 
+" Exclude in select mode, so space can be used to replace
 " placeholder text in a snippet.
 sunmap <Space>
 
@@ -31,7 +31,7 @@ inoremap <C-Space> <leader>
 " ==================
 " automagically install plug.vim
 " only on linux
-if !has('win32') 
+if !has('win32')
   if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
       echo "Downloading junegunn/vim-plug to manage plugins..."
       silent !mkdir -p ~/.config/nvim/autoload/
@@ -48,7 +48,7 @@ endif
 
 " BASIC SETUP:
 " ==================
-" enable syntax and plugins 
+" enable syntax and plugins
 syntax enable
 
 " FINDING FILES:
@@ -79,7 +79,7 @@ set wildmenu
 " - :e **
 " Now we’re at a point where I don’t need to look through any directories
 " If I know I want to open my `_components.buttons.scss` file I just need to do:
-" :vs **/*butto<Tab>  
+" :vs **/*butto<Tab>
 
 
 " THINGS TO CONSIDER:
@@ -116,7 +116,7 @@ set directory=~/.vim/swap
 autocmd VimResized * :wincmd =
 " yank to windows clipboard
 set clipboard=unnamedplus " on linux install xclip
-" automatically refresh any files that haven't been edited by Vim 
+" automatically refresh any files that haven't been edited by Vim
 set autoread
 " hides buffer instead of closing it
 set hidden
@@ -128,7 +128,7 @@ set relativenumber
 set number
 " tabs
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
-" set english Language 
+" set english Language
 " for menu
 set langmenu=en_US
 " for everyhere
@@ -174,18 +174,18 @@ if !exists('g:vscode')
     " >============== UNIVERSAL PLUGINS: NATIVE VIM ===================
       " ------ needs to be duplicated because can't call plug#begin twice
       Plug 'bkad/CamelCaseMotion'
-      " Fuzzy Find, use :ctrlp or <c-p> 
+      " Fuzzy Find, use :ctrlp or <c-p>
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
       " Special easymotion fork
       Plug 'asvetliakov/vim-easymotion'
       " - helps with f scoping
-      Plug 'unblevable/quick-scope'   
+      Plug 'unblevable/quick-scope'
       " no visual delay after jk / kj
       Plug 'zhou13/vim-easyescape'
       Plug 'justinmk/vim-sneak'
     " >============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
-    
+
     " NATIVE ONLY:
     " -- linter (works with elint)
     Plug 'dense-analysis/ale'
@@ -222,9 +222,9 @@ if !exists('g:vscode')
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
     endif
   call plug#end() " /Initialize plugin system
-  
+
   " ----------------
-  " NATIVE SETTINGS: 
+  " NATIVE SETTINGS:
   " ----------------
 
   " SPLITS:
@@ -240,7 +240,7 @@ if !exists('g:vscode')
   "Open new split panes to right and bottom, which feels more natural than Vim’s default:
   set splitbelow
   set splitright
-  
+
   " == CHEATSHEET =="
   " RESIZING SPLITS:
   " Max out the height of the current split
@@ -256,7 +256,7 @@ if !exists('g:vscode')
   " Ctrl+W T
   "Close every window in the current tabview but the current one
   " Ctrl+W o
-  
+
 
   " correct syntax highlight of // comments in .json files
   autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -274,17 +274,17 @@ if !exists('g:vscode')
   " let g:airline_solarized_bg='dark'
   " " guifont to hack and larger
   " set guifont=Hack:h16
-  
-  " NATIVE MAPPINGS: 
+
+  " NATIVE MAPPINGS:
   " ----------------
-  
-  " CONFIG NATIVE PLUGINS: 
+
+  " CONFIG NATIVE PLUGINS:
   " ----------------------
-  
+
   " ------------------ NERDTREE ------------------
   " use split model instead of drawer (so better netrw)
   " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
-  let NERDTreeHijackNetrw=1 
+  let NERDTreeHijackNetrw=1
   " show dotfiles
   let NERDTreeShowHidden=1
   map <C-n> :NERDTreeToggle<CR>
@@ -357,21 +357,21 @@ if !exists('g:vscode')
   " - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
   "   'previous-history' instead of 'down' and 'up'.
   let g:fzf_history_dir = '~/.local/share/fzf-history'
-  
+
   " ---------------- / FZF ------------
   " ---------------- COC ------------
   " coc config
   " automatically installs this coc extension
-  " probably needs restart, check with <leader>e 
+  " probably needs restart, check with <leader>e
   let g:coc_global_extensions = [
     \ 'coc-snippets',
     \ 'coc-pairs',
     \ 'coc-tsserver',
-    \ 'coc-eslint', 
-    \ 'coc-prettier', 
-    \ 'coc-json', 
-    \ 'coc-html', 
-    \ 'coc-css', 
+    \ 'coc-eslint',
+    \ 'coc-prettier',
+    \ 'coc-json',
+    \ 'coc-html',
+    \ 'coc-css',
     \ ]
   "  TextEdit might fail if hidden is not set.
   set hidden
@@ -550,7 +550,7 @@ endif
 
 " (for netrw)
 " keeping it on for nerdtree to highjack
-filetype plugin on 
+filetype plugin on
 
 " (still using NERDTREE as well, because of a lot of bugs in netrw)
 " Tweaks for browsing
@@ -584,20 +584,20 @@ if exists('g:vscode')
     " ============== UNIVERSAL PLUGINS: VSCODE-NEOVIM ===================
     " ------ needs to be duplicated because can't call plug#begin twice
       Plug 'bkad/CamelCaseMotion'
-      " Fuzzy Find, use :ctrlp or <c-p> 
+      " Fuzzy Find, use :ctrlp or <c-p>
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
       " Special easymotion fork
       Plug 'asvetliakov/vim-easymotion'
       " - helps with f scoping
-      Plug 'unblevable/quick-scope'   
+      Plug 'unblevable/quick-scope'
       " no visual delay after jk / kj
       Plug 'zhou13/vim-easyescape'
       Plug 'justinmk/vim-sneak'
       Plug 'tpope/vim-surround'
     " ============== / UNIVERSAL PLUGINS: VSCODE-NEOVIM ===================
     " Plug 'bkad/CamelCaseMotion'
-    " " Fuzzy Find, use :ctrlp or <c-p> 
+    " " Fuzzy Find, use :ctrlp or <c-p>
     " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     " Plug 'junegunn/fzf.vim'
     " Special easymotion fork
@@ -632,13 +632,13 @@ let g:sneak#label = 2
 if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
-    " For use with ack.vim 
+    " For use with ack.vim
     let g:ackprg = 'rg --vimgrep --no-heading'
     " shortcut: <C-p>a
-    nmap <leader>r :Rg           
-    nnoremap <C-p>a :Rg 
-    
-    " Adds command :Rg 
+    nmap <leader>r :Rg
+    nnoremap <C-p>a :Rg
+
+    " Adds command :Rg
     command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
@@ -646,5 +646,9 @@ if executable('rg')
 
 endif
 " ================== / UNIVERSAL PLUGINS CONFIG =================
+
+
+" (Shift+) F8 rotates through TDD phases red, green, refactor
+source ~/.config/nvim/tddcolors.vim
 
 source ~/.vimrc.local
