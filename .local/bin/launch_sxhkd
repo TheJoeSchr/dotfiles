@@ -8,4 +8,4 @@ while pgrep -x sxhkd >/dev/null; do sleep 1; done
 
 
 sxhkd &
-echo "Shortucuts launched..."
+echo "Shortcuts reloaded..."
