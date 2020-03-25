@@ -64,17 +64,18 @@ font-3 = Symbola:pixelsize=20;1
 modules-left = bspwm xwindow
 ;modules-center =
 ; modules-right = mpd volume mutt-wizard wlan eth battery date
-modules-right = wlan battery cpu powermenu date
+modules-right = wlan battery cpu date powermenu
 
-tray-position = right
-tray-padding = 0
+tray-position = left
+tray-padding = 5
 
 wm-restack = bspwm
 
-;override-redirect = true
+override-redirect = true
 
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
+; rotates through desktop with mouse wheel
+; scroll-up = bspwm-desknext
+; scroll-down = bspwm-deskprev
 
 ; [module/mutt-wizard]
 
@@ -378,17 +379,17 @@ ramp-foreground = ${colors.gray}
 [module/powermenu]
 type = custom/menu
 
-format-spacing = 1
+format-spacing = 2
 
 ; label-open = PWROFF
-label-open = ⏼FF
+label-open = ⏼
 label-open-foreground = ${colors.darkyellow}
 ; label-close = cancel
 label-close = ⏎  cancel
 label-close-foreground = ${colors.darkmagenta}
 label-separator = |
 label-separator-foreground = ${colors.gray}
-format-underline = ${colors.green}
+format-underline = ${colors.darkyellow}
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
