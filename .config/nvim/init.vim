@@ -303,8 +303,8 @@ if !exists('g:vscode')
   let g:ale_lint_delay = 1000
 
   " use nice symbols for errors and warnings
-  let g:ale_sign_error = '✗\ '
-  let g:ale_sign_warning = '⚠\ '
+  let g:ale_sign_error = '❌'
+  let g:ale_sign_warning = '⚠ '
 
   " fixer configurations
   let g:ale_fixers = {
