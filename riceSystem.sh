@@ -15,8 +15,7 @@ sudo apt update
 sudo galliumos-update
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance
-
+sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance maim
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
@@ -121,6 +120,8 @@ sudo dpkg -i ripgrep_11.0.2_amd64.deb
 # start for inital plugin setup
 nvim &
 
+# lazygit
+curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 # powerline fonts
 cd ~/Downloads
@@ -143,6 +144,6 @@ sudo apt install ./code.deb
 sudo apt autoremove -y
 
 
-# docker (refresh group) 
+# docker (refresh group)
 # needs to be at end, because it sources .bashrc again
 newgrp docker
