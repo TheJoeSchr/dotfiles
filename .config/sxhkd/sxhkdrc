@@ -143,6 +143,9 @@ super + shift + F1
 super + F1
 	$TERMINAL -e nmtui
 	# groff -mom $HOME/.local/share/larbs/readme.mom -Tpdf | zathura -
+# Email
+super + F2
+	$TERMINAL -e neomutt
 # Change display
 super + F3
 	displayselect
@@ -169,8 +172,8 @@ super + F7
 # super + F7
 # 	td-toggle
 # sync email
-# super + F8
-# 	mailsync
+super + F8
+	mailsync
 # Mount a USB drive or Android device
 super + shift + {F9,F10}
 	{dmenumount,dmenuumount}
