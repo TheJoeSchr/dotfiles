@@ -115,35 +115,35 @@
 /* *.color15:	#fdf6e3 */
 
 /* !! xterm (modified by Joe) */
-! special
-*.foreground:   #ffffff
-*.background:   #000000
-*.cursorColor:  #ffffff
-! black
-*.color0:       #000000
-/* *.color8:       #4d4d4d */
-*.color8:       #E6E6E6
-! red
-*.color1:       #cd0000
-*.color9:       #ff0000
-! green
-*.color2:       #00cd00
-*.color10:      #00ff00
-! yellow
-*.color3:       #cdcd00
-*.color11:      #ffff00
-! blue
-*.color4:       #0000e4
-*.color12:      #0000ff
-! magenta
-*.color5:       #cd00cd
-*.color13:      #ff00ff
-! cyan
-*.color6:       #00cdcd
-*.color14:      #00ffff
-! white
-*.color7:       #e5e5e5
-*.color15:      #aabac8
+/* ! special */
+/* *.foreground:   #ffffff */
+/* *.background:   #000000 */
+/* *.cursorColor:  #ffffff */
+/* ! black */
+/* *.color0:       #000000 */
+/* /1* *.color8:       #4d4d4d *1/ */
+/* *.color8:       #E6E6E6 */
+/* ! red */
+/* *.color1:       #cd0000 */
+/* *.color9:       #ff0000 */
+/* ! green */
+/* *.color2:       #00cd00 */
+/* *.color10:      #00ff00 */
+/* ! yellow */
+/* *.color3:       #cdcd00 */
+/* *.color11:      #ffff00 */
+/* ! blue */
+/* *.color4:       #0000e4 */
+/* *.color12:      #0000ff */
+/* ! magenta */
+/* *.color5:       #cd00cd */
+/* *.color13:      #ff00ff */
+/* ! cyan */
+/* *.color6:       #00cdcd */
+/* *.color14:      #00ffff */
+/* ! white */
+/* *.color7:       #e5e5e5 */
+/* *.color15:      #aabac8 */
 
 /* !! solarized dark with darker bg */
 /* ! special */
