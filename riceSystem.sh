@@ -143,6 +143,14 @@ pip3 install --user pywal
 # lazygit
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
+# lf - file manager
+cd ~/Downloads
+wget https://github.com/gokcehan/lf/releases/download/r13/lf-linux-amd64.tar.gz -O lf-linux-amd64.tar.gz
+tar xvf lf-linux-amd64.tar.gz
+chmod +x lf
+sudo mv lf /usr/local/bin
+cd ~/Downloads
+
 # powerline fonts
 cd ~/Downloads
 git clone https://github.com/powerline/fonts.git --depth=1
