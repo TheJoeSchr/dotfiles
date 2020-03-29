@@ -15,7 +15,7 @@ sudo apt update
 sudo galliumos-update
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance maim
+sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance maim xcompmgr unclutter
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
@@ -23,7 +23,7 @@ sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-incons
 sudo apt install -y debian-keyring g++-multilib g++-7-multilib gcc-7-doc libstdc++6-7-dbg gcc-multilib autoconf automake libtool flex bison gdb gcc-doc  lighttpd  libstdc++-7-doc ctags vim-scripts python-greenlet-doc python-greenlet-dev python-greenlet-dbg python-crypto-doc python3-greenlet-dbg libkf5wallet-bin python-secretstorage-doc python-setuptools-doc dwm stterm surf
 
 # buildtools & dependencies
-sudo apt install -y xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake pkg-config glib-2.0 autoconf automake pkg-config libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2
+sudo apt install -y xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake pkg-config glib-2.0 autoconf automake pkg-config libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2 libx11-dev libxft-dev fontconfig
 
 # TODO download .ssh/ folder
 chmod 600 .ssh/*
@@ -113,12 +113,25 @@ sudo chown $USER  /usr/bin/nvim
 
 # neovim support
 yarn global add neovim
-pip3 install pynvim
+pip3 install --user pynvim
 # ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
 sudo dpkg -i ripgrep_11.0.2_amd64.deb
 # start for inital plugin setup
 nvim &
+
+# st
+cd ~/Downloads
+git clone https://github.com/LukeSmithxyz/st
+cd st
+sudo make install
+cd ~/Downloads
+
+# mpd with google music
+pip3 install --user mopidy
+
+# pywal
+pip3 install --user pywal
 
 # lazygit
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash

@@ -3,6 +3,9 @@ set -o vi
 
 # adds yarn global binaries to path"
 export PATH="$PATH:`yarn global bin --offline`:~/.local/bin"
+# adds pip bins to path
+export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
+export PATH=$PY_USER_BIN:$PATH
 
 if [ "$OS" == "Windows_NT" ]; then
   alias config="`which git` --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
@@ -43,8 +46,8 @@ SSH_ENV=$HOME/.ssh/environment
 # important for `sudo -A`
 export SUDO_ASKPASS="/usr/bin/ssh-askpass"
 
-# for docker postgraphile
-export TERMINAL=xfce4-terminal;
+
+export TERMINAL=st
 # for docker postgraphile
 export UID;
 
