@@ -184,6 +184,8 @@ if !exists('g:vscode')
       " no visual delay after jk / kj
       Plug 'zhou13/vim-easyescape'
       Plug 'justinmk/vim-sneak'
+      " unimpaired
+      Plug 'tpope/vim-unimpaired'
     " >============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
 
     " NATIVE ONLY:
@@ -595,6 +597,8 @@ if exists('g:vscode')
       Plug 'zhou13/vim-easyescape'
       Plug 'justinmk/vim-sneak'
       Plug 'tpope/vim-surround'
+      " unimpaired
+      Plug 'tpope/vim-unimpaired'
     " ============== / UNIVERSAL PLUGINS: VSCODE-NEOVIM ===================
     " Plug 'bkad/CamelCaseMotion'
     " " Fuzzy Find, use :ctrlp or <c-p>
