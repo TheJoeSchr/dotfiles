@@ -1,5 +1,5 @@
 !! Transparency (0-1):
-*.alpha: 0.8
+*.alpha: 1
 
 /* !! Set a default font and font size as below: */
 /* Don't change to xft, ttf fonts, looks ugly */
