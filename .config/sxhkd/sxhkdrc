@@ -17,6 +17,7 @@ super + d
 	dmenu_run
 super + r
 	$TERMINAL -e $FILE
+# Email
 super + e
 	$TERMINAL -e neomutt; pkill -RTMIN+12 $STATUSBAR
 # super + m
@@ -143,9 +144,9 @@ super + shift + F1
 super + F1
 	$TERMINAL -e nmtui
 	# groff -mom $HOME/.local/share/larbs/readme.mom -Tpdf | zathura -
-# Email
+# Browser
 super + F2
-	$TERMINAL -e neomutt
+    $BROWSER
 # Change display
 super + F3
 	displayselect
@@ -292,5 +293,8 @@ super + {i,o}
 	bspc node -f {prev,next}.local
 super + shift + n
 	bspc node focused -t \~floating ; hover right
+
+# switch between focused nodes
+# super +  b # this just works
 super + shift + b
 	bspc node focused -t \~floating ; hover left
