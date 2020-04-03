@@ -374,6 +374,7 @@ if !exists('g:vscode')
     \ 'coc-json',
     \ 'coc-html',
     \ 'coc-css',
+    \ 'coc-vetur',
     \ ]
   "  TextEdit might fail if hidden is not set.
   set hidden
