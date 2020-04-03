@@ -1,0 +1,9 @@
+#!/bin/bash
+width_focused=2
+width_unfocused=0
+
+xtitle -t| while read; do
+    bspc config -w $currendID border_width $width_unfocused
+    bspc config -w focused border_width $width_focused
+    currendID=$(bspc query -W -w)
+done
