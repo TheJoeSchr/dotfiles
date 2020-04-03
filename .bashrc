@@ -103,7 +103,7 @@ alias ls='ls -F --color --show-control-chars'
 alias ll='ls -alk'
 
 # ssh-add
-alias ssh-add="ssh-add ~/.ssh/*"
+alias ssh-add-all="ssh-add ~/.ssh/id_rsa_*"
 ## git stuff ##
         # git status
 alias gs='git status '
