@@ -44,8 +44,7 @@ fi
 SSH_ENV=$HOME/.ssh/environment
 
 # important for `sudo -A`
-export SUDO_ASKPASS="/usr/bin/ssh-askpass"
-
+export SUDO_ASKPASS="/home/joe/.local/bin/dmenupass"
 
 export TERMINAL=st
 # for docker postgraphile

@@ -7,19 +7,29 @@
 # The f thru ; keys on the home row
 # The b key on the bottom row (hides the bar in either case)
 
-BROWSER=google-chrome-stable
 # Basic binds
 alt + Return
 	$TERMINAL
 super + Return
 	$TERMINAL
+# run/search commands
+super + s
+	dmenu_run
 super + d
 	dmenu_run
-super + r
-	$TERMINAL -e $FILE
+# run/search commands
+ctrl + space
+	dmenu_run
+# super + r
+# 	$TERMINAL -e $FILE
+
 # Email
 super + e
 	$TERMINAL -e neomutt; pkill -RTMIN+12 $STATUSBAR
+# sync email
+super + shift + e
+	$TERMINAL -e mailsync
+
 # super + m
 # 	$TERMINAL -e ncmpcpp
 # super + n
@@ -41,7 +51,7 @@ super + shift + a
 # 	tutorialvids
 #
 super + shift + w
-	google-chrome-stable
+	$BROWSER
 
 # Et cetera...
 super + grave
@@ -99,6 +109,8 @@ super  + {minus, F9}
 
 super + shift + m
 	amixer sset Headphone toggle; amixer sset Speaker toggle; pkill -RTMIN+10 $STATUSBAR
+super + F8
+	amixer sset Master toggle; pkill -RTMIN+10 $STATUSBAR
 
 # Audiokeys
 XF86AudioMute
@@ -147,6 +159,8 @@ super + F1
 # Browser
 super + F2
     $BROWSER
+super  + shift  + F2
+    remotedesktop
 # Change display
 super + F3
 	displayselect
@@ -172,9 +186,6 @@ super + F7
 # toggle torrent daemon
 # super + F7
 # 	td-toggle
-# sync email
-super + F8
-	mailsync
 # Mount a USB drive or Android device
 super + shift + {F9,F10}
 	{dmenumount,dmenuumount}
@@ -201,11 +212,11 @@ super + space
 #
 
 # set the window state
-super + {t,shift + t,s}
-    bspc node -t {tiled,pseudo_tiled,floating}
+super + {t,shift + t,shift + space}
+    bspc node -t {tiled,pseudo_tiled,\~floating}
 
-super + shift + space
-	bspc node focused -t \~floating
+# super + shift + space
+# 	bspc node focused -t \~floating
 
 # focus/swap
 
