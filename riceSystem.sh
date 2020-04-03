@@ -15,7 +15,7 @@ sudo apt update
 sudo galliumos-update
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura
+sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
