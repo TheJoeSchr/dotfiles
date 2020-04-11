@@ -3,6 +3,7 @@
 touch .vimrc.local
 touch .bashrc.local
 
+## Adds to APT repository
 # lazygit
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 68CCF87596E97291
 sudo add-apt-repository ppa:lazygit-team/release
@@ -10,12 +11,21 @@ sudo add-apt-repository ppa:lazygit-team/release
 # launchpad for appgrid (gallium os needed?)
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 241FE6973B765FAE
 
+# vscode
+curl -sSL https://packages.microsoft.com/keys/microsoft.asc -o microsoft.asc
+sudo apt-key add microsoft.asc
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"  | sudo tee /etc/apt/sources.list.d/vscode.list
+
+# signal
+curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+
 sudo apt update
 
 sudo galliumos-update
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape
+sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape signal-desktop code
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
@@ -158,16 +168,6 @@ cd fonts
 ./install.sh
 cd ..
 rm -rf fonts
-
-# vscode
-cd ~/Downloads
-curl -o code.deb -L http://go.microsoft.com/fwlink/?LinkID=760868
-sudo apt install ./code.deb
-
-# signal
-curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
-echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
-sudo apt update && sudo apt install signal-desktop
 
 # dont remove it, because we need some of this I think
 # sudo apt remove -y xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake pkg-config glib-2.0 autoconf automake pkg-config libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2
