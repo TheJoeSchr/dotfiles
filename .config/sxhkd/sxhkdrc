@@ -17,17 +17,18 @@ super + s
 	dmenu_run
 super + d
 	dmenu_run
-# run/search commands
+super + space
+	dmenu_run
 ctrl + space
 	dmenu_run
 # super + r
 # 	$TERMINAL -e $FILE
 
 # Email
-super + e
+super + m
 	$TERMINAL -e neomutt; pkill -RTMIN+12 $STATUSBAR
 # sync email
-super + shift + e
+super + shift + m
 	$TERMINAL -e mailsync
 
 # super + m
@@ -204,7 +205,7 @@ super + y
 	bspc node @focused:/ -R 90
 
 # swap the current node and the biggest local node
-super + space
+super +shift + space
 	bspc node -s biggest.local || bspc node -s next.local
 
 #
