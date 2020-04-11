@@ -41,7 +41,7 @@ if !has('win32')
 endif
 
 " ==================
-" FROM: HOW TO DO NINTY PERSENT OF WHAT PLUGINS DO WITH JUST VIM:
+" FROM: HOW TO DO NINTY PERCENT OF WHAT PLUGINS DO WITH JUST VIM:
 " ==================
 " https://github.com/changemewtf/no_plugins/blob/master/no_plugins.vim
 " https://www.youtube.com/watch?v=XA2WjJbmmoM
@@ -189,6 +189,8 @@ if !exists('g:vscode')
     " >============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
 
     " NATIVE ONLY:
+    " -- git helper
+    Plug 'tpope/vim-fugitive'
     " -- linter (works with elint)
     Plug 'dense-analysis/ale'
     " -- emulate vscode-vim stuff
