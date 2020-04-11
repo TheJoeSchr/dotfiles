@@ -217,6 +217,9 @@ if !exists('g:vscode')
     Plug 'vim-airline/vim-airline-themes'
     " TMUX
     Plug 'christoomey/vim-tmux-navigator'
+    " Clojure(Script)"
+    Plug 'tpope/vim-fireplace'
+
 
     " AUTOCOMPLETION: basially port of vscode autocompletion
     " https://github.com/neoclide/coc.nvim
