@@ -16,7 +16,8 @@
 	br = branch
 	feat = merge --no-ff --no-commit
 	me = merge
-	pu = pull
+	pu = pull --rebase
+	ps = push
 	# lg = log --graph --oneline --decorate
 	lg = !"git lg1"
 	lg1 = !"git lg1-specific "
