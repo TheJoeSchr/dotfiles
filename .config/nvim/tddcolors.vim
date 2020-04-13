@@ -40,7 +40,7 @@ function! s:SetColors(args)
     echo 'List of colors set from built-in names'
   elseif a:args == 'tdd'
              " red green refactor
-    let tdd = 'shine murphy default'
+    let tdd = 'delek industry koehler morning default'
     let s:mycolors = split(tdd)
     echo 'Colors used for TDD (red, green, refactor (not in that order))'
   elseif a:args == 'now'
