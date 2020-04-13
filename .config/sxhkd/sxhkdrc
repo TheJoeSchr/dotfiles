@@ -19,8 +19,6 @@ super + d
 	dmenu_run
 super + space
 	dmenu_run
-ctrl + space
-	dmenu_run
 # super + r
 # 	$TERMINAL -e $FILE
 
