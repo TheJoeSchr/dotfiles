@@ -7,8 +7,13 @@
 set nocompatible
 
 "
-" LEADER IS "SPACE":
-" ==================
+" LEADER IS "SPACE" AND "\":
+" ==========================
+" --------------------------
+" for <leader><leader> use \ \
+" --------------------------
+" (eg. \\w for easymotion-w)
+" --------------------------
 "
 " Must stand before other uses
 " Maps leader to \
@@ -41,7 +46,7 @@ if !has('win32')
 endif
 
 " ==================
-" FROM: HOW TO DO NINTY PERCENT OF WHAT PLUGINS DO WITH JUST VIM:
+" FROM: HOW TO DO NINETY PERSENT OF WHAT PLUGINS DO WITH JUST VIM:
 " ==================
 " https://github.com/changemewtf/no_plugins/blob/master/no_plugins.vim
 " https://www.youtube.com/watch?v=XA2WjJbmmoM
@@ -177,14 +182,18 @@ if !exists('g:vscode')
       " Fuzzy Find, use :ctrlp or <c-p>
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
-      " Special easymotion fork
-      Plug 'asvetliakov/vim-easymotion'
+      " Easymotion fuzzy search
+      Plug 'haya14busa/incsearch.vim'
+      Plug 'haya14busa/incsearch-fuzzy.vim'
+      Plug 'haya14busa/incsearch-easymotion.vim'
       " - helps with f scoping
       Plug 'unblevable/quick-scope'
       " no visual delay after jk / kj
       Plug 'zhou13/vim-easyescape'
       Plug 'justinmk/vim-sneak'
-      " unimpaired
+      " Surround
+      Plug 'tpope/vim-surround'
+      " unimpaired ([p,]p etc)
       Plug 'tpope/vim-unimpaired'
     " >============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
 
@@ -195,9 +204,9 @@ if !exists('g:vscode')
     Plug 'dense-analysis/ale'
     " -- emulate vscode-vim stuff
     Plug 'ericbn/vim-solarized'
-    Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
-    Plug 'asvetliakov/vim-easymotion'
+    " -- original easymotion
+    Plug 'easymotion/vim-easymotion'
     " -- typescript support
     Plug 'leafgarland/typescript-vim'
     " -- vue
@@ -217,9 +226,8 @@ if !exists('g:vscode')
     Plug 'vim-airline/vim-airline-themes'
     " TMUX
     Plug 'christoomey/vim-tmux-navigator'
-    " Clojure(Script)"
+    " Clojure(Script)
     Plug 'tpope/vim-fireplace'
-
 
     " AUTOCOMPLETION: basially port of vscode autocompletion
     " https://github.com/neoclide/coc.nvim
@@ -595,23 +603,22 @@ if exists('g:vscode')
       " Fuzzy Find, use :ctrlp or <c-p>
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
-      " Special easymotion fork
-      Plug 'asvetliakov/vim-easymotion'
+      " Easymotion fuzzy search
+      Plug 'haya14busa/incsearch.vim'
+      Plug 'haya14busa/incsearch-fuzzy.vim'
+      Plug 'haya14busa/incsearch-easymotion.vim'
       " - helps with f scoping
       Plug 'unblevable/quick-scope'
       " no visual delay after jk / kj
       Plug 'zhou13/vim-easyescape'
       Plug 'justinmk/vim-sneak'
+      " Surround
       Plug 'tpope/vim-surround'
-      " unimpaired
+      " unimpaired ([p,]p etc)
       Plug 'tpope/vim-unimpaired'
     " ============== / UNIVERSAL PLUGINS: VSCODE-NEOVIM ===================
-    " Plug 'bkad/CamelCaseMotion'
-    " " Fuzzy Find, use :ctrlp or <c-p>
-    " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    " Plug 'junegunn/fzf.vim'
-    " Special easymotion fork
-    " Plug 'asvetliakov/vim-easymotion'
+    " Special easymotion fork (only working in VSCode)
+    Plug 'asvetliakov/vim-easymotion'
   call plug#end()
   " use VSCode built-in commentary instead of plug
   xmap gc  <Plug>VSCodeCommentary
@@ -629,11 +636,30 @@ map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><Leader>h <Plug>(easymotion-linebackward)
 
+" ----------- FUZZYSEACH (<Space>/) ----------------
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzyword#converter()],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
 " --------- SNEAK-----------
-" replace f with Sneak
+" 'fs': 2 character Sneak
 map fs <Plug>Sneak_s
 map Fs <Plug>Sneak_S
 let g:sneak#label = 2
+
+" replace f and/or t with one-character Sneak?
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 
 " --------- RIPGREP ---------
