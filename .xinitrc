@@ -1,1 +1,1 @@
-exec bspwm
+./.config/xinitrc
