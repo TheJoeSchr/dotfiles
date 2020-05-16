@@ -64,7 +64,7 @@ font-3 = Symbola:pixelsize=20;1
 modules-left = bspwm xwindow
 ;modules-center =
 ; modules-right = mpd volume mutt-wizard wlan eth battery date
-modules-right = wlan battery cpu date powermenu
+modules-right = battery date cpu memory powermenu
 
 tray-position = left
 tray-padding = 5
@@ -328,12 +328,12 @@ battery = BAT0
 adapter = ADP1
 full-at = 98
 
-;format-charging = Charging... <label-charging>
-format-charging = <animation-charging> <label-charging>
+format-charging = ⚡<label-charging>
+; format-charging = <animation-charging> <label-charging>
 format-charging-underline = ${colors.darkyellow}
 
-;format-discharging = <label-discharging>
-format-discharging = <ramp-capacity> <label-discharging>
+; format-discharging = <label-discharging>
+format-discharging = <ramp-capacity> 🔋 <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
