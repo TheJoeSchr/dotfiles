@@ -105,9 +105,9 @@ set wildmenu
 " NOW WE CAN:
 " - Use ^n and ^p to go back and forth in the suggestion list
 
-" ==================
+" =======================
 " UNIVERSAL VIM SETTINGS:
-" ==================
+" =======================
 " from various sources over time
 
 " Terminal Mode: Escape with SHIFT+ESC
@@ -138,6 +138,12 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
 set langmenu=en_US
 " for everyhere
 let $LANG = 'en_US'
+" save on focus lost
+:au FocusLost * silent! wa
+" save on buffer switch
+:set autowrite
+
+
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
