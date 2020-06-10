@@ -22,7 +22,7 @@ let mapleader="\\"
 " Without that, pressing <Space> will not behave like other keys as mapleader.
 " <Space> in normal mode is mapped to <right>.
 " Just press <space> a couple of times in a row and you will see undesired behaviour.
-nnoremap <SPACE> <Nop>
+nnoremap <Space> <Nop>
 " Maps SPACE to \
 map <Space> \
 " Exclude in select mode, so space can be used to replace
@@ -311,7 +311,7 @@ if !exists('g:vscode')
   map <C-n> :NERDTreeToggle<CR>
 
   " ---------------- CAMELCASE -----------------
-  call camelcasemotion#CreateMotionMappings('<leader>')
+  call camelcasemotion#CreateMotionMappings('<leader><leader>')
   " ---------------- YANKSTACK -----------------
   nmap <M-p> <Plug>yankstack_substitute_older_paste
   nmap <M-P> <Plug>yankstack_substitute_newer_paste
@@ -637,10 +637,15 @@ endif
 
 " ================== UNIVERSAL PLUGINS CONFIG =================
 " ----------- EASYMOTIONS ----------------
-map <Leader><Leader>l <Plug>(easymotion-lineforward)
-map <Leader><Leader>j <Plug>(easymotion-j)
-map <Leader><Leader>k <Plug>(easymotion-k)
-map <Leader><Leader>h <Plug>(easymotion-linebackward)
+" change easymotion trigger back to leader instead of leader leader
+" map <Leader> <Plug>(easymotion-prefix)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>w <Plug>(easymotion-w)
+map <Leader>b <Plug>(easymotion-b)
+map <Leader>e <Plug>(easymotion-e)
 
 " ----------- FUZZYSEACH (<Space>/) ----------------
 function! s:config_easyfuzzymotion(...) abort
