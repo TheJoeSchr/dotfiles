@@ -14,6 +14,7 @@
 	co = commit
 	st = status
 	br = branch
+    df = diff
 	feat = merge --no-ff --no-commit
 	me = merge
 	pl = pull --rebase
