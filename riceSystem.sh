@@ -1,5 +1,6 @@
 #! /bin/bash
 
+mkdir ~/Downloads
 touch .vimrc.local
 touch .bashrc.local
 
@@ -41,7 +42,7 @@ chmod 600 .ssh/*
 config  push --set-upstream origin master
 
 #install bspwm, polybar and sxhkd
-cd Downloads/
+cd ~/Downloads/
 
 # sxhkd
 git clone https://github.com/baskerville/sxhkd.git
@@ -99,6 +100,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # nvm node-js yarn
+cd ~/Downloads
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
 mkdir ~/.nvm
 bash install_nvm.sh
@@ -116,8 +118,8 @@ rm yarn.lock
 
 # neovim (latest)
 cd ~/Downloads
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-chmod u+x nvim.appimage && sudo rm /usr/bin/nvim && sudo mv nvim.appimage /usr/bin/nvim
+wget https://github.com/neovim/neovim/releases/download/v0.4.3/nvim.appimage
+chmod u+x nvim.appimage && sudo rm /usr/bin/nvim; sudo mv nvim.appimage /usr/bin/nvim
 # sets accesss rights so normal user can start it
 sudo chown $USER  /usr/bin/nvim
 
@@ -141,11 +143,11 @@ cd ~/Downloads
 pip3 install --user mopidy
 
 # muttwizard
-cd Downloads/
+cd ~/Downloads/
 git clone https://github.com/LukeSmithxyz/mutt-wizard
 cd mutt-wizard
 sudo make install
-cd Downloads/
+cd ~/Downloads/
 
 # pywal
 pip3 install --user pywal
@@ -176,6 +178,7 @@ rm -rf fonts
 ## CLEANUP
 sudo apt autoremove -y
 
+cd ~
 
 # docker (refresh group)
 # needs to be at end, because it sources .bashrc again
