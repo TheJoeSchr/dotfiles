@@ -7,6 +7,21 @@ export PATH="$PATH:`yarn global bin --offline`:~/.local/bin"
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
 export PATH=$PY_USER_BIN:$PATH
 
+# Use bash-completion, if available
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
+
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+. /usr/share/bash-completion/bash_completion
+
+[[ $PS1 && -f /usr/share/bash-completion/completion/git ]] && \
+. /usr/share/bash-completion/completion/git
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 if [ "$OS" == "Windows_NT" ]; then
   alias config="`which git` --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
   __git_complete config _git
@@ -35,13 +50,6 @@ else
   unset color_prompt force_color_prompt
 fi
 
-# Use bash-completion, if available
-if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
-fi
-
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-. /usr/share/bash-completion/bash_completion
 
 SSH_ENV=$HOME/.ssh/environment
 
@@ -193,10 +201,6 @@ function killgrep {
   kill $(ps aux | grep "$1" | awk '{print $2}');
 }
 export -f killgrep
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # source local commands
 . ~/.bashrc.local
