@@ -9,11 +9,13 @@ export PATH=$PY_USER_BIN:$PATH
 
 if [ "$OS" == "Windows_NT" ]; then
   alias config="`which git` --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
+  __git_complete config _git
   # Add tmux path (not working so far)
   export PATH="$PATH:/c/msys64/usr/bin/"
   . ~/.bashrc.win
 else
   alias config="`which git`  --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+  __git_complete config _git
   alias config-changed="config checkout 2>&1 | egrep \s+\. | awk {'print $1'} | xargs -I{} echo {}"
   # alias config-changed="config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} git --git-dir=$HOME/.dotfiles-cfg/ --work-tree=$HOME add -- {}"
 
@@ -97,6 +99,7 @@ docker-armageddon() {
 }
 
 alias e="vi"
+
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
 alias ls='ls -F --color --show-control-chars'
@@ -104,37 +107,75 @@ alias ll='ls -alk'
 
 # ssh-add
 alias ssh-add-all="ssh-add ~/.ssh/id_rsa_*"
-## git stuff ##
-        # git status
+
+## GIT ##
+# now with autocomplete #
+alias g="git"
+# make autocomplete work with `g`
+__git_complete g _git
+
+# git status
 alias gs='git status '
+__git_complete gs _git_status
+
+# git add
 alias ga='git add '
+__git_complete ga _git_add
 alias gap='git add --patch '
-alias gai='git add -i '
-        # git better log
+__git_complete gap _git_add
+
+# git better log
 alias gl='git lg'
-        # git overview (all branches)
-alias gov='gl --date=short --all'
-        # git branches
+__git_complete gl _git_log
+# git overview (all branches)
+alias gov='git lg --date=short --all'
+__git_complete gov _git_log
+
+# git branches
 alias gb='git branch '
-        # git commit
-alias gc='git commit'
+__git_complete gb _git_branch
+
+# git commit
+alias gc='git ci '
+__git_complete gc _git_commit
+
+# git diff
 alias gd='git diff'
-        # git checkout
+__git_complete gd _git_diff
+
+# git checkout
 alias go='git checkout '
-alias gpa='git push -u --all'
+__git_complete go _git_checkout
+
 alias gp='git push'
-        # git merge better for feature branch & generally
-#alias gmf='git merge --no-ff '
+__git_complete gp _git_push
+
+
 alias gk='gitk --all&'
 alias gx='gitx --all'
+
+# type safe
 alias got='git '
+__git_complete got _git
 alias get='git '
+__git_complete get _git
+
 alias gpu='git pu  --rebase'
+__git_complete gpu _git_pull
+
 # after https://sandofsky.com/blog/git-workflow.html
 alias gmsf='git merge --no-ff --no-commit '
-alias gmf='git merge --squash '
-alias gcv='git ci -v '
+__git_complete gmsf _git_merge
+alias gms='git merge --squash '
+__git_complete gms _git_merge
+alias gmf='git feat  '
+__git_complete gmf _git_merge
+alias gm='git merge  '
+__git_complete gm _git_merge
+alias gr='git rebase  '
+__git_complete gri _git_rebase
 alias gri='git revise --interactive '
+__git_complete gri _git_rebase
 
 # install git-revise
 alias install-git-revise='sudo apt update && sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget  && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz && tar -xf Python-3.7.3.tar.xz && cd Python-3.7.3 && ./configure --enable-optimizations --with-ensurepip=install  && make -j 8 && sudo make altinstall && python3.7 --version && pip3 install --user git-revise && git revise --version'
