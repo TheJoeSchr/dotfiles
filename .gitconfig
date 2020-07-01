@@ -3,7 +3,7 @@
 	autocrlf = false
 	symlinks = true
 	longPaths = true
-	excludesfile = 
+	excludesfile =
 [user]
 	name = Joe Schr
 	email = joe.vandelay@gmail.com
@@ -11,7 +11,7 @@
 	default = simple
 [alias]
 	go = checkout
-	co = commit
+	ci = commit -v
 	st = status
 	br = branch
     df = diff
@@ -29,21 +29,19 @@
 	sh = stash save
 	type = cat-file -t
 	dump = cat-file -p
-	; delete local branch
-	bd = branch -D
 	; delete remote branch
-	brd = push origin --delete
+	branch-delete-remote = push origin --delete
 	# Push the new branch, set local branch to track the new remote
-	bmkr = push --set-upstream origin
+	push--set-upstream= push --set-upstream origin
     unadd = reset HEAD
     unstage = reset
     uncommit = reset --soft HEAD^
     staged = diff --cached
     ctags = "!.git/hooks/ctags"uncommit = reset HEAD^
 	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold white){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
-    show-file-history = log --follow -p -- 
+    show-file-history = log --follow -p --
 	stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
-	stashall = stash -u
+	stash-all = stash -u
 [rerere]
 	enabled = true
 [merge]
