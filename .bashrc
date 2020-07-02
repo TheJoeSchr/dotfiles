@@ -11,12 +11,15 @@ export PATH=$PY_USER_BIN:$PATH
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
-
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
 . /usr/share/bash-completion/bash_completion
 
-[[ $PS1 && -f /usr/share/bash-completion/completion/git ]] && \
-. /usr/share/bash-completion/completion/git
+# Use git-completion, if available
+if [ -f /usr/share/bash-completion/completions/git ]; then
+. /usr/share/bash-completion/completions/git
+fi
+[[ $PS1 && -f /usr/share/bash-completion/completions/git ]] && \
+. /usr/share/bash-completion/completions/git
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -106,7 +109,7 @@ docker-armageddon() {
         docker rmi -f $(docker images -qa)
 }
 
-alias e="vi"
+alias e="nvim"
 
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
