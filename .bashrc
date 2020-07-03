@@ -187,6 +187,8 @@ alias gr='git rebase  '
 __git_complete gri _git_rebase
 alias gri='git revise --interactive '
 __git_complete gri _git_rebase
+alias gbdr='git branch-delete-remote '
+__git_complete gbdr _git_branch
 
 # install git-revise
 alias install-git-revise='sudo apt update && sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget  && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz && tar -xf Python-3.7.3.tar.xz && cd Python-3.7.3 && ./configure --enable-optimizations --with-ensurepip=install  && make -j 8 && sudo make altinstall && python3.7 --version && pip3 install --user git-revise && git revise --version'
