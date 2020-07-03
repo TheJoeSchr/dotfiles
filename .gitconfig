@@ -32,7 +32,7 @@
 	; delete remote branch
 	branch-delete-remote = push origin --delete
 	# Push the new branch, set local branch to track the new remote
-	push--set-upstream= push --set-upstream origin
+	ps--set-upstream= push --set-upstream origin
     unadd = reset HEAD
     unstage = reset
     uncommit = reset --soft HEAD^
