@@ -209,6 +209,7 @@ if !exists('g:vscode')
     " -- linter (works with elint)
     Plug 'dense-analysis/ale'
     " -- emulate vscode-vim stuff
+    Plug 'sonph/onehalf', {'rtp': 'vim/'}
     Plug 'ericbn/vim-solarized'
     Plug 'tpope/vim-commentary'
     " -- original easymotion
