@@ -311,7 +311,7 @@ if !exists('g:vscode')
   map <C-n> :NERDTreeToggle<CR>
 
   " ---------------- CAMELCASE -----------------
-  call camelcasemotion#CreateMotionMappings('<leader><leader>')
+  " call camelcasemotion#CreateMotionMappings('<leader><leader>')
   " ---------------- YANKSTACK -----------------
   nmap <M-p> <Plug>yankstack_substitute_older_paste
   nmap <M-P> <Plug>yankstack_substitute_newer_paste
@@ -646,12 +646,12 @@ sunmap b
 sunmap e
 sunmap ge
 
-omap <silent> iw <Plug>CamelCaseMotion_iw
-xmap <silent> iw <Plug>CamelCaseMotion_iw
-omap <silent> ib <Plug>CamelCaseMotion_ib
-xmap <silent> ib <Plug>CamelCaseMotion_ib
-omap <silent> ie <Plug>CamelCaseMotion_ie
-xmap <silent> ie <Plug>CamelCaseMotion_ie
+" omap <silent> iw <Plug>CamelCaseMotion_iw
+" xmap <silent> iw <Plug>CamelCaseMotion_iw
+" omap <silent> ib <Plug>CamelCaseMotion_ib
+" xmap <silent> ib <Plug>CamelCaseMotion_ib
+" omap <silent> ie <Plug>CamelCaseMotion_ie
+" xmap <silent> ie <Plug>CamelCaseMotion_ie
 
 
 imap <silent> <S-Left> <C-o><Plug>CamelCaseMotion_b
