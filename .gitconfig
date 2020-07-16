@@ -44,10 +44,6 @@
 	stash-all = stash -u
 [rerere]
 	enabled = true
-[merge]
-	tool = p4merge
-[diff]
-	tool = p4merge
 [mergetool]
 	keepTemporaries = false
 	prompt = false
@@ -61,12 +57,5 @@
 	smudge = git-lfs smudge -- %f
 [winUpdater]
 	recentlySeenVersion = 2.15.1.windows.2
-[credential]
-	helper = wincred
-[difftool "sourcetree"]
-	cmd = '' \"$LOCAL\" \"$REMOTE\"
-[mergetool "sourcetree"]
-	cmd = "'' "
-	trustExitCode = true
 [branch]
 	autosetuprebase = always
