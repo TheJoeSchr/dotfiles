@@ -30,7 +30,10 @@ sudo apt update
 sudo apt dist-upgrade
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip acpi xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape signal-desktop code stterm surf
+# essentials
+sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf
+# code & signal
+sudo apt install -y signal-desktop code 
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
