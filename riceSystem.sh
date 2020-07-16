@@ -6,11 +6,11 @@ touch .bashrc.local
 
 ## Adds to APT repository
 # lazygit
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 68CCF87596E97291
-sudo add-apt-repository ppa:lazygit-team/release
+#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 68CCF87596E97291
+#sudo add-apt-repository ppa:lazygit-team/release
 
 # launchpad for appgrid (gallium os needed?)
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 241FE6973B765FAE
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 241FE6973B765FAE
 
 # vscode
 curl -sSL https://packages.microsoft.com/keys/microsoft.asc -o microsoft.asc
@@ -23,15 +23,13 @@ echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sud
 
 sudo apt update
 
-sudo galliumos-update
+#sudo galliumos-update
+sudo apt dist-upgrade
 
 # install ALL THE THINGS
 sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lazygit lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape signal-desktop code
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
-
-# suggested package from inital install
-sudo apt install -y debian-keyring g++-multilib g++-7-multilib gcc-7-doc libstdc++6-7-dbg gcc-multilib autoconf automake libtool flex bison gdb gcc-doc  lighttpd  libstdc++-7-doc ctags vim-scripts python-greenlet-doc python-greenlet-dev python-greenlet-dbg python-crypto-doc python3-greenlet-dbg libkf5wallet-bin python-secretstorage-doc python-setuptools-doc dwm stterm surf
 
 # buildtools & dependencies
 sudo apt install -y xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake pkg-config glib-2.0 autoconf automake pkg-config libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2 libx11-dev libxft-dev fontconfig isync msmtp pass
@@ -52,17 +50,17 @@ sudo make install
 cd ..
 
 # polybar
-git clone https://github.com/polybar/polybar.git
-cd polybar/
-./build.sh
+# git clone https://github.com/polybar/polybar.git
+# cd polybar/
+# ./build.sh
 
 # BSPWM
-git clone https://github.com/baskerville/bspwm.git
-cd bspwm/
-make
-sudo make install
-sudo cp contrib/freedesktop/bspwm.desktop /usr/share/xsessions/
-cd ..
+#git clone https://github.com/baskerville/bspwm.git
+#cd bspwm/
+#make
+#sudo make install
+#sudo cp contrib/freedesktop/bspwm.desktop /usr/share/xsessions/
+#cd ..
 # tmux
 cd ~/Downloads
 git clone https://github.com/tmux/tmux.git
@@ -171,7 +169,8 @@ cd fonts
 cd ..
 rm -rf fonts
 
-# dont remove it, because we need some of this I think
+
+# don't remove it, because we need some of this I think
 # sudo apt remove -y xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake pkg-config glib-2.0 autoconf automake pkg-config libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2
 
 
