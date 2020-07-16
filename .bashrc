@@ -2,7 +2,7 @@
 set -o vi
 
 # adds yarn global binaries to path"
-export PATH="$PATH:`yarn global bin --offline`:~/.local/bin"
+export PATH="$PATH:$HOME/.nvm/versions/node/v12.18.2/bin/:~/.local/bin"
 # adds pip bins to path
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
 export PATH=$PY_USER_BIN:$PATH

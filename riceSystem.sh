@@ -27,7 +27,7 @@ sudo apt update
 sudo apt dist-upgrade
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape signal-desktop code stterm surf
+sudo apt install -y neovim git nitrogen python3 python3-pip acpi xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape signal-desktop code stterm surf
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
@@ -68,15 +68,32 @@ cd ..l
 git clone https://github.com/LukeSmithxyz/dwm.git
 cd dwm
 make && sudo make install
+
+cd ~/Downloads
+git clone https://github.com/LukeSmithxyz/dwmblocks.git
+cd dwmblocks
+make && sudo make install
+
+cd ~/Downloads
+git clone https://github.com/LukeSmithxyz/dmenu.git
+cd dmenu
+make && sudo make install
+
+# install xserver and xinit and display manager
+sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit
+sudo apt install lightdm
+# TODO: raspi only
+# sudo apt install --no-install-recommends -y raspberrypi-ui-mods lxsession pi-greeter rpd-icons gtk2-engines-clearlookspix
+
 #install bspwm, polybar and sxhkd
 cd ~/Downloads/
 
 # sxhkd
-git clone https://github.com/baskerville/sxhkd.git
-cd sxhkd/
-make
-sudo make install
-cd ..
+# git clone https://github.com/baskerville/sxhkd.git
+# cd sxhkd/
+# make
+# sudo make install
+# cd ..
 
 # polybar
 # git clone https://github.com/polybar/polybar.git
