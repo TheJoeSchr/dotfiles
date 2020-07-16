@@ -27,18 +27,26 @@ sudo apt update
 sudo apt dist-upgrade
 
 # install ALL THE THINGS
-sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape signal-desktop code dwm stterm surf
+sudo apt install -y neovim git nitrogen python3 python3-pip dmenu acpi xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape signal-desktop code stterm surf
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
 # buildtools & dependencies
-sudo apt install -y debian-keyring autoconf automake flex bison gdb libstdc++-7-doc ctags vim-scripts ninja-build gettext libtool libtool-bin cmake g++ pkg-config unzip xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake glib-2.0 libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev  python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2 libx11-dev libxft-dev fontconfig isync msmtp pass
+sudo apt install -y debian-keyring autoconf automake flex bison gdb libstdc++-7-doc ctags vim-scripts ninja-build gettext libtool libtool-bin cmake g++ pkg-config unzip xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake glib-2.0 libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev libxkbcommon-x11-dev python-xcbgen xcb-proto libxcb-xrm-dev libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2 libx11-dev libxft-dev fontconfig isync msmtp pass libxinerama-dev apt-file
+
 
 # TODO download .ssh/ folder
 chmod 600 .ssh/*
 
 #config push --set-upstream origin master
 
+locale-gen en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+locale-gen en_US.UTF-8
+#cli for dpkg-reconfigure locales
+sudo update-locale LANG=en_US.UTF_8
 # installs clang
 cd ~/Downloads
 wget http://releases.llvm.org/9.0.0/clang+llvm-9.0.0-armv7a-linux-gnueabihf.tar.xz
@@ -47,6 +55,19 @@ rm clang+llvm-9.0.0-armv7a-linux-gnueabihf.tar.xz
 mv clang+llvm-9.0.0-armv7a-linux-gnueabihf clang_9.0.0
 sudo mv clang_9.0.0 /usr/local
 
+#install dwm
+cd ~/Downloads
+sudo apt build-dep dwm
+sudo apt install libxcb-res0-dev
+git clone https://gitlab.com/zanc/xft
+cd xft
+autoreconf -f -i
+./configure && sudo make install
+sudo ldconfig
+cd ..l
+git clone https://github.com/LukeSmithxyz/dwm.git
+cd dwm
+make && sudo make install
 #install bspwm, polybar and sxhkd
 cd ~/Downloads/
 
