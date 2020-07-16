@@ -31,7 +31,7 @@ sudo apt dist-upgrade
 
 # install ALL THE THINGS
 # essentials
-sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf
+sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf xtitle
 # code & signal
 sudo apt install -y signal-desktop code 
 # fonts
@@ -79,6 +79,11 @@ make && sudo make install
 cd ~/Downloads
 git clone https://github.com/LukeSmithxyz/dwmblocks.git
 cd dwmblocks
+make && sudo make install
+
+cd ~/Downloads
+git clone https://github.com/LukeSmithxyz/dmenu.git
+cd dmenu
 make && sudo make install
 
 cd ~/Downloads
@@ -186,6 +191,15 @@ sudo dpkg -i ripgrep_11.0.2_amd64.deb
 nvim &
 
 # st
+# harfbuzz (st dependencies)
+cd ~/Downloads
+git clone https://github.com/harfbuzz/harfbuzz
+cd harfbuzz
+./autogen.sh
+make
+sudo make install
+ 
+
 cd ~/Downloads
 git clone https://github.com/LukeSmithxyz/st
 cd st
