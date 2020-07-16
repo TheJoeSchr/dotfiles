@@ -7,6 +7,10 @@ export PATH="$PATH:`yarn global bin --offline`:~/.local/bin"
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
 export PATH=$PY_USER_BIN:$PATH
 
+#adds clang
+export PATH=/usr/local/clang_9.0.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/clang_9.0.0/lib:$LD_LIBRARY_PATH
+
 # Use bash-completion, if available
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
