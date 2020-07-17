@@ -5,11 +5,15 @@ set -o vi
 export PATH="$PATH:$HOME/.nvm/versions/node/v12.18.2/bin/:~/.local/bin"
 # adds pip bins to path
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
-export PATH=$PY_USER_BIN:$PATH
+export PY3_USER_BIN=="$(python3 -m site --user-base)/bin"
+export PATH=$PY_USER_BIN:$PY3_USER_BIN:$PATH
 
 #adds clang
 export PATH=/usr/local/clang_9.0.0/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/clang_9.0.0/lib:$LD_LIBRARY_PATH
+
+#adds nx/nomachine
+export PATH=/usr/NX/bin:$PATH
 
 # Use bash-completion, if available
 if [ -f /etc/bash_completion ]; then
