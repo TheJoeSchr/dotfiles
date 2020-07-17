@@ -242,7 +242,7 @@ export LC_CTYPE=en_US.UTF-8
 #         ;;
 #     * )
 #         echo "Starting tmux-init"
-#         tmux-init
+#         tmux attach -t base || tmux new -s base
 #     ;;
 # esac
 #
