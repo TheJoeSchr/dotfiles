@@ -31,7 +31,7 @@ sudo apt dist-upgrade
 
 # install ALL THE THINGS
 # essentials
-sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf xtitle
+sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf xtitle groff groff-base
 # code & signal
 sudo apt install -y signal-desktop code
 # fonts
