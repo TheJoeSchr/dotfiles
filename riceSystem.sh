@@ -33,7 +33,7 @@ sudo apt dist-upgrade
 # essentials
 sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf xtitle
 # code & signal
-sudo apt install -y signal-desktop code 
+sudo apt install -y signal-desktop code
 # fonts
 sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
 
@@ -91,11 +91,12 @@ git clone https://github.com/LukeSmithxyz/dmenu.git
 cd dmenu
 make && sudo make install
 
-# install xserver and xinit and display manager
-sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit
-sudo apt install lightdm
+# install xserver and xinit and display manage
+sudo apt install -y xserver-xorg x11-xserver-utils xinit xserver-xorg-legacy
+# add user to tty group
+sudo usermod -a -G tty `whoami`
 # TODO: raspi only
-# sudo apt install --no-install-recommends -y raspberrypi-ui-mods lxsession pi-greeter rpd-icons gtk2-engines-clearlookspix
+# sudo apt install --no-install-recommends -y raspberrypi-ui-mods
 
 #install bspwm, polybar and sxhkd
 cd ~/Downloads/
@@ -198,7 +199,7 @@ cd harfbuzz
 ./autogen.sh
 make
 sudo make install
- 
+
 
 cd ~/Downloads
 git clone https://github.com/LukeSmithxyz/st
@@ -218,6 +219,7 @@ cd ~/Downloads/
 
 # pywal
 pip3 install --user pywal
+sudo apt install imagemagick
 
 # lazygit
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
