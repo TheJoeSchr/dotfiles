@@ -646,6 +646,7 @@ sunmap b
 sunmap e
 sunmap ge
 
+" don't use this, muscle memory already too strong
 " omap <silent> iw <Plug>CamelCaseMotion_iw
 " xmap <silent> iw <Plug>CamelCaseMotion_iw
 " omap <silent> ib <Plug>CamelCaseMotion_ib
