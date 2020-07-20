@@ -4,6 +4,9 @@ mkdir ~/Downloads
 touch .vimrc.local
 touch .bashrc.local
 
+## Adds current GIT 
+sudo add-apt-repository ppa:git-core/ppa -y
+
 ## Adds to APT repository
 # lazygit
 #sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 68CCF87596E97291
@@ -37,6 +40,7 @@ sudo apt install -y debian-keyring autoconf automake flex bison gdb libstdc++-7-
 
 # TODO download .ssh/ folder
 chmod 600 .ssh/*
+
 
 #config push --set-upstream origin master
 
