@@ -2,7 +2,7 @@
 set -o vi
 
 # adds yarn global binaries to path"
-export PATH="$PATH:$HOME/.nvm/versions/node/v12.18.2/bin/:~/.local/bin"
+export PATH="$PATH:$HOME/.nvm/versions/node/v12.18.2/bin/:~/.local/bin:~/.local/bin/statusbar"
 # adds pip bins to path
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
 export PY3_USER_BIN=="$(python3 -m site --user-base)/bin"
