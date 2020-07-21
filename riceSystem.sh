@@ -97,6 +97,8 @@ sudo apt install -y xserver-xorg x11-xserver-utils xinit xserver-xorg-legacy
 sudo usermod -a -G tty `whoami`
 # TODO: raspi only
 # sudo apt install --no-install-recommends -y raspberrypi-ui-mods
+# raspi wifi gui
+# sudo apt install --no-install-recommends -y wpagui
 
 #install bspwm, polybar and sxhkd
 cd ~/Downloads/
@@ -249,6 +251,12 @@ rm -rf fonts
 sudo apt autoremove -y
 
 cd ~
+
+# raspi
+# bluetooth
+sudo usermod -G bluetooth -a pi
+
+# /raspi
 
 # docker (refresh group)
 # needs to be at end, because it sources .bashrc again
