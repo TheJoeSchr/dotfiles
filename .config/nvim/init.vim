@@ -120,7 +120,8 @@ set directory=~/.vim/swap
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 " yank to windows clipboard
-set clipboard=unnamedplus " on linux install xclip
+" on linux install xclip
+set clipboard=unnamedplus
 " automatically refresh any files that haven't been edited by Vim
 set autoread
 " hides buffer instead of closing it
