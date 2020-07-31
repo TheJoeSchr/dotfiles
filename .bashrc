@@ -234,9 +234,16 @@ export LC_CTYPE=en_US.UTF-8
 # ## ALIASES
 # # show battery
 # alias battery="acpi -b"
+
 # alias pip="pip3"
 
-# # # default start of tmux, with option to break
+# search stackoverflow with googler
+#alias so='googler -j -w stackoverflow.com (xsel)'
+
+# ## default start tmux, with option to break
+# # exit if inside tmux
+# [[ ! -z "$TMUX" ]] && return 0
+#
 # read -t 3 -n 1 -p "Start tmux (n/Y)? " answer
 # [ -z "$answer" ] && answer="Y"  # 'yes' efault choice
 # echo
