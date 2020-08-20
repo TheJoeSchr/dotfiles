@@ -225,6 +225,10 @@ export LC_CTYPE=en_US.UTF-8
 
 # -- EXAMPLES BASHRC.LOCAL
 
+# # needed to make X11 forward for electron apps work
+# # see: https://github.com/electron/electron/issues/22775
+# export QT_X11_NO_MITSHM=1 
+
 # ## TMUX
 # alias tmux-init="tmux attach -t base || tmux new -s base"
 
