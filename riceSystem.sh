@@ -183,6 +183,7 @@ make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 # sets accesss rights so normal user can start it
 sudo chown $USER  /usr/bin/nvim
+sudo chown $USER  /usr/local/bin/nvim
 
 # neovim support
 yarn global add neovim
