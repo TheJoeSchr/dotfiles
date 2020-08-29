@@ -4,7 +4,7 @@ mkdir ~/Downloads
 touch .vimrc.local
 touch .bashrc.local
 
-## Adds current GIT 
+## Adds current GIT
 sudo add-apt-repository ppa:git-core/ppa -y
 
 ## Adds to APT repository
@@ -244,9 +244,19 @@ cd ..
 rm -rf fonts
 
 # zerotier
+cd ~/Downloads
 curl -s https://install.zerotier.com | sudo bash
 sudo /usr/sbin/zerotier-one -d
 sudo zerotier-cli join 1d71939404630533
+
+# mosh
+cd ~/Downloads
+git clone https://github.com/mobile-shell/mosh
+cd mosh
+./autogen.sh
+./configure
+make
+sudo make install
 
 # don't remove it, because we need some of this I think
 # sudo apt remove -y xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake pkg-config glib-2.0 autoconf automake pkg-config libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2
