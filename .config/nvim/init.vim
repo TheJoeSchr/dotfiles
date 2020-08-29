@@ -121,7 +121,10 @@ set directory=~/.vim/swap
 autocmd VimResized * :wincmd =
 " yank to windows clipboard
 " on linux install xclip
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
+" if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
+"   set clipboard=unnamed
+" endif
 " automatically refresh any files that haven't been edited by Vim
 set autoread
 " hides buffer instead of closing it
@@ -458,6 +461,7 @@ if !exists('g:vscode')
 
   " Use K to show documentation in preview window.
   nnoremap <silent> K :call <SID>show_documentation()<CR>
+  nnoremap <silent> gh :call <SID>show_documentation()<CR>
 
   function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
@@ -632,6 +636,9 @@ if exists('g:vscode')
   nmap gc  <Plug>VSCodeCommentary
   omap gc  <Plug>VSCodeCommentary
   nmap gcc <Plug>VSCodeCommentaryLine
+
+  " unset clipboard for remote work
+  set clipboard=
 
 endif
 " ============== / VSCODE-NEOVIM ===================
