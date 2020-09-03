@@ -13,10 +13,10 @@ alt + Return
 super + Return
 	$TERMINAL
 # run/search commands
-super + s
-	dmenu_run
-super + d
-	dmenu_run
+# super + s
+# 	dmenu_run
+# super + d
+# 	dmenu_run
 super + space
 	dmenu_run
 # super + r
@@ -232,8 +232,8 @@ super + {colon,semicolon}
 	bspc desktop {prev,next}.occupied --focus
 super + {Prior,Next}
 	bspc desktop {prev,next}.occupied --focus
-ctrl + alt + {Left,Right}
-	bspc desktop {prev,next}.occupied --focus
+# ctrl + alt + {Left,Right}
+# 	bspc desktop {prev,next}.occupied --focus
 
 # switch to previous worksapce
 super + {Tab,backslash}
