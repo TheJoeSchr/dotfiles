@@ -1,0 +1,8 @@
+#! /bin/bash
+
+/usr/local/bin/bspwm &
+/usr/local/bin/sxhkd &
+/usr/local/bin/polybar &
+
+/home/joe/.local/bin/launch_polybar &
+/home/joe/.local/bin/launch_sxhkd &
