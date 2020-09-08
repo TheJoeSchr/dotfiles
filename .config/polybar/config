@@ -63,8 +63,8 @@ font-3 = Symbola:pixelsize=20;1
 ; Other modules: xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather
 modules-left = bspwm xwindow
 ;modules-center =
-; modules-right = mpd volume mutt-wizard wlan eth battery date
-modules-right = battery date cpu memory powermenu
+; modules-right = mpd volume mutt-wizard wlan eth battery date memory
+modules-right = wlan date powermenu battery
 
 tray-position = left
 tray-padding = 5
@@ -240,7 +240,7 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-format-connected = 直 <label-connected>
+format-connected = <label-connected>
 format-connected-underline = ${colors.darkmagenta}
 label-connected = %essid%
 
@@ -248,7 +248,7 @@ label-connected = %essid%
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
-label-disconnected = 睊no wifi
+label-disconnected =睊 no wifi
 label-disconnected-foreground = ${colors.gray}
 
 ; <ramp-signal>
