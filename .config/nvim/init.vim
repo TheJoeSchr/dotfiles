@@ -649,6 +649,9 @@ if exists('g:vscode')
   " unset clipboard for remote work
   " set clipboard=
 
+  " don't display line numbers
+  set relativenumber!
+  set number!
 endif
 " ============== / VSCODE-NEOVIM ===================
 
