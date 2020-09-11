@@ -121,7 +121,7 @@ set directory=~/.vim/swap
 autocmd VimResized * :wincmd =
 " yank to windows clipboard
 " on linux install xclip
-" set clipboard=unnamedplus
+set clipboard=unnamedplus
 " if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
 "   set clipboard=unnamed
 " endif
@@ -637,8 +637,17 @@ if exists('g:vscode')
   omap gc  <Plug>VSCodeCommentary
   nmap gcc <Plug>VSCodeCommentaryLine
 
+  " window navigate like with tmux plugin
+  xnoremap <silent> <C-j> :<C-u>call VSCodeNotify('workbench.action.focusBelowGroup')<CR>
+  nnoremap <silent> <C-k> :<C-u>call VSCodeNotify('workbench.action.focusAboveGroup')<CR>
+  xnoremap <silent> <C-k> :<C-u>call VSCodeNotify('workbench.action.focusAboveGroup')<CR>
+  nnoremap <silent> <C-h> :<C-u>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>
+  xnoremap <silent> <C-h> :<C-u>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>
+  nnoremap <silent> <C-l> :<C-u>call VSCodeNotify('workbench.action.focusRightGroup')<CR>
+  xnoremap <silent> <C-l> :<C-u>call VSCodeNotify('workbench.action.focusRightGroup')<CR>
+
   " unset clipboard for remote work
-  set clipboard=
+  " set clipboard=
 
 endif
 " ============== / VSCODE-NEOVIM ===================
