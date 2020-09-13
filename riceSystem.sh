@@ -249,6 +249,19 @@ curl -s https://install.zerotier.com | sudo bash
 sudo /usr/sbin/zerotier-one -d
 sudo zerotier-cli join 1d71939404630533
 
+
+# mosh requirements
+cd Downloads
+git clone https://github.com/protocolbuffers/protobuf.git
+cd protobuf
+git submodule update --init --recursive
+./autogen.sh
+./configure
+make
+make check
+sudo make install
+sudo ldconfig # refresh shared library cache.
+
 # mosh
 cd ~/Downloads
 git clone https://github.com/mobile-shell/mosh
