@@ -71,6 +71,12 @@ export TERMINAL=st
 # for docker postgraphile
 export UID;
 
+# e for edit
+# vim is king
+alias e="nvim"
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
+export GUI_EDITOR=/usr/bin/nvim
 export EDITOR="nvim"
 export REACT_EDITOR=code
 
@@ -117,7 +123,6 @@ docker-armageddon() {
         docker rmi -f $(docker images -qa)
 }
 
-alias e="nvim"
 
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
@@ -222,6 +227,8 @@ export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
+
+
 
 # source local commands
 . ~/.bashrc.local
