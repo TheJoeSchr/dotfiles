@@ -16,7 +16,7 @@
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/xprofile" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/xprofile"
 
-[[ -f ~/.Xdefaults ]] && xrdb -merge ~/.Xdefaults
+[ -f ~/.Xdefaults ]] && xrdb -merge ~/.Xdefaults
 
 
 userresources=$HOME/.Xresources
