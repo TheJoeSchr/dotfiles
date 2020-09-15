@@ -52,7 +52,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 if [ $TERM = linux ] || [ -e "/etc/systemd/system/graphical.target.wants/xlogin@$(whoami).service" ] ; then
 # Here Bspwm is kept as default
-session=${1:-bspwm}
+session=${1:-dwm}
 
 case $session in
 	awesome 		  ) exec dbus-launch --sh-syntax --exit-with-session awesome;;
@@ -60,8 +60,8 @@ case $session in
 	deepin 			  ) exec dbus-launch --sh-syntax --exit-with-session startdde;;
 	enlightenment 	  ) exec dbus-launch --sh-syntax --exit-with-session enlightenment_start;;
 	gnome 			  ) exec dbus-launch --sh-syntax --exit-with-session gnome-session;;
-	bspwm 			  ) exec dbus-launch --sh-syntax --exit-with-session bspwm-session;;
 	dwm 			  ) exec dbus-launch --sh-syntax --exit-with-session dwm;;
+	bspwm 			  ) exec dbus-launch --sh-syntax --exit-with-session bspwm-session;;
     i3|i3wm           ) exec dbus-launch --sh-syntax --exit-with-session i3;;
     lxde 	          ) exec dbus-launch --sh-syntax --exit-with-session startlxde;;
     lxqt         	  ) exec dbus-launch --sh-syntax --exit-with-session lxqt-session;;
