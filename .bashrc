@@ -127,7 +127,7 @@ docker-armageddon() {
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
 alias ls='ls -F --color --show-control-chars'
-alias ll='ls -alk'
+alias ll='ls -alkh'
 
 # ssh-add
 alias ssh-add-all="ssh-add ~/.ssh/id_rsa_*"
