@@ -2,7 +2,7 @@
 set -o vi
 
 # adds yarn global binaries to path"
-export PATH="$PATH:$HOME/.nvm/versions/node/v12.18.3/bin/:~/.local/bin:~/.local/bin/statusbar"
+export PATH="$PATH:dirname $(which yarn):~/.local/bin:~/.local/bin/statusbar"
 # adds pip bins to path
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
 export PY3_USER_BIN=="$(python3 -m site --user-base)/bin"
@@ -233,7 +233,7 @@ export LC_CTYPE=en_US.UTF-8
 
 # # needed to make X11 forward for electron apps work
 # # see: https://github.com/electron/electron/issues/22775
-# export QT_X11_NO_MITSHM=1 
+# export QT_X11_NO_MITSHM=1
 
 # ## TMUX
 # alias tmux-init="tmux attach -t base || tmux new -s base"
@@ -277,4 +277,3 @@ export LC_CTYPE=en_US.UTF-8
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
