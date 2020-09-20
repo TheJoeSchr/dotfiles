@@ -16,7 +16,7 @@
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/xprofile" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/xprofile"
 
-[ -f ~/.Xdefaults ] && xrdb -merge ~/.Xdefaults
+[ -f ~/.config/Xresources] && xrdb -merge ~/.config/Xresources -I$HOME
 
 
 userresources=$HOME/.Xresources
@@ -76,3 +76,7 @@ case $session in
     *                 ) exec dbus-launch --sh-syntax --exit-with-session $1;;
 esac
 fi
+
+# xset r rate 600 25
+nvidia-settings --load-config-only
+exec $(get_session)
