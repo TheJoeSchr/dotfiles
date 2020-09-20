@@ -25,6 +25,8 @@ yay -S pamac
 # ESSENTIALS
 pamac install visual-studio-code-bin signal-desktop neovim nvm tmux git docker docker-compose python3 python-pip
 
+# fix vscode signin isues
+yay -S qtkeychain gnome-keyring
 
 chmod 600 .ssh/*
 
@@ -59,10 +61,19 @@ pip3 install --user wheel pynvim
 pamac install nitrogen xsel htop xorg-xbacklight x11-ssh-askpass maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape surf xtitle groff dbus-x11 clang imagemagick lf mosh
 
 # FONTS
-pamac install ttf-symbola noto-fonts powerline-fonts ttf-inconsolata
+pamac install ttf-symbola noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack
 cd ~/Downloads
 # dependencies
-pamac install libxcb libxft
+pamac install libxcb libxft-bgra-git
+
+# ST
+pamac install st-luke-git
+# cd ~/Downloads
+# git clone https://github.com/LukeSmithxyz/st
+# cd st
+# sudo make install
+# cd ~/Downloads
+
 git clone https://github.com/LukeSmithxyz/dwm.git
 cd dwm
 make && sudo make install
@@ -92,12 +103,6 @@ git clone https://github.com/LukeSmithxyz/mutt-wizard
 cd mutt-wizard
 sudo make install
 
-cd ~/Downloads
-git clone https://github.com/LukeSmithxyz/st
-cd st
-sudo make install
-cd ~/Downloads
-
 # pywal
 pip3 install --user pywal
 
@@ -111,6 +116,10 @@ cd fonts
 ./install.sh
 cd ..
 rm -rf fonts
+
+# TWEAKS
+# increase number of file watcher
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
 
 # DOCKER (REFRESH GROUP)
 # needs to be at end, because it sources .bashrc again
