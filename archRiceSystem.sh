@@ -67,6 +67,11 @@ git clone https://github.com/LukeSmithxyz/dwm.git
 cd dwm
 make && sudo make install
 
+# CONFIGURE DWM
+sudo cp ~/dwm.desktop /usr/share/xsessions/dwm.desktop
+sudo ln -s /home/$(whoami)/kde-dwm.sh /usr/local/bin/kde-dwm.sh
+
+
 cd ~/Downloads
 git clone https://github.com/LukeSmithxyz/dwmblocks.git
 cd dwmblocks
