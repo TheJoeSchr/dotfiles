@@ -138,7 +138,7 @@ sudo make install
 cd ..
 
 # install tpm
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # install tmux
 cd tmux
 sh autogen.sh
