@@ -35,7 +35,7 @@ sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight
 # code & signal
 sudo apt install -y signal-desktop code
 # fonts
-sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata
+sudo apt install -y fonts-symbola fonts-noto-hinted fonts-powerline fonts-inconsolata fonts-hack
 
 # buildtools & dependencies
 sudo apt install -y debian-keyring autoconf automake flex bison gdb libstdc++-7-doc ctags vim-scripts ninja-build gettext libtool libtool-bin cmake g++ pkg-config unzip xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev gcc make cmake glib-2.0 libncurses5-dev libncursesw5-dev bison cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev libxkbcommon-x11-dev python-xcbgen xcb-proto libxcb-xrm-dev libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libxcb-ewmh2 libx11-dev libxft-dev fontconfig isync msmtp pass libxinerama-dev apt-file
