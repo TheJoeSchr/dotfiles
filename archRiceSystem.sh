@@ -78,26 +78,6 @@ git clone https://github.com/LukeSmithxyz/dwm.git
 cd dwm
 make && sudo make install
 
-# CONFIGURE DWM
-sudo cp ~/dwm.desktop /usr/share/xsessions/dwm.desktop
-sudo ln -s /home/$(whoami)/kde-dwm.sh /usr/local/bin/kde-dwm.sh
-
-
-cd ~/Downloads
-git clone https://github.com/LukeSmithxyz/dwmblocks.git
-cd dwmblocks
-make && sudo make install
-
-cd ~/Downloads
-git clone https://github.com/LukeSmithxyz/dmenu.git
-cd dmenu
-make && sudo make install
-
-cd ~/Downloads
-git clone https://github.com/LukeSmithxyz/dmenu.git
-cd dmenu
-make && sudo make install
-
 cd ~/Downloads/
 git clone https://github.com/LukeSmithxyz/mutt-wizard
 cd mutt-wizard
@@ -117,9 +97,35 @@ cd fonts
 cd ..
 rm -rf fonts
 
+# CONFIGURE DWM
+sudo cp $HOME/.local/bin/dwm.desktop /usr/share/xsessions/dwm.desktop
+sudo ln -s $HOME/.local/bin/kde-dwm.sh /usr/local/bin/kde-dwm
+
+
+cd ~/Downloads
+git clone https://github.com/LukeSmithxyz/dwmblocks.git
+cd dwmblocks
+make && sudo make install
+
+cd ~/Downloads
+git clone https://github.com/LukeSmithxyz/dmenu.git
+cd dmenu
+make && sudo make install
+
+# CONFIGURE BSPWM
+sudo cp $HOME/.local/bin/bspwm.desktop /usr/share/xsessions/bswpm.desktop
+sudo ln -s $HOME/.local/bin/launch_bspwm /usr/local/bin/launch_bspwm
+sudo ln -s $HOME/.local/bin/kde-bspwm.sh /usr/local/bin/kde-bspwm
+
+pamac install siji-git polybar bspwm
+
 # TWEAKS
 # increase number of file watcher
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+
+# bluetooth a2dp
+pamac install pulseaudio-bt-auto-enable-a2dp
+
 
 # DOCKER (REFRESH GROUP)
 # needs to be at end, because it sources .bashrc again
