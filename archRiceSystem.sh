@@ -113,7 +113,7 @@ cd dmenu
 make && sudo make install
 
 # CONFIGURE BSPWM
-sudo cp $HOME/.local/bin/bspwm.desktop /usr/share/xsessions/bswpm.desktop
+sudo cp $HOME/.local/bin/bspwm.desktop /usr/share/xsessions/bspwm.desktop
 sudo ln -s $HOME/.local/bin/launch_bspwm /usr/local/bin/launch_bspwm
 sudo ln -s $HOME/.local/bin/kde-bspwm.sh /usr/local/bin/kde-bspwm
 
