@@ -80,7 +80,9 @@ source $HOME/.config/xprofile.local
 # setbg &			# set the background with the `setbg` script
 # mpd &			# music player daemon-you might prefer it as a service though
 # xcompmgr &		# xcompmgr for transparency
+# picom &		# xcompmgr for transparency
 # $STATUSBAR &		# start the statusbar
 # dunst &			# dunst for notifications
 # mpd-module-update &	# Check for when to update the mpd module
 # hide_borders &
+# kstart5 plasmashell

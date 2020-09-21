@@ -13,12 +13,12 @@
 super + Return
 	$TERMINAL
 # run/search commands
-# super + s
-# 	dmenu_run
+alt + F2
+	dmenu_run
 # super + d
 # 	dmenu_run
-super + space
-	dmenu_run
+# super + space
+# 	dmenu_run
 # super + r
 # 	$TERMINAL -e $FILE
 
@@ -152,13 +152,13 @@ XF86MyComputer
 super + shift + F1
 	grep LARBSWELCOME ~/.xprofile && ( sed -i "/LARBSWELCOME/d" ~/.xprofile && notify-send "LARBS welcome message" "Welcome message disabled. Press Super+Shift+F1 again to reverse." ) || ( echo "notify-send -i "$HOME/.local/share/larbs/larbs.png" \"Welcome to LARBS\" \"Press super+F1 for the help menu.\" # LARBSWELCOME" >> ~/.xprofile && notify-send "LARBS welcome message" "Welcome message re-enabled." )
     # Show network wifi manager
-super + F1
-	$TERMINAL -e nmtui
+# super + F1
+# 	$TERMINAL -e nmtui
 	# groff -mom $HOME/.local/share/larbs/readme.mom -Tpdf | zathura -
 # Browser
-super + F2
+super + w
     $BROWSER
-super  + shift  + F2
+super  + shift  + w
     remotedesktop
 # Change display
 super + F3
