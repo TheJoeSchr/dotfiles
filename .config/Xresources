@@ -11,7 +11,10 @@ Xft.rgba: rgb
 
 /* !! Set a default font and font size as below: */
 /* Don't change to xft, ttf fonts, looks ugly */
+/* *.font:Hack:regular:size=10 */
 *.font:Hack:regular:size=10
+/* *.font: -*-hack-bold-*-*-*-40-*-*-*-*-*-*-* */
+/* *.letterSpace: +5 */
 
 
 /* name		dark	light */

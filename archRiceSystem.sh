@@ -58,7 +58,7 @@ pip3 install --user wheel pynvim
 #INSTALL DWM / RICE
 
 # RICE
-pamac install nitrogen xsel htop xorg-xbacklight x11-ssh-askpass maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape surf xtitle groff dbus-x11 clang imagemagick lf mosh
+pamac install nitrogen xsel htop xorg-xbacklight x11-ssh-askpass maim xcompmgr picom unclutter neomutt urlview notmuch dunst zathura xcape surf xtitle groff dbus-x12 clang imagemagick lf mosh
 
 # FONTS
 pamac install ttf-symbola noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack
