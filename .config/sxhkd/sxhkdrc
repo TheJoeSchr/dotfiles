@@ -49,8 +49,11 @@ super + shift + a
 # super + shift + e
 # 	tutorialvids
 #
-super + shift + w
-	$BROWSER
+# Browser
+super + w
+    $BROWSER
+super  + shift  + w
+    remotedesktop
 
 # Et cetera...
 super + grave
@@ -155,11 +158,6 @@ super + shift + F1
 # super + F1
 # 	$TERMINAL -e nmtui
 	# groff -mom $HOME/.local/share/larbs/readme.mom -Tpdf | zathura -
-# Browser
-super + w
-    $BROWSER
-super  + shift  + w
-    remotedesktop
 # Change display
 super + F3
 	displayselect
@@ -285,7 +283,7 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # Toggle gaps
-super + shift + d
+super + shift + g
 	bspc config window_gap {0,15}
 # Increase/descrease gap size
 super { ,+ shift }+ z
