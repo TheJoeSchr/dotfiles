@@ -1,0 +1,21 @@
+{
+    "All": {
+        "addPaused": false,
+        "affectedFeeds": [
+            "http://showrss.info/user/223888.rss?magnets=true&namespaces=true&name=null&quality=null&re=null"
+        ],
+        "assignedCategory": "",
+        "createSubfolder": null,
+        "enabled": true,
+        "episodeFilter": "",
+        "ignoreDays": 0,
+        "lastMatch": "01 Jun 2020 05:40:18 +0000",
+        "mustContain": "",
+        "mustNotContain": "",
+        "previouslyMatchedEpisodes": [
+        ],
+        "savePath": "",
+        "smartFilter": false,
+        "useRegex": false
+    }
+}
