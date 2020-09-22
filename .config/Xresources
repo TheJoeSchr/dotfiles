@@ -1,4 +1,5 @@
-Xft.dpi: 192
+source .config/Xresources.local
+
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
