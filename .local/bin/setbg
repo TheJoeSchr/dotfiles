@@ -12,7 +12,9 @@ type wal >/dev/null 2>&1 && { wal -c ;
 	wal -s -i ~/.config/wall.png -o ~/.config/wal/postrun;
 	xsetroot -name "fsignal:xrdb";
 	# killall dwmblocks;
-	# setsid dwmblocks >/dev/null 2>&1 & }
+	# setsid dwmblocks >/dev/null 2>&1 & 
+}
 
 # xwallpaper --zoom ~/.config/wall.png
 nitrogen --restore &
+
