@@ -121,7 +121,7 @@ pamac install siji-git polybar bspwm
 
 # TWEAKS
 # increase number of file watcher
-echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.conf
+echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && \
 sudo sysctl -p 
 
 # bluetooth a2dp
