@@ -42,6 +42,7 @@
     show-file-history = log --follow -p --
 	stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
 	stash-all = stash -u
+    stashall = stash-all
 [rerere]
 	enabled = true
 [mergetool]
