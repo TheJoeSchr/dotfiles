@@ -216,7 +216,7 @@ alias duckS='du -ckSh * | sort -rh | head'
 alias ducks='du -cksh * | sort -rh | head'
 
 # search also hidden files
-alias ducksA='sudo du -ckah * | sort -rh | head'
+alias duckA='du -ckah * | sort -rh | head'
 
 # kill grep
 function killgrep {
