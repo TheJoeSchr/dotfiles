@@ -8,8 +8,8 @@
 # The b key on the bottom row (hides the bar in either case)
 
 # Basic binds
-# alt + Return
-# 	$TERMINAL
+alt + Return
+	$TERMINAL
 super + Return
 	$TERMINAL
 # run/search commands
@@ -42,7 +42,8 @@ ctrl + alt + n
 # volume controls
 super + shift + a
     pavucontrol
-	# $TERMINAL -e alsamixer; pkill -RTMIN+10 $STATUSBAR
+super + ctrl + shift + a
+	$TERMINAL -e alsamixer; 
 # # camera
 # super + shift + c
 # 	mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title='mpvfloat' /dev/video0
@@ -165,10 +166,10 @@ super + F3
 super + F4
 	prompt 'Put computer to sleep?' 'sudo -A pm-suspend'
 # Print
-super + F5
+super + Print
 	maimpick pic-full-$(date '+%y%m%d-%H%M-%S').png
 # Pick screenshot type
-super + shift +F5
+Print
 	maimpick
 
 super + F6
