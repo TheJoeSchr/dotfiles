@@ -1,3 +1,9 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # vi mode in bash!!!
 set -o vi
 
@@ -225,7 +231,6 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 source /usr/share/nvm/init-nvm.sh
-
 
 # source local commands
 . ~/.bashrc.local
