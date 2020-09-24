@@ -22,8 +22,8 @@ sudo yay -Syu
 # install manjaro pacman
 yay -S pamac
 
-# ESSENTIALS
-pamac install visual-studio-code-bin signal-desktop neovim nvm tmux git docker docker-compose python3 python-pip
+# ESSENTIALS SYSTEM
+pamac install neovim nvm tmux git docker docker-compose python3 python-pip ntfs-3g-fuse lf mosh htop
 
 # fix vscode signin isues
 yay -S qtkeychain gnome-keyring
@@ -55,14 +55,19 @@ rm yarn.lock
 pamac install neovim-nigthly ripgrep fzf
 pip3 install --user wheel pynvim
 
-#INSTALL DWM / RICE
+
+#INSTALL GUI & RICE
+# ESSENTIALS GUI
+pamac install visual-studio-code-bin signal-desktop xsel
 
 # RICE
-pamac install nitrogen xsel htop xorg-xbacklight x11-ssh-askpass maim xcompmgr picom unclutter neomutt urlview notmuch dunst zathura xcape surf xtitle groff dbus-x12 clang imagemagick lf mosh
+pamac install nitrogen xorg-xbacklight x11-ssh-askpass maim xcompmgr picom unclutter neomutt urlview notmuch dunst zathura xcape surf xtitle groff dbus-x12 clang imagemagick 
 
 # FONTS
 pamac install ttf-symbola noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack
 cd ~/Downloads
+
+
 # dependencies
 pamac install libxcb libxft-bgra-git
 
