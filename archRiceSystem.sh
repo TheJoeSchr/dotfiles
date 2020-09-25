@@ -25,18 +25,6 @@ yay -S pamac
 # ESSENTIALS SYSTEM
 pamac install neovim nvm tmux git docker docker-compose python3 python-pip ntfs-3g-fuse lf mosh htop
 
-# fix vscode signin isues
-yay -S qtkeychain gnome-keyring
-
-chmod 600 .ssh/*
-
-# DOCKER
-sudo groupadd docker
-sudo usermod -aG docker $(whoami)
-sudo systemctl enable docker
-sudo systemctl start docker
-
-
 # NPM / YARN / NODE / NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -58,7 +46,7 @@ pip3 install --user wheel pynvim
 
 #INSTALL GUI & RICE
 # ESSENTIALS GUI
-pamac install visual-studio-code-bin signal-desktop xsel
+pamac install visual-studio-code-bin signal-desktop xsel latte-dock
 
 # RICE
 pamac install nitrogen xorg-xbacklight x11-ssh-askpass maim xcompmgr picom unclutter neomutt urlview notmuch dunst zathura xcape surf xtitle groff dbus-x12 clang imagemagick 
@@ -128,6 +116,20 @@ pamac install siji-git polybar bspwm
 # increase number of file watcher
 echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && \
 sudo sysctl -p 
+
+# fix ntfs-3g disk access on mount as user
+sudo usermod -a -G disk $(whoami)
+
+# fix vscode signin isues
+yay -S qtkeychain gnome-keyring
+
+chmod 600 .ssh/*
+
+# DOCKER
+sudo groupadd docker
+sudo usermod -aG docker $(whoami)
+sudo systemctl enable docker
+sudo systemctl start docker
 
 # bluetooth a2dp
 pamac install pulseaudio-bt-auto-enable-a2dp
