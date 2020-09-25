@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=AudioVideo;Audio;Mixer;GTK;
+Comment=PulseAudio LADSPA interface using MBEQ Multiband EQ plugin
+Exec=pulseaudio-equalizer-gtk
+GenericName=Equalizer
+Icon=multimedia-volume-control
+Name=PulseAudio Equalizer
+StartupNotify=true
+Type=Application
+Version=1.0
