@@ -5,7 +5,9 @@ sudo pacman -Syy
 # install buildtools like eg. git make libffi glibc gcc
 sudo pacman -S base-devel
 
-# install yay helper
+# install YAY helper:
+pamac install yay
+# manual install YAY:
 # _uid="$(id -u)"
 # _uid="$(id -g)"
 # cd /opt
@@ -16,27 +18,28 @@ sudo pacman -S base-devel
 # # 2 times to make it stick
 # makepkg -si
 
+
 # upgrade all the packages!!!
 sudo yay -Syu
 
 # install manjaro pacman
-yay -S pamac
+yay -Sy pamac
 
 # ESSENTIALS SYSTEM
-pamac install neovim nvm tmux git docker docker-compose python3 python-pip ntfs-3g-fuse lf mosh htop
+pamac update
+pamac install neovim nvm tmux git docker docker-compose python3 python-pip  mosh htop
+# risky/estoric on arm
+yay -S ntfs-3g-fuse lf
 
 # NPM / YARN / NODE / NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-nvm install 12
-nvm use 12
+nvm install --lts
+nvm use --lts
 nvm alias default 12
 nvm use default
-npm install --global yarn
 cd ~
-rm -rf node_modules/
-rm yarn.lock
 
 
 # VIM
@@ -49,15 +52,18 @@ pip3 install --user wheel pynvim
 pamac install visual-studio-code-bin signal-desktop xsel latte-dock
 
 # RICE
-pamac install nitrogen xorg-xbacklight x11-ssh-askpass maim xcompmgr picom unclutter neomutt urlview notmuch dunst zathura xcape surf xtitle groff dbus-x12 clang imagemagick 
+pamac install nitrogen xorg-xbacklight x11-ssh-askpass maim xcompmgr picom unclutter neomutt urlview notmuch dunst zathura xcape surf xtitle groff dbus-x12 clang imagemagick
 
 # FONTS
-pamac install ttf-symbola noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack
+pamac install noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels
+yay -S nerd-fonts-hack
+
 cd ~/Downloads
 
 
 # dependencies
-pamac install libxcb libxft-bgra-git
+pamac install libxcb
+yay -S libxft-bgra-git
 
 # ST
 pamac install st-luke-git
@@ -110,12 +116,12 @@ sudo cp $HOME/.local/bin/bspwm.desktop /usr/share/xsessions/bspwm.desktop
 sudo ln -s $HOME/.local/bin/launch_bspwm /usr/local/bin/launch_bspwm
 sudo ln -s $HOME/.local/bin/kde-bspwm.sh /usr/local/bin/kde-bspwm
 
-pamac install siji-git polybar bspwm
+pamac install bspwm
 
 # TWEAKS
 # increase number of file watcher
 echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && \
-sudo sysctl -p 
+sudo sysctl -p
 
 # fix ntfs-3g disk access on mount as user
 sudo usermod -a -G disk $(whoami)
@@ -138,3 +144,4 @@ pamac install pulseaudio-bt-auto-enable-a2dp
 # DOCKER (REFRESH GROUP)
 # needs to be at end, because it sources .bashrc again
 newgrp docker
+cd
