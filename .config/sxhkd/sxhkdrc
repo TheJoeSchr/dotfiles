@@ -17,17 +17,17 @@ alt + F2
 	dmenu_run
 # super + d
 # 	dmenu_run
-# super + space
-# 	dmenu_run
-# super + r
-# 	$TERMINAL -e $FILE
+super + space
+    qdbus org.kde.kglobalaccel /component/krunner_desktop org.kde.kglobalaccel.Component.invokeShortcut '_launch'
+super + r
+	$TERMINAL -e $FILE
 
 # Email
-super + m
-	$TERMINAL -e neomutt; pkill -RTMIN+12 $STATUSBAR
+# super + m
+# 	$TERMINAL -e neomutt; pkill -RTMIN+12 $STATUSBAR
 # sync email
-super + shift + m
-	$TERMINAL -e mailsync
+# super + shift + m
+# 	$TERMINAL -e mailsync
 
 # super + m
 # 	$TERMINAL -e ncmpcpp
@@ -298,10 +298,12 @@ super + ctrl + o
 	bspc node -g sticky={on,off}
 
 # remove and restore polybar
-super + shift + ctrl + b
-\{ pgrep polybar && \{ killall polybar ; bspc config top_padding 0 \} \} || \{ launch_polybar ; bspc config top_padding 24 \}
+# super + shift + ctrl + b
+# \{ pgrep polybar && \{ killall polybar ; bspc config top_padding 0 \} \} || \{ launch_polybar ; bspc config top_padding 24 \}
 
 
+alt { ,+ shift } + Tab
+    bspc node -f {prev,next}.local
 super + {i,o}
 	bspc node -f {prev,next}.local
 super + shift + n
@@ -309,5 +311,7 @@ super + shift + n
 
 # switch between focused nodes
 # super +  b # this just works
+
+# float window
 super + shift + b
 	bspc node focused -t \~floating ; hover left
