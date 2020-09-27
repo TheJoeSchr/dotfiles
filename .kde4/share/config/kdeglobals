@@ -20,25 +20,25 @@ IntensityEffect=0
 
 [Colors:Button]
 BackgroundAlternate=224,223,222
-BackgroundNormal=236,236,236
+BackgroundNormal=41,47,52
 DecorationFocus=26,188,156
 DecorationHover=26,188,156
 ForegroundActive=155,89,182
-ForegroundInactive=164,166,166
+ForegroundInactive=130,148,163
 ForegroundLink=76,107,138
 ForegroundNegative=231,76,60
 ForegroundNeutral=230,126,34
-ForegroundNormal=41,47,52
+ForegroundNormal=255,255,255
 ForegroundPositive=52,152,219
 ForegroundVisited=145,61,136
 
 [Colors:Complementary]
-BackgroundAlternate=59,64,69
+BackgroundAlternate=62,71,78
 BackgroundNormal=49,54,59
 DecorationFocus=30,146,255
 DecorationHover=61,174,230
 ForegroundActive=246,116,0
-ForegroundInactive=175,176,179
+ForegroundInactive=67,76,84
 ForegroundLink=61,174,230
 ForegroundNegative=237,21,21
 ForegroundNeutral=201,206,59
@@ -47,7 +47,7 @@ ForegroundPositive=17,209,22
 ForegroundVisited=61,174,230
 
 [Colors:Selection]
-BackgroundAlternate=62,138,204
+BackgroundAlternate=54,215,183
 BackgroundNormal=26,188,156
 DecorationFocus=26,188,156
 DecorationHover=26,188,156
@@ -61,12 +61,12 @@ ForegroundPositive=37,116,165
 ForegroundVisited=145,61,136
 
 [Colors:Tooltip]
-BackgroundAlternate=196,224,255
+BackgroundAlternate=62,71,78
 BackgroundNormal=41,47,52
 DecorationFocus=26,188,156
 DecorationHover=26,188,156
 ForegroundActive=155,89,182
-ForegroundInactive=164,166,166
+ForegroundInactive=130,148,163
 ForegroundLink=126,178,230
 ForegroundNegative=231,76,60
 ForegroundNeutral=230,126,34
@@ -75,45 +75,45 @@ ForegroundPositive=52,152,219
 ForegroundVisited=145,61,136
 
 [Colors:View]
-BackgroundAlternate=248,247,246
-BackgroundNormal=255,255,255
+BackgroundAlternate=62,71,78
+BackgroundNormal=33,37,41
 DecorationFocus=26,188,156
 DecorationHover=26,188,156
 ForegroundActive=155,89,182
-ForegroundInactive=164,166,166
+ForegroundInactive=130,148,163
 ForegroundLink=76,107,138
 ForegroundNegative=231,76,60
 ForegroundNeutral=230,126,34
-ForegroundNormal=41,47,52
+ForegroundNormal=255,255,255
 ForegroundPositive=52,152,219
 ForegroundVisited=145,61,136
 
 [Colors:Window]
-BackgroundAlternate=218,217,216
-BackgroundNormal=236,236,236
+BackgroundAlternate=62,71,78
+BackgroundNormal=41,47,52
 DecorationFocus=26,188,156
 DecorationHover=26,188,156
 ForegroundActive=155,89,182
-ForegroundInactive=164,166,166
+ForegroundInactive=130,148,163
 ForegroundLink=76,107,138
 ForegroundNegative=231,76,60
 ForegroundNeutral=230,126,34
-ForegroundNormal=41,47,52
+ForegroundNormal=255,255,255
 ForegroundPositive=52,152,219
 ForegroundVisited=145,61,136
 
 [General]
-ColorScheme=Breath2
-Name=Breath2
+ColorScheme=Breath2Dark
+Name=Breath2Dark
 font=Noto Sans,10,-1,5,50,0,0,0,0,0
 menuFont=Noto Sans,10,-1,5,50,0,0,0,0,0
 shadeSortColumn=true
 smallestReadableFont=Noto Sans,8,-1,5,50,0,0,0,0,0
 toolBarFont=Noto Sans,10,-1,5,50,0,0,0,0,0
-widgetStyle=Oxygen
+widgetStyle=Breeze
 
 [Icons]
-Theme=breath2
+Theme=breath2-dark
 
 [KDE]
 ShowIconsInMenuItems=true
@@ -125,9 +125,9 @@ ToolButtonStyle=TextBesideIcon
 ToolButtonStyleOtherToolbars=TextBesideIcon
 
 [WM]
-activeBackground=62,71,78
-activeBlend=236,236,236
-activeForeground=236,236,236
-inactiveBackground=236,236,236
-inactiveBlend=236,236,236
-inactiveForeground=159,185,202
+activeBackground=41,47,52
+activeBlend=41,47,52
+activeForeground=255,255,255
+inactiveBackground=41,47,52
+inactiveBlend=41,47,52
+inactiveForeground=130,130,130
