@@ -65,11 +65,15 @@ plugin=org.kde.plasma.digitalclock
 PreloadWeight=34
 
 [Containments][1][Applets][64][Configuration][Appearance]
-showDate=true
+customDateFormat=yyyy/MM/dd
+dateFormat=custom
+displayTimezoneAsCode=false
+fontFamily=Hack Nerd Font Mono
+use24hFormat=2
 
 [Containments][1][Applets][64][Configuration][ConfigDialog]
-DialogHeight=2083
-DialogWidth=3808
+DialogHeight=1012
+DialogWidth=1920
 
 [Containments][1][Applets][65]
 immutability=1
@@ -94,8 +98,8 @@ DialogHeight=2098
 DialogWidth=3808
 
 [Containments][1][ConfigDialog]
-DialogHeight=2001
-DialogWidth=1110
+DialogHeight=963
+DialogWidth=539
 
 [Containments][1][Configuration]
 PreloadWeight=26
@@ -104,7 +108,6 @@ PreloadWeight=26
 advanced=false
 appletOrder=4;57;65;67;5;64
 autoDecreaseIconSize=false
-backgroundOnlyOnMaximized=true
 durationTime=x1
 iconMargin=0
 iconSize=33
@@ -113,12 +116,14 @@ maxLength=98
 panelOutline=true
 panelPosition=10
 panelSize=100
+panelTransparency=0
 shadowOpacity=35
 shadowSize=45
 showGlow=false
 splitterPosition=2
 splitterPosition2=5
 thickMargin=10
+useThemePanel=false
 zoomLevel=15
 
 [Containments][1][Indicator]
@@ -203,9 +208,10 @@ PreloadWeight=26
 [Containments][6][Applets][66]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
-
+plugin=org.kde.plasma.vault
 [Containments][6][Applets][66][Configuration]
 PreloadWeight=55
+
 
 [Containments][6][Applets][7]
 immutability=1
@@ -222,15 +228,15 @@ plugin=org.kde.plasma.volume
 PreloadWeight=31
 
 [Containments][6][General]
-extraItems=org.kde.plasma.networkmanagement,org.kde.ktp-contactlist,org.kde.plasma.clipboard,org.kde.plasma.printmanager,org.kde.kdeconnect,org.kde.plasma.pkupdates,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.discovernotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.nightcolorcontrol
-knownItems=org.kde.plasma.networkmanagement,org.kde.ktp-contactlist,org.kde.plasma.clipboard,org.kde.plasma.printmanager,org.kde.kdeconnect,org.kde.plasma.pkupdates,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.discovernotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.nightcolorcontrol
+extraItems=org.kde.plasma.networkmanagement,org.kde.ktp-contactlist,org.kde.plasma.clipboard,org.kde.plasma.printmanager,org.kde.kdeconnect,org.kde.plasma.pkupdates,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.discovernotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.nightcolorcontrol,org.kde.plasma.vault
+knownItems=org.kde.plasma.networkmanagement,org.kde.ktp-contactlist,org.kde.plasma.clipboard,org.kde.plasma.printmanager,org.kde.kdeconnect,org.kde.plasma.pkupdates,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.volume,org.kde.plasma.mediacontroller,org.kde.discovernotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.nightcolorcontrol,org.kde.plasma.vault
 
 [LayoutSettings]
 activities=
 background=
 color=lightskyblue
 globalLaunchers=
-lastUsedActivity=7f74c8e4-8029-49bf-b627-91f7fe05e938
+lastUsedActivity=8746a399-d795-48d4-825e-8b4497c90b4f
 launchers=
 preferredForShortcutsTouched=true
 showInMenu=true
