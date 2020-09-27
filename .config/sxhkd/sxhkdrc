@@ -164,7 +164,7 @@ super + F3
 	displayselect
 # Hibernate
 super + F4
-	prompt 'Put computer to sleep?' 'sudo -A pm-suspend'
+	prompt 'Put computer to sleep?' 'systemctl suspend'
 # Print
 super + Print
 	maimpick pic-full-$(date '+%y%m%d-%H%M-%S').png
