@@ -76,6 +76,8 @@ ex=🎯:\
 source $HOME/.config/xprofile.local
 
 # EXAMPLES FOR XPROFILE.LOCAL
+# export TERMINAL=alacritty
+# export BROWSER=google-chrome-stable
 # unclutter &		# Remove mouse when idle
 # nitrogen --restore &
 # setbg &			# set the background with the `setbg` script
