@@ -69,7 +69,6 @@ SSH_ENV=$HOME/.ssh/environment
 # important for `sudo -A`
 export SUDO_ASKPASS="/home/joe/.local/bin/dmenupass"
 
-export TERMINAL=st
 # for docker postgraphile
 export UID;
 
@@ -283,3 +282,6 @@ source /usr/share/nvm/init-nvm.sh
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# export TERMINAL=st
+# export BROWSER=chrome
