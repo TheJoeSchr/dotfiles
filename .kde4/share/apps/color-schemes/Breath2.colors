@@ -32,20 +32,6 @@ ForegroundNormal=41,47,52
 ForegroundPositive=52,152,219
 ForegroundVisited=145,61,136
 
-[Colors:Complementary]
-BackgroundAlternate=59,64,69
-BackgroundNormal=49,54,59
-DecorationFocus=30,146,255
-DecorationHover=61,174,230
-ForegroundActive=246,116,0
-ForegroundInactive=175,176,179
-ForegroundLink=61,174,230
-ForegroundNegative=237,21,21
-ForegroundNeutral=201,206,59
-ForegroundNormal=239,240,241
-ForegroundPositive=17,209,22
-ForegroundVisited=61,174,230
-
 [Colors:Selection]
 BackgroundAlternate=62,138,204
 BackgroundNormal=26,188,156
@@ -105,24 +91,10 @@ ForegroundVisited=145,61,136
 [General]
 ColorScheme=Breath2
 Name=Breath2
-font=Noto Sans,10,-1,5,50,0,0,0,0,0
-menuFont=Noto Sans,10,-1,5,50,0,0,0,0,0
 shadeSortColumn=true
-smallestReadableFont=Noto Sans,8,-1,5,50,0,0,0,0,0
-toolBarFont=Noto Sans,10,-1,5,50,0,0,0,0,0
-widgetStyle=Oxygen
-
-[Icons]
-Theme=breath2
 
 [KDE]
-ShowIconsInMenuItems=true
-ShowIconsOnPushButtons=true
 contrast=4
-
-[Toolbar style]
-ToolButtonStyle=TextBesideIcon
-ToolButtonStyleOtherToolbars=TextBesideIcon
 
 [WM]
 activeBackground=62,71,78
