@@ -167,10 +167,12 @@ super + F4
 	prompt 'Put computer to sleep?' 'systemctl suspend'
 # Print
 super + Print
+    maimpick
+super + shift + Print
 	maimpick pic-full-$(date '+%y%m%d-%H%M-%S').png
 # Pick screenshot type
 Print
-	maimpick
+	spectacle
 
 super + F6
 	xbacklight -dec 15
