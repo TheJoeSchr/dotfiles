@@ -43,7 +43,7 @@ ctrl + alt + n
 super + shift + a
     pavucontrol
 super + ctrl + shift + a
-	$TERMINAL -e alsamixer; 
+	$TERMINAL -e alsamixer;
 # # camera
 # super + shift + c
 # 	mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title='mpvfloat' /dev/video0
@@ -57,8 +57,6 @@ super  + shift  + w
     remotedesktop
 
 # Et cetera...
-super + grave
-	dmenuunicode
 super + Scroll_Lock
 	killall screenkey || screenkey
 super + Insert
@@ -237,6 +235,8 @@ super + {Prior,Next}
 # 	bspc desktop {prev,next}.occupied --focus
 
 # switch to previous worksapce
+super + grave
+	bspc desktop last --focus
 super + {Tab,backslash}
 	bspc desktop last --focus
 
@@ -247,8 +247,10 @@ super + {_,shift + }c
 # focus the older or newer node in the focus history
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} ^{1-9,10}
+super + {1-9,0}
+	bspc desktop -f ^{1-9,10}
+super + shift + {1-9,0}
+	bspc node -d ^{1-9,10} --follow
 
 # preselect the direction
 # super + {u,o}
