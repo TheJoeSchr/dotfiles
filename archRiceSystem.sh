@@ -142,6 +142,8 @@ sudo chown $(id -u):$(id -g) /var/run/docker.sock
 
 # bluetooth a2dp
 pamac install pulseaudio-bt-auto-enable-a2dp
+# unify 
+pamac install ltunify
 
 
 # DOCKER (REFRESH GROUP)
