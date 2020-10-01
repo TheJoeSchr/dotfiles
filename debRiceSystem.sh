@@ -31,7 +31,7 @@ sudo apt dist-upgrade
 
 # install ALL THE THINGS
 # essentials
-sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf xtitle groff groff-base dbus-x11
+sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf xtitle groff groff-base dbus-x11 picom
 # code & signal
 sudo apt install -y signal-desktop code
 # fonts
@@ -63,28 +63,23 @@ mv clang+llvm-9.0.0-armv7a-linux-gnueabihf clang_9.0.0
 sudo mv clang_9.0.0 /usr/local
 
 #install dwm
-cd ~/Downloads
-sudo apt build-dep dwm
-sudo apt install libxcb-res0-dev
-git clone https://gitlab.com/zanc/xft
-cd xft
-autoreconf -f -i
-./configure && sudo make install
-sudo ldconfig
-cd ..l
-git clone https://github.com/LukeSmithxyz/dwm.git
-cd dwm
-make && sudo make install
+# cd ~/Downloads
+# sudo apt build-dep dwm
+# sudo apt install libxcb-res0-dev
+# git clone https://gitlab.com/zanc/xft
+# cd xft
+# autoreconf -f -i
+# ./configure && sudo make install
+# sudo ldconfig
+# cd ..l
+# git clone https://github.com/LukeSmithxyz/dwm.git
+# cd dwm
+# make && sudo make install
 
-cd ~/Downloads
-git clone https://github.com/LukeSmithxyz/dwmblocks.git
-cd dwmblocks
-make && sudo make install
-
-cd ~/Downloads
-git clone https://github.com/LukeSmithxyz/dmenu.git
-cd dmenu
-make && sudo make install
+# cd ~/Downloads
+# git clone https://github.com/LukeSmithxyz/dwmblocks.git
+# cd dwmblocks
+# make && sudo make install
 
 cd ~/Downloads
 git clone https://github.com/LukeSmithxyz/dmenu.git
@@ -104,11 +99,11 @@ sudo usermod -a -G tty `whoami`
 cd ~/Downloads/
 
 # sxhkd
-# git clone https://github.com/baskerville/sxhkd.git
-# cd sxhkd/
-# make
-# sudo make install
-# cd ..
+git clone https://github.com/baskerville/sxhkd.git
+cd sxhkd/
+make
+sudo make install
+cd ..
 
 # polybar
 # git clone https://github.com/polybar/polybar.git
@@ -116,12 +111,16 @@ cd ~/Downloads/
 # ./build.sh
 
 # BSPWM
-#git clone https://github.com/baskerville/bspwm.git
-#cd bspwm/
-#make
-#sudo make install
-#sudo cp contrib/freedesktop/bspwm.desktop /usr/share/xsessions/
-#cd ..
+git clone https://github.com/baskerville/bspwm.git
+cd bspwm/
+make
+sudo make install
+sudo cp contrib/freedesktop/bspwm.desktop /usr/share/xsessions/
+cd ..
+
+# picom
+sudo ln -s .config/xdg/picom.conf  /etc/xdg/picom.conf
+
 # tmux
 cd ~/Downloads
 git clone https://github.com/tmux/tmux.git

@@ -99,6 +99,8 @@ rm -rf fonts
 # CONFIGURE DWM
 sudo cp $HOME/.local/bin/dwm.desktop /usr/share/xsessions/dwm.desktop
 sudo ln -s $HOME/.local/bin/kde-dwm.sh /usr/local/bin/kde-dwm
+# picom
+sudo ln -s .config/xdg/picom.conf  /etc/xdg/picom.conf
 
 
 cd ~/Downloads
