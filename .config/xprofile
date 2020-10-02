@@ -92,3 +92,5 @@ ex=🎯:\
 # export BROWSER=chromium-browser
 # export SEARCHBAR="kstart5 krunner"
 # export STATUSBAR="latte-dock" 
+# # check for nvida-settings before executing
+command -v nvidia-settigns >/dev/null 2>&1  >/dev/null 2>&1 &&  nvidia-settings --load-config-only
