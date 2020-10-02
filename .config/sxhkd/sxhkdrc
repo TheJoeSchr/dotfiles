@@ -18,7 +18,7 @@ alt + F2
 # super + d
 # 	dmenu_run
 super + space
-    qdbus org.kde.kglobalaccel /component/krunner_desktop org.kde.kglobalaccel.Component.invokeShortcut '_launch'
+    $SEARCHBAR &
 super + r
 	$TERMINAL -e $FILE
 
@@ -277,7 +277,7 @@ super + ctrl + space
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-super + space
+super + shift + space
     bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 
