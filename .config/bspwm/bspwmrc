@@ -48,4 +48,4 @@ launch_sxhkd
 # nitrogen --restore &
 
 # source xprofile
-[ -f $HOME/.xprofile ] && source $HOME/.xprofile
+[ -f $HOME/.xprofile ] && . $HOME/.xprofile

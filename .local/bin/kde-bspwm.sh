@@ -1,3 +1,5 @@
 #!/bin/sh
-export KDEWM=bspwm 
-/usr/bin/startplasma-x11
+export KDEWM=bspwm
+startkde
+
+# /usr/bin/startplasma-x11
