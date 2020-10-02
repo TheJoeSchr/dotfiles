@@ -1,3 +1,9 @@
+mkdir ~/Downloads
+mkdir ~/.config
+touch ~/.vimrc.local
+touch ~/.bashrc.local
+touch ~/.config/Xresources.local
+
 # update databases
 sudo pacman -Fy
 sudo pacman -Syy
