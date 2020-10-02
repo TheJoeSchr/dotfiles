@@ -282,6 +282,8 @@ cd ~
 # raspi
 # bluetooth
 sudo usermod -G bluetooth -a pi
+# frees 2G+
+sudo apt-get purge wolfram-engine
 
 # /raspi
 
