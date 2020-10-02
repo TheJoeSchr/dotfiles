@@ -66,7 +66,7 @@ super + shift + x
 super + shift + BackSpace
 	prompt "Reboot computer?" "sudo -A reboot"
 super + shift + Escape
-	prompt 'Leave Xorg?' 'killall Xorg'
+	prompt 'Leave Xorg?' 'sudo -A killall Xorg'
 # super + x
 # 	ifinstalled slock && ( slock & xset dpms force off ; mpc pause ; pauseallmpv )
 XF86Launch1
