@@ -18,7 +18,7 @@ mainmonitor="$(bspc query --monitors --names | grep -v LVDS | head -n 1)"
 # fi
 
 # Start workspaces on the main monitor.
-bspc monitor $mainmonitor -d 1 2 3 4 5 6
+bspc monitor $mainmonitor -d 1 2 3 4 5 
 bspc desktop -f 1
 
 # If you want a multi-monitor display or something else, I leave that to you to
@@ -38,14 +38,12 @@ bspc rule -a St:$dropdownname hidden=on
 bspc rule -a St:$dropdownname sticky=on
 bspc rule -a St:$dropdownname state=floating
 
-bspc config external_rules_command "$(which floaters)"
+# bspc config external_rules_command "$(which floaters)"
 
 # setting keyboard to international
 setxkbmap -layout us -variant altgr-intl -option nodeadkeys
 
 launch_sxhkd
-# launch_polybar
-# nitrogen --restore &
 
 # source xprofile
 [ -f $HOME/.xprofile ] && . $HOME/.xprofile
