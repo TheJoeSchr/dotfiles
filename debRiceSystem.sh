@@ -118,6 +118,10 @@ sudo make install
 sudo cp contrib/freedesktop/bspwm.desktop /usr/share/xsessions/
 cd ..
 
+sudo cp $HOME/.local/bin/bspwm.desktop /usr/share/xsessions/bspwm.desktop
+sudo ln -s $HOME/.local/bin/launch_bspwm /usr/local/bin/launch_bspwm
+sudo ln -s $HOME/.local/bin/kde-bspwm.sh /usr/local/bin/kde-bspwm
+
 # picom
 sudo ln -s .config/xdg/picom.conf  /etc/xdg/picom.conf
 
