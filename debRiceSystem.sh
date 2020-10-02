@@ -32,7 +32,7 @@ sudo apt dist-upgrade
 
 # install ALL THE THINGS
 # essentials
-sudo apt install -y neovim git nitrogen python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch dunst zathura xcape stterm surf xtitle groff groff-base dbus-x11 picom
+sudo apt install -y neovim git tig mosh python3 python3-pip xsel htop xbacklight ssh-askpass lxappearance maim xcompmgr unclutter neomutt urlview notmuch zathura xcape stterm surf xtitle groff groff-base dbus-x11 compton
 # code & signal
 sudo apt install -y signal-desktop code
 # fonts
@@ -284,13 +284,13 @@ sudo apt autoremove -y
 
 cd ~
 
-# raspi
+# RASPI
 # bluetooth
-sudo usermod -G bluetooth -a pi
+sudo usermod -G bluetooth -a $(whoami)
 # frees 2G+
 sudo apt-get purge wolfram-engine
 
-# /raspi
+# /RASPI
 
 # docker (refresh group)
 # needs to be at end, because it sources .bashrc again
