@@ -1,6 +1,0 @@
-#! /bin/bash
-
-killall bspwm && exec bspwm
-# launch_bspwm 
-# /home/joe/.local/bin/launch_polybar 
-# /home/joe/.local/bin/launch_sxhkd 
