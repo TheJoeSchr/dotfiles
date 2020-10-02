@@ -50,9 +50,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     done
     unset f
 fi
-if [ $TERM = linux ] || [ -e "/etc/systemd/system/graphical.target.wants/xlogin@$(whoami).service" ] ; then
-# Here dwm is kept as default
+
 session=${1:-dwm}
+get_session(){
+	local dbus_args=(--sh-syntax --exit-with-session)
+# Here dwm is kept as default
 
 case $session in
 	awesome 		  ) exec dbus-launch --sh-syntax --exit-with-session awesome;;
@@ -75,8 +77,7 @@ case $session in
     # No known session, try to run it as command
     *                 ) exec dbus-launch --sh-syntax --exit-with-session $1;;
 esac
-fi
+}
 
-# xset r rate 600 25
-nvidia-settings --load-config-only
+xset r rate 600 25
 exec $(get_session)
