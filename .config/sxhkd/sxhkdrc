@@ -57,10 +57,10 @@ super  + shift  + w
     remotedesktop
 
 # Et cetera...
-super + Scroll_Lock
-	killall screenkey || screenkey
-super + Insert
-	showclip
+# super + Scroll_Lock
+# 	killall screenkey || screenkey
+# super + Insert
+# 	showclip
 super + shift + x
 	prompt "Shutdown computer?" "sudo -A shutdown -h now"
 super + shift + BackSpace
@@ -231,7 +231,7 @@ super + {Left,Down,Up,Right}
 # focus/swap
 
 # focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
+super + {_,ctrl + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
@@ -253,7 +253,7 @@ super + {Tab,backslash}
 	bspc desktop last --focus
 
 # focus or swap the next node
-super + {_,shift + }c
+super + {_,ctrl + }c
 	bspc node -{f,s} next.local
 
 # focus the older or newer node in the focus history
@@ -277,24 +277,24 @@ super + ctrl + space
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-super + shift + space
+super + ctrl + shift + space
     bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 
 
 # move/resize
 # expand a window by moving one of its side outward
-super + ctrl + shift + {h,j,k,l}
-    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-# super + ctrl + shift + {h,j,k,l}
+super + shift + {h,j,k,l}
+    bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
+# super + shift + {h,j,k,l}
 #     bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
-    bspc node -z {right -20 0,bottom 0 -20,top 0 20,left 20 0}
-# super + alt + shift + {h,j,k,l}
-#     bspc node -z {left 20 0,bottom 0 -20,top 0 20,right -20 0}
+super + ctrl + shift + {h,j,k,l}
+    bspc node -z {left -20 0,top 0 20,top 0 -20,left 20 0}
 
+# super + ctrl + shift + {h,j,k,l}
+#     bspc node -z {right -20 0,bottom 0 -20,top 0 20,left 20 0}
 # Toggle gaps
 super + shift + g
 	bspc config window_gap {0,15}
