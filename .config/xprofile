@@ -16,6 +16,7 @@ $STATUSBAR &
 $CLUTTER &
 $SHORTCUTS &
 
+bspc config top_padding $STATUSBAR_HEIGHT 	# top_padding, customize in .config/.xprofile.local
 
 
 # This is the list for lf icons:
@@ -86,11 +87,12 @@ ex=🎯:\
 # COMP=compton
 # CLUTTER=unclutter
 # SHORTCUTS="launch_sxhkd && remaps &"
+# STATUSBAR_HEIGHT=35
 
 # # export because used by shortcuts
 # export TERMINAL=st
 # export BROWSER=chromium-browser
 # export SEARCHBAR="kstart5 krunner"
-# export STATUSBAR="latte-dock" 
+# export STATUSBAR="latte-dock"
 # # check for nvida-settings before executing
-command -v nvidia-settigns >/dev/null 2>&1  >/dev/null 2>&1 &&  nvidia-settings --load-config-only
+# command -v nvidia-settigns >/dev/null 2>&1  >/dev/null 2>&1 &&  nvidia-settings --load-config-only
