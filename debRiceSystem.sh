@@ -1,8 +1,10 @@
 #! /bin/bash
 
 mkdir ~/Downloads
-touch .vimrc.local
-touch .bashrc.local
+mkdir ~/.config
+touch ~/.vimrc.local
+touch ~/.bashrc.local
+touch ~/.config/Xresources.local
 
 ## Adds current GIT
 sudo add-apt-repository ppa:git-core/ppa -y
@@ -16,7 +18,7 @@ sudo add-apt-repository ppa:git-core/ppa -y
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 241FE6973B765FAE
 
 # vscode
-curl -sSL https://packages.microsoft.com/keys/microsoft.asc -o microsoft.asc | sudo apt-key add 
+curl -sSL https://packages.microsoft.com/keys/microsoft.asc -o microsoft.asc | sudo apt-key add
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"  | sudo tee /etc/apt/sources.list.d/vscode.list
 
 # signal
