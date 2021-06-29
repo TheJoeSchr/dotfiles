@@ -133,15 +133,14 @@ sudo chmod +x /usr/local/bin/docker-compose
 # TA-LIB
 cd ~/Downloads \
   && wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz \
-  && tar -xzf ta-lib-0.4.0-src.tar.gz \
-  && rm ta-lib-0.4.0-src.tar.gz \
-  && cd ta-lib/ \
-  && sudo ./configure --prefix=/usr \
-  && sudo make \
+  && tar xvzf ta-lib-0.4.0-src.tar.gz \
+  && cd ta-lib \
+  && sed -i.bak "s|0.00000001|0.000000000000000001 |g" src/ta_func/ta_utility.h \
+  && ./configure --prefix=/usr/local \
+  && make \
   && sudo make install \
   && cd .. \
   && mv ta-lib/ ~/.local/sources/ta-lib \
-  && pip install ta-lib
 
 # TWEAKS
 # increase number of file watcher
