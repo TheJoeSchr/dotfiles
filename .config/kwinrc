@@ -122,9 +122,11 @@ LayoutName=coverswitch
 ShowTabBox=false
 
 [Windows]
+ActiveMouseScreen=false
 BorderlessMaximizedWindows=false
+FocusPolicy=FocusFollowsMouse
 FocusStealingPreventionLevel=2
-Placement=UnderMouse
+Placement=Centered
 SeparateScreenFocus=true
 
 [org.kde.kdecoration2]
