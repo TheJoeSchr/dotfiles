@@ -45,20 +45,15 @@ decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Decreas
 decrease_volume=Volume Down\tCtrl+Shift+Down,Volume Down,Decrease Volume
 increase_microphone_volume=Microphone Volume Up,Microphone Volume Up,Increase Microphone Volume
 increase_volume=Volume Up\tCtrl+Shift+Up,Volume Up,Increase Volume
-mic_mute=Microphone Mute,Microphone Mute,Mute Microphone
+mic_mute=Microphone Mute,Microphone Mute\tMeta+Volume Mute,Mute Microphone
 mute=Volume Mute\tCtrl+Alt+Shift+M,Volume Mute,Mute
 
-[krunner.desktop]
-RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
-_k_friendly_name=KRunner
-_launch=Alt+F2\t\tSearch\t,Alt+Space\tAlt+F2\tSearch,KRunner
-
 [ksmserver]
-Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,Ctrl+Alt+Shift+PgDown,Halt Without Confirmation
+Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Halt Without Confirmation
 Lock Session=Screensaver\tMeta+Ctrl+Shift+L,Meta+L\tCtrl+Alt+L\tScreensaver,Lock Session
 Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Log Out
-Log Out Without Confirmation=Ctrl+Alt+Shift+Del,Ctrl+Alt+Shift+Del,Log Out Without Confirmation
-Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,Ctrl+Alt+Shift+PgUp,Reboot Without Confirmation
+Log Out Without Confirmation=Ctrl+Alt+Shift+Del,none,Log Out Without Confirmation
+Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,none,Reboot Without Confirmation
 _k_friendly_name=Session Management
 
 [kwin]
@@ -316,6 +311,11 @@ NewWindow=,,Open a New Window
 _k_friendly_name=Konsole
 _launch=Meta+Shift+Return\tAlt+Shift+Return,,Konsole
 
+[org.kde.krunner.desktop]
+RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
+_k_friendly_name=KRunner
+_launch=Alt+F2\t\tSearch,none,KRunner
+
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
 _launch=Meta+.,Meta+.,Emoji Selector
@@ -353,6 +353,7 @@ activate task manager entry 6=none,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=none,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=none,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=none,Meta+9,Activate Task Manager Entry 9
+activate widget 100=Alt+Space,none,Activate Application Launcher Widget
 activate widget 15=none,none,Activate Notifications Widget
 activate widget 2=,none,Activate Application Launcher Widget
 activate widget 23=none,none,Activate Icons-only Task Manager Widget
@@ -361,7 +362,6 @@ activate widget 3=,none,Activate Application Launcher Widget
 activate widget 33=none,none,Activate Hard Disk Activity Widget
 activate widget 46=none,none,Activate Battery and Brightness Widget
 activate widget 52=\t,none,Activate Application Dashboard Widget
-activate widget 63=Alt+Space,none,Activate Application Menu Widget
 activate widget 65=none,none,Activate Icons-only Task Manager Widget
 activate widget 73=Alt+F1,none,Activate Application Launcher Widget
 clear-history=none,none,Clear Clipboard History
@@ -375,7 +375,7 @@ previous activity=none,Meta+Shift+Tab,Walk through activities (Reverse)
 repeat_action=none,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
 show-barcode=none,none,Show Barcode...
-show-on-mouse-pos=none,none,Open Klipper at Mouse Position
+show-on-mouse-pos=none,Meta+V,Open Klipper at Mouse Position
 stop current activity=none,Meta+S,Stop Current Activity
 switch to next activity=none,none,Switch to Next Activity
 switch to previous activity=none,none,Switch to Previous Activity
