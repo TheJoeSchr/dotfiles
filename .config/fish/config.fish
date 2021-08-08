@@ -22,6 +22,7 @@ if status --is-interactive
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
   abbr yay 'pikaur'
+  abbr ta 'tmux a'
   abbr rg 'rg -S'
   abbr mail 'cmdg'
   alias pbcopy 'xsel --clipboard --input'
@@ -33,7 +34,7 @@ if status --is-interactive
   set -x VISUAL nvim
   # always try to set DISPLAY
   set -q DISPLAY; or set -x DISPLAY ":0"
-  abbr psa 'ps ax | grep'
+  abbr psax 'ps ax | grep'
 
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
   echo "Set Theme"
