@@ -11,19 +11,21 @@ su -l
 # update mirror-list
 pacman-mirrors -g
 # update keydatabases
-rm -R /etc/pacman.d/gnupg
-rm -R /root/.gnupg
-dirmngr </dev/null
+sudo rm -R /etc/pacman.d/gnupg
+sudo rm -R /root/.gnupg
+sudo dirmngr </dev/null
 
-pacman-key --init
-pacman-key --populate archlinux manjaro
-pacman-key --refresh-keys
+sudo pacman-key --init
+sudo pacman-key --populate archlinux manjaro
+sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring
+sudo pacman-key --refresh-keys
+sudo systemctl start pacman-init
 # update databases
-pacman -Fy
-pacman -Syy
+sudo pacman -Fy
+sudo pacman -Syy
 
 # install buildtools like eg. git make libffi glibc gcc
-pacman -S --noconfirm --needed base-devel git ed python python-pip
+sudo pacman -S --noconfirm --needed base-devel git ed python python-pip
 
 # exit su -l
 exit
