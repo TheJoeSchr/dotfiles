@@ -307,6 +307,10 @@ if !exists('g:vscode')
     Plug 'leafgarland/typescript-vim'
     " -- vue
     Plug 'pangloss/vim-javascript'
+    " -- vue: vetur alternative
+    " :CocInstall @yaegassy/coc-volar
+    " Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
+
     " PYTHON
     " iPython support
     Plug 'jpalardy/vim-slime', { 'for': 'python' }
@@ -710,12 +714,11 @@ if !exists('g:vscode')
     \ 'coc-pairs',
     \ 'coc-tsserver',
     \ 'coc-eslint',
-    \ 'coc-vetur',
+    \ 'yaegassy/coc-volar',
     \ 'coc-prettier',
     \ 'coc-json',
     \ 'coc-html',
     \ 'coc-css',
-    \ 'coc-vetur',
     \ ]
   "  TextEdit might fail if hidden is not set.
   set hidden
