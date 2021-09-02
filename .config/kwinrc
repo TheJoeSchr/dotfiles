@@ -112,8 +112,6 @@ count=0
 
 [TabBox]
 ActivitiesMode=0
-DesktopLayout=org.kde.breeze.desktop
-DesktopListLayout=org.kde.breeze.desktop
 MinimizedMode=1
 SwitchingMode=1
 
@@ -128,7 +126,3 @@ FocusStealingPreventionLevel=2
 NextFocusPrefersMouse=true
 Placement=Centered
 SeparateScreenFocus=true
-
-[org.kde.kdecoration2]
-library=org.kde.kwin.aurorae
-theme=__aurorae__svg__Sweet-Dark
