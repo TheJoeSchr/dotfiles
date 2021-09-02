@@ -25,18 +25,19 @@ if status --is-interactive
   abbr ta 'tmux a'
   abbr rg 'rg -S'
   abbr mail 'cmdg'
+  abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
+  abbr psax 'ps ax | grep'
   alias pbcopy 'xsel --clipboard --input'
   alias pbpaste 'xsel --clipboard --output'
 
-  echo -n Setting exports...
-  set -x PAGER less
-  set -x EDITOR nvim
-  set -x VISUAL nvim
+  echo -n Setting global exports...
+  set -gx PAGER less
+  set -gx EDITOR nvim
+  set -gx BROWSER google-chrome-stable
+  set -gx VISUAL nvim
   # always try to set DISPLAY
   set -q DISPLAY; or set -x DISPLAY ":0"
-  abbr psax 'ps ax | grep'
 
-  abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
   echo "Set Theme"
   omf theme yimmy
 end
