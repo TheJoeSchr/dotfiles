@@ -715,6 +715,7 @@ if !exists('g:vscode')
     \ 'coc-tsserver',
     \ 'coc-eslint',
     \ '@yaegassy/coc-volar',
+    \ 'coc-pyright',
     \ 'coc-prettier',
     \ 'coc-json',
     \ 'coc-html',
