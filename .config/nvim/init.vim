@@ -315,6 +315,11 @@ if !exists('g:vscode')
     " iPython support
     Plug 'jpalardy/vim-slime', { 'for': 'python' }
     Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+    " jupyter notebook support
+    Plug 'jupyter-vim/jupyter-vim'
+    " Plug 'goerz/jupytext.vim'
+    Plug 'untitled-ai/jupyter_ascending.vim'
+
     " -- other
     " Make sure you use single quotes
     " On-demand loading
@@ -467,8 +472,8 @@ if !exists('g:vscode')
   nnoremap <Leader>x :IPythonCellClose<CR>
 
   " map [c and ]c to jump to the previous and next cell header
-  nnoremap [c :IPythonCellPrevCell<CR>
-  nnoremap ]c :IPythonCellNextCell<CR>
+  nnoremap <Leader>[c :IPythonCellPrevCell<CR>
+  nnoremap <Leader>]c :IPythonCellNextCell<CR>
 
   " map <Leader>h to send the current line or current selection to IPython
   nmap <Leader>h <Plug>SlimeLineSend
@@ -485,7 +490,16 @@ if !exists('g:vscode')
 
   " map <Leader>q to exit debug mode or IPython
   " nnoremap <Leader>q :SlimeSend1 exit<CR>
-  " ------------------ /iPython-cell ------------------
+  " ------------------ /IPYTHON-CELL ------------------
+  "
+  " ------------------ JUPYTEXT ------------------
+
+  let g:jupytext_fmt = 'py:percent'
+  nmap <space><space>x <Plug>JupyterExecute
+  nmap <space><space>X <Plug>JupyterExecuteAll
+  " ------------------ /JUPYTEXT ------------------
+
+
   " ------------------ Vinegar ------------------
   map <C-n> <Plug>VinegarUp
   nmap <leader>n <Plug>VinegarUp
@@ -900,7 +914,7 @@ if !exists('g:vscode')
   endif
   " ---------------- FUGITIVE --------------
   nnoremap <silent> <leader>g :G <CR>
-  nnoremap <silent> <leader>G :G <CR>
+  nnoremap <silent> <leader>Gh :0Gclog <CR>
   command! GHistory call s:view_git_history()
 
   function! s:view_git_history() abort
