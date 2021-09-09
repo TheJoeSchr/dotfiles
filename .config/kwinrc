@@ -134,7 +134,7 @@ ShowTabBox=false
 
 [Windows]
 ActiveMouseScreen=false
-BorderlessMaximizedWindows=false
+BorderlessMaximizedWindows=true
 FocusStealingPreventionLevel=2
 NextFocusPrefersMouse=true
 Placement=Centered
