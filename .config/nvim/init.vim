@@ -914,7 +914,8 @@ if !exists('g:vscode')
   endif
   " ---------------- FUGITIVE --------------
   nnoremap <silent> <leader>g :G <CR>
-  nnoremap <silent> <leader>Gh :0Gclog <CR>
+  nnoremap <silent> <leader>Gd :0Gclog <CR>
+  nnoremap <silent> <leader>Gl :Gclog <CR>
   command! GHistory call s:view_git_history()
 
   function! s:view_git_history() abort
