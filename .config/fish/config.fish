@@ -28,6 +28,7 @@ if status --is-interactive
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
   abbr psax 'ps ax | grep'
   alias pbcopy 'xsel --clipboard --input'
+  alias op-pw-grep 'op-grep'
   alias pbpaste 'xsel --clipboard --output'
 
   echo -n Setting global exports...
