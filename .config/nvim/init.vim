@@ -319,8 +319,9 @@ if !exists('g:vscode')
     Plug 'jupyter-vim/jupyter-vim'
     " Plug 'goerz/jupytext.vim'
     Plug 'untitled-ai/jupyter_ascending.vim'
-
     " -- other
+    " Ansible
+    Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
     " Make sure you use single quotes
     " On-demand loading
     " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -678,8 +679,9 @@ if !exists('g:vscode')
 
   " ---------------- / FZF ------------
   " ---------------- TELESCOPE ------------
-  " in ~/.config/nvim/lua/telescope.lua"
-  lua require("telescope-config")
+  " in ~/.config/nvim/lua/telescope.lua
+  " lua require("telescope-config")
+
   " === Telescope shorcuts === "
   "   <ctrl>p - Browse list of buffers & files in current directory/project
   "   <leader>: - Search command history
@@ -816,6 +818,10 @@ if !exists('g:vscode')
   " Formatting selected code.
   xmap <leader>=  <Plug>(coc-format-selected)
   nmap <leader>=  <Plug>(coc-format-selected)
+  " add snowflake exception for VUE
+  " see: https://github.com/neoclide/coc-prettier/issues/73#issuecomment-742580180
+  command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+  autocmd BufWritePre *.vue Prettier
 
   augroup mygroup
     autocmd!
