@@ -22,6 +22,16 @@ Scale=1.25
 [DrmOutputs][5ade8f275f][60be871c32]
 Scale=1
 
+[DrmOutputs][822df5486b][ae822932-2a2b-576d-9d46-21cd32fab149]
+Mode=1920x1080_60000
+Scale=1
+Transform=normal
+
+[DrmOutputs][822df5486b][d424de38-4712-51cf-bb3b-8c7e5861d655]
+Mode=1920x1080_50000
+Scale=1
+Transform=normal
+
 [DrmOutputs][e5b7a8239c][e5b7a8239c]
 Scale=1
 
@@ -53,6 +63,9 @@ MoveResize=69
 
 [ElectricBorders]
 TopLeft=None
+
+[KDE]
+AnimationDurationFactor=0.125
 
 [ModifierOnlyShortcuts]
 Meta=org.kde.lattedock,/Latte,org.kde.LatteDock,activateLauncherMenu
