@@ -258,7 +258,7 @@ activate entry 6=none,Meta+6,Activate Entry 6
 activate entry 7=none,Meta+7,Activate Entry 7
 activate entry 8=none,Meta+8,Activate Entry 8
 activate entry 9=none,Meta+9,Activate Entry 9
-activate widget 60=Meta+Space,none,Activate Application Dashboard Widget
+activate widget 125=none,none,Activate Shutdown or Switch Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=none,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
@@ -288,7 +288,7 @@ show latte global settings=none,Meta+W,Show Latte Global Settings
 show latte view=Ctrl+Shift+Esc,Meta+`,Show Latte Dock/Panel
 show view settings=none,Meta+A,Cycle Through Dock/Panel Settings Windows
 show-barcode=none,none,Show Barcode...
-show-on-mouse-pos=,none,Open Klipper at Mouse Position
+show-on-mouse-pos=,Meta+V,Open Klipper at Mouse Position
 
 [mediacontrol]
 _k_friendly_name=Media Controller
@@ -343,7 +343,7 @@ Turn Off Screen=none,none,Turn Off Screen
 _k_friendly_name=Power Management
 
 [plasmashell]
-_k_friendly_name=Plasma
+_k_friendly_name=Latte Dock
 activate task manager entry 1=none,Meta+1,Activate Task Manager Entry 1
 activate task manager entry 10=none,Meta+0,Activate Task Manager Entry 10
 activate task manager entry 2=none,Meta+2,Activate Task Manager Entry 2
@@ -354,7 +354,8 @@ activate task manager entry 6=none,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=none,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=none,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=none,Meta+9,Activate Task Manager Entry 9
-activate widget 100=Alt+Space,none,Activate Application Launcher Widget
+activate widget 100=none,none,Activate Application Launcher Widget
+activate widget 102=none,none,Activate Icons-only Task Manager Widget
 activate widget 15=none,none,Activate Notifications Widget
 activate widget 2=,none,Activate Application Launcher Widget
 activate widget 23=none,none,Activate Icons-only Task Manager Widget
