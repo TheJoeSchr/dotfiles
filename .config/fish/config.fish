@@ -18,7 +18,7 @@ if status --is-interactive
   abbr e 'nvim'
   alias e 'nvim'
   abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
-  abbr pinstall 'pikaur -Syu --needed --noconfirm'
+  abbr pikstall 'pikaur -S --needed --noconfirm'
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
   abbr yay 'pikaur'
