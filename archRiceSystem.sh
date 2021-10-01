@@ -219,6 +219,17 @@ sudo ln -s /usr/src/linux-manjaro-xanmod  /usr/src/linux
 # install beta, because of DKMS
 pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
 
+# moonlander
+sudo touch /etc/udev/rules.d/50-oryx.rules
+
+echo "
+ # Rule for all ZSA keyboards
+ SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", GROUP=\"plugdev\"
+ # Rule for the Moonlander
+ SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", ATTR{idProduct}==\"1969\", GROUP=\"plugdev\"
+ "| sudo tee -a /etc/udev/rules.d/50-oryx.rules
+sudo groupadd plugdev
+sudo usermod -aG plugdev $USER
 
 # DOCKER (REFRESH GROUP)
 # needs to be at end, because it sources .bashrc again
