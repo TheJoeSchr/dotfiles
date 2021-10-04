@@ -228,6 +228,15 @@ echo "
  # Rule for the Moonlander
  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", ATTR{idProduct}==\"1969\", GROUP=\"plugdev\"
  "| sudo tee -a /etc/udev/rules.d/50-oryx.rules
+
+sudo touch /etc/udev/rules.d/50-wally.rules
+echo "
+# STM32 rules for the Moonlander and Planck EZ
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
+  MODE:="0666", \
+  SYMLINK+="stm32_dfu"
+ "| sudo tee -a /etc/udev/rules.d/50-wally.rules
+
 sudo groupadd plugdev
 sudo usermod -aG plugdev $USER
 
