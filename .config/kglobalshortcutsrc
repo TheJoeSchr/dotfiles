@@ -258,7 +258,9 @@ activate entry 6=none,Meta+6,Activate Entry 6
 activate entry 7=none,Meta+7,Activate Entry 7
 activate entry 8=none,Meta+8,Activate Entry 8
 activate entry 9=none,Meta+9,Activate Entry 9
+activate widget 112=Meta+Space,none,Activate Application Launcher Widget
 activate widget 125=none,none,Activate Shutdown or Switch Widget
+activate widget 54=none,none,Activate Application Launcher Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=none,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
@@ -309,7 +311,7 @@ _launch=Meta+E,Meta+E,Dolphin
 NewTab=,,Open a New Tab
 NewWindow=,,Open a New Window
 _k_friendly_name=Konsole
-_launch=Meta+Shift+Return\tAlt+Shift+Return,,Konsole
+_launch=Alt+Shift+Return\tCtrl+Alt+Return,,Konsole
 
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
@@ -389,4 +391,4 @@ _launch=Tools,Tools,System Settings
 
 [yakuake]
 _k_friendly_name=Yakuake
-toggle-window-state=F12\tCtrl+Alt+Return,F12,Open/Retract Yakuake
+toggle-window-state=F12\t,F12,Open/Retract Yakuake
