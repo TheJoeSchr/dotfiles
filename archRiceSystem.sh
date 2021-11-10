@@ -78,6 +78,9 @@ fish -c 'fisher install oh-my-fish/oh-my-fish'
 fish -c 'omf install yimmy'
 # fzf
 fish -c 'fisher install gyakovlev/fish-fzy'
+# ssh-agent
+fish -c 'fisher install danhper/fish-ssh-agent'
+
 
 # MANUAL: install OH-MY-FISH
 # cd ~/Downloads
