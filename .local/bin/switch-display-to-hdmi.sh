@@ -1,2 +1,2 @@
-xrandr --output HDMI-1 --mode 1920x1080 --above DP-1 --primary
-xrandr --output DP-1 --off
+xrandr --output HDMI-0 --mode 1920x1080 --above DP-4 --primary
+xrandr --output DP-4 --off
