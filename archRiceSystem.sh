@@ -50,7 +50,7 @@ pikaur -Syyu
 pikaur -Sy pamac
 
 # ESSENTIALS SYSTEM
-pikaur -S --noconfirm neovim-git ripgrep nvm tmux urlview python3 python-pip mosh htop bash-completion fish fzy fzf nodejs
+pikaur -S --noconfirm neovim ripgrep nvm tmux urlview python3 python-pip mosh htop bash-completion fish fzy fzf nodejs
 pip3 install --user wheel pynvim
 # risky/estoric on arm
 pikaur -S  ntfs-3g-fuse
