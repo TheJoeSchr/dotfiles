@@ -1,5 +1,5 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend
 
 [Compositing]
 GLCore=true
@@ -32,6 +32,11 @@ Mode=1920x1080_50000
 Scale=1
 Transform=normal
 
+[DrmOutputs][d424de38-4712-51cf-bb3b-8c7e5861d655][d424de38-4712-51cf-bb3b-8c7e5861d655]
+Mode=1920x1080_50000
+Scale=1
+Transform=normal
+
 [DrmOutputs][e5b7a8239c][e5b7a8239c]
 Scale=1
 
@@ -42,7 +47,7 @@ BlurStrength=15
 ZOrdering=true
 
 [Effect-CubeSlide]
-RotationDuration=350
+RotationDuration=3000
 UsePagerLayout=false
 
 [Effect-DimInactive]
@@ -77,10 +82,10 @@ LongitudeAuto=16.3075
 NightTemperature=5000
 
 [Plugins]
+bismuthEnabled=false
 blurEnabled=false
 contrastEnabled=true
 coverswitchEnabled=true
-cubeslideEnabled=true
 desktopchangeosdEnabled=true
 desktopgridEnabled=false
 diminactiveEnabled=true
@@ -91,6 +96,7 @@ kwin4_effect_eyeonscreenEnabled=true
 kwin4_effect_fadeEnabled=false
 kwin4_effect_scaleEnabled=true
 kwin4_effect_squashEnabled=false
+kwin4_effect_translucencyEnabled=true
 kwin4_effect_windowapertureEnabled=false
 lattewindowcolorsEnabled=true
 magiclampEnabled=true
@@ -98,7 +104,6 @@ minimizeallEnabled=false
 resizeEnabled=true
 screenedgeEnabled=false
 sheetEnabled=true
-slideEnabled=false
 slidebackEnabled=true
 synchronizeskipswitcherEnabled=false
 videowallEnabled=false
@@ -112,11 +117,12 @@ TextOnly=true
 [Script-krohnkite]
 debug=true
 enableQuarterLayout=true
-limitTileWidth=true
 limitTileWidthRatio=1.8
 maximizeSoleTile=true
 newWindowAsMaster=true
-noTileBorder=true
+screenGapLeft=1
+screenGapRight=1
+screenGapTop=1
 tileLayoutGap=15
 
 [SubSession: fb6e5be4-126b-41d2-9768-a966bdeafa7e]
