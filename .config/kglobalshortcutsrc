@@ -308,7 +308,7 @@ _launch=Meta+E,Meta+E,Dolphin
 NewTab=,,Open a New Tab
 NewWindow=,,Open a New Window
 _k_friendly_name=Konsole
-_launch=Meta+Shift+Return\tAlt+Shift+Return,,Konsole
+_launch=Ctrl+Alt+Return\tAlt+Shift+Return,,Konsole
 
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
