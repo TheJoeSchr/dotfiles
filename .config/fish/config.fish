@@ -30,6 +30,8 @@ if status --is-interactive
   alias pbcopy 'xsel --clipboard --input'
   alias op-pw-grep 'op-grep'
   alias pbpaste 'xsel --clipboard --output'
+  abbr ll 'exa -l'
+  abbr ls 'exa'
 
   echo -n Setting global exports...
   set -gx PAGER less
