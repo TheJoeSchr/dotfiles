@@ -546,6 +546,7 @@ if !exists('g:vscode')
   " cursor position will not change after performing a yank
   " nmap y <plug>(YoinkYankPreserveCursorPosition)
   " xmap y <plug>(YoinkYankPreserveCursorPosition)
+
   " ---------------- ALE ----------------------
   " fix files on save
   let g:ale_fix_on_save = 1
