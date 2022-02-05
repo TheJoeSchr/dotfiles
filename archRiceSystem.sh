@@ -103,7 +103,7 @@ fish -c 'fisher install jorgebucaran/nvm.fish'
 
 #INSTALL GUI & RICE
 # ESSENTIALS DESKTOP
-pikaur -S --noconfirm latte-dock-git signal-desktop cpupower-gui cpupower google-chrome zathura
+pikaur -S --noconfirm kwin-bismuth latte-dock-git signal-desktop cpupower-gui cpupower google-chrome zathura
 # RICE
 pikaur -S --noconfirm mntray ytmdesktop appmenu-gtk-module
 # VSCODE
