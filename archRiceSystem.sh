@@ -25,7 +25,7 @@ sudo pacman -Fy
 sudo pacman -Syy
 
 # install buildtools like eg. git make libffi glibc gcc
-sudo pacman -S --noconfirm --needed base-devel git ed python python-pip
+sudo pacman -S --noconfirm --needed base-devel git ed python python-pip python-poetry
 
 # exit su -l
 exit
@@ -50,7 +50,8 @@ pikaur -Syyu
 pikaur -Sy pamac
 
 # ESSENTIALS SYSTEM
-pikaur -S --noconfirm neovim ripgrep nvm tmux urlview python3 python-pip mosh htop bash-completion fish fzy fzf nodejs
+pikaur -S --noconfirm neovim ripgrep nvm tmux urlview python3 python-pip mosh htop \
+  bash-completion fish fzy fzf nodejs procs tldr fd duf dust exa bat
 pip3 install --user wheel pynvim
 # risky/estoric on arm
 pikaur -S  ntfs-3g-fuse
