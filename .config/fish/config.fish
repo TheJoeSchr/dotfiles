@@ -16,7 +16,10 @@ if status --is-interactive
   abbr cng 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
   alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
   abbr e 'nvim'
-  alias e 'nvim'
+  alias fda 'fd -uu'
+  alias find 'fda'
+  alias du 'dust -d 1'
+  alias df 'duf'
   abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
   abbr pikstall 'pikaur -S --needed --noconfirm'
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
@@ -26,12 +29,16 @@ if status --is-interactive
   abbr rg 'rg -S'
   abbr mail 'cmdg'
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
-  abbr psax 'ps ax | grep'
+  alias ps 'procs'
+  abbr psax 'procs '
   alias pbcopy 'xsel --clipboard --input'
   alias op-pw-grep 'op-grep'
   alias pbpaste 'xsel --clipboard --output'
-  abbr ll 'exa -l'
-  abbr ls 'exa'
+  alias ls 'exa'
+  alias ll 'ls -lG'
+  alias lla 'll -a'
+  alias tree 'll -T'
+  alias llt 'tree'
 
   echo -n Setting global exports...
   set -gx PAGER less
@@ -45,9 +52,5 @@ if status --is-interactive
   omf theme yimmy
 end
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# eval /opt/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
 # direnv hook fish | source
 eval (direnv hook fish)
