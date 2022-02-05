@@ -75,6 +75,11 @@ AnimationDurationFactor=0.125
 [ModifierOnlyShortcuts]
 Meta=org.kde.lattedock,/Latte,org.kde.LatteDock,activateLauncherMenu
 
+[MouseBindings]
+CommandAll1=Nothing
+CommandAll2=Move
+CommandAllKey=Alt
+
 [NightColor]
 Active=true
 LatitudeAuto=48.2155
@@ -82,7 +87,7 @@ LongitudeAuto=16.3075
 NightTemperature=5000
 
 [Plugins]
-bismuthEnabled=false
+bismuthEnabled=true
 blurEnabled=false
 contrastEnabled=true
 coverswitchEnabled=true
@@ -91,7 +96,7 @@ desktopgridEnabled=false
 diminactiveEnabled=true
 flipswitchEnabled=true
 highlightwindowEnabled=true
-krohnkiteEnabled=true
+krohnkiteEnabled=false
 kwin4_effect_eyeonscreenEnabled=true
 kwin4_effect_fadeEnabled=false
 kwin4_effect_scaleEnabled=true
@@ -109,6 +114,20 @@ synchronizeskipswitcherEnabled=false
 videowallEnabled=false
 wobblywindowsEnabled=true
 zoomEnabled=false
+
+[Script-bismuth]
+enableQuarterLayout=true
+limitTileWidth=true
+limitTileWidthRatio=1.1
+maximizeSoleTile=true
+newWindowAsMaster=true
+noTileBorder=true
+preventProtrusion=false
+screenGapBottom=2
+screenGapLeft=2
+screenGapRight=2
+screenGapTop=2
+tileLayoutGap=3
 
 [Script-desktopchangeosd]
 PopupHideDelay=500
@@ -142,6 +161,5 @@ ShowTabBox=false
 ActiveMouseScreen=false
 BorderlessMaximizedWindows=false
 FocusStealingPreventionLevel=2
-NextFocusPrefersMouse=true
 Placement=Centered
 SeparateScreenFocus=true
