@@ -1158,6 +1158,9 @@ fonts[$d]
 [QtQuickRendererSettings]
 SceneGraphBackend[$d]
 
+[Shortcuts]
+Close[$d]
+
 [Voice]
 Shortcut=
 
