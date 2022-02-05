@@ -31,6 +31,8 @@ sunmap <Space>
 
 " Ctrl+Space removes Space leader lag for multiple Space inserts
 inoremap <C-Space> <leader>
+" Alias uppercase W for :w
+command! W write
 
 " INSTALL PLUGVIM:
 " ==================
@@ -133,8 +135,10 @@ set winbl=10
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-" Terminal Mode: Escape with SHIFT+ESC
-:tnoremap <C-\><Esc> <C-\><C-n>
+" TERMINAL MODE
+" Escape: Ctrl-\ + ESC
+" Escape: Ctrl-\ + Ctrl-n
+tnoremap <C-\><Esc> <C-\><C-n>
 " set vim swap directory
 set directory=~/.vim/swap
   if empty(glob('~/.vim/swap'))
@@ -565,7 +569,9 @@ if !exists('g:vscode')
   " fixer configurations
   let g:ale_fixers = {
   \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \   'javascript': ['prettier', 'eslint']
+  \   'javascript': ['prettier', 'eslint'],
+  \   'vue': ['prettier', 'eslint'],
+  \   'python': ['black'],
   \}
 
   " ---------------- VIMSPECTOR -----------------
@@ -719,9 +725,14 @@ if !exists('g:vscode')
   let g:vista_fzf_preview = ['right:50%']
   " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
   let g:vista#renderer#enable_icon = 1
+  " How to show the detailed formation of current cursor symbol.
+  let g:vista_echo_cursor_strategy = "floating_win"
+  " Set this option to `1` to close the vista window automatically close when you jump to a symbol.
+  let g:vista_close_on_jump = 0
+  " Move to the vista window when it is opened. Set this option to `0` to stay in current windown when opening the vista sidebar.
+  let g:vista_stay_on_open = 1
 
-
-
+  let g:vista_default_executive = "coc"
   " ---------------- COC ------------
   " coc config
   " automatically installs this coc extension
@@ -877,9 +888,11 @@ if !exists('g:vscode')
   " Show commands.
   nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
   " Find symbol of current document.
-  nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
+  nnoremap <silent> <leader>O  :<C-u>CocList --normal outline <cr>
+  nnoremap <silent> <leader>o  :<C-u>Vista coc<cr>
   " Search workspace symbols.
-  nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+  nnoremap <silent> <leader>S  :<C-u>CocList -I symbols -k<cr>
+  nnoremap <silent> <leader>s  :<C-u>Vista finder coc<cr>
   " Do default action for next item.
   nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
   " Do default action for previous item.
