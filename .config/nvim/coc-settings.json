@@ -1,15 +1,23 @@
 {
+{
+  "python.linting.pylintEnabled": false,
+  "coc.preferences.formatOnType": true,
   "suggest.noselect": true,
-  "diagnostic.displayByAle": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "typescript",
+    "vue",
+    "typescriptvue",
+    "javascriptvue",
     "typescriptreact",
-    "json",
     "javascriptreact",
+    "json",
     "typescript.tsx",
-    "graphql"
+    "graphql",
+    "python"
   ],
-  "python.formatting.provider": "black",
-  "python.linting.flake8Enabled": true
+  "python.linting.enabled": true,
+  "pyright.disableDiagnostics": true, // disables pyright linting
+  "python.linting.flake8Enabled": true, // use flake8 instead
+  "python.formatting.provider": "autopep8"
 }
