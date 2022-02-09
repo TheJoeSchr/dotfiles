@@ -552,8 +552,8 @@ if !exists('g:vscode')
   " xmap y <plug>(YoinkYankPreserveCursorPosition)
 
   " ---------------- ALE ----------------------
-  " fix files on save
-  let g:ale_fix_on_save = 1
+  " fix files on save (let coc do it)
+  let g:ale_fix_on_save = 0
 
   " disable because of coc
   let g:ale_disable_lsp = 1
@@ -567,12 +567,10 @@ if !exists('g:vscode')
   let g:ale_sign_warning = '⚠ '
 
   " fixer configurations
-  let g:ale_fixers = {
-  \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \   'javascript': ['prettier', 'eslint'],
-  \   'vue': ['prettier', 'eslint'],
-  \   'python': ['black'],
-  \}
+  let g:ale_fixers = {   'python': ['yapf'] }
+  " \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+  " \   'javascript': ['prettier', 'eslint'],
+  " \   'vue': ['prettier', 'eslint'],
 
   " ---------------- VIMSPECTOR -----------------
   " packadd! vimspector
@@ -827,7 +825,7 @@ if !exists('g:vscode')
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
 
-  " Formatting selected code.
+  " Formatting selected code (with coc).
   xmap <leader>=  <Plug>(coc-format-selected)
   nmap <leader>=  <Plug>(coc-format-selected)
   " add snowflake exception for VUE
@@ -835,7 +833,7 @@ if !exists('g:vscode')
   command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
   autocmd BufWritePre *.vue Prettier
 
-  augroup mygroup
+  augroup tsandjsgroupd
     autocmd!
     " Setup formatexpr specified filetype(s).
     autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
@@ -936,7 +934,16 @@ if !exists('g:vscode')
   nnoremap <silent> <leader>g :G <CR>
   nnoremap <silent> <leader>Gd :0Gclog <CR>
   nnoremap <silent> <leader>Gl :Gclog <CR>
-  command! GHistory call s:view_git_history()
+  command! GHistory call s:view_git_history
+
+  " auto-clean fugitive bufffers (vimcasts #34) 
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+
+  " maps .. to the above command, but only for buffers containing a git blob or tree:
+  autocmd User fugitive 
+    \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+    \   nnoremap <buffer> .. :edit %:h<CR> |
+    \ endif
 
   function! s:view_git_history() abort
     Git difftool --name-only ! !^@
