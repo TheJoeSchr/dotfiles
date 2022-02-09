@@ -51,7 +51,8 @@ pikaur -Sy pamac
 
 # ESSENTIALS SYSTEM
 pikaur -S --noconfirm neovim ripgrep nvm tmux urlview python3 python-pip autopep8 mosh htop \
-  bash-completion fish fzy fzf nodejs procs tldr fd duf dust exa bat nvimpager-git neovim-remote
+  bash-completion fish fzy fzf nodejs procs tldr fd duf dust exa bat nvimpager-git neovim-remote \
+  direnv
 pip3 install --user wheel pynvim 
 pip3 install --user autopep8  # might fail
 pip3 install --user flake8  # might fail
