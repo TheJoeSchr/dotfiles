@@ -13,13 +13,14 @@
     # replace .bashrc
     rr = rebase --continue
     ri = rebase --interactive
-    
+
 	go = checkout
 	ci = commit -v
+	ca = commit -v --amend
     cim = commit -v -m
 	st = status
 	br = branch
-    df = diff
+    df = diff --histogram --color-moved=plain
 	feat = merge --no-ff --no-commit
 	me = merge
 	pl = pull --rebase
@@ -66,6 +67,9 @@
 [mergetool]
 	keepTemporaries = false
 	prompt = false
+[merge]
+    conflictStyle = zdiff
+    ; conflictStyle = diff3
 [http]
 	sslVerify = false
 	cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
