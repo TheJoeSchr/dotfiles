@@ -575,13 +575,16 @@ if !exists('g:vscode')
   " ---------------- VIMSPECTOR -----------------
   " packadd! vimspector
   let g:vimspector_enable_mappings = 'HUMAN'
-  nmap <C-F9> <Plug>VimspectorToggleBreakpoint
-  nmap <F9> <Plug>VimspectorStepInto
   " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
   " for normal mode - the word under the cursor
   nmap <Leader>di <Plug>VimspectorBalloonEval
   " for visual mode, the visually selected text
   xmap <Leader>di <Plug>VimspectorBalloonEval
+  " mnemonic 'dh' = like gh in coc
+  " for normal mode - the word under the cursor
+  nmap <Leader>dh <Plug>VimspectorBalloonEval
+  " for visual mode, the visually selected text
+  xmap <Leader>dh <Plug>VimspectorBalloonEval
 
   nnoremap <leader>dd :call vimspector#Launch()<CR>
   nnoremap <leader>de :call GotoWindow(g:vimspector_session_windows.code)<CR>
@@ -600,6 +603,9 @@ if !exists('g:vscode')
   nnoremap <leader>dJ :call vimspector#Continue()<CR>
 
   nmap <leader>drc <Plug>VimspectorRunToCursor
+
+  nmap <C-F9> <Plug>VimspectorToggleBreakpoint
+  nmap <F9> <Plug>VimspectorStepInto
   nmap <leader>db <Plug>VimspectorToggleBreakpoint
   nnoremap <leader>dbl <Plug>VimspectorToggleBreakpoint
   nmap <leader>dbc <Plug>VimspectorToggleConditionalBreakpoint
@@ -825,7 +831,7 @@ if !exists('g:vscode')
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
 
-  " Formatting selected code (with coc).
+  " Formatting selected code (wi;th cod).
   xmap <leader>=  <Plug>(coc-format-selected)
   nmap <leader>=  <Plug>(coc-format-selected)
   " add snowflake exception for VUE
