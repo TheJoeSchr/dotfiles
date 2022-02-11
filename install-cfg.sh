@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # call with
-# sudo pacman -Sy git which rsync
+# sudo pacman -Sy git which rsync fish
 # curl -Lks https://github.com/JoeSchr/dotfiles/raw/master/install-cfg.sh | /bin/bash
 
 git clone --bare https://github.com/JoeSchr/dotfiles.git $HOME/.cfg
@@ -23,3 +23,10 @@ touch ~/.vimrc.local
 touch ~/.bashrc.local
 mkdir -p ~/Downloads
 . .bashrc
+
+read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 5
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  fish ~/archRiceSystem.sh
+fi
