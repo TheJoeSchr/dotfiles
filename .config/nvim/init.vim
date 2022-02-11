@@ -299,6 +299,8 @@ if !exists('g:vscode')
     " -- git helper
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
+    
     " -- DEBUGGER --"
     Plug 'puremourning/vimspector'
     " -- linter (works with eslint)
