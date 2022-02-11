@@ -68,7 +68,7 @@
 	keepTemporaries = false
 	prompt = false
 [merge]
-    conflictStyle = zdiff
+    conflictStyle = zdiff3
     ; conflictStyle = diff3
 [http]
 	sslVerify = false
