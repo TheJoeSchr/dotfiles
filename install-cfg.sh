@@ -28,5 +28,6 @@ read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 5
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  fish ~/archRiceSystem.sh
+  chmod +x ~/archRiceSystem.sh 
+  /usr/bin/env fish ~/archRiceSystem.sh
 fi
