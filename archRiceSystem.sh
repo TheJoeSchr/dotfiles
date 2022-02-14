@@ -7,32 +7,38 @@ touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
 
-su -l
 # update mirror-list
-pacman-mirrors -g
-# update keydatabases
-sudo rm -R /etc/pacman.d/gnupg
-sudo rm -R /root/.gnupg
-sudo dirmngr </dev/null
+sudo pacman-mirrors -g
 
-sudo pacman-key --init
-sudo pacman-key --populate archlinux manjaro
-sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring
-sudo pacman-key --refresh-keys
-sudo systemctl start pacman-init
+# # update keydatabases
+# sudo rm -R /etc/pacman.d/gnupg
+# sudo rm -R /root/.gnupg
+# sudo dirmngr </dev/null
+
+# sudo pacman-key --init
+# sudo pacman-key --populate archlinux manjaro
+# sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring
+# sudo pacman-key --refresh-keys
+# sudo systemctl start pacman-init
+# # exit su -l
+# # exit
+
+
 # update databases
 sudo pacman -Fy
-sudo pacman -Syy
+# system upgrade
+sudo pacman -Syyu
 
 # install buildtools like eg. git make libffi glibc gcc
-sudo pacman -S --noconfirm --needed base-devel git ed python python-pip 
+sudo pacman -S base-devel 
+sudo pacman -S git ed python python-pip neovim
 
-# exit su -l
-exit
 
+
+read -p "Is AUR support in \'Add/Remove Software\' enabled?" -n 1 -r 
 # install AUR helper:
 # try automatic
-pamac -S pikaur
+pamac install pikaur
 
 # manual
 pip install --user commonmark wheel pyalpm
@@ -79,7 +85,7 @@ chsh -s /usr/local/bin/fishlogin $USER
 fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
 
 # omf
-fish -c 'fisher install oh-my-fish/oh-my-fish'
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 # omf theme
 fish -c 'omf install yimmy'
 # fzf
@@ -87,6 +93,10 @@ fish -c 'fisher install gyakovlev/fish-fzy'
 # ssh-agent
 fish -c 'fisher install danhper/fish-ssh-agent'
 
+fish -c 'fisher install jethrokuan/z'
+fish -c 'fisher install jorgebucaran/replay.fish'
+fish -c 'fisher install andreiborisov/sponge'
+fish -c 'fisher install gazorby/fish-abbreviation-tips'
 
 # MANUAL: install OH-MY-FISH
 # cd ~/Downloads
@@ -110,7 +120,7 @@ fish -c 'fisher install jorgebucaran/nvm.fish'
 # ESSENTIALS DESKTOP
 pikaur -S --noconfirm kwin-bismuth latte-dock-git signal-desktop cpupower-gui cpupower google-chrome zathura
 # RICE
-pikaur -S --noconfirm mntray ytmdesktop appmenu-gtk-module
+pikaur -S --noconfirm ytmdesktop-bin 
 # VSCODE
 pikaur -S --noconfirm visual-studio-code-bin
 
@@ -199,15 +209,16 @@ crc setup
 crc start
 
 # nordvpn
+pikaur -S --noconfirm nordvpn-bin
 sudo groupadd -r nordvpn
-pikaur -Syu nordvpn-bin
 sudo systemctl enable --now nordvpnd.service
-sudo gpasswd -a $(whoami) nordvpn
+sudo gpasswd -a (whoami) nordvpn
 
 # cmdg
 cd ~/Downloads
 git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
 cd ~/.local/sources/cmdg
+pikaur -S go --noconfirm
 go build ./cmd/cmdg
 sudo cp cmdg /usr/local/bin
 # press Ctrl-A u to open urls in mail
@@ -260,6 +271,7 @@ sudo chown (id -u):(id -g) /var/run/docker.sock
 newgrp docker
 
 cd ~/Downloads
+pikaur -S chrome-remote-desktop --noconfirm
 cp /opt/google/chrome-remote-desktop/chrome-remote-desktop .
 patch -i chrome-remote-desktop--use_existing_session.patch chrome-remote-desktop
 sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop
