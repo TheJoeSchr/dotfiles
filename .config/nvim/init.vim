@@ -692,8 +692,7 @@ if !exists('g:vscode')
 
   " ---------------- / FZF ------------
   " ---------------- TELESCOPE ------------
-  " in ~/.config/nvim/lua/telescope.lua
-  " lua require("telescope-config")
+
 
   " === Telescope shorcuts === "
   "   <ctrl>p - Browse list of buffers & files in current directory/project
@@ -706,15 +705,14 @@ if !exists('g:vscode')
   nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
   nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
   nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+  nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+  nnoremap <leader>fw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
   nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
   nnoremap <leader>; <cmd>lua require('telescope.builtin').oldfiles()<cr>
   nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
   noremap <leader>: <cmd>lua require('telescope.builtin').command_history()<cr>
   noremap <leader>f: <cmd>lua require('telescope.builtin').commands()<cr>
   noremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
-  nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
-
-  nnoremap <leader>fw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
   noremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
   " ---------------- /Telescope --------
   " ---------------- Vista --------
@@ -754,6 +752,7 @@ if !exists('g:vscode')
     \ 'coc-json',
     \ 'coc-html',
     \ 'coc-css',
+    \ 'coc-git',
     \ ]
   "  TextEdit might fail if hidden is not set.
   set hidden
@@ -1200,6 +1199,8 @@ nnoremap <silent> <leader>q     :Bdelete other<CR>
 nnoremap <silent> <leader><C-q> :Bdelete menu<CR>
 " ================== / UNIVERSAL PLUGINS CONFIG =================
 
+  " in ~/.config/nvim/lua/telescope.lua
+  " lua require("telescope-config")
 
 " (Shift+) F8 rotates through TDD phases red, green, refactor
 source ~/.config/nvim/tddcolors.vim
