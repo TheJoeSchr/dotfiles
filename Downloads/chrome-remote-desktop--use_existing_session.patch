@@ -1,0 +1,46 @@
+--- chrome-remote-desktop.orig	2021-02-23 12:16:06.554978131 +0100
++++ chrome-remote-desktop	2021-02-23 12:19:56.499903531 +0100
+@@ -107,6 +107,8 @@
+ 
+ X_LOCK_FILE_TEMPLATE = "/tmp/.X%d-lock"
+ FIRST_X_DISPLAY_NUMBER = 20
++EXISTING_X_DISPLAY_FILE_PATH = os.path.join(CONFIG_DIR, "Xsession")
++X_SESSION_FILE_TEMPLATE = "/tmp/.X11-unix/X%d"
+ 
+ # Amount of time to wait between relaunching processes.
+ SHORT_BACKOFF_TIME = 5
+@@ -723,6 +725,16 @@
+     subprocess.Popen(args, env=self.child_env, stdout=subprocess.DEVNULL,
+                      stderr=subprocess.DEVNULL)
+ 
++  def _use_existing_session(self):
++    with open(EXISTING_X_DISPLAY_FILE_PATH) as fh:
++      display = int(fh.readline().rstrip())
++    if not os.path.exists(X_SESSION_FILE_TEMPLATE % display):
++      logging.error("Xorg session file doesn't exist")
++      sys.exit(1)
++    logging.info("Using existing Xorg session: %d" % display)
++    self.child_env["DISPLAY"] = ":%d" % display
++    self.child_env["CHROME_REMOTE_DESKTOP_SESSION"] = "1"
++
+   def _launch_pre_session(self):
+     # Launch the pre-session script, if it exists. Returns true if the script
+     # was launched, false if it didn't exist.
+@@ -778,10 +790,13 @@
+     self._init_child_env()
+     self._setup_pulseaudio()
+     self._setup_gnubby()
+-    self._launch_x_server(x_args)
+-    if not self._launch_pre_session():
+-      # If there was no pre-session script, launch the session immediately.
+-      self.launch_x_session()
++    if os.path.exists(EXISTING_X_DISPLAY_FILE_PATH):
++        self._use_existing_session()
++    else:
++        self._launch_x_server(x_args)
++        if not self._launch_pre_session():
++          # If there was no pre-session script, launch the session immediately.
++          self.launch_x_session()
+ 
+   def launch_host(self, host_config, extra_start_host_args):
+     # Start remoting host
