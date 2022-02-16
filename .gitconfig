@@ -1,91 +1,94 @@
 [core]
-	editor = nvim
-	autocrlf = false
-	symlinks = true
-	longPaths = true
-	excludesfile =
+  editor = nvim
+  autocrlf = false
+  symlinks = true
+  longPaths = true
+  excludesfile =
 [user]
-	name = Joe Schr
-	email = joe.vandelay@gmail.com
+  name = Joe Schr
+  email = joe.vandelay@gmail.com
 [push]
-	default = simple
+  default = simple
 [alias]
     # replace .bashrc
-    rr = rebase --continue
-    ri = rebase --interactive
+  rr = rebase --continue
+  ri = rebase --interactive
 
-	go = checkout
-	ci = commit -v
-	ca = commit -v --amend
-    cim = commit -v -m
-	st = status
-	br = branch
+  go = checkout
+  ci = commit -v
+  ca = !git ci --amend
+  cim = !git ci -m
+  st = status
+  br = branch
     df = diff --histogram --color-moved=plain
-	feat = merge --no-ff --no-commit
-	me = merge
-	pl = pull --rebase
-	ps = push
-	# lg = log --graph --oneline --decorate
-	lg = !"git lg1"
-	lg1 = !"git lg1-specific "
-
-	lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
-	; reflog
-	re = gitk --all --date-order $(git log -g --pretty=%H)
-	sh = stash save
-	type = cat-file -t
-	dump = cat-file -p
-	; delete remote branch
-	branch-delete-remote = push origin --delete
+  feat = merge --no-ff --no-commit
+  pl = pull --rebase
+  ps = push
+  ; reflog
+  re = gitk --all --date-order $(git log -g --pretty=%H)
+  sh = stash save
+  type = cat-file -t
+  dump = cat-file -p
+  ; delete remote branch
+  branch-delete-remote = push origin --delete
     # Push the new branch, set local branch to track the new remote
-	ps--set-upstream= push --set-upstream origin
+  ps--set-upstream = push --set-upstream origin
     unadd = reset HEAD
     unstage = reset
     uncommit = reset --soft HEAD^
     staged = diff --cached
     ctags = "!.git/hooks/ctags"uncommit = reset HEAD^
-	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold white){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
-    show-file-history = log --follow -p --
-	stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
-	stash-all = stash -u
-    stashall = stash-all
+    stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
+    stash-all = stash -u
     # shorthands
-    gl = lg
-    gov = lga
-    ga = add
-    gb = branch
     gbdr = branch-delete-remote
-    gd = df
-    gs = status
-	gco = gci
-	gci = ci
-	gcm = ci -m
-	gca = ci -a
-    lga = lg --all
+    # logging commands (hardcoded PAGER because of nvimpager not working)
+    lg-paged = !"PAGER=/usr/bin/less git log"
+    # pretty format
+  his = lg-paged --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
+    # long pretty format
+    lgl  = his --pretty=\"%C(bold green)[%h:%ar]%C(reset)  %an %d%n%s%n%w(72,4,4)%b\" --date=short --graph --decorate
+    lg   = !git his --decorate --graph # full short log
+    lgs  = !git his -5 # log only the last five commits
+    lst  = !git lg --stat # log including which files changed
+    lpa  = !git lg -p # log including every individual changed line
+    last = !git lgl -1 --patch # show everything about the head commit
+    lgh  = !git lgl -1 --stat
+    st   = !git lgs && git status # show stats and last 5 commits
+    lga  = !git lg --all 
+    gov = lga --simplify-by-decoration # show relationships between branches
+    gl = lg
+
+    # file logging commands
+    fl  = !git his --follow -- # commits including desired files
+    fll = !git lgl --follow -- # long-format commits
+    fst = !git lst --follow -- # stat-style commits
+    fpa = !git lpa --follow -- # full patch commits
+    show-file-history = !git fll
 [rerere]
-	enabled = true
+  enabled = true
 [mergetool]
-	keepTemporaries = false
-	prompt = false
+  keepTemporaries = false
+  prompt = false
 [merge]
     conflictStyle = zdiff3
     ; conflictStyle = diff3
 [http]
-	sslVerify = false
-	cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
+  sslVerify = false
+  cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
 [winUpdater]
-	recentlySeenVersion = 2.15.1.windows.2
+  recentlySeenVersion = 2.15.1.windows.2
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [help]
-	autocorrect = 20
+  autocorrect = 20
 [pull]
-	rebase = merges
-	autostash = true
+  rebase = merges
+  autostash = true
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+  helper = !/usr/bin/gh auth git-credential
