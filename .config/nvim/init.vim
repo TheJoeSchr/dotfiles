@@ -31,8 +31,6 @@ sunmap <Space>
 
 " Ctrl+Space removes Space leader lag for multiple Space inserts
 inoremap <C-Space> <leader>
-" Alias uppercase W for :w
-command! W write
 
 " INSTALL PLUGVIM:
 " ==================
@@ -223,6 +221,27 @@ noremap  <buffer> <silent> j gj
 noremap  <buffer> <silent> 0 g0
 noremap  <buffer> <silent> $ g$
 
+" Alias uppercase W for :w
+command! W write
+
+" Use Ctrl+S for save
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+
+" Switching between Vim and a full-screen terminal is so convenient
+nnoremap <leader>t :stop<CR>
+
+" VIM DIFF
+" I used to feel that gvim was a big improvement for viewing diffs, but I've changed the background colour of my terminal to a dark non-black shade, and set
+" The result of this is that in diff mode, differing text shows up with a black background, and unchanged text is coloured with the terminal background colour. For side-by-side diffs, this works wonderfully, since you can tell immediately based on the other side whether a given line is a change or add; for non-side-by-side you will be able to see an unchanged part in a changed line.
+" This means that you can leave syntax colouring on and still be able to see diffs. Again, you do need to be able to set the background colour of the terminal to a unique, dark, non-black shade. This facility is available in the terminal emulators that 
+:highlight DiffAdd ctermbg=None
+:highlight DiffChange ctermbg=None
+:highlight DiffDelete ctermbg=None
+:highlight DiffText cterm=Bold ctermbg=Black
+
+
 " ============== only NATIVE VIM  ===================
 if !exists('g:vscode')
   " -------------- PLUGINS NATIVE VIM -------------------
@@ -245,7 +264,6 @@ if !exists('g:vscode')
       " Plug 'nvim-telescope/telescope-fzy-native.nvim'
       Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
       Plug 'nvim-telescope/telescope-github.nvim'
-      Plug 'nvim-telescope/telescope-vimspector.nvim'
       " Easymotion fuzzy search
       Plug 'haya14busa/incsearch.vim'
       Plug 'haya14busa/incsearch-fuzzy.vim'
@@ -286,8 +304,11 @@ if !exists('g:vscode')
     " NATIVE ONLY:
     " Repeat.vim remaps . in a way that plugins can tap into it.
     Plug 'tpope/vim-repeat'
+    " Startify
+    Plug 'mhinz/vim-startify'
     " Center Text
     Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
     " -- themes
     Plug 'artanikin/vim-synthwave84'
     Plug 'flazz/vim-colorschemes'
@@ -302,7 +323,12 @@ if !exists('g:vscode')
     Plug 'tpope/vim-rhubarb'
     
     " -- DEBUGGER --"
-    Plug 'puremourning/vimspector'
+    " Plug 'puremourning/vimspector'
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'mfussenegger/nvim-dap-python'
+    Plug 'nvim-telescope/telescope-dap.nvim'
+    Plug 'theHamsta/nvim-dap-virtual-text'
+    Plug 'rcarriga/nvim-dap-ui'
     " -- linter (works with eslint)
     Plug 'dense-analysis/ale'
     " -- emulate vscode-vim stuff
@@ -325,20 +351,16 @@ if !exists('g:vscode')
     Plug 'jupyter-vim/jupyter-vim'
     " Plug 'goerz/jupytext.vim'
     Plug 'untitled-ai/jupyter_ascending.vim'
+    " for Python code completion based on Jedi, a Python language server.
+    " Plug 'davidhalter/jedi-vim' 
+    " Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
     " -- other
     " Ansible
     Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
-    " Make sure you use single quotes
-    " On-demand loading
-    " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+    " Use netrw instead of nerdtree, improve with `0-`
     Plug 'tpope/vim-vinegar'
 
-    " zooms font with + and -
-    Plug 'thinca/vim-fontzoom'
-    " another yankring
-    " Plug 'svermeulen/vim-yoink'
-    " yankring with alt+p && alt+shift+p && use :yanks
-    " Plug 'maxbrunsfeld/vim-yankstack'
     " airline
     Plug 'vim-airline/vim-airline'
     " airline theme
@@ -351,13 +373,14 @@ if !exists('g:vscode')
     " Clojure(Script)
     Plug 'tpope/vim-fireplace'
     " colored log file
+
     " start with
     " :AnsiEsc
     Plug 'powerman/vim-plugin-AnsiEsc'
     " nvim in browser
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(-1) } }
 
-    " see tags
+    " see tags, overview, etc
     Plug 'liuchengxu/vista.vim'
 
     " AUTOCOMPLETION: basially port of vscode autocompletion
@@ -426,7 +449,36 @@ if !exists('g:vscode')
 
   " CONFIG NATIVE PLUGINS:
   " ----------------------
-  " ------------------ NERDTREE ------------------
+  " ---------------
+  " --- GOYO ------------------
+  let g:goyo_height='100%'
+  function! s:goyo_enter()
+    if executable('tmux') && strlen($TMUX)
+      silent !tmux set status off
+      silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+    endif
+    set background=dark
+    set noshowmode
+    set noshowcmd
+    set scrolloff=999
+    Limelight
+  endfunction
+
+  function! s:goyo_leave()
+    if executable('tmux') && strlen($TMUX)
+      silent !tmux set status on
+      silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+    endif
+    set background=dark
+    set showmode
+    set showcmd
+    set scrolloff=5
+    Limelight!
+  endfunction
+
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call <SID>goyo_leave()
+  " --- NERDTREE ------------------
   " " use split model instead of drawer (so better netrw)
   " " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
   " let NERDTreeHijackNetrw=1
@@ -569,52 +621,114 @@ if !exists('g:vscode')
   let g:ale_sign_warning = '⚠ '
 
   " fixer configurations
-  let g:ale_fixers = {   'python': ['yapf'] }
+  let g:ale_fixers = { 'python': ['yapf'] }
   " \   '*': ['remove_trailing_lines', 'trim_whitespace'],
   " \   'javascript': ['prettier', 'eslint'],
   " \   'vue': ['prettier', 'eslint'],
 
+  " ---------------- NVIM-DAP -----------------
+  " mfussenegger/nvim-dap
+
+lua << EOF
+local dap = require('dap')
+dap.adapters.node2 = {
+  type = 'executable',
+  command = 'node',
+  args = {os.getenv('HOME') .. '/apps/vscode-node-debug2/out/src/nodeDebug.js'},
+}
+vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapStopped', {text='▸', texthl='', linehl='', numhl=''})
+EOF
+
+  lua require('dap.ext.vscode').load_launchjs()
+
+  nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
+  " nnoremap <S-k> :lua require'dap'.step_out()<CR>
+  nnoremap <leader>dk :lua require'dap'.step_out()<CR>
+  " nnoremap <S-l> :lua require'dap'.step_into()<CR>
+  nnoremap <leader>dl :lua require'dap'.step_into()<CR>
+  " nnoremap <S-j> :lua require'dap'.step_over()<CR>
+  nnoremap <leader>dj :lua require'dap'.step_over()<CR>
+  nnoremap <leader>dd :lua require'dap'.step_over()<CR>
+  nnoremap <leader>DD :lua require'dap'.continue()<CR>
+  " nnoremap <leader>ds :lua require'dap'.stop()<CR>
+  nnoremap <leader>dH :lua require'dap'.up()<CR>
+  nnoremap <leader>dL :lua require'dap'.down()<CR>
+  nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.stop();require'dap'.run_last()<CR>
+  nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
+  nnoremap <leader>dh :lua require'dap.ui.variables'.hover()<CR>
+  vnoremap <leader>dh :lua require'dap.ui.variables'.visual_hover()<CR>
+  nnoremap <leader>dh :lua require'dap.ui.widgets'.hover()<CR>
+  nnoremap <leader>d? :lua require'dap.ui.variables'.scopes()<CR>
+  nnoremap <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
+  nnoremap <leader>de :lua require'dap'.set_exception_breakpoints({"all"})<CR>
+  nnoremap <leader>da :lua require'debugHelper'.attach()<CR>
+  nnoremap <leader>dA :lua require'debugHelper'.attachToRemote()<CR>
+
+  " Plug 'nvim-telescope/telescope-dap.nvim'
+
+  "  in ./**/telescope.nvim.vim
+" lua << EOF
+" require('telescope').setup()
+" require('telescope').load_extension('dap')
+" EOF
+
+  nnoremap <leader>dvf :Telescope dap frames<CR>
+  nnoremap <leader>dvc :Telescope dap commands<CR>
+  nnoremap <leader>dvb :Telescope dap list_breakpoints<CR>
+
+  " theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
+  let g:dap_virtual_text = v:true
+
+  " Plug 'rcarriga/nvim-dap-ui'
+  nnoremap <leader>du :lua require("dapui").toggle()<CR>
+
+  " jank/vim-test and mfussenegger/nvim-dap
+  nnoremap <leader>dt :TestNearest -strategy=jest<CR>
+  function! JestStrategy(cmd)
+    let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
+    let fileName = matchlist(a:cmd, '\v'' -- (.*)$')[1]
+    call luaeval("require'debugHelper'.debugJest([[" . testName . "]], [[" . fileName . "]])")
+  endfunction      
+  let g:test#custom_strategies = {'jest': function('JestStrategy')}
   " ---------------- VIMSPECTOR -----------------
-  " packadd! vimspector
-  let g:vimspector_enable_mappings = 'HUMAN'
-  " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-  " for normal mode - the word under the cursor
-  nmap <Leader>di <Plug>VimspectorBalloonEval
-  " for visual mode, the visually selected text
-  xmap <Leader>di <Plug>VimspectorBalloonEval
-  " mnemonic 'dh' = like gh in coc
-  " for normal mode - the word under the cursor
-  nmap <Leader>dh <Plug>VimspectorBalloonEval
-  " for visual mode, the visually selected text
-  xmap <Leader>dh <Plug>VimspectorBalloonEval
+  " " packadd! vimspector
+  " let g:vimspector_enable_mappings = 'HUMAN'
+  " " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+  " " for normal mode - the word under the cursor
+  " nmap <Leader>di <Plug>VimspectorBalloonEval
+  " " for visual mode, the visually selected text
+  " xmap <Leader>di <Plug>VimspectorBalloonEval
+  " " mnemonic 'dh' = like gh in coc
+  " " for normal mode - the word under the cursor
+  " nmap <Leader>dh <Plug>VimspectorBalloonEval
+  " " for visual mode, the visually selected text
+  " xmap <Leader>dh <Plug>VimspectorBalloonEval
 
-  nnoremap <leader>dd :call vimspector#Launch()<CR>
-  nnoremap <leader>de :call GotoWindow(g:vimspector_session_windows.code)<CR>
-  nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-  nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-  nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-  nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-  nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-  nnoremap <leader>dq :call vimspector#Reset()<CR>
+  " nnoremap <leader>dd :call vimspector#Launch()<CR>
+  " nnoremap <leader>de :call GotoWindow(g:vimspector_session_windows.code)<CR>
+  " nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+  " nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+  " nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+  " nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+  " nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+  " nnoremap <leader>dq :call vimspector#Reset()<CR>
 
 
-  nmap <leader>dl <Plug>VimspectorStepInto
-  nmap <leader>dj <Plug>VimspectorStepOver
-  nmap <leader>dk <Plug>VimspectorStepOut
-  nmap <leader>d_ <Plug>VimspectorRestart
-  nnoremap <leader>dJ :call vimspector#Continue()<CR>
+  " nmap <leader>dl <Plug>VimspectorStepInto
+  " nmap <leader>dj <Plug>VimspectorStepOver
+  " nmap <leader>dk <Plug>VimspectorStepOut
+  " nmap <leader>d_ <Plug>VimspectorRestart
+  " nnoremap <leader>dJ :call vimspector#Continue()<CR>
 
-  nmap <leader>drc <Plug>VimspectorRunToCursor
+  " nmap <leader>drc <Plug>VimspectorRunToCursor
 
-  nmap <C-F9> <Plug>VimspectorToggleBreakpoint
-  nmap <F9> <Plug>VimspectorStepInto
-  nmap <leader>db <Plug>VimspectorToggleBreakpoint
-  nnoremap <leader>dbl <Plug>VimspectorToggleBreakpoint
-  nmap <leader>dbc <Plug>VimspectorToggleConditionalBreakpoint
+  " nmap <C-F9> <Plug>VimspectorToggleBreakpoint
+  " nmap <F9> <Plug>VimspectorStepInto
+  " nmap <leader>db <Plug>VimspectorToggleBreakpoint
+  " nnoremap <leader>dbl <Plug>VimspectorToggleBreakpoint
+  " nmap <leader>dbc <Plug>VimspectorToggleConditionalBreakpoint
 
-  " <Plug>VimspectorStop
-  " <Plug>VimspectorPause
-  " <Plug>VimspectorAddFunctionBreakpoint
   " ---------------- FZF -----------------
   " MAIN KEYBIND
   " nnoremap <C-t> :Files<Cr>
@@ -742,17 +856,17 @@ if !exists('g:vscode')
   " automatically installs this coc extension
   " probably needs restart, check with <leader>e
   let g:coc_global_extensions = [
-    \ 'coc-snippets',
-    \ 'coc-pairs',
-    \ 'coc-tsserver',
-    \ 'coc-eslint',
     \ '@yaegassy/coc-volar',
-    \ 'coc-pyright',
-    \ 'coc-prettier',
-    \ 'coc-json',
-    \ 'coc-html',
     \ 'coc-css',
+    \ 'coc-eslint',
     \ 'coc-git',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-pairs',
+    \ 'coc-prettier',
+    \ 'coc-pyright',
+    \ 'coc-snippets',
+    \ 'coc-tsserver',
     \ ]
   "  TextEdit might fail if hidden is not set.
   set hidden
@@ -832,7 +946,7 @@ if !exists('g:vscode')
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
 
-  " Formatting selected code (wi;th cod).
+  " Formatting selected code (with code).
   xmap <leader>=  <Plug>(coc-format-selected)
   nmap <leader>=  <Plug>(coc-format-selected)
   " add snowflake exception for VUE
@@ -1032,6 +1146,7 @@ let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_dirhistmax = 0
 
 " BUILD INTEGRATION:
 " ==================
@@ -1144,6 +1259,9 @@ map <Leader>h <Plug>(easymotion-linebackward)
 map <Leader>w <Plug>(easymotion-w)
 map <Leader>b <Plug>(easymotion-b)
 map <Leader>e <Plug>(easymotion-e)
+" sunmap \hs
+" sunmap \hp
+" sunmap \hu
 
 " ----------- FUZZYSEACH (<Space>/) ----------------
 function! s:config_easyfuzzymotion(...) abort
