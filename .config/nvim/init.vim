@@ -641,7 +641,8 @@ vim.fn.sign_define('DapStopped', {text='▸', texthl='', linehl='', numhl=''})
 EOF
 
   lua require('dap.ext.vscode').load_launchjs()
-
+  " find local virtualenv
+  lua require('dap-python').setup(string.format("%s/bin/python", os.getenv('VIRTUAL_ENV'))) 
   nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
   " nnoremap <S-k> :lua require'dap'.step_out()<CR>
   nnoremap <leader>dk :lua require'dap'.step_out()<CR>
@@ -650,12 +651,14 @@ EOF
   " nnoremap <S-j> :lua require'dap'.step_over()<CR>
   nnoremap <leader>dj :lua require'dap'.step_over()<CR>
   nnoremap <leader>dd :lua require'dap'.step_over()<CR>
+  " like F5, start to debug
+  nnoremap <F5> :lua require'dap'.continue()<CR>
   nnoremap <leader>DD :lua require'dap'.continue()<CR>
-  " nnoremap <leader>ds :lua require'dap'.stop()<CR>
+  nnoremap <leader>DS :lua require'dap'.close()<CR>
   nnoremap <leader>dH :lua require'dap'.up()<CR>
   nnoremap <leader>dL :lua require'dap'.down()<CR>
   nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.stop();require'dap'.run_last()<CR>
-  nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
+  nnoremap <leader>dr :lua require'dap'.repl.open({}, 'split')<CR><C-w>l
   nnoremap <leader>dh :lua require'dap.ui.variables'.hover()<CR>
   vnoremap <leader>dh :lua require'dap.ui.variables'.visual_hover()<CR>
   nnoremap <leader>dh :lua require'dap.ui.widgets'.hover()<CR>
@@ -664,6 +667,9 @@ EOF
   nnoremap <leader>de :lua require'dap'.set_exception_breakpoints({"all"})<CR>
   nnoremap <leader>da :lua require'debugHelper'.attach()<CR>
   nnoremap <leader>dA :lua require'debugHelper'.attachToRemote()<CR>
+  nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
+  nnoremap <silent> <leader>df :lua require('dap-python').test_class()<CR>
+  vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
 
   " Plug 'nvim-telescope/telescope-dap.nvim'
 
@@ -949,6 +955,7 @@ EOF
   " Formatting selected code (with code).
   xmap <leader>=  <Plug>(coc-format-selected)
   nmap <leader>=  <Plug>(coc-format-selected)
+  nmap <leader>+  :Format<CR>
   " add snowflake exception for VUE
   " see: https://github.com/neoclide/coc-prettier/issues/73#issuecomment-742580180
   command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
