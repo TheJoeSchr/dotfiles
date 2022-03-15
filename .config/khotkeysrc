@@ -2,11 +2,13 @@
 update_info=spectacle_shortcuts.upd:spectacle-migrate-shortcuts
 
 [ColorEffects:Disabled]
+ChangeSelectionColor[$d]
 Color[$d]
 ColorAmount[$d]
 ColorEffect[$d]
 ContrastAmount[$d]
 ContrastEffect[$d]
+Enable[$d]
 IntensityAmount[$d]
 IntensityEffect[$d]
 
@@ -1077,8 +1079,10 @@ History Items[$d]
 dir_pixmap[$d]
 
 [General]
+AllowKDEAppsToRememberWindowPositions[$d]
 BrowserApplication[$d]
 ColorScheme[$d]
+ColorSchemeHash[$d]
 Name[$d]
 XftHintStyle[$d]
 XftSubPixel[$d]
