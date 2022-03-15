@@ -182,11 +182,11 @@ __git_complete gbdr _git_branch
 
 alias cls="clear"
 # find largest folder/file quickly (seperated in subdirs)
-alias duckS='du -ckSh * | sort -rh | head'
+alias duckS='$(which du) -ckSh * | sort -rh | head'
 # find largest folder/file quickly (summarized)
-alias ducks='du -cksh * | sort -rh | head'
+alias ducks='$(which du) -cksh * | sort -rh | head'
 # search also hidden files
-alias duckA='du -ckah * | sort -rh | head'
+alias duckA='$(which du) -ckah * | sort -rh | head'
 
 # alias killgrep
 function killgrep {
