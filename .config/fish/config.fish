@@ -45,11 +45,10 @@ if status --is-interactive
   abbr psax 'procs'
   alias pbcopy 'xsel --clipboard --input'
   alias pbpaste 'xsel --clipboard --output'
-  alias ls 'exa'
-  alias ll 'ls -lG'
-  alias lla 'll -a'
-  alias tree 'll -T'
-  alias llt 'tree'
+  alias ls 'exa -G --icons'
+  alias ll 'ls -lT --level=1'
+  alias la 'll -a'
+  alias tree 'll -a --level=3'
 
   echo -n Setting global exports...
   set -gx PAGER nvimpager
