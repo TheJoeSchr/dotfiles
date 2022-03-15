@@ -73,8 +73,8 @@
   keepTemporaries = false
   prompt = false
 [merge]
-    conflictStyle = zdiff3
-    ; conflictStyle = diff3
+    ; conflictStyle = zdiff
+	conflictstyle = diff3
 [http]
   sslVerify = false
   cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
@@ -94,3 +94,5 @@
   autostash = true
 [credential "https://github.com"]
   helper = !/usr/bin/gh auth git-credential
+[init]
+	defaultBranch = main
