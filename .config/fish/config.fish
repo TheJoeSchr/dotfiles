@@ -41,7 +41,7 @@ if status --is-interactive
   abbr rg 'rg -S'
   abbr mail 'cmdg'
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
-  alias ps 'procs'
+  # alias ps 'procs'
   abbr psax 'procs'
   alias pbcopy 'xsel --clipboard --input'
   alias pbpaste 'xsel --clipboard --output'
