@@ -45,26 +45,28 @@
     # logging commands (hardcoded PAGER because of nvimpager not working)
     lg-paged = !"PAGER=/usr/bin/less git log"
     # pretty format
-  his = lg-paged --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
+    his = lg-paged --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
     # long pretty format
     lgl  = his --pretty=\"%C(bold green)[%h:%ar]%C(reset)  %an %d%n%s%n%w(72,4,4)%b\" --date=short --graph --decorate
+
     lg   = !git his --decorate --graph # full short log
     lgs  = !git his -5 # log only the last five commits
     lst  = !git lg --stat # log including which files changed
     lpa  = !git lg -p # log including every individual changed line
     last = !git lgl -1 --patch # show everything about the head commit
     lgh  = !git lgl -1 --stat
-    st   = !git lgs && git status # show stats and last 5 commits
-    lga  = !git lg --all 
-    gov = lga --simplify-by-decoration # show relationships between branches
+    gov = lg --simplify-by-decoration # show relationships between branches
+    lga  = !git gov --all 
     gl = lg
 
+    # show stats and last 5 commits
+    st   = !"git lgs;  git status"
     # file logging commands
-    fl  = !git his --follow -- # commits including desired files
-    fll = !git lgl --follow -- # long-format commits
-    fst = !git lst --follow -- # stat-style commits
-    fpa = !git lpa --follow -- # full patch commits
-    show-file-history = !git fll
+    lf  = !git his --follow -- # commits including desired files
+    lfl = !git lgl --follow -- # long-format commits
+    lfst = !git lst --follow -- # stat-style commits
+    lfpa = !git lpa --follow -- # full patch commits
+    show-file-history = !git lfl
 [rerere]
   enabled = true
 [mergetool]
