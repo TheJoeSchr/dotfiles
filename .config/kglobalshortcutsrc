@@ -167,15 +167,16 @@ Walk Through Windows of Current Application Alternative (Reverse)=none,,Walk Thr
 Window Above Other Windows=none,,Keep Window Above Others
 Window Below Other Windows=none,,Keep Window Below Others
 Window Close=Meta+Q\tAlt+F4\tCtrl+Alt+Q,Alt+F4,Close Window
-Window Fullscreen=Meta+Shift+F\tCtrl+Alt+Shift+F,,Make Window Fullscreen
-Window Grow Horizontal=none,,Pack Grow Window Horizontally
-Window Grow Vertical=none,,Pack Grow Window Vertically
+Window Fullscreen=Meta+Shift+F,,Make Window Fullscreen
+Window Grow Horizontal=none,,Expand Window Horizontally
+Window Grow Vertical=none,,Expand Window Vertically
 Window Lower=none,,Lower Window
 Window Maximize=Meta+\\,\tMeta+PgUp\tMeta+Up,Meta+PgUp,Maximize Window
 Window Maximize Horizontal=none,,Maximize Window Horizontally
 Window Maximize Vertical=none,,Maximize Window Vertically
 Window Minimize=Meta+Del\tMeta+Down\tMeta+PgDown,Meta+PgDown,Minimize Window
 Window Move=none,,Move Window
+Window Move Center=none,,Move Window to the Center
 Window No Border=none,,Hide Window Border
 Window On All Desktops=none,,Keep Window on All Desktops
 Window One Desktop Down=none,Meta+Ctrl+Shift+Down,Window One Desktop Down
@@ -183,10 +184,10 @@ Window One Desktop Up=none,Meta+Ctrl+Shift+Up,Window One Desktop Up
 Window One Desktop to the Left=none,Meta+Ctrl+Shift+Left,Window One Desktop to the Left
 Window One Desktop to the Right=none,Meta+Ctrl+Shift+Right,Window One Desktop to the Right
 Window Operations Menu=Alt+F3,Alt+F3,Window Operations Menu
-Window Pack Down=none,,Pack Window Down
-Window Pack Left=none,,Pack Window to the Left
-Window Pack Right=none,,Pack Window to the Right
-Window Pack Up=none,,Pack Window Up
+Window Pack Down=none,,Move Window Down
+Window Pack Left=none,,Move Window Left
+Window Pack Right=none,,Move Window Right
+Window Pack Up=none,,Move Window Up
 Window Quick Tile Bottom=none,Meta+Down,Quick Tile Window to the Bottom
 Window Quick Tile Bottom Left=none,,Quick Tile Window to the Bottom Left
 Window Quick Tile Bottom Right=none,,Quick Tile Window to the Bottom Right
@@ -198,8 +199,8 @@ Window Quick Tile Top Right=none,,Quick Tile Window to the Top Right
 Window Raise=none,,Raise Window
 Window Resize=none,,Resize Window
 Window Shade=none,,Shade Window
-Window Shrink Horizontal=none,,Pack Shrink Window Horizontally
-Window Shrink Vertical=none,,Pack Shrink Window Vertically
+Window Shrink Horizontal=none,,Shrink Window Horizontally
+Window Shrink Vertical=none,,Shrink Window Vertically
 Window to Desktop 1=Ctrl+Alt+!\tMeta+!,,Window to Desktop 1
 Window to Desktop 10=none,,Window to Desktop 10
 Window to Desktop 11=none,,Window to Desktop 11
@@ -267,7 +268,7 @@ bismuth_toggle_spread_layout=none,none,Bismuth: Toggle Spread Layout
 bismuth_toggle_stair_layout=none,none,Bismuth: Toggle Stair Layout
 bismuth_toggle_three_column_layout=Ctrl+Alt+T\tMeta+T,none,Bismuth: Toggle Three Column Layout
 bismuth_toggle_tile_layout=Ctrl+Alt+Shift+T\tMeta+Shift+T,none,Bismuth: Toggle Tile Layout
-bismuth_toggle_window_floating=Meta+Ctrl+Shift+F,none,Bismuth: Toggle Active Window Floating
+bismuth_toggle_window_floating=Meta+Shift+W,none,Bismuth: Toggle Active Window Floating
 view_actual_size=Meta+0,Meta+0,Actual Size
 view_zoom_in=Meta+=,Meta+=,Zoom In
 view_zoom_out=Meta+-,Meta+-,Zoom Out
@@ -293,6 +294,7 @@ activate entry 6=none,Meta+6,Activate Entry 6
 activate entry 7=none,Meta+7,Activate Entry 7
 activate entry 8=none,Meta+8,Activate Entry 8
 activate entry 9=none,Meta+9,Activate Entry 9
+activate widget 54=Ctrl+Alt+S,none,Activate Application Launcher Widget
 clear-history=none,,Clear Clipboard History
 clipboard_action=none,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,,Next History Item
@@ -318,7 +320,7 @@ new instance for entry 7=none,Meta+Ctrl+7,New Instance for Entry 7
 new instance for entry 8=none,Meta+Ctrl+8,New Instance for Entry 8
 new instance for entry 9=none,Meta+Ctrl+9,New Instance for Entry 9
 repeat_action=none,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
-show latte global settings=none,Meta+W,Show Latte Global Settings
+show latte global settings=none,,Show Latte Global Settings
 show latte view=Ctrl+`,Meta+`,Show Latte Dock/Panel
 show view settings=none,Meta+A,Cycle Through Dock/Panel Settings Windows
 show-barcode=none,,Show Barcode…
@@ -343,12 +345,12 @@ _launch=Meta+E,Meta+E,Dolphin
 NewTab=none,none,Open a New Tab
 NewWindow=none,none,Open a New Window
 _k_friendly_name=Konsole
-_launch=Ctrl+Alt+Return\tMeta+Shift+Return\tAlt+Return,none,Konsole
+_launch=Ctrl+Alt+Return\tMeta+Shift+Return,none,Konsole
 
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
 _k_friendly_name=KRunner
-_launch=Alt+F2\tShift+F2\tSearch,none,KRunner
+_launch=Alt+F2\tSearch\tMeta+S\tShift+F2,none,KRunner
 
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
@@ -378,7 +380,7 @@ Turn Off Screen=none,none,Turn Off Screen
 _k_friendly_name=Power Management
 
 [plasmashell]
-_k_friendly_name=Plasma
+_k_friendly_name=Latte Dock
 activate task manager entry 1=none,Meta+1,Activate Task Manager Entry 1
 activate task manager entry 10=none,Meta+0,Activate Task Manager Entry 10
 activate task manager entry 2=none,Meta+2,Activate Task Manager Entry 2
@@ -402,6 +404,7 @@ activate widget 52=none,none,Activate Application Dashboard Widget
 activate widget 59=Alt+Space,none,Activate Application Launcher Widget
 activate widget 65=none,none,Activate Icons-only Task Manager Widget
 activate widget 73=Alt+F1,none,Activate Application Launcher Widget
+activate widget 82=none,none,Activate Application Launcher Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=none,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
@@ -422,6 +425,17 @@ toggle do not disturb=none,,Toggle do not disturb
 [systemsettings.desktop]
 _k_friendly_name=System Settings
 _launch=Tools,Tools,System Settings
+
+[wacomtablet]
+Map to fullscreen=Meta+Ctrl+F,Meta+Ctrl+F,Map to fullscreen
+Map to screen 1=Meta+Ctrl+1,Meta+Ctrl+1,Map to screen 1
+Map to screen 2=Meta+Ctrl+2,Meta+Ctrl+2,Map to screen 2
+Next Profile=Meta+Ctrl+N,Meta+Ctrl+N,Next profile
+Previous Profile=Meta+Ctrl+P,Meta+Ctrl+P,Previous Profile
+Toggle screen map selection=Meta+Ctrl+M,Meta+Ctrl+M,Toggle between all screens
+Toggle stylus mode=Meta+Ctrl+S,Meta+Ctrl+S,Toggle the Stylus Tool Relative/Absolute
+Toggle touch tool=none,Meta+Ctrl+T,Enable/Disable the Touch Tool
+_k_friendly_name=Wacom Tablet
 
 [yakuake]
 _k_friendly_name=Yakuake
