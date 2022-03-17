@@ -6,7 +6,10 @@
   excludesfile =
 [user]
   name = Joe Schr
-  email = joe.vandelay@gmail.com
+  email = jozeph.oftheinternet+git@gmail.com
+[user]
+  name = Joe Schr
+  email = 8218910+TheJoeSchr@users.noreply.github.com
 [push]
   default = simple
 [alias]
@@ -30,7 +33,8 @@
   type = cat-file -t
   dump = cat-file -p
   ; delete remote branch
-  branch-delete-remote = push origin --delete
+  branch-delete-remote = push --delete
+  delete-remote-branch = push --delete
     # Push the new branch, set local branch to track the new remote
   ps--set-upstream = push --set-upstream origin
     unadd = reset HEAD
@@ -57,7 +61,7 @@
     last = !git lgl -1 --patch # show everything about the head commit
     lgh  = !git lgl -1 --stat
     gov = lg --simplify-by-decoration # show relationships between branches
-    lga  = !git gov --all 
+    lga  = !git his --all 
     gl = lg
 
     # show stats and last 5 commits
