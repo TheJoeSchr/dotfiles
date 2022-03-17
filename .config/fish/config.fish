@@ -28,7 +28,7 @@ if status --is-interactive
   abbr cng 'config'
   abbr e 'nvim'
   abbr fda 'fd -uu'
-  alias find 'fda'
+  alias find 'fd -uu'
   alias du 'dust -d 1'
   alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
   abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
