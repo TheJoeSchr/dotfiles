@@ -1,0 +1,21 @@
+[CoH2]
+Description=CoH2
+above=true
+aboverule=2
+fullscreen=true
+fullscreenrule=2
+wmclass=reliccoh2
+wmclassmatch=2
+
+[New window settings]
+Description=New window settings
+minsize=1,1
+minsizerule=2
+types=1
+
+[konsole]
+Description=konsole
+opacityactive=90
+opacityactiverule=2
+wmclass=konsole
+wmclassmatch=1
