@@ -1,1 +1,1 @@
-/home/joe/.config/nvim/init.vim
+.config/nvim/init.vim
