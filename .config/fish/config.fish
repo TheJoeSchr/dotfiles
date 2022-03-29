@@ -64,3 +64,5 @@ end
 
 # direnv hook fish | source
 eval (direnv hook fish)
+# zoxide init
+zoxide init fish | source
