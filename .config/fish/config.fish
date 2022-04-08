@@ -4,6 +4,9 @@ fish_vi_key_bindings
 bind -M insert \cP forward-char
 # C-f moves one word forward
 bind -M insert \cF nextd-or-forward-word
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f'
+
 
 : '
 THE THREE TYPES
