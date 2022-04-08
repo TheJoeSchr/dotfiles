@@ -6,67 +6,45 @@ touch ~/.vimrc.local
 touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
-
-# update mirror-list
-sudo pacman-mirrors -g
-
+# install buildtools like eg. git make libffi glibc gcc
+sudo pacman -S base-devel 
+sudo pacman -S git ed python python-pip 
+# LAST RESORT RESET
+# # update mirror-list
+# pacman-mirrors -g
 # # update keydatabases
 # sudo rm -R /etc/pacman.d/gnupg
-# sudo rm -R /root/.gnupg
-# sudo dirmngr </dev/null
+# sudo rm -R /root/.gnupg sudo dirmngr </dev/null
 
 # sudo pacman-key --init
 # sudo pacman-key --populate archlinux manjaro
 # sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring
 # sudo pacman-key --refresh-keys
 # sudo systemctl start pacman-init
-# # exit su -l
-# # exit
-
-
-# update databases
-sudo pacman -Fy
-# system upgrade
-sudo pacman -Syyu
-
-# install buildtools like eg. git make libffi glibc gcc
-sudo pacman -S base-devel 
-sudo pacman -S git ed python python-pip neovim
-
-
+# # update databases
+# sudo pacman -Fy
+# sudo pacman -Syy
 
 read -p "Is AUR support in \'Add/Remove Software\' enabled?" -n 1 -r 
 # install AUR helper:
 # try automatic
-pamac install pikaur
+sudo pamac install pikaur
 
 # manual
 pip install --user commonmark wheel pyalpm
-cd ~/Downloads
-git clone https://aur.archlinux.org/pikaur.git
-cd pikaur
-makepkg -fsri
-cd ~/Downloads
 
+# update all
+sudo pacman -Syu
 
-# upgrade all the packages!!!
-pikaur -Syyu
-
-# install manjaro pacman
-pikaur -Sy pamac
-
+# risky/estoric on arm
+pikaur -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
-pikaur -S --noconfirm neovim ripgrep nvm tmux urlview python3 python-pip autopep8 mosh htop \
+pikaur -S --noconfirm neovim ripgrep npm nvm tmux urlview python3 python-pip autopep8 mosh htop \
   bash-completion fish fzy fzf nodejs procs tldr fd duf dust exa bat nvimpager-git neovim-remote \
   direnv
 pip3 install --user wheel pynvim 
 pip3 install --user autopep8  # might fail
 pip3 install --user flake8  # might fail
-
-
-# risky/estoric on arm
-pikaur -S  ntfs-3g-fuse
-
 
 
 # FISH DEFAULT SHELL
@@ -119,10 +97,8 @@ fish -c 'fisher install jorgebucaran/nvm.fish'
 #INSTALL GUI & RICE
 # ESSENTIALS DESKTOP
 pikaur -S --noconfirm kwin-bismuth latte-dock-git signal-desktop cpupower-gui cpupower google-chrome zathura
-# RICE
-pikaur -S --noconfirm ytmdesktop-bin 
 # VSCODE
-pikaur -S --noconfirm visual-studio-code-bin
+pikaur -S --noconfirm visual-studio-code-bin 
 
 # FONTS
 pikaur -Sy noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack
@@ -209,7 +185,7 @@ crc setup
 crc start
 
 # nordvpn
-pikaur -S --noconfirm nordvpn-bin
+pikaur -Syu --noconfirm nordvpn-bin
 sudo groupadd -r nordvpn
 sudo systemctl enable --now nordvpnd.service
 sudo gpasswd -a (whoami) nordvpn
