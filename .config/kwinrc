@@ -117,8 +117,10 @@ zoomEnabled=false
 
 [Script-bismuth]
 enableQuarterLayout=true
+ignoreActivity=Gaming
+ignoreScreen=3
 limitTileWidth=true
-limitTileWidthRatio=1.1
+limitTileWidthRatio=1.4
 maximizeSoleTile=true
 newWindowAsMaster=true
 noTileBorder=true
