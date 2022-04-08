@@ -59,15 +59,14 @@ echo /usr/local/bin/fishlogin | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/fishlogin $USER
 # source: https://superuser.com/a/1046884
 
-# FISHER
-fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+# FISHER fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
 
 # omf
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 # omf theme
 fish -c 'omf install yimmy'
 # fzf
-fish -c 'fisher install gyakovlev/fish-fzy'
+fish -c 'fisher install PatrickF1/fzf.fish'
 # ssh-agent
 fish -c 'fisher install danhper/fish-ssh-agent'
 
