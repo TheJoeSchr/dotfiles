@@ -252,18 +252,9 @@ if !exists('g:vscode')
       Plug 'szw/vim-maximizer'
       Plug 'bkad/CamelCaseMotion'
       " Fuzzy Finder
-      Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-      Plug 'junegunn/fzf.vim'
+      Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
+      " Plug 'junegunn/fzf.vim'
       Plug 'stsewd/fzf-checkout.vim'
-      " Fuzzy project file search
-      " Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-      " Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-      Plug 'nvim-lua/popup.nvim'
-      Plug 'nvim-lua/plenary.nvim'
-      Plug 'nvim-telescope/telescope.nvim'
-      " Plug 'nvim-telescope/telescope-fzy-native.nvim'
-      Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-      Plug 'nvim-telescope/telescope-github.nvim'
       " Easymotion fuzzy search
       Plug 'haya14busa/incsearch.vim'
       Plug 'haya14busa/incsearch-fuzzy.vim'
@@ -309,6 +300,14 @@ if !exists('g:vscode')
     " Center Text
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/limelight.vim'
+    " Fuzzy project file search
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    Plug 'nvim-telescope/telescope-github.nvim'
+    Plug 'nvim-telescope/telescope-dap.nvim'
+    Plug 'TheJoeSchr/telescope-rg'
     " -- themes
     Plug 'artanikin/vim-synthwave84'
     Plug 'flazz/vim-colorschemes'
@@ -326,7 +325,6 @@ if !exists('g:vscode')
     " Plug 'puremourning/vimspector'
     Plug 'mfussenegger/nvim-dap'
     Plug 'mfussenegger/nvim-dap-python'
-    Plug 'nvim-telescope/telescope-dap.nvim'
     Plug 'theHamsta/nvim-dap-virtual-text'
     Plug 'rcarriga/nvim-dap-ui'
     " -- linter (works with eslint)
@@ -758,8 +756,8 @@ EOF
   " other Keybinds
   " nnoremap <silent> <Leader>rp :FZF<CR>
   " nnoremap <silent> <Leader>r/ :BLines<CR>
-  nnoremap <silent> <Leader>" :Marks<CR>
-  nnoremap <silent> <Leader>L :Commits<CR>
+  " nnoremap <silent> <Leader>" :Marks<CR>
+  " nnoremap <silent> <Leader>L :Commits<CR>
   " nnoremap <silent> <Leader>H :Helptags<CR>
   " nnoremap <silent> <Leader>rr :History/<CR>
   " nnoremap <silent> i<Leader>r: :History:<CR>
@@ -825,10 +823,15 @@ EOF
   nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
   nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
   nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+  " rg | fzf
   nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+  nnoremap <leader>fG :Rg 
   nnoremap <leader>fw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
+
   nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+  nnoremap <Leader>' <cmd>lua require('telescope.builtin').marks()<cr>
   nnoremap <leader>; <cmd>lua require('telescope.builtin').oldfiles()<cr>
+  nnoremap <Leader>fl <cmd>lua require('telescope.builtin').git_commits()<cr>
   nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
   noremap <leader>: <cmd>lua require('telescope.builtin').command_history()<cr>
   noremap <leader>f: <cmd>lua require('telescope.builtin').commands()<cr>
@@ -1179,8 +1182,8 @@ if exists('g:vscode')
     " ------ needs to be duplicated because can't call plug#begin twice
       Plug 'bkad/CamelCaseMotion'
       Plug 'szw/vim-maximizer'
-      " Fuzzy Find, use :ctrlp or <c-p>
-      Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+      " Fuzzy Find
+      Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
       Plug 'junegunn/fzf.vim'
       Plug 'stsewd/fzf-checkout.vim'
       " Easymotion fuzzy search
@@ -1302,21 +1305,21 @@ map T <Plug>Sneak_T
 " --------- RIPGREP ---------
 "  Search in files, with:
 "  <leader>f
-if executable('rg')
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-    " For use with ack.vim
-    let g:ackprg = 'rg --vimgrep --no-heading'
-    " shortcut: <C-p>a
-    " nnoremap <C-p>a :Rg
+" if executable('rg')
+"     set grepprg=rg\ --vimgrep\ --no-heading
+"     set grepformat=%f:%l:%c:%m,%f:%l:%m
+"     " For use with ack.vim
+"     let g:ackprg = 'rg --vimgrep --no-heading'
+"     " shortcut: <C-p>a
+"     " nnoremap <C-p>a :Rg
 
-    " Adds command :Rg
-    command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-      \   fzf#vim#with_preview(), <bang>0)
+"     " Adds command :Rg
+"     command! -bang -nargs=* Rg
+"       \ call fzf#vim#grep(
+"       \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+"       \   fzf#vim#with_preview(), <bang>0)
 
-endif
+" endif
 
 " --------- CLOSE-BUFFERS ---------
 nnoremap <silent> Q     :bd <CR>
