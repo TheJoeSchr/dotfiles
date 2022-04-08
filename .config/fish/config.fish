@@ -6,6 +6,7 @@ bind -M insert \cP forward-char
 bind -M insert \cF nextd-or-forward-word
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
+source ~/.fzf/shell/key-bindings.fish
 
 
 : '
