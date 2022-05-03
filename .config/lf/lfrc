@@ -72,3 +72,4 @@ map x $$f
 map X !$f
 map o &mimeopen "$f"
 map O $mimeopen --ask "$f"
+map zp set preview!
