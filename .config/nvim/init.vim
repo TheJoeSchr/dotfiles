@@ -290,6 +290,9 @@ if !exists('g:vscode')
       Plug 'dag/vim-fish'
       " close other buffers (and more)
       Plug 'Asheq/close-buffers.vim'
+      " github copilot
+      Plug 'github/copilot.vim'
+
     " >============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
 
     " NATIVE ONLY:
@@ -632,7 +635,26 @@ local dap = require('dap')
 dap.adapters.node2 = {
   type = 'executable',
   command = 'node',
-  args = {os.getenv('HOME') .. '/apps/vscode-node-debug2/out/src/nodeDebug.js'},
+  args = {os.getenv('HOME') .. '/.local/sources/vscode-node-debug2/out/src/nodeDebug.js'},
+}
+dap.configurations.javascript = {
+  {
+    name = 'Launch',
+    type = 'node2',
+    request = 'launch',
+    program = '${file}',
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = 'inspector',
+    console = 'integratedTerminal',
+  },
+  {
+    -- For this to work you need to make sure the node process is started with the `--inspect` flag.
+    name = 'Attach to process',
+    type = 'node2',
+    request = 'attach',
+    processId = require'dap.utils'.pick_process,
+  },
 }
 vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='▸', texthl='', linehl='', numhl=''})
@@ -652,6 +674,7 @@ EOF
   " like F5, start to debug
   nnoremap <F5> :lua require'dap'.continue()<CR>
   nnoremap <leader>DD :lua require'dap'.continue()<CR>
+
   nnoremap <leader>DS :lua require'dap'.close()<CR>
   nnoremap <leader>dH :lua require'dap'.up()<CR>
   nnoremap <leader>dL :lua require'dap'.down()<CR>
@@ -687,8 +710,7 @@ EOF
   " Plug 'rcarriga/nvim-dap-ui'
   nnoremap <leader>du :lua require("dapui").toggle()<CR>
 
-  " jank/vim-test and mfussenegger/nvim-dap
-  nnoremap <leader>dt :TestNearest -strategy=jest<CR>
+  " jank/vim-test and mfussenegger/nvim-dap nnoremap <leader>dt :TestNearest -strategy=jest<CR>
   function! JestStrategy(cmd)
     let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
     let fileName = matchlist(a:cmd, '\v'' -- (.*)$')[1]
