@@ -1,5 +1,5 @@
 [$Version]
-update_info=bismuth_shortcuts_category.upd:bismuth-shortcuts-category
+update_info=bismuth_shortcuts_category.upd:bismuth-shortcuts-category,bismuth_shortcuts_from_kwin.upd:bismuth-shortcuts-from-kwin
 
 [ActivityManager]
 _k_friendly_name=Activity Manager
@@ -7,6 +7,7 @@ switch-to-activity-22e0fcca-4eab-401e-a71b-71d553cd1fd6=none,none,Switch to acti
 switch-to-activity-597834c1-d819-48da-9a62-304d31529239=none,none,Switch to activity "Default"
 switch-to-activity-7f74c8e4-8029-49bf-b627-91f7fe05e938=none,none,Switch to activity "Default"
 switch-to-activity-8746a399-d795-48d4-825e-8b4497c90b4f=none,none,Switch to activity "Default"
+switch-to-activity-9be168ab-49bb-4c0d-8c54-34dd672fe9f3=none,none,Switch to activity "Gaming"
 switch-to-activity-ef581a10-edd3-4f56-a66f-f5d408d066ca=none,none,Switch to activity "Default"
 
 [KDE Keyboard Layout Switcher]
@@ -44,7 +45,7 @@ rotate=Meta+R,Meta+R,Rotate
 rotate_part=Meta+Ctrl+R,Meta+Shift+R,Rotate Part
 rotate_reverse=none,,Rotate (Reverse)
 toggle_float_layout=none,Meta+Shift+F,Toggle Floating Layout
-toggle_monocle_layout=Ctrl+Alt+F\tMeta+M\tMeta+F,Meta+M,Toggle Monocle Layout
+toggle_monocle_layout=Meta+F\tCtrl+Alt+F,Meta+M,Toggle Monocle Layout
 toggle_quarter_layout=Meta+Shift+Z,,Toggle Quarter Layout
 toggle_spiral_layout=none,,Toggle Spiral Layout
 toggle_spread_layout=none,,Toggle Spread Layout
@@ -72,7 +73,7 @@ Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Toggle Touchpad
 _k_friendly_name=Touchpad
 
 [kded5]
-Show System Activity=Ctrl+Alt+Esc,Ctrl+Esc,Show System Activity
+Show System Activity=none,Ctrl+Esc,Show System Activity
 _k_friendly_name=KDE Daemon
 display=Display\tMeta+P,Display\tMeta+P,Switch Display
 
@@ -84,9 +85,9 @@ _k_friendly_name=Custom Shortcuts Service
 [kmix]
 _k_friendly_name=Audio Volume
 decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Decrease Microphone Volume
-decrease_volume=Volume Down\tCtrl+Shift+Down,Volume Down,Decrease Volume
+decrease_volume=Volume Down,Volume Down,Decrease Volume
 increase_microphone_volume=Microphone Volume Up,Microphone Volume Up,Increase Microphone Volume
-increase_volume=Volume Up\tCtrl+Shift+Up,Volume Up,Increase Volume
+increase_volume=Volume Up,Volume Up,Increase Volume
 mic_mute=Microphone Mute,Microphone Mute\tMeta+Volume Mute,Mute Microphone
 mute=Volume Mute\tCtrl+Alt+Shift+M,Volume Mute,Mute
 
@@ -110,7 +111,7 @@ FlipSwitchAll=none,none,Toggle Flip Switch (All desktops)
 FlipSwitchCurrent=none,none,Toggle Flip Switch (Current desktop)
 Increase Opacity=Meta+O,,Increase Opacity of Active Window by 5 %
 Invert Screen Colors=none,,Invert Screen Colors
-Kill Window=Ctrl+Alt+Del,Ctrl+Alt+Esc,Kill Window
+Kill Window=none,Ctrl+Alt+Esc,Kill Window
 Krohnkite: Cycle Layout=none,none,
 Krohnkite: Decrease=none,none,
 Krohnkite: Down/Next=none,none,
@@ -178,9 +179,9 @@ Switch to Desktop 6=none,,Switch to Desktop 6
 Switch to Desktop 7=none,,Switch to Desktop 7
 Switch to Desktop 8=none,,Switch to Desktop 8
 Switch to Desktop 9=none,,Switch to Desktop 9
-Switch to Next Desktop=none,,Switch to Next Desktop
-Switch to Next Screen=Meta+Backspace,,Switch to Next Screen
-Switch to Previous Desktop=Meta+`,,Switch to Previous Desktop
+Switch to Next Desktop=Meta+`,,Switch to Next Desktop
+Switch to Next Screen=none,,Switch to Next Screen
+Switch to Previous Desktop=Meta+~,,Switch to Previous Desktop
 Switch to Previous Screen=none,,Switch to Previous Screen
 Switch to Screen 0=none,,Switch to Screen 0
 Switch to Screen 1=none,,Switch to Screen 1
@@ -198,8 +199,8 @@ Walk Through Desktop List=none,,Walk Through Desktop List
 Walk Through Desktop List (Reverse)=none,,Walk Through Desktop List (Reverse)
 Walk Through Desktops=none,,Walk Through Desktops
 Walk Through Desktops (Reverse)=none,,Walk Through Desktops (Reverse)
-Walk Through Windows=none,Alt+Tab,Walk Through Windows
-Walk Through Windows (Reverse)=none,Alt+Shift+Backtab,Walk Through Windows (Reverse)
+Walk Through Windows=Alt+Tab,Alt+Tab,Walk Through Windows
+Walk Through Windows (Reverse)=Alt+Shift+Tab,Alt+Shift+Backtab,Walk Through Windows (Reverse)
 Walk Through Windows Alternative=none,,Walk Through Windows Alternative
 Walk Through Windows Alternative (Reverse)=none,,Walk Through Windows Alternative (Reverse)
 Walk Through Windows of Current Application=none,Alt+`,Walk Through Windows of Current Application
@@ -216,7 +217,7 @@ Window Lower=none,,Lower Window
 Window Maximize=Meta+PgUp\tMeta+Up,Meta+PgUp,Maximize Window
 Window Maximize Horizontal=none,,Maximize Window Horizontally
 Window Maximize Vertical=none,,Maximize Window Vertically
-Window Minimize=Meta+Down\tMeta+PgDown,Meta+PgDown,Minimize Window
+Window Minimize=Meta+M\tMeta+PgDown\tMeta+Down,Meta+PgDown,Minimize Window
 Window Move=none,,Move Window
 Window Move Center=none,,Move Window to the Center
 Window No Border=none,,Hide Window Border
@@ -336,7 +337,7 @@ activate entry 6=none,Meta+6,Activate Entry 6
 activate entry 7=none,Meta+7,Activate Entry 7
 activate entry 8=none,Meta+8,Activate Entry 8
 activate entry 9=none,Meta+9,Activate Entry 9
-activate widget 54=Ctrl+Alt+S,none,Activate Application Launcher Widget
+activate widget 54=Meta+Space,none,Activate Application Launcher Widget
 clear-history=none,,Clear Clipboard History
 clipboard_action=none,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,,Next History Item
@@ -363,7 +364,7 @@ new instance for entry 8=none,Meta+Ctrl+8,New Instance for Entry 8
 new instance for entry 9=none,Meta+Ctrl+9,New Instance for Entry 9
 repeat_action=none,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
 show latte global settings=none,,Show Latte Global Settings
-show latte view=Ctrl+`,Meta+`,Show Latte Dock/Panel
+show latte view=none,Meta+`,Show Latte Dock/Panel
 show view settings=none,Meta+A,Cycle Through Dock/Panel Settings Windows
 show-barcode=none,,Show Barcode…
 show-on-mouse-pos=none,Meta+V,Open Klipper at Mouse Position
@@ -440,6 +441,7 @@ activate widget 2=none,none,Activate Application Launcher Widget
 activate widget 23=none,none,Activate Global Menu Widget
 activate widget 27=none,none,Activate Application Menu Widget
 activate widget 3=none,none,Activate Application Launcher Widget
+activate widget 32=none,none,Activate Application Launcher Widget
 activate widget 33=none,none,Activate Hard Disk Activity Widget
 activate widget 46=none,none,Activate Battery and Brightness Widget
 activate widget 52=none,none,Activate Application Dashboard Widget
