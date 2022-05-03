@@ -28,7 +28,7 @@ sudo pacman -S git ed python python-pip
 read -p "Is AUR support in \'Add/Remove Software\' enabled?" -n 1 -r 
 # install AUR helper:
 # try automatic
-sudo pamac install pikaur
+sudo pamac install paru
 
 # manual
 pip install --user commonmark wheel pyalpm
@@ -37,9 +37,9 @@ pip install --user commonmark wheel pyalpm
 sudo pacman -Syu
 
 # risky/estoric on arm
-pikaur -S  ntfs-3g-fuse
+paru -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
-pikaur -S --noconfirm neovim ripgrep npm nvm tmux urlview python3 python-pip autopep8 mosh htop \
+paru -S --noconfirm neovim ripgrep npm nvm tmux urlview python3 python-pip autopep8 mosh htop \
   bash-completion fish fzy fzf nodejs procs tldr fd duf dust exa bat nvimpager-git neovim-remote \
   direnv
 pip3 install --user wheel pynvim 
@@ -95,12 +95,12 @@ fish -c 'fisher install jorgebucaran/nvm.fish'
 
 #INSTALL GUI & RICE
 # ESSENTIALS DESKTOP
-pikaur -S --noconfirm kwin-bismuth latte-dock-git signal-desktop cpupower-gui cpupower google-chrome zathura
+paru -S --noconfirm kwin-bismuth latte-dock-git signal-desktop cpupower-gui cpupower google-chrome zathura
 # VSCODE
-pikaur -S --noconfirm visual-studio-code-bin 
+paru -S --noconfirm visual-studio-code-bin 
 
 # FONTS
-pikaur -Sy noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack
+paru -Sy noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack
 # powerline fonts
 cd ~/Downloads
 git clone https://github.com/powerline/fonts.git --depth=1
@@ -111,7 +111,7 @@ rm -rf fonts
 cd ~/Downloads
 
 # DOCKER/PODMAN
-pikaur -S --noconfirm podman catatonit crun
+paru -S --noconfirm podman catatonit crun
 # needed for cgroups
 # see: https://wiki.archlinux.org/index.php/Podman
 sudo touch /etc/sub{u,g}id
@@ -144,28 +144,28 @@ echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user
 sudo usermod -a -G disk (whoami)
 
 # fix vscode signin isues
-pikaur -S --nonconfirm qtkeychain gnome-keyring
+paru -S --nonconfirm qtkeychain gnome-keyring
 
 # fix .ssh
 chmod 600 .ssh/*
 
 # bluetooth a2dp
-# pikaur -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
+# paru -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
 # equalizer
-pikaur -Sy pulseeffects
+paru -Sy pulseeffects
 # unify for logitech setpoint
-pikaur -S --noconfirm ltunify
+paru -S --noconfirm ltunify
 # NVIDIA INTEL HYBRID STUFF
 # sudo mhwd -i pci video-hybrid-intel-nvidia-450xx-prime
-# pikaur -S cuda vulkan-mesa-layers vulkan-intel lib32-vulkan-intel  lib32-amdvlk  lib32-nvidia-utils  lib32-vulkan-mesa-layers
+# paru -S cuda vulkan-mesa-layers vulkan-intel lib32-vulkan-intel  lib32-amdvlk  lib32-nvidia-utils  lib32-vulkan-mesa-layers
 # sudo mhwd -r pci video-nvidia-455xx
-# sudo pikaur -S lib32-opencl-nvidia-455xx opencl-nvidia
+# sudo paru -S lib32-opencl-nvidia-455xx opencl-nvidia
 
-# sudo pikaur -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
+# sudo paru -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
 
 # OPEN SHIFT
 # Minishift & OC Cli
-pikaur -Sy minishift origin-client
+paru -Sy minishift origin-client
 # ODO Cli
 sudo curl -L https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-linux-amd64 -o /usr/local/bin/odo
 sudo chmod +x /usr/local/bin/odo
@@ -176,7 +176,7 @@ sudo chmod +x /usr/local/bin/odo
 # https://wiki.archlinux.org/index.php/OpenShift#openshift_v4
 
 # INSTALL
-pikaur -S libvirt qemu qemu-arch-extra
+paru -S libvirt qemu qemu-arch-extra
 sudo pacman -Syu ebtables dnsmasq
 sudo systemctl restart libvirtd
 # CRC SETUP
@@ -184,7 +184,7 @@ crc setup
 crc start
 
 # nordvpn
-pikaur -Syu --noconfirm nordvpn-bin
+paru -Syu --noconfirm nordvpn-bin
 sudo groupadd -r nordvpn
 sudo systemctl enable --now nordvpnd.service
 sudo gpasswd -a (whoami) nordvpn
@@ -193,11 +193,11 @@ sudo gpasswd -a (whoami) nordvpn
 cd ~/Downloads
 git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
 cd ~/.local/sources/cmdg
-pikaur -S go --noconfirm
+paru -S go --noconfirm
 go build ./cmd/cmdg
 sudo cp cmdg /usr/local/bin
 # press Ctrl-A u to open urls in mail
-pikaur -S --noconfirm urlview
+paru -S --noconfirm urlview
 cd ~/Downloads
 
 cd ~/Downloads/
@@ -208,11 +208,11 @@ cd 1password &&  makepkg -si
 
 ## xenomod
 gpg --receive-keys 38DBBDC86092693E
-pikaur -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
+paru -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
 sudo ln -s /usr/src/linux-manjaro-xanmod  /usr/src/linux
 
 # install beta, because of DKMS
-pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
+paru -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
 
 # moonlander
 sudo touch /etc/udev/rules.d/50-oryx.rules
@@ -246,7 +246,7 @@ sudo chown (id -u):(id -g) /var/run/docker.sock
 newgrp docker
 
 cd ~/Downloads
-pikaur -S chrome-remote-desktop --noconfirm
+paru -S chrome-remote-desktop --noconfirm
 cp /opt/google/chrome-remote-desktop/chrome-remote-desktop .
 patch -i chrome-remote-desktop--use_existing_session.patch chrome-remote-desktop
 sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop
