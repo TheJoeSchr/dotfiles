@@ -310,6 +310,8 @@ if !exists('g:vscode')
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Plug 'nvim-telescope/telescope-github.nvim'
     Plug 'nvim-telescope/telescope-dap.nvim'
+    " for checkhealth
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'TheJoeSchr/telescope-rg'
     " -- themes
     Plug 'artanikin/vim-synthwave84'
