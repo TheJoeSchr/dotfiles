@@ -250,3 +250,7 @@ paru -S chrome-remote-desktop --noconfirm
 cp /opt/google/chrome-remote-desktop/chrome-remote-desktop .
 patch -i chrome-remote-desktop--use_existing_session.patch chrome-remote-desktop
 sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop
+
+# System76 scheduler
+pikaur -S system76-scheduler-git --noconfirm
+sudo systemctl enable --now com.system76.Scheduler.service
