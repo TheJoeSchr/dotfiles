@@ -33,8 +33,9 @@ function! s:SetColors(args)
     let s:mycolors = map(paths, 'fnamemodify(v:val, ":t:r")')
     echo 'List of colors set from all installed color schemes'
   elseif a:args == 'my'
-    let c1 = 'default delek peachpuff'
-    let c2 = 'darkblue gothic aqua earth black_angus relaxedgreen'
+    " white
+    let c1 = 'dracula onehalfdark onehalflight gruvbox solarized solarized8_light solarized8_light_flat solarized8_light_high default delek bw basic-light zellner zen zenesque zephyr yuejiu xterm16'
+    let c2 = 'peachpuff darkblue gothic aqua earth black_angus relaxedgreen'
     let c3 = 'darkblack freya motus impact less chocolateliquor'
     let s:mycolors = split(c1.' '.c2.' '.c3)
     echo 'List of colors set from built-in names'
@@ -63,10 +64,10 @@ endfunction
 " Helper function for NextColor(), allows echoing of the color name to be
 " disabled.
 function! s:NextColor(how, echo_color)
-    call s:SetColors('tdd')
-  " if len(s:mycolors) == 0
-  "   call s:SetColors('all')
-  " endif
+    " call s:SetColors('tdd')
+  if len(s:mycolors) == 0
+    call s:SetColors('all')
+  endif
   if exists('g:colors_name')
     let current = index(s:mycolors, g:colors_name)
   else
