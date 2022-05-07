@@ -677,7 +677,7 @@ EOF
   nnoremap <F5> :lua require'dap'.continue()<CR>
   nnoremap <leader>DD :lua require'dap'.continue()<CR>
 
-  nnoremap <leader>DS :lua require'dap'.close()<CR>
+  nnoremap <leader>DQ :lua require'dap'.close()<CR>
   nnoremap <leader>dH :lua require'dap'.up()<CR>
   nnoremap <leader>dL :lua require'dap'.down()<CR>
   nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.stop();require'dap'.run_last()<CR>

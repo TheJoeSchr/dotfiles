@@ -45,7 +45,7 @@ if status --is-interactive
   abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr ta 'tmux a'
-  abbr upgrade 'paru -Syu --skipreview --useask'
+  abbr upgrade 'paru -Syu --skipreview --useask --noconfirm'
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
   abbr yay 'paru'
   abbr psax 'procs'
