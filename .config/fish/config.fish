@@ -73,3 +73,5 @@ end
 eval (direnv hook fish)
 # zoxide init
 zoxide init fish | source
+# autostart ssh-add
+fish_ssh_agent
