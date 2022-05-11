@@ -75,3 +75,6 @@ eval (direnv hook fish)
 zoxide init fish | source
 # autostart ssh-add
 fish_ssh_agent
+# autostart lf, or use CTRL+O to open it
+# lfcd
+
