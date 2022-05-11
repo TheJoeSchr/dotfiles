@@ -26,6 +26,7 @@ if status --is-interactive
   echo -n Setting abbreviations...
   set -g fish_user_abbreviations
   alias g 'git'
+  alias G 'git'
   abbr gs 'git status'
   abbr gl 'PAGER=/usr/bin/less git lg'
   abbr gla 'PAGER=/usr/bin/less git lga'
