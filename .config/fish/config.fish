@@ -1,18 +1,19 @@
-echo -n Setting global exports...
+echo Setting global exports...
 set -gx SHELL (which fish)
 set -gx PAGER nvimpager
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx BROWSER google-chrome-stable
 # always try to set DISPLAY
-set -q DISPLAY; or set -x DISPLAY ":0"
+set -q DISPLAY; or set -gx DISPLAY ":0"
 
 
 # INTERACTIVE
 if status --is-interactive
+  echo Setting key bindings...
   fish_vi_key_bindings
   # Tab is complete
-  bind -M \t complete
+  bind -M insert \t complete
   # C-p completes history expand
   bind -M insert \cP forward-char
   bind -M insert \c\t forward-char
@@ -21,8 +22,6 @@ if status --is-interactive
   # Setting fd as the default source for fzf
   export FZF_DEFAULT_COMMAND='fd --type f'
   source ~/.fzf/shell/key-bindings.fish
-  echo -n Setting abbreviations...
-  set -g fish_user_abbreviations
 
 : '
 THE THREE TYPES OF ALIAS
@@ -37,11 +36,15 @@ THE THREE TYPES OF ALIAS
  - function: 
     Make something functionally equivalent to one or more something elses, and optionally permute data that are being worked on with (argv).Strictly speaking, alias is itself just an alias for a function that blindly accepts argv and tacks them to the end of its something else. But this pattern is so prolific that it got its own name, so we will consider it unique for today.
 '
-  alias g 'git'
-  alias G 'git'
+  echo Setting abbreviations...
+  # Abbreviations are stored in a variable named fish_user_abbreviations. This is automatically created as a universal variable the first time an abbreviation is created. If you want your abbreviations to be private to a particular fish session you can put the following in your *~/.config/fish/config.fish* file before you define your first abbrevation:
+  # You can create abbreviations directly on the command line and they will be saved automatically and made visible to other fish sessions if fish_user_abbreviations is a universal variable. If you keep the variable as universal, abbr --add statements in config.fish will do nothing but slow down startup slightly.
+  # set -g fish_user_abbreviations
+  abbr g 'git'
+  abbr G 'git'
   abbr gs 'git status'
-  abbr gl 'PAGER=/usr/bin/less git lg'
-  abbr gla 'PAGER=/usr/bin/less git lga'
+  alias gl 'PAGER=/usr/bin/less git lg'
+  alias gla 'PAGER=/usr/bin/less git lga'
   alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
   abbr cng 'config'
   alias du 'dust -d 1'
@@ -58,7 +61,7 @@ THE THREE TYPES OF ALIAS
   abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr ta 'tmux a'
-  abbr upgrade 'paru -Syu --skipreview --useask --noconfirm'
+  abbr upgrade 'pikaur -Syu --skipreview --useask --noconfirm'
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
   abbr yay 'paru'
   abbr psax 'procs'
