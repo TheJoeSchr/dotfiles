@@ -14,6 +14,8 @@
 #
 # source: https://superuser.com/a/1046884
 
-# fetch local stuff becaus .bashrc isn't called for login
+# fetch local stuff because .bashrc isn't called for login
 # shells. need to be working non-interactivly
+# source local commands
+[ -e ~/.bashrc.local ] && . ~/.bashrc.local
 exec -l fish "$@"

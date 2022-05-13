@@ -6,8 +6,7 @@ esac
 
 # JUST USE FISH
 if [ -e /usr/local/bin/fishlogin ]; then
-  # source local commands
-  [ -e ~/.bashrc.local ] && . ~/.bashrc.local
+  /usr/local/bin/fishlogin
   return;
 fi
 
