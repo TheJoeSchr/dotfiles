@@ -84,3 +84,8 @@ map X !$f
 map o &mimeopen "$f"
 map O $mimeopen --ask "$f"
 map zp set preview!
+
+#Copy fullpath to clipboard
+map Y ${{
+  echo -n $fx | xsel --clipboard --input
+}}
