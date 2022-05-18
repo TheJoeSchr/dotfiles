@@ -2,13 +2,13 @@
 update_info=bismuth_shortcuts_category.upd:bismuth-shortcuts-category,bismuth_shortcuts_from_kwin.upd:bismuth-shortcuts-from-kwin
 
 [ActivityManager]
-_k_friendly_name=Activity Manager
+_k_friendly_name=Plasma
 switch-to-activity-16c91975-72b5-46ea-8049-9e22ad3e45a5=none,none,Switch to activity "Default"
 switch-to-activity-22e0fcca-4eab-401e-a71b-71d553cd1fd6=none,none,Switch to activity "Default"
 switch-to-activity-597834c1-d819-48da-9a62-304d31529239=none,none,Switch to activity "Default"
 switch-to-activity-7f74c8e4-8029-49bf-b627-91f7fe05e938=none,none,Switch to activity "Default"
 switch-to-activity-8746a399-d795-48d4-825e-8b4497c90b4f=none,none,Switch to activity "Default"
-switch-to-activity-9be168ab-49bb-4c0d-8c54-34dd672fe9f3=none,none,Switch to activity "Gaming"
+switch-to-activity-9be168ab-49bb-4c0d-8c54-34dd672fe9f3=,none,Switch to activity "Gaming"
 switch-to-activity-ef581a10-edd3-4f56-a66f-f5d408d066ca=none,none,Switch to activity "Default"
 
 [KDE Keyboard Layout Switcher]
@@ -46,7 +46,7 @@ push_window_to_master=Meta+Return,Meta+Return,Push Active Window to Master Area
 rotate=Meta+R,Meta+R,Rotate
 rotate_part=Meta+Ctrl+R,Meta+Shift+R,Rotate Part
 rotate_reverse=none,,Rotate (Reverse)
-toggle_float_layout=none,Meta+Shift+F,Toggle Floating Layout
+toggle_float_layout=Meta+W,Meta+Shift+F,Toggle Floating Layout
 toggle_monocle_layout=Meta+F\tCtrl+Alt+F,Meta+M,Toggle Monocle Layout
 toggle_quarter_layout=Meta+Shift+Z,,Toggle Quarter Layout
 toggle_spiral_layout=none,,Toggle Spiral Layout
@@ -182,7 +182,7 @@ Switch to Desktop 7=none,,Switch to Desktop 7
 Switch to Desktop 8=none,,Switch to Desktop 8
 Switch to Desktop 9=none,,Switch to Desktop 9
 Switch to Next Desktop=Meta+`,,Switch to Next Desktop
-Switch to Next Screen=none,,Switch to Next Screen
+Switch to Next Screen=Meta+Backspace,,Switch to Next Screen
 Switch to Previous Desktop=Meta+~,,Switch to Previous Desktop
 Switch to Previous Screen=none,,Switch to Previous Screen
 Switch to Screen 0=none,,Switch to Screen 0
@@ -372,11 +372,11 @@ show-on-mouse-pos=none,Meta+V,Open Klipper at Mouse Position
 
 [mediacontrol]
 _k_friendly_name=Media Controller
-mediavolumedown=none,none,Media volume down
-mediavolumeup=none,none,Media volume up
+mediavolumedown=none,,Media volume down
+mediavolumeup=none,,Media volume up
 nextmedia=Ctrl+Shift+J\tMedia Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
-playmedia=none,none,Play media playback
+playmedia=none,,Play media playback
 playpausemedia=Ctrl+Shift+Space\tMedia Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous\tCtrl+Shift+K,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
@@ -442,7 +442,9 @@ activate widget 136=none,none,Activate Application Launcher Widget
 activate widget 15=none,none,Activate Notifications Widget
 activate widget 157=none,none,Activate Application Launcher Widget
 activate widget 178=none,none,Activate Icons-only Task Manager Widget
+activate widget 190=Meta+Space,none,Activate Application Launcher Widget
 activate widget 2=none,none,Activate Application Launcher Widget
+activate widget 214=none,none,Activate Application Launcher Widget
 activate widget 23=none,none,Activate Global Menu Widget
 activate widget 27=none,none,Activate Application Menu Widget
 activate widget 3=none,none,Activate Application Launcher Widget
@@ -455,7 +457,7 @@ activate widget 60=none,none,Activate Application Launcher Widget
 activate widget 65=none,none,Activate Icons-only Task Manager Widget
 activate widget 73=Alt+F1,none,Activate Application Launcher Widget
 activate widget 82=none,none,Activate Application Launcher Widget
-activate widget 84=Meta+Space,none,Activate Application Launcher Widget
+activate widget 84=none,none,Activate Application Launcher Widget
 clear-history=none,,Clear Clipboard History
 clipboard_action=none,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,,Next History Item
@@ -481,10 +483,10 @@ _launch=Tools,Tools,System Settings
 Map to fullscreen=Meta+Ctrl+F,Meta+Ctrl+F,Map to fullscreen
 Map to screen 1=Meta+Ctrl+1,Meta+Ctrl+1,Map to screen 1
 Map to screen 2=Meta+Ctrl+2,Meta+Ctrl+2,Map to screen 2
-Next Profile=Meta+Ctrl+N,Meta+Ctrl+N,Next profile
-Previous Profile=Meta+Ctrl+P,Meta+Ctrl+P,Previous Profile
+Next Profile=none,Meta+Ctrl+N,Next profile
+Previous Profile=none,Meta+Ctrl+P,Previous Profile
 Toggle screen map selection=Meta+Ctrl+M,Meta+Ctrl+M,Toggle between all screens
-Toggle stylus mode=Meta+Ctrl+S,Meta+Ctrl+S,Toggle the Stylus Tool Relative/Absolute
+Toggle stylus mode=none,Meta+Ctrl+S,Toggle the Stylus Tool Relative/Absolute
 Toggle touch tool=none,Meta+Ctrl+T,Enable/Disable the Touch Tool
 _k_friendly_name=Wacom Tablet
 

@@ -122,7 +122,6 @@ limitTileWidthRatio=1.15
 maximizeSoleTile=true
 newWindowAsMaster=true
 noTileBorder=true
-preventProtrusion=false
 screenGapBottom=2
 screenGapLeft=2
 screenGapRight=2
