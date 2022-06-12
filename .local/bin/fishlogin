@@ -18,4 +18,5 @@
 # shells. need to be working non-interactivly
 # source local commands
 [ -e ~/.bashrc.local ] && . ~/.bashrc.local
+# exec  replaces  the  currently  running shell with a new command. On successful completion, exec never returns.
 exec -l fish "$@"
