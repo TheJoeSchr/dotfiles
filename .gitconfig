@@ -23,7 +23,7 @@
   cim = !git ci -m
   st = status
   br = branch
-    df = diff --histogram --color-moved=plain
+  df = diff --histogram --color-moved=plain
   feat = merge --no-ff --no-commit
   pl = pull --rebase
   ps = push
@@ -37,42 +37,43 @@
   delete-remote-branch = push --delete
     # Push the new branch, set local branch to track the new remote
   ps--set-upstream = push --set-upstream origin
-    unadd = reset HEAD
-    unstage = reset
-    uncommit = reset --soft HEAD^
-    staged = diff --cached
-    ctags = "!.git/hooks/ctags"uncommit = reset HEAD^
-    stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
-    stash-all = stash -u
-    # shorthands
-    gbdr = branch-delete-remote
-    # logging commands (hardcoded PAGER because of nvimpager not working)
-    lg-paged = !"PAGER=/usr/bin/less git log"
-    # pretty format
-    his = lg-paged --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
+  unadd = reset HEAD
+  unstage = reset
+  uncommit = reset --soft HEAD^
+  staged = diff --cached
+  ctags = "!.git/hooks/ctags"uncommit = reset HEAD^
+  stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
+  stash-all = stash -u
+  # shorthands
+  gbdr = branch-delete-remote
+  rmdb = branch-delete-remote
+  # logging commands (hardcoded PAGER because of nvimpager not working)
+  lg-paged = !"PAGER=/usr/bin/less git log"
+  # pretty format
+  his = lg-paged --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
     # long pretty format
-    lgl  = his --pretty=\"%C(bold green)[%h:%ar]%C(reset)  %an %d%n%s%n%w(72,4,4)%b\" --date=short --graph --decorate
+  lgl  = his --pretty=\"%C(bold green)[%h:%ar]%C(reset)  %an %d%n%s%n%w(72,4,4)%b\" --date=short --graph --decorate
 
-    lg   = !git his --decorate --graph # full short log
-    l5  = !git his -5 # log only the last five commits
-    lgs  = !git l5 # log only the last five commits
-    lst  = !git lg --stat # log including which files changed
-    lpa  = !git lg -p # log including every individual changed line
-    ldf  = !git lg -p # log including every individual changed line
-    last = !git lgl -1 --patch # show everything about the head commit
-    lgh  = !git lgl -1 --stat
-    gov = lg --simplify-by-decoration # show relationships between branches
-    lga  = !git his --all 
-    gl = lg
+  lg   = !git his --decorate --graph # full short log
+  l5  = !git his -5 # log only the last five commits
+  lgs  = !git l5 # log only the last five commits
+  lst  = !git lg --stat # log including which files changed
+  lpa  = !git lg -p # log including every individual changed line
+  ldf  = !git lg -p # log including every individual changed line
+  last = !git lgl -1 --patch # show everything about the head commit
+  lgh  = !git lgl -1 --stat
+  gov = lg --simplify-by-decoration # show relationships between branches
+  lga  = !git his --all 
+  gl = lg
 
-    # show stats and last 5 commits
-    st   = !"git lgs;  git status"
-    # file logging commands
-    lf  = !git his --follow -- # commits including desired files
-    lfl = !git lgl --follow -- # long-format commits
-    lfst = !git lst --follow -- # stat-style commits
-    lfpa = !git lpa --follow -- # full patch commits
-    show-file-history = !git lfl
+  # show stats and last 5 commits
+  st   = !"git lgs;  git status"
+  # file logging commands
+  lf  = !git his --follow -- # commits including desired files
+  lfl = !git lgl --follow -- # long-format commits
+  lfst = !git lst --follow -- # stat-style commits
+  lfpa = !git lpa --follow -- # full patch commits
+  show-file-history = !git lfl
 [rerere]
   enabled = true
 [mergetool]
