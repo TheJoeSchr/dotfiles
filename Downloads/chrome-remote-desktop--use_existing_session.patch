@@ -1,6 +1,6 @@
---- chrome-remote-desktop.orig	2021-02-23 12:16:06.554978131 +0100
-+++ chrome-remote-desktop	2021-02-23 12:19:56.499903531 +0100
-@@ -107,6 +107,8 @@
+--- chrome-remote-desktop	2022-06-12 22:03:24.370514079 +0200
++++ chrome-remote-desktop.patched	2022-06-12 22:09:40.149602655 +0200
+@@ -109,6 +109,8 @@
  
  X_LOCK_FILE_TEMPLATE = "/tmp/.X%d-lock"
  FIRST_X_DISPLAY_NUMBER = 20
@@ -9,9 +9,9 @@
  
  # Amount of time to wait between relaunching processes.
  SHORT_BACKOFF_TIME = 5
-@@ -723,6 +725,16 @@
-     subprocess.Popen(args, env=self.child_env, stdout=subprocess.DEVNULL,
-                      stderr=subprocess.DEVNULL)
+@@ -489,6 +491,16 @@
+     self.ssh_auth_sockname = ("/tmp/chromoting.%s.ssh_auth_sock" %
+                               os.environ["USER"])
  
 +  def _use_existing_session(self):
 +    with open(EXISTING_X_DISPLAY_FILE_PATH) as fh:
@@ -26,21 +26,28 @@
    def _launch_pre_session(self):
      # Launch the pre-session script, if it exists. Returns true if the script
      # was launched, false if it didn't exist.
-@@ -778,10 +790,13 @@
+@@ -522,14 +534,18 @@
      self._init_child_env()
-     self._setup_pulseaudio()
+     self.setup_audio()
      self._setup_gnubby()
--    self._launch_x_server(x_args)
+-    self._launch_server(server_args)
 -    if not self._launch_pre_session():
 -      # If there was no pre-session script, launch the session immediately.
--      self.launch_x_session()
+-      self.launch_desktop_session()
 +    if os.path.exists(EXISTING_X_DISPLAY_FILE_PATH):
 +        self._use_existing_session()
 +    else:
-+        self._launch_x_server(x_args)
++        self._launch_server(server_args)
 +        if not self._launch_pre_session():
 +          # If there was no pre-session script, launch the session immediately.
-+          self.launch_x_session()
++          self.launch_desktop_session()
++        self.session_inhibitor.record_started(MINIMUM_PROCESS_LIFETIME,
++                                         backoff_time)
++
+     self.server_inhibitor.record_started(MINIMUM_PROCESS_LIFETIME,
+                                       backoff_time)
+-    self.session_inhibitor.record_started(MINIMUM_PROCESS_LIFETIME,
+-                                     backoff_time)
  
-   def launch_host(self, host_config, extra_start_host_args):
-     # Start remoting host
+   def _wait_for_setup_before_host_launch(self):
+     """
