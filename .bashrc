@@ -5,8 +5,9 @@ case $- in
 esac
 
 # JUST USE FISH
-if [ -e /usr/local/bin/fishlogin ]; then
-  /usr/local/bin/fishlogin
+if [ -e /usr/bin/fish ]; then
+  [ -e ~/.bashrc.local ] && . ~/.bashrc.local
+  /usr/bin/fish
   return;
 fi
 

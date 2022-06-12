@@ -1,5 +1,5 @@
 echo Setting global exports...
-set -gx SHELL (which fish)
+set -gx SHELL (which bash)
 set -gx PAGER nvimpager
 set -gx EDITOR nvim
 set -gx VISUAL nvim
