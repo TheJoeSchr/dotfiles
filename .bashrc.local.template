@@ -9,15 +9,15 @@ if [[ "$TERM" =~ "screen".* ]]; then
   echo "Already inside TMUX"
 else
   read -t 2 -n 1 -p "Start tmux (y/N)? " answer
-  [ -z "$answer" ] && answer="N"  # 'yes' default choice
+  [ -z "$answer" ] && answer="N"  # 'no' default choice
   case ${answer:0:1} in
-     n|N )
-         echo "No Tmux"
-         ;;
-     * )
+     y|Y )
          echo "Starting tmux-init"
          tmux attach -t base || tmux new -s base
-     ;;
+         ;;
+     * )
+         echo "No Tmux"
+         ;;
   esac
 fi
 

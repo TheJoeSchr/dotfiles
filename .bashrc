@@ -47,7 +47,7 @@ if [ -e /usr/bin/fish ]; then
       # Drop in to fish only if the parent process is not fish. This allows to quickly enter in to bash by invoking bash command without lusing ~/.bashrc configuration:
       if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]
       then
-        echo "exec fish from \`.bashrc\`"
+        echo "Exec fish from \`.bashrc\`"
         exec -l fish "$@"
       fi
     fi
