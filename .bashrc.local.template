@@ -2,17 +2,7 @@
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 echo "Local Config"
-# important for `sudo -A`
-export SSH_ASKPASS='/usr/bin/ksshaskpass'
-
-export UID;
-export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json
-export BROWSER=$(which google-chrome-stable)
-# needed to make x11 forward for electron apps work
-## see: https://github.com/electron/electron/issues/22775
-export QT_X11_NO_MITSHM=1
-alias ca="config add"
-alias cs="config status"
+source ~/.profile.local
 
 # exit if inside tmux
 if [[ "$TERM" =~ "screen".* ]]; then
