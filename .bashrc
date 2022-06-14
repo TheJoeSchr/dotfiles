@@ -4,16 +4,53 @@ case $- in
       *) return;;
 esac
 
+SSH_ENV="$HOME/.ssh/agent-environment"
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
+
 # JUST USE FISH
 if [ -e /usr/bin/fish ]; then
-  # let .local handle calling tmux/fish/etc
-  if [ -e ~/.bashrc.local ]; 
-  then 
-    . ~/.bashrc.local
-    return;
-  else 
-    exec fish;
-  fi
+  # if don't want to use fish, just use exit in .bashrc.local
+  [ -e ~/.bashrc.local ] && . ~/.bashrc.local
+
+    ## FISH
+    echo " |---------------------------------------------------|"
+    echo " | ESCAPE HATCH:                                     |"
+    echo " | \`bash --norc\`  or \`bash -c \"\"\`                    |"
+    echo " | to manually enter Bash                            |"
+    echo " | without executing the commands from ~/.bashrc     |"
+    echo " | which would run \`exec -l fish\`                    |"
+    echo " |---------------------------------------------------|"
+
+    # To have commands such as `bash -c 'echo test'` run the command in Bash instead of starting fish
+    # from: /usr/bin/[ --help:
+    # -z STRING            the length of STRING is zero
+    if [ -z "$BASH_EXECUTION_STRING" ]; then
+      # Drop in to fish only if the parent process is not fish. This allows to quickly enter in to bash by invoking bash command without lusing ~/.bashrc configuration:
+      if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]
+      then
+        echo "exec fish from \`.bashrc\`"
+        exec -l fish "$@"
+      fi
+    fi
 fi
 
 # NO FISH
