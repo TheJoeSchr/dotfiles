@@ -8,7 +8,8 @@
 
 # Because ~/.profile isn't invoked if this files exists,
 # we must source ~/.profile to get its settings:
-if [ -r ~/.profile ]; then . ~/.profile; fi
+# if [ -r ~/.profile ]; then . ~/.profile; fi
+if [ -r ~/.profile.local ]; then . ~/.profile.local; fi
 
 # The following sources ~/.bashrc in the interactive login case,
 # because .bashrc isn't sourced for interactive login shells:
