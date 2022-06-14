@@ -6,9 +6,14 @@ esac
 
 # JUST USE FISH
 if [ -e /usr/bin/fish ]; then
-  [ -e ~/.bashrc.local ] && . ~/.bashrc.local
-  /usr/bin/fish
-  return;
+  # let .local handle calling tmux/fish/etc
+  if [ -e ~/.bashrc.local ]; 
+  then 
+    . ~/.bashrc.local
+    return;
+  else 
+    exec fish;
+  fi
 fi
 
 # NO FISH
