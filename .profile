@@ -63,7 +63,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 # export LANG=en_US.UTF-8
 #
 # # important for `sudo -A`
-# export SSH_ASKPASS='/usr/bin/ksshaskpass'
+# [ -s "/usr/bin/ksshaskpass" ] && export SSH_ASKPASS='/usr/bin/ksshaskpass'
 # for docker postgraphile
 # export UID;
 # NVIDIA
