@@ -2,7 +2,8 @@
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 echo "Local Config"
-source ~/.profile.local
+# gets sourced in ~/.profile, which gets called by ~/.bash_profile
+# source ~/.profile.local
 
 # exit if inside tmux
 if [[ "$TERM" =~ "screen".* ]]; then

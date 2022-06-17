@@ -17,6 +17,6 @@
 # fetch local stuff because .bashrc isn't called for login
 # shells. need to be working non-interactivly
 # source local commands
-[ -e ~/.bashrc.local ] && . ~/.bashrc.local
+[ -e ~/.bashrc ] && echo "Fishlogin fetches ~/.bashrc" && . ~/.bashrc
 # exec  replaces  the  currently  running shell with a new command. On successful completion, exec never returns.
 exec -l fish "$@"
