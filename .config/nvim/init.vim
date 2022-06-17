@@ -88,6 +88,8 @@ set fillchars+=vert:.
 
 " Set preview window to appear at bottom
 set splitbelow
+" Set preview window to appear at right
+set splitright
 
 " Don't dispay mode in command line (airilne already shows it)
 set noshowmode
