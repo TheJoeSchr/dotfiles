@@ -414,6 +414,14 @@ if !exists('g:vscode')
     " for Python code completion based on Jedi, a Python language server.
     " Plug 'davidhalter/jedi-vim' 
     " Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+
+    " CLOJURE(SCRIPT)
+    " required by vim-iced
+    Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
+    Plug 'guns/vim-sexp',    {'for': 'clojure'}
+    Plug 'liquidz/vim-iced', {'for': 'clojure'}
+    Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+
     " -- other
     " Ansible
     Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
@@ -1266,7 +1274,12 @@ endif
 " ============== / VSCODE-NEOVIM ===================
 
 " ================== UNIVERSAL PLUGINS CONFIG =================
-"
+
+" ------------------ VIM-ICED  ------------------
+" Enable vim-iced's default key mapping
+" This is recommended for newbies
+let g:iced_enable_default_key_mappings = v:true
+
 " ------------------ VIM-MAXIMIZER ------------------
 nnoremap <silent><C-w>O :MaximizerToggle<CR>
 vnoremap <silent><C-w>O :MaximizerToggle<CR>gv
