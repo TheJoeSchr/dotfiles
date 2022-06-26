@@ -11,6 +11,11 @@ switch-to-activity-8746a399-d795-48d4-825e-8b4497c90b4f=none,none,Switch to acti
 switch-to-activity-9be168ab-49bb-4c0d-8c54-34dd672fe9f3=none,none,Switch to activity "Gaming"
 switch-to-activity-ef581a10-edd3-4f56-a66f-f5d408d066ca=none,none,Switch to activity "Default"
 
+[Alacritty.desktop]
+New=none,none,New Terminal
+_k_friendly_name=Alacritty
+_launch=Ctrl+Alt+Return\tMeta+Alt+Return,none,Alacritty
+
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
 Switch keyboard layout to English (US, intl., AltGr Unicode combining, alt.)=none,none,Switch keyboard layout to English (US\\, intl.\\, AltGr Unicode combining\\, alt.)
