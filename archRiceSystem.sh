@@ -41,7 +41,8 @@ pikaur -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
 pikaur -S --noconfirm neovim ripgrep npm nvm tmux urlview python3 python-pip autopep8 mosh htop \
   bash-completion fish fzy fzf nodejs procs tldr fd duf dust exa bat nvimpager-git neovim-remote \
-  direnv
+  direnv babashka
+
 pip3 install --user wheel pynvim 
 pip3 install --user autopep8  # might fail
 pip3 install --user flake8  # might fail
@@ -68,12 +69,17 @@ fish -c 'omf install yimmy'
 # fzf
 fish -c 'fisher install PatrickF1/fzf.fish'
 # ssh-agent
-fish -c 'fisher install danhper/fish-ssh-agent'
+# fish -c 'fisher install danhper/fish-ssh-agent'
 
-fish -c 'fisher install jethrokuan/z'
+# z: pure-fish z (we use zoxide for now)
+# fish -c 'fisher install jethrokuan/z'
+
+# replay: take bash commands and use return value
+# e.g.:  replay "source ~/.nvm/nvm.sh --no-use && nvm use latest" # installs and uses latest nvm
 fish -c 'fisher install jorgebucaran/replay.fish'
-fish -c 'fisher install andreiborisov/sponge'
-fish -c 'fisher install gazorby/fish-abbreviation-tips'
+
+# fish -c 'fisher install andreiborisov/sponge'
+# fish -c 'fisher install gazorby/fish-abbreviation-tips'
 
 # MANUAL: install OH-MY-FISH
 # cd ~/Downloads
@@ -92,16 +98,30 @@ cd ~
 mkdir -p ~/.local/share/nvm
 fish -c 'fisher install jorgebucaran/nvm.fish'
 
+# INSTALL GUI & DESKTOP
+# ESSENTIALS 
+pikaur -S --noconfirm \
+  kwin-bismuth \
+  google-chrome \
+  # xclip is for alacritty \
+  alacritty xclip \
+  # 1password:
+  1password-cli \
+  1password-beta \
+  # vscode
+  visual-studio-code-bin \
+  # unify for logitech setpoint
+  ltunify \
+  # FONTS
+  noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack \
+  # MAYBE NOT SO ESSENTIAL...
+  zathura \
+  latte-dock-git \
+  signal-desktop \
+  cpupower-gui cpupower \
 
-#INSTALL GUI & RICE
-# ESSENTIALS DESKTOP
-paru -S --noconfirm kwin-bismuth latte-dock-git signal-desktop cpupower-gui cpupower google-chrome zathura
-# VSCODE
-paru -S --noconfirm visual-studio-code-bin 
 
-# FONTS
-paru -Sy noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack
-# powerline fonts
+# MANUALLY powerline fonts
 cd ~/Downloads
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts
