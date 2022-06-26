@@ -28,7 +28,7 @@ sudo pacman -S git ed python python-pip
 read -p "Is AUR support in \'Add/Remove Software\' enabled?" -n 1 -r 
 # install AUR helper:
 # try automatic
-sudo pamac install paru
+sudo pamac install pikaur
 
 # manual
 pip install --user commonmark wheel pyalpm
@@ -37,9 +37,9 @@ pip install --user commonmark wheel pyalpm
 sudo pacman -Syu
 
 # risky/estoric on arm
-paru -S  ntfs-3g-fuse
+pikaur -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
-paru -S --noconfirm neovim ripgrep npm nvm tmux urlview python3 python-pip autopep8 mosh htop \
+pikaur -S --noconfirm neovim ripgrep npm nvm tmux urlview python3 python-pip autopep8 mosh htop \
   bash-completion fish fzy fzf nodejs procs tldr fd duf dust exa bat nvimpager-git neovim-remote \
   direnv
 pip3 install --user wheel pynvim 
@@ -111,7 +111,7 @@ rm -rf fonts
 cd ~/Downloads
 
 # DOCKER/PODMAN
-paru -S --noconfirm podman catatonit crun
+pikaur -S --noconfirm podman catatonit crun
 # needed for cgroups
 # see: https://wiki.archlinux.org/index.php/Podman
 sudo touch /etc/sub{u,g}id
@@ -120,7 +120,7 @@ sudo  usermod --add-subuids 165536-231072 --add-subgids 165536-231072 (whoami)
 echo "[registries.search]
 registries = ['docker.io']" | sudo tee -a /etc/containers/registries.conf
 
-# install docker-compose
+# DOCKER-COMPOSE
 sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-(uname -s)-(uname -m) -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
@@ -136,36 +136,21 @@ cd ~/Downloads \
   && cd .. \
   && mv ta-lib/ ~/.local/sources/ta-lib \
 
-# TWEAKS
-# increase number of file watcher
-echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && sudo touch /etc/sysctl.conf && sudo sysctl -p
-
-# fix ntfs-3g disk access on mount as user
-sudo usermod -a -G disk (whoami)
-
-# fix vscode signin isues
-paru -S --nonconfirm qtkeychain gnome-keyring
-
-# fix .ssh
-chmod 600 .ssh/*
-
 # bluetooth a2dp
-# paru -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
+# pikaur -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
 # equalizer
-paru -Sy pulseeffects
-# unify for logitech setpoint
-paru -S --noconfirm ltunify
+# pikaur -Sy pulseeffects
 # NVIDIA INTEL HYBRID STUFF
 # sudo mhwd -i pci video-hybrid-intel-nvidia-450xx-prime
-# paru -S cuda vulkan-mesa-layers vulkan-intel lib32-vulkan-intel  lib32-amdvlk  lib32-nvidia-utils  lib32-vulkan-mesa-layers
+# pikaur -S cuda vulkan-mesa-layers vulkan-intel lib32-vulkan-intel  lib32-amdvlk  lib32-nvidia-utils  lib32-vulkan-mesa-layers
 # sudo mhwd -r pci video-nvidia-455xx
-# sudo paru -S lib32-opencl-nvidia-455xx opencl-nvidia
+# sudo pikaur -S lib32-opencl-nvidia-455xx opencl-nvidia
 
-# sudo paru -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
+# sudo pikaur -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
 
 # OPEN SHIFT
 # Minishift & OC Cli
-paru -Sy minishift origin-client
+pikaur -Sy minishift origin-client
 # ODO Cli
 sudo curl -L https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-linux-amd64 -o /usr/local/bin/odo
 sudo chmod +x /usr/local/bin/odo
@@ -176,43 +161,67 @@ sudo chmod +x /usr/local/bin/odo
 # https://wiki.archlinux.org/index.php/OpenShift#openshift_v4
 
 # INSTALL
-paru -S libvirt qemu qemu-arch-extra
+pikaur -S libvirt qemu qemu-arch-extra
 sudo pacman -Syu ebtables dnsmasq
 sudo systemctl restart libvirtd
 # CRC SETUP
 crc setup
 crc start
 
-# nordvpn
-paru -Syu --noconfirm nordvpn-bin
-sudo groupadd -r nordvpn
-sudo systemctl enable --now nordvpnd.service
-sudo gpasswd -a (whoami) nordvpn
 
 # cmdg
 cd ~/Downloads
 git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
 cd ~/.local/sources/cmdg
-paru -S go --noconfirm
+pikaur -S go --noconfirm
 go build ./cmd/cmdg
 sudo cp cmdg /usr/local/bin
 # press Ctrl-A u to open urls in mail
-paru -S --noconfirm urlview
+pikaur -S --noconfirm urlview
 cd ~/Downloads
 
-cd ~/Downloads/
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-git clone https://aur.archlinux.org/1password.git
-cd 1password &&  makepkg -si
-# CUSTOM KERNEL
 
+# 1password manually
+# cd ~/Downloads/
+# curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+# git clone https://aur.archlinux.org/1password.git
+# cd 1password &&  makepkg -si
+
+
+# CUSTOM KERNEL
 ## xenomod
 gpg --receive-keys 38DBBDC86092693E
-paru -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
+pikaur -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
 sudo ln -s /usr/src/linux-manjaro-xanmod  /usr/src/linux
 
 # install beta, because of DKMS
-paru -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
+pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
+
+sudo groupadd plugdev
+sudo usermod -aG plugdev $USER
+
+
+cd ~/Downloads
+pikaur -S chrome-remote-desktop --noconfirm
+cp /opt/google/chrome-remote-desktop/chrome-remote-desktop .
+patch -i chrome-remote-desktop--use_existing_session.patch chrome-remote-desktop
+sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop
+
+# TWEAKS
+# System76 scheduler
+pikaur -S system76-scheduler-git --noconfirm
+sudo systemctl enable --now com.system76.Scheduler.service
+# increase number of file watcher
+echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && sudo touch /etc/sysctl.conf && sudo sysctl -p
+
+# fix ntfs-3g disk access on mount as user
+sudo usermod -a -G disk (whoami)
+
+# fix vscode signin isues
+pikaur -S --nonconfirm qtkeychain gnome-keyring
+
+# fix .ssh
+chmod 600 .ssh/*
 
 # moonlander
 sudo touch /etc/udev/rules.d/50-oryx.rules
@@ -232,8 +241,12 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
   SYMLINK+="stm32_dfu"
  "| sudo tee -a /etc/udev/rules.d/50-wally.rules
 
-sudo groupadd plugdev
-sudo usermod -aG plugdev $USER
+# nordvpn
+pikaur -Syu --noconfirm nordvpn-bin
+sudo groupadd -r nordvpn
+sudo systemctl enable --now nordvpnd.service
+sudo gpasswd -a (whoami) nordvpn
+# /TWEAKS
 
 # DOCKER (REFRESH GROUP)
 # needs to be at end, because it sources .bashrc again
@@ -244,13 +257,3 @@ sudo systemctl enable docker
 sudo systemctl start docker
 sudo chown (id -u):(id -g) /var/run/docker.sock
 newgrp docker
-
-cd ~/Downloads
-paru -S chrome-remote-desktop --noconfirm
-cp /opt/google/chrome-remote-desktop/chrome-remote-desktop .
-patch -i chrome-remote-desktop--use_existing_session.patch chrome-remote-desktop
-sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop
-
-# System76 scheduler
-pikaur -S system76-scheduler-git --noconfirm
-sudo systemctl enable --now com.system76.Scheduler.service
