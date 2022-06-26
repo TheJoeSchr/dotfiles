@@ -32,10 +32,9 @@ sunmap <Space>
 " Ctrl+Space removes Space leader lag for multiple Space inserts
 inoremap <C-Space> <leader>
 
-" INSTALL PLUGVIM:
+" INSTALL plug.vim:
 " ==================
-" automagically install plug.vim
-" only on linux
+" automagically install only works on linux
 if !has('win32')
   if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
       echo "Downloading junegunn/vim-plug to manage plugins..."
@@ -46,7 +45,7 @@ if !has('win32')
 endif
 
 " ==================
-" FROM: HOW TO DO NINETY PERSENT OF WHAT PLUGINS DO WITH JUST VIM:
+" FROM: HOW TO DO 90 PERCENT OF WHAT PLUGINS DO WITH JUST VIM:
 " ==================
 " https://github.com/changemewtf/no_plugins/blob/master/no_plugins.vim
 " https://www.youtube.com/watch?v=XA2WjJbmmoM
@@ -126,6 +125,22 @@ set winbl=10
 
 " NOW WE CAN:
 " - Use ^n and ^p to go back and forth in the suggestion list
+
+
+" FILE BROWSING:
+" ==============
+
+" (for netrw)
+filetype plugin on
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=0  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_dirhistmax = 0
 
 " =======================
 " UNIVERSAL VIM SETTINGS:
@@ -231,19 +246,59 @@ noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
 
-" Switching between Vim and a full-screen terminal is so convenient
+" FULL-SCREEN TERMINAL switching, very convenient
 nnoremap <leader>t :stop<CR>
 
+" SPLITS:
+" ================
+" MOVE BETWEEN SPLITS OR WINDOWS:
+" more naturally with CTLR+jklw
+" close is <C-W>Q
+nnoremap <C-j> <C-W><C-J>
+nnoremap <C-k> <C-W><C-K>
+nnoremap <C-l> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
+
+"Open new split panes to right and bottom, which feels more natural than Vim’s default:
+set splitbelow
+set splitright
+
+" == CHEATSHEET =="
+" RESIZING SPLITS:
+" Max out the height of the current split
+" ctrl + w _
+" Max out the width of the current split
+" ctrl + w |
+" Normalize all split sizes, which is very handy when resizing terminal
+" ctrl + w =
+" MORE SPLIT MANIPULATION:
+" Swap top/bottom or left/right split
+" Ctrl+W R
+" Break out current window into a new tabview
+" Ctrl+W T
+" Close every window in the current tabview but the current one
+" Ctrl+W o
+
+
 " VIM DIFF
-" I used to feel that gvim was a big improvement for viewing diffs, but I've changed the background colour of my terminal to a dark non-black shade, and set
-" The result of this is that in diff mode, differing text shows up with a black background, and unchanged text is coloured with the terminal background colour. For side-by-side diffs, this works wonderfully, since you can tell immediately based on the other side whether a given line is a change or add; for non-side-by-side you will be able to see an unchanged part in a changed line.
-" This means that you can leave syntax colouring on and still be able to see diffs. Again, you do need to be able to set the background colour of the terminal to a unique, dark, non-black shade. This facility is available in the terminal emulators that 
+" I used to feel that gvim was a big improvement for viewing diffs,
+" but I've changed the background colour of my terminal to a dark non-black shade,
+" and set below
+" The result of this is that in diff mode, differing text shows up with a black background,
+" and unchanged text is coloured with the terminal background colour. 
+" For side-by-side diffs, this works wonderfully, since you can tell immediately 
+" based on the other side whether a given line is a change or add; for non-side-by-side 
+" you will be able to see an unchanged part in a changed line.
+" This means that you can leave syntax colouring on and still be able to see diffs.
+" Again, you do need to be able to set the background colour of the terminal to 
+" a unique, dark, non-black shade.
 :highlight DiffAdd ctermbg=None
 :highlight DiffChange ctermbg=None
 :highlight DiffDelete ctermbg=None
 :highlight DiffText cterm=Bold ctermbg=Black
 
 
+" ============== PLUGINS ============================
 " ============== only NATIVE VIM  ===================
 if !exists('g:vscode')
   " -------------- PLUGINS NATIVE VIM -------------------
@@ -267,7 +322,7 @@ if !exists('g:vscode')
       Plug 'zhou13/vim-easyescape'
       Plug 'justinmk/vim-sneak'
 
-      "VIM-ABOLISH"
+      " VIM-ABOLISH
       " Abolish lets you quickly find, substitute, and abbreviate several variations
       " of a word at once.  By default, three case variants (foo, Foo, and FOO) are
       " operated on by every command.
@@ -295,9 +350,9 @@ if !exists('g:vscode')
       " github copilot
       Plug 'github/copilot.vim'
 
-    " >============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
+    " ============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
 
-    " NATIVE ONLY:
+    " === NATIVE ONLY ===
     " Repeat.vim remaps . in a way that plugins can tap into it.
     Plug 'tpope/vim-repeat'
     " Startify
@@ -372,19 +427,18 @@ if !exists('g:vscode')
     Plug 'vim-airline/vim-airline-themes'
     " TMUX
     Plug 'christoomey/vim-tmux-navigator'
-    " Vue syntax highlight
+    " VUE syntax highlight
     Plug 'digitaltoad/vim-pug'
     Plug 'posva/vim-vue'
-    " Clojure(Script)
-    Plug 'tpope/vim-fireplace'
-    " colored log file
 
-    " start with
+    " COLORED LOG file, start with
     " :AnsiEsc
     Plug 'powerman/vim-plugin-AnsiEsc'
-    " nvim in browser
+    " nvim in browser textfields
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(-1) } }
 
+    " CODE OUTLINE
+    " mainly used via <leader>o
     " see tags, overview, etc
     Plug 'liuchengxu/vista.vim'
 
@@ -401,35 +455,6 @@ if !exists('g:vscode')
   " NATIVE SETTINGS:
   " ----------------
 
-  " SPLITS:
-  " ----------------
-  " MOVE BETWEEN SPLITS OR WINDOWS:
-  " more naturally with CTLR+jklw
-  " close is <C-W>Q
-  nnoremap <C-j> <C-W><C-J>
-  nnoremap <C-k> <C-W><C-K>
-  nnoremap <C-l> <C-W><C-L>
-  nnoremap <C-h> <C-W><C-H>
-
-  "Open new split panes to right and bottom, which feels more natural than Vim’s default:
-  set splitbelow
-  set splitright
-
-  " == CHEATSHEET =="
-  " RESIZING SPLITS:
-  " Max out the height of the current split
-  " ctrl + w _
-  " Max out the width of the current split
-  " ctrl + w |
-  " Normalize all split sizes, which is very handy when resizing terminal
-  " ctrl + w =
-  " MORE SPLIT MANIPULATION:
-  " Swap top/bottom or left/right split
-  " Ctrl+W R
-  " Break out current window into a new tabview
-  " Ctrl+W T
-  "Close every window in the current tabview but the current one
-  " Ctrl+W o
 
 
   " correct syntax highlight of // comments in .json files
@@ -1166,23 +1191,6 @@ endif
 " NOW WE CAN:
 " - Take over the world!
 "   (with much fewer keystrokes)
-
-" FILE BROWSING:
-" ==============
-
-" (for netrw)
-" keeping it on for nerdtree to highjack
-filetype plugin on
-
-" (still using NERDTREE as well, because of a lot of bugs in netrw)
-" Tweaks for browsing
-let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=0  " open in prior window
-let g:netrw_altv=1          " open splits to the right
-let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_dirhistmax = 0
 
 " BUILD INTEGRATION:
 " ==================

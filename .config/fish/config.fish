@@ -81,9 +81,9 @@ THE THREE TYPES OF ALIAS
   # fish_ssh_agent
   # autostart lf, or use CTRL+O to open it
   # lfcd
-end
+end # /(INTERACTIVE)
 
-# FINALLY (INTERACTIVE)
+# noninteractive:
 # direnv hook fish | source
 eval (direnv hook fish)
 
