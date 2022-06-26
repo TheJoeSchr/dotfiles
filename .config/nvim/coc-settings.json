@@ -1,4 +1,5 @@
 {
+  "coc.source.iced.enable": true,
   "python.linting.pylintEnabled": false,
   "coc.preferences.formatOnType": true,
   "suggest.noselect": true,
