@@ -390,7 +390,8 @@ if !exists('g:vscode')
     Plug 'theHamsta/nvim-dap-virtual-text'
     Plug 'rcarriga/nvim-dap-ui'
     " -- linter (works with eslint)
-    Plug 'dense-analysis/ale'
+    " Plug 'dense-analysis/ale' # disable for now, using coc todo lint, format
+    " and autocomplete
     " -- emulate vscode-vim stuff
     Plug 'tpope/vim-commentary'
     " -- original easymotion
@@ -417,10 +418,12 @@ if !exists('g:vscode')
 
     " CLOJURE(SCRIPT)
     " required by vim-iced
-    Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
+    " Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
     Plug 'guns/vim-sexp',    {'for': 'clojure'}
+    Plug 'tpope/vim-sexp-mappings-for-regular-people'
     Plug 'liquidz/vim-iced', {'for': 'clojure'}
     Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+    Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' } " lot of *()
 
     " -- other
     " Ansible
@@ -659,11 +662,13 @@ if !exists('g:vscode')
   let g:ale_sign_warning = '⚠ '
 
   " fixer configurations
-  let g:ale_fixers = { 'python': ['yapf'] }
+  " let g:ale_fixers = { 'python': ['yapf'] }
   " \   '*': ['remove_trailing_lines', 'trim_whitespace'],
   " \   'javascript': ['prettier', 'eslint'],
   " \   'vue': ['prettier', 'eslint'],
-
+  let g:ale_linters = {
+      \ 'clojure': ['clj-kondo', 'joker']
+  \}
   " ---------------- NVIM-DAP -----------------
   " mfussenegger/nvim-dap
 
@@ -935,6 +940,7 @@ EOF
     \ 'coc-pyright',
     \ 'coc-snippets',
     \ 'coc-tsserver',
+    \ 'coc-diagnostic',
     \ ]
   "  TextEdit might fail if hidden is not set.
   set hidden
