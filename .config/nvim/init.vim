@@ -420,6 +420,27 @@ if !exists('g:vscode')
     " required by vim-iced
     " Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
     Plug 'guns/vim-sexp',    {'for': 'clojure'}
+    " == SEXP MOTION MAPPINGS
+    " W, B, E, gE to use WORD motions
+
+    " List manipulation mappings
+    " >f and <f to move a form 
+    " >e and <e to move an element.
+
+    " >), <), >(, and <( to handle slurpage and barfage are handled,
+    " where the angle bracket indicates the direction, 
+    " the parenthesis indicates which end to operate on.
+
+    " Insertion mappings
+    " Use <I and >I to insert at the beginning and ending of a form.
+
+    " Mappings inspired by surround.vim
+    " Note that surround.vim out of the box works great with the sexp.vim motions and text objects. Use ysaf), for example, to surround the current form with parentheses. To this, we add a few more mappings:
+
+    " dsf: splice (delete surroundings of form)
+    " cse(/cse)/cseb: surround element in parentheses
+    " cse[/cse]: surround element in brackets
+    " cse{/cse}: surround element in braces
     Plug 'tpope/vim-sexp-mappings-for-regular-people'
     Plug 'liquidz/vim-iced', {'for': 'clojure'}
     Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
@@ -1285,7 +1306,20 @@ endif
 " Enable vim-iced's default key mapping
 " This is recommended for newbies
 let g:iced_enable_default_key_mappings = v:true
+" Format 
+" vim-sexp also provides formatting codes function. 
+" If you want to use vim-iced’s formatting function, you should define g:sexp_mappings as follows.
+let g:sexp_mappings = {'sexp_indent': '', 'sexp_indent_top': ''}
+let g:iced_formatter = 'joker'
 
+aug VimIcedAutoFormatOnWriting
+  au!
+  " Format whole buffer on writing files
+  au BufWritePre *.clj,*.cljs,*.cljc,*.edn execute ':IcedFormatSyncAll'
+
+  " Format only current form on writing files
+  " au BufWritePre *.clj,*.cljs,*.cljc,*.edn execute ':IcedFormatSync'
+aug END
 " ------------------ VIM-MAXIMIZER ------------------
 nnoremap <silent><C-w>O :MaximizerToggle<CR>
 vnoremap <silent><C-w>O :MaximizerToggle<CR>gv
