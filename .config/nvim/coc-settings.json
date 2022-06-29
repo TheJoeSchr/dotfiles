@@ -1,5 +1,4 @@
 {
-  "coc.source.iced.enable": true,
   "python.linting.pylintEnabled": false,
   "coc.preferences.formatOnType": true,
   "suggest.noselect": true,
@@ -22,6 +21,7 @@
   "python.formatting.provider": "autopep8",
   "git.addGBlameToVirtualText": true,
 
+  "coc.source.iced.enable": true,
   "diagnostic-languageserver.enable": true,
   "diagnostic-languageserver.linters": {
     "clj_kondo_lint": {
@@ -48,5 +48,8 @@
       }
     }
   },
-  "diagnostic-languageserver.filetypes": { "clojure": "clj_kondo_lint" }
+  "diagnostic-languageserver.filetypes": {
+    "clojure": "clj_kondo_lint"
+    //"clj": "clj_kondo_lint"
+  }
 }
