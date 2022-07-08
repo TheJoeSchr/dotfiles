@@ -50,7 +50,7 @@ THE THREE TYPES OF ALIAS
   alias du 'dust -d 1'
   alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
   abbr e 'nvim'
-  alias lf 'EDITOR=nvr lfnonvr' 
+  alias lf 'lfcd' 
   abbr fda 'fd -uu'
   alias find 'fd -uu'
   abbr install 'pikaur -S --needed --noconfirm'
