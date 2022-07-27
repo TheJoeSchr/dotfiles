@@ -1,4 +1,5 @@
 # Rename this file to match the name of the function
+# set -x NNN_OPENER ~/.local/sources/pistol/pistol
 # e.g. ~/.config/fish/functions/n.fish
 # or, add the lines to the 'config.fish' file.
 
