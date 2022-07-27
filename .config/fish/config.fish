@@ -2,11 +2,12 @@ echo Setting global exports...
 set -gx SHELL (which bash)
 set -gx PAGER nvimpager
 set -gx EDITOR nvim
-set -gx VISUAL nvim
+set -gx VISUAL nvr
 set -gx BROWSER google-chrome-stable
+set -x NNN_OPENER ~/.config/nnn/plugins/nuke 
+set -x NNN_PLUG 'f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:imgview'
 # always try to set DISPLAY
 set -q DISPLAY; or set -gx DISPLAY ":0"
-
 
 # INTERACTIVE
 if status --is-interactive
@@ -68,8 +69,11 @@ THE THREE TYPES OF ALIAS
   alias pbcopy 'xsel --clipboard --input'
   alias pbpaste 'xsel --clipboard --output'
   alias ls 'exa -G --icons'
-  alias ll 'ls -lT --level=1'
-  alias la 'll -a'
+  alias lll 'ls -lT --level=1'
+  # alias n => ./functions/n.fish 
+  alias N 'sudo -E nnn -DH'
+  alias ll 'n -D'
+  alias la 'll -H'
   alias tree 'll -a --level=3'
 
 

@@ -39,8 +39,9 @@ sudo pacman -Syu
 # risky/estoric on arm
 pikaur -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
-pikaur -S --noconfirm neovim ripgrep npm nvm tmux urlview python3 python-pip autopep8 mosh htop \
-  bash-completion fish fzy fzf nodejs procs tldr fd duf dust exa bat nvimpager-git neovim-remote \
+pikaur -S --noconfirm neovim ripgrep nnn tmux urlview python3 python-pip autopep8 mosh htop \
+  bash-completion fish fzy fzf nodejs procs tldr nvm npm fd duf dust exa bat \
+  nvimpager-git neovim-remote \
   direnv babashka
 
 pip3 install --user wheel pynvim 
