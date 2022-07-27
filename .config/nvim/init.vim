@@ -452,6 +452,21 @@ if !exists('g:vscode')
 
     " Use netrw instead of nerdtree, improve with `0-`
     Plug 'tpope/vim-vinegar'
+    " Also use nnn as filepicker
+    " EXPLORER MODE
+    " :NnnExplorer
+    " to open nnn in a vertical split simliar to NERDTree/nvim-tree.
+
+    " In this mode, the plugin makes use of nnn's -F flag to listen for opened files. Pressing Enter on a file will open that file in a new buffer, while keeping the nnn window open.
+
+    " PICKER MODE
+    " :NnnPicker to open nnn in a floating window.
+
+    " In this mode nnn's -p flag is used to listen for opened files on program exit. Picker mode implies only a single selection will be made before quitting nnn and thus the floating window.
+
+    " SELECTION
+    " In both modes it's possible to select multiple files before pressing Enter. Doing so will open the entire selection all at once, excluding the hovered file.
+    Plug 'luukvbaal/nnn.nvim'
 
     " airline
     Plug 'vim-airline/vim-airline'
@@ -818,6 +833,21 @@ EOF
   " nnoremap <leader>dbl <Plug>VimspectorToggleBreakpoint
   " nmap <leader>dbc <Plug>VimspectorToggleConditionalBreakpoint
 
+  " ---------------- NNN -----------------
+
+lua << EOF
+require("nnn").setup()
+EOF
+
+    " KEY BINDINGS
+    " _ as netrw on alternativa
+    nnoremap _ <cmd>NnnExplorer %:p:h<CR>
+    " picker with telescope style keybinds
+    nnoremap <leader>fp <cmd>NnnPicker<CR>
+    " _ as netrw on alternativa
+    " (beware tmux overlap)
+    " tnoremap <C-A-O> <cmd>NnnExplorer<CR>
+    " tnoremap <C-A-o> <cmd>NnnPicker<CR>
   " ---------------- FZF -----------------
   " MAIN KEYBIND
   " nnoremap <C-t> :Files<Cr>
