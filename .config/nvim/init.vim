@@ -400,6 +400,9 @@ if !exists('g:vscode')
     Plug 'leafgarland/typescript-vim'
     " -- vue
     Plug 'pangloss/vim-javascript'
+    " VUE syntax highlight
+    Plug 'digitaltoad/vim-pug'
+    Plug 'posva/vim-vue'
     " -- vue: vetur alternative
     " :CocInstall @yaegassy/coc-volar
     " Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
@@ -474,9 +477,6 @@ if !exists('g:vscode')
     Plug 'vim-airline/vim-airline-themes'
     " TMUX
     Plug 'christoomey/vim-tmux-navigator'
-    " VUE syntax highlight
-    Plug 'digitaltoad/vim-pug'
-    Plug 'posva/vim-vue'
 
     " COLORED LOG file, start with
     " :AnsiEsc
@@ -933,14 +933,16 @@ EOF
   "   <leader>; - Search for open buffers
   "   <leader>fg - Search current directory (rg)
   "   <leader>fw - Search current directory for occurences of word under cursor
-  "   OUT OF DATE:
   " Using lua functions
   nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+  " file finder
   nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+  " grep files
   nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
   " rg | fzf
   nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
   nnoremap <leader>fG :Rg 
+  " find word under cursor
   nnoremap <leader>fw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
 
   nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
