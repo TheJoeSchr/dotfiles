@@ -348,7 +348,7 @@ if !exists('g:vscode')
       " close other buffers (and more)
       Plug 'Asheq/close-buffers.vim'
       " github copilot
-      Plug 'github/copilot.vim'
+      " Plug 'github/copilot.vim'
 
     " ============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
 
