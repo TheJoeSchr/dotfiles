@@ -22,7 +22,12 @@ $config config status.showUntrackedFiles no
 touch ~/.vimrc.local
 touch ~/.bashrc.local
 mkdir -p ~/Downloads
+sudo pacman-key --init
+sudo pacman-key --populate 
+# need fish for scripting this...
+sudo pacman -S fish
 . .bashrc
+
 
 read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 5
 echo    # (optional) move to a new line
