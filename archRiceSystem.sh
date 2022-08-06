@@ -7,24 +7,29 @@ touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
 # install buildtools like eg. git make libffi glibc gcc
-sudo pacman -S --needed base-devel git
-sudo pacman -S ed direnv python python-pip
+sudo pacman -S --needed base-devel 
+
+sudo pacman -S git ed python python-pip 
+# STEAMDECK: fix broken headers
+sudo pacman -Sy glibc linux-headers linux-api-headers
+
 # LAST RESORT RESET
 # # update mirror-list
 # pacman-mirrors -g
 # # update keydatabases
 # sudo rm -R /etc/pacman.d/gnupg
-# sudo rm -R /root/.gnupg 
+# sudo rm -R /root/.gnupg
 # sudo dirmngr </dev/null
-# s
+
 # sudo pacman-key --init
-# sudo pacman-key --populate archlinux 
-# sudo pacman -Sy gnupg archlinux-keyring 
+# sudo pacman-key --populate
+# sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring
 # sudo pacman-key --refresh-keys
 # sudo systemctl restart pacman-init
 # update databases
 # sudo pacman -Fy
 # sudo pacman -Syy
+
 # STEAMDECK
 sudo steamos-readonly disable
 echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
@@ -52,10 +57,21 @@ sudo pacman -Syu
 # risky/estoric on arm
 pikaur -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
-pikaur -S --noconfirm neovim ripgrep nnn tmux urlview python3 python-pip autopep8 mosh htop \
-  bash-completion fish fzy fzf nodejs procs tldr nvm fd duf dust exa bat \
-  zoxide nvimpager-git neovim-remote \
+pikaur -S --noconfirm neovim-git fish \
+  tmux extract_url fpp \
+  # fish uses "hostname" in many scripts
+  inetutils \
+  #fails because of scdoc depenendy:
+  #nvimpager-git \
+  neovim-remote \
   direnv babashka-bin
+  ripgrep nnn jaapi-advcpmv \
+  # modern cli
+  bash-completion fzy fzf fd duf dust exa bat procs tldr \
+  python3 python-pip python-poetry \
+  mosh htop-git \
+  nodejs nvm npm  \
+  github-cli
 
 pip3 install --user wheel pynvim 
 pip3 install --user autopep8  # might fail
@@ -63,7 +79,6 @@ pip3 install --user flake8  # might fail
 
 
 # FISH DEFAULT SHELL
-
 # 1. Copy this file to /usr/local/bin/fishlogin
 sudo ln -s ~/.local/bin/fishlogin /usr/local/bin/fishlogin
 # 2. Make it executable:
@@ -102,6 +117,19 @@ fish -c 'fisher install jorgebucaran/replay.fish'
  cd oh-my-fish
  bin/install --offline
 
+# NVIMPAGER
+cd ~/Downloads
+git clone https://git.sr.ht/~sircmpwn/scdoc
+cd scdoc
+make
+sudo make install
+cd ~/Downloads
+git clone https://github.com/lucc/nvimpager
+cd nvimpager/
+make PREFIX=$HOME/.local/bin install
+cd ~
+rm -rf ~/Downloads/nvimpager ~/Downloads/scdoc
+
 # NPM / YARN / NODE / NVM
 nvm install --lts
 nvm use --lts
@@ -113,10 +141,11 @@ cd ~
 mkdir -p ~/.local/share/nvm
 fish -c 'fisher install jorgebucaran/nvm.fish'
 
-# INSTALL GUI & DESKTOP
-# ESSENTIALS 
+# ESSENTIALS GUI & DESKTOP
 pikaur -S --noconfirm \
-  kwin-bismuth \
+  kwin-bismuth-bin \
+  kdeconnect \
+  appimagelauncher \
   google-chrome \
   # xclip is for alacritty \
   alacritty xclip \
@@ -134,6 +163,7 @@ pikaur -S --noconfirm \
   latte-dock-git \
   signal-desktop \
   cpupower-gui cpupower \
+  insync \
 
 
 # MANUALLY powerline fonts
