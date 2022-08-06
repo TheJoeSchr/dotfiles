@@ -4,12 +4,14 @@ set -gx PAGER nvimpager
 set -gx EDITOR nvim
 set -gx VISUAL nvr
 set -gx BROWSER google-chrome-stable
+# nnn
 set -x NNN_OPENER ~/.config/nnn/plugins/nuke 
-
 set -x NNN_PLUG 'f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch'
 set -x USE_PISTOL 1
 # always try to set DISPLAY
 set -q DISPLAY; or set -gx DISPLAY ":0"
+# add user bin to path
+fish_add_path ~/.local/bin
 
 # INTERACTIVE
 if status --is-interactive

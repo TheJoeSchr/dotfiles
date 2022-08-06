@@ -1066,6 +1066,7 @@ menuFont[$d]
 shadeSortColumn[$d]
 smallestReadableFont[$d]
 toolBarFont[$d]
+widgetStyle[$d]
 
 [Gestures]
 Disabled=true
