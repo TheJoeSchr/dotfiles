@@ -7,32 +7,45 @@ touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
 # install buildtools like eg. git make libffi glibc gcc
-sudo pacman -S base-devel 
-sudo pacman -S git ed python python-pip 
+sudo pacman -S --needed base-devel git
+sudo pacman -S ed direnv python python-pip
 # LAST RESORT RESET
 # # update mirror-list
 # pacman-mirrors -g
 # # update keydatabases
 # sudo rm -R /etc/pacman.d/gnupg
-# sudo rm -R /root/.gnupg sudo dirmngr </dev/null
-
+# sudo rm -R /root/.gnupg 
+# sudo dirmngr </dev/null
+# s
 # sudo pacman-key --init
-# sudo pacman-key --populate archlinux manjaro
-# sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring
+# sudo pacman-key --populate archlinux 
+# sudo pacman -Sy gnupg archlinux-keyring 
 # sudo pacman-key --refresh-keys
-# sudo systemctl start pacman-init
-# # update databases
+# sudo systemctl restart pacman-init
+# update databases
 # sudo pacman -Fy
 # sudo pacman -Syy
+# STEAMDECK
+sudo steamos-readonly disable
+echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
+sudo pacman-key --init
+sudo pacman-key --populate
+sudo pacman-key --refresh-keys
+yay -S base-devel
 
 read -p "Is AUR support in \'Add/Remove Software\' enabled?" -n 1 -r 
 # install AUR helper:
 # try automatic
 sudo pamac install pikaur
 
-# manual
-pip install --user commonmark wheel pyalpm
+# PIKAUR manual
+cd ~/Downloads
+git clone https://aur.archlinux.org/pikaur.git
+cd pikaur
+makepkg -fsri
+# pip install --user commonmark wheel pyalpm
 
+cd ~
 # update all
 sudo pacman -Syu
 
@@ -40,9 +53,9 @@ sudo pacman -Syu
 pikaur -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
 pikaur -S --noconfirm neovim ripgrep nnn tmux urlview python3 python-pip autopep8 mosh htop \
-  bash-completion fish fzy fzf nodejs procs tldr nvm npm fd duf dust exa bat \
-  nvimpager-git neovim-remote \
-  direnv babashka
+  bash-completion fish fzy fzf nodejs procs tldr nvm fd duf dust exa bat \
+  zoxide nvimpager-git neovim-remote \
+  direnv babashka-bin
 
 pip3 install --user wheel pynvim 
 pip3 install --user autopep8  # might fail
@@ -58,10 +71,11 @@ sudo chmod +x /usr/local/bin/fishlogin
 # 3. Add it to /etc/shells
 echo /usr/local/bin/fishlogin | sudo tee -a /etc/shells
 # 4. Switch your login shell
-chsh -s /usr/local/bin/fishlogin $USER
+# chsh -s /usr/local/bin/fishlogin $USER
 # source: https://superuser.com/a/1046884
 
-# FISHER fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+# FISHER 
+fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
 
 # omf
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
