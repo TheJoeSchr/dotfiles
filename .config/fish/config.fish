@@ -52,6 +52,7 @@ THE THREE TYPES OF ALIAS
   alias gla 'PAGER=/usr/bin/less git lga'
   alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
   abbr cng 'config'
+  alias cd 'z'
   alias du 'dust -d 1'
   alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
   abbr e 'nvim'

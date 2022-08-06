@@ -141,6 +141,22 @@ cd ~
 mkdir -p ~/.local/share/nvm
 fish -c 'fisher install jorgebucaran/nvm.fish'
 
+# HTOP
+
+# refresh headers for steamdeck
+pikaur -S --noconfirm libnl libcap
+git clone https://github.com/htop-dev/htop ~/Downloads/htop
+cd ~/Downloads/htop
+  ./autogen.sh && \
+  ./configure \
+            --prefix=/usr \
+            --sysconfdir=/etc \
+            --enable-unicode \
+            --enable-openvz \
+            --enable-vserver
+  sudo make install
+cd ~ 
+
 # ESSENTIALS GUI & DESKTOP
 pikaur -S --noconfirm \
   kwin-bismuth-bin \
