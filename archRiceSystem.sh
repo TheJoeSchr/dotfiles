@@ -2,6 +2,7 @@
 
 mkdir ~/Downloads
 mkdir ~/.config
+mkdir ~/.local/sources
 touch ~/.vimrc.local
 touch ~/.bashrc.local
 touch ~/.config/Xresources.local
@@ -11,7 +12,7 @@ sudo pacman -S --needed base-devel
 
 sudo pacman -S git ed python python-pip 
 # STEAMDECK: fix broken headers
-sudo pacman -Sy glibc linux-headers linux-api-headers
+sudo pacman -Sy gcc glibc linux-headers linux-api-headers
 
 # LAST RESORT RESET
 # # update mirror-list
@@ -101,8 +102,11 @@ fish -c 'fisher install PatrickF1/fzf.fish'
 # ssh-agent
 # fish -c 'fisher install danhper/fish-ssh-agent'
 
-# z: pure-fish z (we use zoxide for now)
-# fish -c 'fisher install jethrokuan/z'
+# zoxide: fish helper
+# use:
+# z alias cd
+# zi => interactive
+fish -c 'fisher install jethrokuan/z'
 
 # replay: take bash commands and use return value
 # e.g.:  replay "source ~/.nvm/nvm.sh --no-use && nvm use latest" # installs and uses latest nvm
@@ -141,8 +145,42 @@ cd ~
 mkdir -p ~/.local/share/nvm
 fish -c 'fisher install jorgebucaran/nvm.fish'
 
-# HTOP
+# kwin-bismuth (steamdeck)
+cd ~/.local/source
+pikaur -G kwin-bismuth
+cd kwin-bismuth/src
+# maybe?
+# sudo pacman -S qt5-script qt5-declarative extra-cmake-modules
+# sudo pacman -S cmake ninja esbuild extra-cmake-modules
+# sudo pacman -S plasma-framework
+sudo pacman -S kdecoration \
+ kconfig kcoreaddons \
+ kde \
+ plasma \
+ kconfigwidgets \
+ kcodecs \
+ kwidgetsaddons \
+ kglobalaccel \
+ kauth ki1 \
+ kauth ki18n \
+ kdeclarative \
 
+makepkg --syncdeps --install --clean
+cd ~/.local/sources
+
+
+# CLOJURE (steamdeck)
+cd ~/.local/sources
+pikaur -G clojure
+cd clojure/
+makepkg --syncdeps --install --clean
+gpg --receive-keys 040193357D0606ED #leiningen
+sudo pacman -S readline
+pikaur -S leiningen rlwrap
+
+cd ~/.local/sources
+
+# HTOP
 # refresh headers for steamdeck
 pikaur -S --noconfirm libnl libcap
 git clone https://github.com/htop-dev/htop ~/Downloads/htop
@@ -162,7 +200,7 @@ pikaur -S --noconfirm \
   kwin-bismuth-bin \
   kdeconnect \
   appimagelauncher \
-  google-chrome \
+  google-chrome kdialog \
   # xclip is for alacritty \
   alacritty xclip \
   # 1password:
