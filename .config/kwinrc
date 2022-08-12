@@ -116,7 +116,12 @@ zoomEnabled=false
 
 [Script-bismuth]
 enableQuarterLayout=true
+floatingClass=steam,corekeyboard
+floatingTitle=CoreKeyboard
 ignoreActivity=Gaming
+ignoreClass=yakuake,spectacle,Conky,zoom,steam,systemsettings
+ignoreScreen=3
+ignoreTitle=Steam Keyboard,CoreKeyboard
 limitTileWidth=true
 limitTileWidthRatio=1.15
 maximizeSoleTile=true
@@ -157,13 +162,15 @@ SwitchingMode=1
 LayoutName=coverswitch
 ShowTabBox=false
 
+[Wayland]
+VirtualKeyboardEnabled=false
+
 [Windows]
 ActiveMouseScreen=false
 BorderlessMaximizedWindows=false
 ElectricBorderMaximize=false
 ElectricBorderTiling=false
 FocusStealingPreventionLevel=2
-HideUtilityWindowsForInactive=false
 SeparateScreenFocus=true
 
 [org.kde.kdecoration2]

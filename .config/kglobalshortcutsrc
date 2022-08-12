@@ -19,8 +19,11 @@ _launch=Ctrl+Alt+Return\tMeta+Alt+Return,none,Alacritty
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
+Switch keyboard layout to English (US, alt. intl.)=none,none,Switch keyboard layout to English (US\\, alt. intl.)
 Switch keyboard layout to English (US, intl., AltGr Unicode combining, alt.)=none,none,Switch keyboard layout to English (US\\, intl.\\, AltGr Unicode combining\\, alt.)
+Switch keyboard layout to English (US, intl., with dead keys)=none,none,Switch keyboard layout to English (US\\, intl.\\, with dead keys)
 Switch keyboard layout to English (intl., with AltGr dead keys)=none,none,Switch keyboard layout to English (intl.\\, with AltGr dead keys)
+Switch keyboard layout to EurKEY (US)=none,none,Switch keyboard layout to EurKEY (US)
 Switch to Next Keyboard Layout=none,Ctrl+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
@@ -31,10 +34,10 @@ decrease_master_win_count=Meta+\\,\tCtrl+Alt+\\,,Meta+[,Decrease Master Area Win
 decrease_window_height=Meta+[,Meta+Ctrl+K,Decrease Window Height
 decrease_window_width=Meta+{,Meta+Ctrl+H,Decrease Window Width
 focus_bottom_window=none,Meta+J,Focus Bottom Window
-focus_left_window=Ctrl+Alt+H\tMeta+H,Meta+H,Focus Left Window
-focus_next_window=Meta+J\tCtrl+Alt+J\tAlt+~,,Focus Next Window
-focus_prev_window=Alt+`\tMeta+K\tCtrl+Alt+K,,Focus Previous Window
-focus_right_window=Meta+L\tCtrl+Alt+L,Meta+L,Focus Right Window
+focus_left_window=Ctrl+Alt+H\tMeta+H\tMeta+Left,Meta+H,Focus Left Window
+focus_next_window=Meta+J\tAlt+~\tCtrl+Alt+J,,Focus Next Window
+focus_prev_window=Alt+`\tCtrl+Alt+K\tMeta+K,,Focus Previous Window
+focus_right_window=Meta+Right\tMeta+L\tCtrl+Alt+L,Meta+L,Focus Right Window
 focus_upper_window=none,Meta+K,Focus Upper Window
 increase_master_size=Meta+>\tCtrl+Alt+>,,Increase Master Area Size
 increase_master_win_count=Meta+.\tCtrl+Alt+.,Meta+],Increase Master Area Window Count
@@ -46,8 +49,8 @@ move_window_to_next_pos=Meta+Ctrl+Shift+J\tMeta+Shift+J,,Move Window to the Next
 move_window_to_prev_pos=Meta+Ctrl+Shift+K\tMeta+Shift+K,,Move Window to the Previous Position
 move_window_to_right_pos=none,Meta+Shift+L,Move Window Right
 move_window_to_upper_pos=none,Meta+Shift+K,Move Window Up
-next_layout=Meta+\\\\,Meta+\\\\,Switch to the Next Layout
-prev_layout=Meta+|,Meta+|,Switch to the Previous Layout
+next_layout=Meta+\\\\\tMeta+/,Meta+\\\\,Switch to the Next Layout
+prev_layout=Meta+|\tMeta+Del,Meta+|,Switch to the Previous Layout
 push_window_to_master=Meta+Return,Meta+Return,Push Active Window to Master Area
 rotate=Meta+R,Meta+R,Rotate
 rotate_part=Meta+Ctrl+R,Meta+Shift+R,Rotate Part
@@ -222,10 +225,10 @@ Window Fullscreen=Meta+Shift+F,,Make Window Fullscreen
 Window Grow Horizontal=none,,Pack Grow Window Horizontally
 Window Grow Vertical=none,,Pack Grow Window Vertically
 Window Lower=none,,Lower Window
-Window Maximize=Meta+Up\tMeta+PgUp\tCtrl+Alt+Up,Meta+PgUp,Maximize Window
+Window Maximize=Ctrl+Alt+Up\tMeta+PgUp\tMeta+Shift+M,Meta+PgUp,Maximize Window
 Window Maximize Horizontal=none,,Maximize Window Horizontally
 Window Maximize Vertical=none,,Maximize Window Vertically
-Window Minimize=Meta+M\tCtrl+Alt+Down\tMeta+PgDown\tCtrl+Alt+M\tMeta+Down,Meta+PgDown,Minimize Window
+Window Minimize=Ctrl+Alt+M\tCtrl+Alt+Down\tMeta+PgDown\tMeta+M,Meta+PgDown,Minimize Window
 Window Move=none,,Move Window
 Window Move Center=none,none,Move Window to the Center
 Window No Border=none,,Hide Window Border
@@ -401,7 +404,7 @@ _launch=none,none,Konsole
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
 _k_friendly_name=KRunner
-_launch=Shift+F2\tSearch\tAlt+F2,none,KRunner
+_launch=Alt+F2\tCtrl+Shift+Right\tShift+F2\tSearch,none,KRunner
 
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
