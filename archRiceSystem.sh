@@ -12,7 +12,9 @@ sudo pacman -S --needed base-devel
 
 sudo pacman -S git ed python python-pip 
 # STEAMDECK: fix broken headers
-sudo pacman -Sy gcc glibc linux-headers linux-api-headers
+sudo pacman -Sy gcc glibc lib32-glibc linux-headers linux-api-headers
+# FIX ALL THE BROKEN HEADERS
+# cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
 
 # LAST RESORT RESET
 # # update mirror-list
@@ -296,7 +298,7 @@ pikaur -S go --noconfirm
 go build ./cmd/cmdg
 sudo cp cmdg /usr/local/bin
 # press Ctrl-A u to open urls in mail
-pikaur -S --noconfirm urlview
+pikaur -S --noconfirm urlview lynx
 cd ~/Downloads
 
 
@@ -365,6 +367,12 @@ pikaur -Syu --noconfirm nordvpn-bin
 sudo groupadd -r nordvpn
 sudo systemctl enable --now nordvpnd.service
 sudo gpasswd -a (whoami) nordvpn
+
+# 1password
+
+sudo groupadd onepassword-cli
+sudo chown root:onepassword-cli (which op) && \
+sudo chmod g+s (which op)
 # /TWEAKS
 
 # DOCKER (REFRESH GROUP)
