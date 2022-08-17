@@ -201,7 +201,7 @@ cd ~
 pikaur -S --noconfirm \
   kwin-bismuth-bin \
   kdeconnect \
-  appimagelauncher \
+  appimagelauncher-git \
   google-chrome kdialog \
   # xclip is for alacritty \
   alacritty xclip \
@@ -288,6 +288,18 @@ sudo systemctl restart libvirtd
 # CRC SETUP
 crc setup
 crc start
+
+
+# MANUAL/LOCAL BUILDS
+# (mostly steamdeck)
+
+# appimagelauncher
+cd ~/.local/sources/
+pikaur -G appimagelauncher-git
+cd appimagelauncher-git
+sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
+makepkg --syncdeps --install --clean
+cd ~/.local/sources/
 
 
 # cmdg
