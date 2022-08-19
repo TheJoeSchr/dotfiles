@@ -87,7 +87,6 @@ pikaur -S --needed --noconfirm \
   googler-git \
     --overwrite "/etc/bash_completion.d/googler" \
   python3 python-pip python-poetry \
-  nodejs nvm npm  \
   github-cli \
   # fish z
   zoxide \
@@ -191,8 +190,12 @@ if test (read -P "Install fisher + theme + plugins?" -n 1) = "y"
   fish -c 'fisher install jethrokuan/z'
 
   # replay: take bash commands and use return value
-  # e.g.:  replay "source ~/.nvm/nvm.sh --no-use && nvm use latest" # installs and uses latest nvm
+  # e.g.:  replay "source /usr/share/nvm.sh --no-use && nvm use latest" # installs and uses latest nvm
   fish -c 'fisher install jorgebucaran/replay.fish'
+
+  # bass: makes it easy to use utilities written for Bash in fish shell.
+  # e.g.: bass export X=3 
+  fish -c 'fisher install edc/bass'
 
   # fish -c 'fisher install andreiborisov/sponge'
   # fish -c 'fisher install gazorby/fish-abbreviation-tips'
@@ -209,14 +212,16 @@ end
 
 # NPM / YARN / NODE / NVM
 if test (read -P "Setup NPM / YARN / NODE / NVM installations?" -n 1) = "y"
+  pikaur -S --noconfirm nvm
+  # install ~/.nvm
+  bash --norc /usr/share/nvm/init-nvm.sh
+
+  cd ~
+  mkdir -p ~/.local/share/nvm
+  fish -c 'fisher install jorgebucaran/nvm.fish'
   nvm install lts
   nvm use lts
   npm install -G yarn
-  cd ~
-  if test (read -P "Install nvm for fish" -n 1) = "y"
-    mkdir -p ~/.local/share/nvm
-    fish -c 'fisher install jorgebucaran/nvm.fish'
-  end
 end
 
 
@@ -236,78 +241,14 @@ if test (read -P "Install CLOJURE?" -n 1) = "y"
 end
 
 # ESSENTIALS GUI & DESKTOP
-if not $is_steam
-pikaur -S --noconfirm \
-  kwin-bismuth-bin \
-  appimagelauncher-git \
 
-else
-  # KWIN-BISMUTH
-  if test (read -P "Manually install KWIN-BISMUTH?" -n 1) = "y"
-    cd ~/.local/source
-    pikaur -G kwin-bismuth
-    cd kwin-bismuth/src
-    # maybe?
-    # sudo pacman -S qt5-script qt5-declarative extra-cmake-modules
-    # sudo pacman -S cmake ninja esbuild extra-cmake-modules
-    # sudo pacman -S plasma-framework
-    sudo pacman -S kdecoration \
-     kconfig kcoreaddons \
-     kde \
-     plasma \
-     kconfigwidgets \
-     kcodecs \
-     kwidgetsaddons \
-     kglobalaccel \
-     kauth ki1 \
-     kauth ki18n \
-     kdeclarative \
-
-    makepkg --syncdeps --install --clean
-
-  # APPIMAGELAUNCHER
-  if test (read -P "Manually install APPIMAGELAUNCHER?" -n 1) = "y"
-    cd ~/.local/sources/
-    pikaur -G appimagelauncher-git
-    cd appimagelauncher-git
-    sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
-    makepkg --syncdeps --install --clean
-    cd ~
-  end
-
-  # CMDG
-  if test (read -P "Manually install CMDG?" -n 1) = "y"
-    cd ~/.local/sources
-    git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
-    cd ~/.local/sources/cmdg
-    pikaur -S go --noconfirm
-    go build ./cmd/cmdg
-    sudo cp cmdg /usr/local/bin
-    # press Ctrl-A u to open urls in mail
-    pikaur -S --noconfirm urlview lynx
-    cd ~
-  end
-
-  # 1PASSWORD
-  if test (read -P "Manually install 1PASSWORD?" -n 1) = "y"
-    cd ~/.local/sources/
-    curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-    git clone https://aur.archlinux.org/1password.git
-    cd 1password &&  makepkg -si
-    cd ~
-  end
-end
-
-
-
-# first create some space on /
+# 1. create some space on steamdeck 
 if $is_steam
   # delete unneeded docs/fonts
   pikaur -R \
-    qt5-doc \
-    qt5-examples \
-    noto-fonts-cjk \
-    
+    qt5-examples qt5-doc
+  pikaur -R \
+    noto-fonts-cjk
 
   # MOVE steam
   if test (read -P "Move /usr/lib/steam?" -n 1) = "y"
@@ -316,16 +257,32 @@ if $is_steam
     sudo rmdir /usr/lib/steam/ &&  \
     sudo ln -s /home/deck/.local/lib/steam/ /usr/lib/steam
   end
-  # MOVE signal
+  # MOVE signal-desktop
   if test (read -P "Move /usr/lib/signal-desktop?" -n 1) = "y"
      sudo rsync -avzh --remove-source-files --progress /usr/lib/signal-desktop ~/.local/lib/ && \
      sudo rm -rf /usr/lib/signal-desktop/ &&  \
      sudo ln -s /home/deck/.local/lib/signal-desktop/ /usr/lib/signal-desktop
   end
+  # MOVE python3.10
+  if test (read -P "Move /usr/lib/python3.10?" -n 1) = "y"
+     sudo rsync -avzh --remove-source-files --progress /usr/lib/python3.10 ~/.local/lib/ && \
+     sudo rm -rf /usr/lib/python3.10/ &&  \
+     sudo ln -s /home/deck/.local/lib/python3.10/ /usr/lib/python3.10
+  end
+  # MOVE insync
+  if test (read -P "Move /usr/lib/insync?" -n 1) = "y"
+     sudo rsync -avzh --remove-source-files --progress /usr/lib/insync ~/.local/lib/ && \
+     sudo rm -rf /usr/lib/insync/ &&  \
+     sudo ln -s /home/deck/.local/lib/insync/ /usr/lib/insync
+  end
+  # MOVE jvm
+  if test (read -P "Move /usr/lib/jvm?" -n 1) = "y"
+     sudo rsync -avzh --remove-source-files --progress /usr/lib/jvm ~/.local/lib/ && \
+     sudo rm -rf /usr/lib/jvm/ &&  \
+     sudo ln -s /home/deck/.local/lib/jvm/ /usr/lib/jvm
+  end
 end
-
-
-# 
+# 2. install GUI apps
 pikaur -S --needed --noconfirm \
   filelight \
       --overwrite "/etc/xdg/filelightrc" \
@@ -361,7 +318,69 @@ if not $is_steam
     latte-dock-git \
     noto-fonts \
 
+  pikaur -S --needed --noconfirm \
+    kwin-bismuth-bin \
+    appimagelauncher-git \
+
+else
+  # KWIN-BISMUTH
+  if test (read -P "Manually install KWIN-BISMUTH?" -n 1) = "y"
+    cd ~/.local/sources
+    pikaur -G kwin-bismuth
+    cd kwin-bismuth
+    # maybe?
+    pikaur -S --noconfirm cmake ninja esbuild extra-cmake-modules
+    sudo pacman -S \
+     plasma-framework \
+     qt5-script qt5-svg qt5-declarative extra-cmake-modules \
+     kdecoration \
+     kconfig kcoreaddons \
+     plasma \
+     kconfigwidgets \
+     kcodecs \
+     kwidgetsaddons \
+     kglobalaccel \
+     kauth ki18n \
+     kdeclarative \
+
+    makepkg --syncdeps --install --clean
+  end
+
+  # APPIMAGELAUNCHER
+  if test (read -P "Manually install APPIMAGELAUNCHER?" -n 1) = "y"
+    cd ~/.local/sources/
+    pikaur -G appimagelauncher-git
+    cd appimagelauncher-git
+    sudo pacman -S libxpm lib32-glibc lib32-glib make cmake glib2 cairo librsvg zlib sysprof
+    makepkg --syncdeps --install --clean
+    cd ~
+  end
+
+  # CMDG
+  if test (read -P "Manually install CMDG?" -n 1) = "y"
+    cd ~/.local/sources
+    git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
+    cd ~/.local/sources/cmdg
+    pikaur -S go --noconfirm
+    go build ./cmd/cmdg
+    sudo cp cmdg /usr/local/bin
+    # press Ctrl-A u to open urls in mail
+    pikaur -S --noconfirm urlview lynx
+    cd ~
+  end
+
+  # 1PASSWORD
+  if test (read -P "Manually install 1PASSWORD?" -n 1) = "y"
+    cd ~/.local/sources/
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+    git clone https://aur.archlinux.org/1password.git
+    cd 1password &&  makepkg -si
+    cd ~
+  end
 end
+
+
+
 
 # # MANUALLY powerline fonts
 # cd ~/Downloads
