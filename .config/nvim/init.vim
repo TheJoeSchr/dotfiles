@@ -954,6 +954,7 @@ EOF
   noremap <leader>f: <cmd>lua require('telescope.builtin').commands()<cr>
   noremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
   noremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
+  noremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
   " ---------------- /Telescope --------
   " ---------------- Vista --------
   " How each level is indented and what to prepend.
@@ -1372,13 +1373,13 @@ imap <silent> <S-Right> <C-o><Plug>CamelCaseMotion_w
 " ----------- EASYMOTIONS ----------------
 " change easymotion trigger back to leader instead of leader leader
 " map <Leader> <Plug>(easymotion-prefix)
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
-map <Leader>w <Plug>(easymotion-w)
-map <Leader>b <Plug>(easymotion-b)
-map <Leader>e <Plug>(easymotion-e)
+map <Leader>ll <Plug>(easymotion-lineforward)
+map <Leader>jj <Plug>(easymotion-j)
+map <Leader>kk <Plug>(easymotion-k)
+map <Leader>hh <Plug>(easymotion-linebackward)
+map <Leader>ww <Plug>(easymotion-w)
+map <Leader>bb <Plug>(easymotion-b)
+map <Leader>E <Plug>(easymotion-e)
 " sunmap \hs
 " sunmap \hp
 " sunmap \hu
