@@ -1,4 +1,4 @@
-#! /bin/fish
+#! /bin/env fish
 
 mkdir ~/Downloads
 mkdir ~/.config mkdir ~/.local/sources
@@ -6,7 +6,7 @@ touch ~/.vimrc.local
 touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
-# STEAMDECK
+# IS STEAMDECK
 set host (uname --nodename)
 if test $host = "steamdeck"
   set is_steam true
@@ -15,9 +15,9 @@ else
 end
 
 if $is_steam
-  echo "host is steamdeck"
+  printf "Host is steamdeck\n"
 else
-  echo "host is not steamdeck"
+  printf "Host is not steamdeck\n"
 end
 
 if $is_steam
@@ -47,7 +47,7 @@ sudo pacman -S --needed git ed python python-pip
 # STEAMDECK: fix broken headers
 if $is_steam
   # no --needed, doesn't updated headers
-  sudo pacman -S gcc glibc lib31-glibc linux-headers linux-api-headers
+  sudo pacman -S gcc glibc lib32-glibc linux-headers linux-api-headers asp
   # FIX ALL THE BROKEN HEADERS
   cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
 end
@@ -55,7 +55,8 @@ end
 # update distro first
 sudo pacman -Syu
 
-if test (read -p "Is AUR support in \'Add/Remove Software\' enabled?" -n 1) = "y"
+# PIKAUR
+if test (read -P "Is AUR support in \'Add/Remove Software\' enabled?" -n 1) = "y"
   # install AUR helper:
   # try automatic
   sudo pamac install pikaur
@@ -70,179 +71,306 @@ if not command -sq "pikaur"
   cd ~
 end
 
-# risky/estoric on arm
-# pikaur -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
-pikaur -S --needed --noconfirm neovim-git fish \
-  tmux urlview fpp \
+pikaur -S --needed --noconfirm \
+  fish \
+  tmux fpp \
   # fish uses "hostname" in many scripts
   inetutils \
   #fails because of scdoc depenendy:
-  #nvimpager-git \
   neovim-remote \
-  direnv babashka-bin
+  direnv \
+  babashka-bin \
   ripgrep nnn jaapi-advcpmv \
   # modern cli
   bash-completion fzy fzf fd duf dust exa bat procs tldr \
+  googler-git \
+    --overwrite "/etc/bash_completion.d/googler" \
   python3 python-pip python-poetry \
-  mosh htop-git \
   nodejs nvm npm  \
-  github-cli
+  github-cli \
+  # fish z
+  zoxide \
 
-pip3 install --user wheel pynvim 
-pip3 install --user autopep8  # might fail
-pip3 install --user flake8  # might fail
+# ESSENTIALS w/ STEAM special cases
+  # eg. neovim-git htop  mosh urlview
+if $is_steam;
+  # NVIM
+  nvim --version # print current version
+  if test (read -P "Manually install NEOVIM-GIT (version >= 7 needed)?" -n 1) = "y"
+    # pikaur -S --needed neovim-git 
+    cd ~/.local/sources
+    pikaur -G neovim-git
+    cd neovim-git
+    makepkg--syncdeps --install --clean
+    cd 
+  end
+  # MOSH
+  pikaur -S --noconfirm mosh --overwrite "/etc/ufw/applications.d/mosh"
+  # URLVIEW
+  pikaur -S urlview --noconfirm --overwrite "/etc/urlview/*"
+  # HTOP
+  # need at least this version for current ~/.htop
+  if nottest "htop 3.2.1" = (htop --version)
+    pikaur -S --noconfirm --needed ncurses libnl libcap && pikaur -S htop-git
+
+    # manually (fallback)
+    htop --version
+    if test (read -P "Manually install HTOP?" -n 1) = "y"
+      git clone https://github.com/htop-dev/htop ~/.local/sources/htop
+      cd ~/.local/sources/htop
+        ./autogen.sh && \
+        ./configure \
+                  --prefix=/usr \
+                  --sysconfdir=/etc \
+                  --enable-unicode \
+                  --enable-openvz \
+                  --enable-vserver
+        sudo make install
+      cd ~ 
+    end
+  end
+  # NVIMPAGER
+  if not command "nvimpager"
+    if test (read -P "Manually install NVIMPAGER?" -n 1) = "y"
+      cd ~/Downloads
+      git clone https://git.sr.ht/~sircmpwn/scdoc
+      cd scdoc
+      make
+      sudo make install
+      cd ~/Downloads
+      git clone https://github.com/lucc/nvimpager
+      cd nvimpager/
+      make PREFIX=$HOME/.local/bin install
+      cd ~
+      rm -rf ~/Downloads/nvimpager ~/Downloads/scdoc
+    end 
+  end
+else # should just work
+  pikaur -S neovim-git mosh urlview nvimpager-git
+end
 
 
-# FISH DEFAULT SHELL
-# 1. Copy this file to /usr/local/bin/fishlogin
-sudo ln -s ~/.local/bin/fishlogin /usr/local/bin/fishlogin
-# 2. Make it executable:
-sudo chmod +x /usr/local/bin/fishlogin
-# 3. Add it to /etc/shells
-echo /usr/local/bin/fishlogin | sudo tee -a /etc/shells
-# 4. Switch your login shell
-# chsh -s /usr/local/bin/fishlogin $USER
-# source: https://superuser.com/a/1046884
+if test (read -P "Install pip wheel pynvim autopep8 flake8?" -n 1) = "y"
+  pip3 install --user wheel pynvim 
+  pip3 install --user autopep8  # might fail
+  pip3 install --user flake8  # might fail
+end
 
-# FISHER 
-fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+if test (read -P "Setup fishlogin?" -n 1) = "y"
+  # FISH DEFAULT SHELL
+  # 1. Copy this file to /usr/local/bin/fishlogin
+  sudo ln -s ~/.local/bin/fishlogin /usr/local/bin/fishlogin
+  # 2. Make it executable:
+  sudo chmod +x /usr/local/bin/fishlogin
+  # 3. Add it to /etc/shells
+  echo /usr/local/bin/fishlogin | sudo tee -a /etc/shells
+  # 4. print Instructions
+  printf "4. Switch your login shell:\n
+  chsh -s /usr/local/bin/fishlogin $USER\n
+  # source: https://superuser.com/a/1046884\n"
+end
 
-# omf
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-# omf theme
-fish -c 'omf install yimmy'
-# fzf
-fish -c 'fisher install PatrickF1/fzf.fish'
-# ssh-agent
-# fish -c 'fisher install danhper/fish-ssh-agent'
+if test (read -P "Install fisher + theme + plugins?" -n 1) = "y"
+  # FISHER 
+  fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
 
-# zoxide: fish helper
-# use:
-# z alias cd
-# zi => interactive
-fish -c 'fisher install jethrokuan/z'
+  # omf
+  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+  # omf theme
+  fish -c 'omf install yimmy'
+  # fzf
+  fish -c 'fisher install PatrickF1/fzf.fish'
+  # ssh-agent
+  # fish -c 'fisher install danhper/fish-ssh-agent'
 
-# replay: take bash commands and use return value
-# e.g.:  replay "source ~/.nvm/nvm.sh --no-use && nvm use latest" # installs and uses latest nvm
-fish -c 'fisher install jorgebucaran/replay.fish'
+  # zoxide: fish helper
+  # use:
+  # z alias cd
+  # zi => interactive
+  fish -c 'fisher install jethrokuan/z'
 
-# fish -c 'fisher install andreiborisov/sponge'
-# fish -c 'fisher install gazorby/fish-abbreviation-tips'
+  # replay: take bash commands and use return value
+  # e.g.:  replay "source ~/.nvm/nvm.sh --no-use && nvm use latest" # installs and uses latest nvm
+  fish -c 'fisher install jorgebucaran/replay.fish'
 
-# MANUAL: install OH-MY-FISH
-# cd ~/Downloads
- git clone -c core.autocrlf=false https://github.com/oh-my-fish/oh-my-fish
- cd oh-my-fish
- bin/install --offline
+  # fish -c 'fisher install andreiborisov/sponge'
+  # fish -c 'fisher install gazorby/fish-abbreviation-tips'
 
-# NVIMPAGER
-cd ~/Downloads
-git clone https://git.sr.ht/~sircmpwn/scdoc
-cd scdoc
-make
-sudo make install
-cd ~/Downloads
-git clone https://github.com/lucc/nvimpager
-cd nvimpager/
-make PREFIX=$HOME/.local/bin install
-cd ~
-rm -rf ~/Downloads/nvimpager ~/Downloads/scdoc
+  # MANUAL: install OH-MY-FISH
+  if test (read -P "Manually install OMF?" -n 1) = "y"
+    cd ~/.local/sources
+    git clone -c core.autocrlf=false https://github.com/oh-my-fish/oh-my-fish
+    cd oh-my-fish
+    bin/install --offline
+    cd 
+  end
+end
 
 # NPM / YARN / NODE / NVM
-nvm install --lts
-nvm use --lts
-nvm alias default 12
-nvm use default
-npm install -G yarn
-cd ~
-# install nvm for fish
-mkdir -p ~/.local/share/nvm
-fish -c 'fisher install jorgebucaran/nvm.fish'
-
-# kwin-bismuth (steamdeck)
-cd ~/.local/source
-pikaur -G kwin-bismuth
-cd kwin-bismuth/src
-# maybe?
-# sudo pacman -S qt5-script qt5-declarative extra-cmake-modules
-# sudo pacman -S cmake ninja esbuild extra-cmake-modules
-# sudo pacman -S plasma-framework
-sudo pacman -S kdecoration \
- kconfig kcoreaddons \
- kde \
- plasma \
- kconfigwidgets \
- kcodecs \
- kwidgetsaddons \
- kglobalaccel \
- kauth ki1 \
- kauth ki18n \
- kdeclarative \
-
-makepkg --syncdeps --install --clean
-cd ~/.local/sources
+if test (read -P "Setup NPM / YARN / NODE / NVM installations?" -n 1) = "y"
+  nvm install lts
+  nvm use lts
+  npm install -G yarn
+  cd ~
+  if test (read -P "Install nvm for fish" -n 1) = "y"
+    mkdir -p ~/.local/share/nvm
+    fish -c 'fisher install jorgebucaran/nvm.fish'
+  end
+end
 
 
 # CLOJURE (steamdeck)
-cd ~/.local/sources
-pikaur -G clojure
-cd clojure/
-makepkg --syncdeps --install --clean
-gpg --receive-keys 040193357D0606ED #leiningen
-sudo pacman -S readline
-pikaur -S leiningen rlwrap
-
-cd ~/.local/sources
-
-# HTOP
-# refresh headers for steamdeck
-pikaur -S --noconfirm libnl libcap
-git clone https://github.com/htop-dev/htop ~/Downloads/htop
-cd ~/Downloads/htop
-  ./autogen.sh && \
-  ./configure \
-            --prefix=/usr \
-            --sysconfdir=/etc \
-            --enable-unicode \
-            --enable-openvz \
-            --enable-vserver
-  sudo make install
-cd ~ 
+if test (read -P "Install CLOJURE?" -n 1) = "y"
+  cd ~/.local/sources
+  # build clojure
+  pikaur -G clojure && \
+    cd clojure/repos/community-any && \
+    makepkg --syncdeps --clean --force && \
+    sudo pacman -U --noconfirm clojure-*.pkg.tar.zst --overwrite "*" && \
+  # leiningen
+  gpg --receive-keys 040193357D0606ED && \
+    sudo pacman -S --noconfirm readline && \
+    pikaur -S --noconfirm leiningen rlwrap 
+  cd ~
+end
 
 # ESSENTIALS GUI & DESKTOP
+if not $is_steam
 pikaur -S --noconfirm \
   kwin-bismuth-bin \
-  kdeconnect \
   appimagelauncher-git \
+
+else
+  # KWIN-BISMUTH
+  if test (read -P "Manually install KWIN-BISMUTH?" -n 1) = "y"
+    cd ~/.local/source
+    pikaur -G kwin-bismuth
+    cd kwin-bismuth/src
+    # maybe?
+    # sudo pacman -S qt5-script qt5-declarative extra-cmake-modules
+    # sudo pacman -S cmake ninja esbuild extra-cmake-modules
+    # sudo pacman -S plasma-framework
+    sudo pacman -S kdecoration \
+     kconfig kcoreaddons \
+     kde \
+     plasma \
+     kconfigwidgets \
+     kcodecs \
+     kwidgetsaddons \
+     kglobalaccel \
+     kauth ki1 \
+     kauth ki18n \
+     kdeclarative \
+
+    makepkg --syncdeps --install --clean
+
+  # APPIMAGELAUNCHER
+  if test (read -P "Manually install APPIMAGELAUNCHER?" -n 1) = "y"
+    cd ~/.local/sources/
+    pikaur -G appimagelauncher-git
+    cd appimagelauncher-git
+    sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
+    makepkg --syncdeps --install --clean
+    cd ~
+  end
+
+  # CMDG
+  if test (read -P "Manually install CMDG?" -n 1) = "y"
+    cd ~/.local/sources
+    git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
+    cd ~/.local/sources/cmdg
+    pikaur -S go --noconfirm
+    go build ./cmd/cmdg
+    sudo cp cmdg /usr/local/bin
+    # press Ctrl-A u to open urls in mail
+    pikaur -S --noconfirm urlview lynx
+    cd ~
+  end
+
+  # 1PASSWORD
+  if test (read -P "Manually install 1PASSWORD?" -n 1) = "y"
+    cd ~/.local/sources/
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+    git clone https://aur.archlinux.org/1password.git
+    cd 1password &&  makepkg -si
+    cd ~
+  end
+end
+
+
+
+# first create some space on /
+if $is_steam
+  # delete unneeded docs/fonts
+  pikaur -R \
+    qt5-doc \
+    qt5-examples \
+    noto-fonts-cjk \
+    
+
+  # MOVE steam
+  if test (read -P "Move /usr/lib/steam?" -n 1) = "y"
+    sudo rsync -avzh --remove-source-files --progress /usr/lib/steam ~/.local/lib/ && \
+    sudo rmdir /usr/lib/steam/steam_launcher/ && \
+    sudo rmdir /usr/lib/steam/ &&  \
+    sudo ln -s /home/deck/.local/lib/steam/ /usr/lib/steam
+  end
+  # MOVE signal
+  if test (read -P "Move /usr/lib/signal-desktop?" -n 1) = "y"
+     sudo rsync -avzh --remove-source-files --progress /usr/lib/signal-desktop ~/.local/lib/ && \
+     sudo rm -rf /usr/lib/signal-desktop/ &&  \
+     sudo ln -s /home/deck/.local/lib/signal-desktop/ /usr/lib/signal-desktop
+  end
+end
+
+
+# 
+pikaur -S --needed --noconfirm \
+  filelight \
+      --overwrite "/etc/xdg/filelightrc" \
+  kdeconnect \
+      --overwrite "/etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop" \
   google-chrome kdialog \
+      --overwrite "/opt/google/chrome/*" \
   # xclip is for alacritty \
   alacritty xclip \
   # 1password:
   1password-cli \
   1password-beta \
+      --overwrite "/opt/1Password/*" \
   # vscode
+  # (needed for sync auth)
+  gnome-keyring libsecret libgnome-keyring \
+      --overwrite "/etc/xdg/autostart/gnome-keyring-*" \
   visual-studio-code-bin \
+      --overwrite "/opt/visual-studio-code/*" \
   # unify for logitech setpoint
   ltunify \
   # FONTS
-  noto-fonts powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack \
+  powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack \
   # MAYBE NOT SO ESSENTIAL...
   zathura \
-  latte-dock-git \
   signal-desktop \
   cpupower-gui cpupower \
+      --overwrite "/etc/cpupower_gui*" \
   insync \
 
+if not $is_steam
+  pikaur -S --needed --noconfirm \
+    latte-dock-git \
+    noto-fonts \
 
-# MANUALLY powerline fonts
-cd ~/Downloads
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
-cd ~/Downloads
+end
+
+# # MANUALLY powerline fonts
+# cd ~/Downloads
+# git clone https://github.com/powerline/fonts.git --depth=1
+# cd fonts
+# ./install.sh
+# cd ..
+# rm -rf fonts
+# cd ~/Downloads
 
 # DOCKER/PODMAN
 pikaur -S --noconfirm podman catatonit crun
@@ -304,34 +432,6 @@ crc start
 
 
 # MANUAL/LOCAL BUILDS
-# (mostly steamdeck)
-
-# appimagelauncher
-cd ~/.local/sources/
-pikaur -G appimagelauncher-git
-cd appimagelauncher-git
-sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
-makepkg --syncdeps --install --clean
-cd ~/.local/sources/
-
-
-# cmdg
-cd ~/Downloads
-git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
-cd ~/.local/sources/cmdg
-pikaur -S go --noconfirm
-go build ./cmd/cmdg
-sudo cp cmdg /usr/local/bin
-# press Ctrl-A u to open urls in mail
-pikaur -S --noconfirm urlview lynx
-cd ~/Downloads
-
-
-# 1password manually
-# cd ~/Downloads/
-# curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-# git clone https://aur.archlinux.org/1password.git
-# cd 1password &&  makepkg -si
 
 
 # CUSTOM KERNEL
