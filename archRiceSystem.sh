@@ -1,67 +1,80 @@
 #! /bin/fish
 
 mkdir ~/Downloads
-mkdir ~/.config
-mkdir ~/.local/sources
+mkdir ~/.config mkdir ~/.local/sources
 touch ~/.vimrc.local
 touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
+# STEAMDECK
+set host (uname --nodename)
+if test $host = "steamdeck"
+  set is_steam true
+else
+  set is_steam false
+end
+
+if $is_steam
+  echo "host is steamdeck"
+else
+  echo "host is not steamdeck"
+end
+
+if $is_steam
+  # prepare steam fs
+  sudo steamos-readonly disable
+  # need nvim
+  yay -S neovim-git xsel
+  # rank mirror because pacman-key is slow
+  sudo pacman -S pacman-contrib --overwrite /etc/ld.so.conf.d/fakeroot.conf
+  yay -S rankmirrors-systemd
+  # update keys
+  echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
+  sudo pacman -S gnupg archlinux-keyring
+  sudo pacman-key --init
+  sudo pacman-key --populate
+  sudo pacman-key --refresh-keys
+  sudo systemctl restart pacman-init
+  # update databases
+  sudo pacman -Fy
+  sudo pacman -Syy
+end
+
 # install buildtools like eg. git make libffi glibc gcc
 sudo pacman -S --needed base-devel 
+sudo pacman -S --needed git ed python python-pip
 
-sudo pacman -S git ed python python-pip 
 # STEAMDECK: fix broken headers
-sudo pacman -Sy gcc glibc lib32-glibc linux-headers linux-api-headers
-# FIX ALL THE BROKEN HEADERS
-# cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
+if $is_steam
+  # no --needed, doesn't updated headers
+  sudo pacman -S gcc glibc lib31-glibc linux-headers linux-api-headers
+  # FIX ALL THE BROKEN HEADERS
+  cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
+end
 
-# LAST RESORT RESET
-# # update mirror-list
-# pacman-mirrors -g
-# # update keydatabases
-# sudo rm -R /etc/pacman.d/gnupg
-# sudo rm -R /root/.gnupg
-# sudo dirmngr </dev/null
-
-# sudo pacman-key --init
-# sudo pacman-key --populate
-# sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring
-# sudo pacman-key --refresh-keys
-# sudo systemctl restart pacman-init
-# update databases
-# sudo pacman -Fy
-# sudo pacman -Syy
-
-# STEAMDECK
-sudo steamos-readonly disable
-echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
-sudo pacman-key --init
-sudo pacman-key --populate
-sudo pacman-key --refresh-keys
-yay -S base-devel
-
-read -p "Is AUR support in \'Add/Remove Software\' enabled?" -n 1 -r 
-# install AUR helper:
-# try automatic
-sudo pamac install pikaur
-
-# PIKAUR manual
-cd ~/Downloads
-git clone https://aur.archlinux.org/pikaur.git
-cd pikaur
-makepkg -fsri
-# pip install --user commonmark wheel pyalpm
-
-cd ~
-# update all
+# update distro first
 sudo pacman -Syu
 
+if test (read -p "Is AUR support in \'Add/Remove Software\' enabled?" -n 1) = "y"
+  # install AUR helper:
+  # try automatic
+  sudo pamac install pikaur
+end
+
+if not command -sq "pikaur"
+  # PIKAUR manual
+  cd ~/.local/sources
+  git clone https://aur.archlinux.org/pikaur.git
+  cd pikaur
+  makepkg -fsri
+  cd ~
+end
+
 # risky/estoric on arm
-pikaur -S  ntfs-3g-fuse
+# pikaur -S  ntfs-3g-fuse
 # ESSENTIALS SYSTEM
-pikaur -S --noconfirm neovim-git fish \
-  tmux extract_url fpp \
+pikaur -S --needed --noconfirm neovim-git fish \
+  tmux urlview fpp \
   # fish uses "hostname" in many scripts
   inetutils \
   #fails because of scdoc depenendy:
@@ -396,3 +409,20 @@ sudo systemctl enable docker
 sudo systemctl start docker
 sudo chown (id -u):(id -g) /var/run/docker.sock
 newgrp docker
+
+# LAST RESORT KEY DB RESET
+# # update mirror-list
+# pacman-mirrors -g
+# # update keydatabases
+# sudo rm -R /etc/pacman.d/gnupg
+# sudo rm -R /root/.gnupg
+# sudo dirmngr </dev/null
+
+# sudo pacman-key --init
+# sudo pacman-key --populate
+# sudo pacman -Sy gnupg archlinux-keyring manjaro-keyring
+# sudo pacman-key --refresh-keys
+# sudo systemctl restart pacman-init
+# update databases
+# sudo pacman -Fy
+# sudo pacman -Syy
