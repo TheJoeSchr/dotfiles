@@ -84,16 +84,22 @@ pikaur -S --needed --noconfirm \
   ripgrep nnn jaapi-advcpmv \
   # modern cli
   bash-completion fzy fzf fd duf dust exa bat procs tldr \
-  googler-git \
-    --overwrite "/etc/bash_completion.d/googler" \
   python3 python-pip python-poetry \
   github-cli \
+  nordvpn-bin \
   # fish z
   zoxide \
 
 # ESSENTIALS w/ STEAM special cases
   # eg. neovim-git htop  mosh urlview
 if $is_steam;
+  # googler
+  pikaur -S googler-git \
+    --overwrite "/etc/bash_completion.d/googler" \
+  # sshuttle
+  pikaur -S sshuttle  --overwrite "/usr/lib/python3.*" && \
+    sudo pacman -S python
+
   # NVIM
   nvim --version # print current version
   if test (read -P "Manually install NEOVIM-GIT (version >= 7 needed)?" -n 1) = "y"
@@ -145,8 +151,13 @@ if $is_steam;
       rm -rf ~/Downloads/nvimpager ~/Downloads/scdoc
     end 
   end
-else # should just work
-  pikaur -S neovim-git mosh urlview nvimpager-git
+else # not steam should just work
+  pikaur -S \ 
+    neovim-git nvimpager-git \
+    mosh \
+    urlview \
+    googler-git \
+    sshuttle \
 end
 
 
@@ -341,7 +352,7 @@ else
      kwidgetsaddons \
      kglobalaccel \
      kauth ki18n \
-     kdeclarative \
+     kdeclarative  && \
 
     makepkg --syncdeps --install --clean
   end
@@ -351,21 +362,22 @@ else
     cd ~/.local/sources/
     pikaur -G appimagelauncher-git
     cd appimagelauncher-git
-    sudo pacman -S libxpm lib32-glibc lib32-glib make cmake glib2 cairo librsvg zlib sysprof
+    sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
     makepkg --syncdeps --install --clean
     cd ~
   end
 
   # CMDG
   if test (read -P "Manually install CMDG?" -n 1) = "y"
-    cd ~/.local/sources
     git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
     cd ~/.local/sources/cmdg
     pikaur -S go --noconfirm
     go build ./cmd/cmdg
     sudo cp cmdg /usr/local/bin
     # press Ctrl-A u to open urls in mail
-    pikaur -S --noconfirm urlview lynx
+    pikaur -S --noconfirm urlview lynx \
+      --overwrite "/etc/lynx.lss"
+    pikaur -R go
     cd ~
   end
 
@@ -379,32 +391,7 @@ else
   end
 end
 
-
-
-
-# # MANUALLY powerline fonts
-# cd ~/Downloads
-# git clone https://github.com/powerline/fonts.git --depth=1
-# cd fonts
-# ./install.sh
-# cd ..
-# rm -rf fonts
-# cd ~/Downloads
-
-# DOCKER/PODMAN
-pikaur -S --noconfirm podman catatonit crun
-# needed for cgroups
-# see: https://wiki.archlinux.org/index.php/Podman
-sudo touch /etc/sub{u,g}id
-sudo  usermod --add-subuids 165536-231072 --add-subgids 165536-231072 (whoami)
-# add dockerhub
-echo "[registries.search]
-registries = ['docker.io']" | sudo tee -a /etc/containers/registries.conf
-
-# DOCKER-COMPOSE
-sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-(uname -s)-(uname -m) -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-
+if test (read -P "Install ta-lib" -n 1) = "y"
 # TA-LIB
 cd ~/Downloads \
   && wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz \
@@ -413,59 +400,90 @@ cd ~/Downloads \
   && sed -i.bak "s|0.00000001|0.000000000000000001 |g" src/ta_func/ta_utility.h \
   && ./configure --prefix=/usr/local \
   && make \
-  && sudo make install \
-  && cd .. \
+  && sudo make install \ && cd .. \
   && mv ta-lib/ ~/.local/sources/ta-lib \
 
-# bluetooth a2dp
-# pikaur -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
-# equalizer
-# pikaur -Sy pulseeffects
-# NVIDIA INTEL HYBRID STUFF
-# sudo mhwd -i pci video-hybrid-intel-nvidia-450xx-prime
-# pikaur -S cuda vulkan-mesa-layers vulkan-intel lib32-vulkan-intel  lib32-amdvlk  lib32-nvidia-utils  lib32-vulkan-mesa-layers
-# sudo mhwd -r pci video-nvidia-455xx
-# sudo pikaur -S lib32-opencl-nvidia-455xx opencl-nvidia
+end
 
-# sudo pikaur -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
+# MANUALLY powerline fonts
+if test (read -P "Manually install POWERLINE-FONTS?" -n 1) = "y"
+  cd ~/Downloads
+  git clone https://github.com/powerline/fonts.git --depth=1
+  cd fonts
+  ./install.sh
+  cd ..
+  rm -rf fonts
+  cd ~/Downloads
+end
 
-# OPEN SHIFT
-# Minishift & OC Cli
-pikaur -Sy minishift origin-client
-# ODO Cli
-sudo curl -L https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-linux-amd64 -o /usr/local/bin/odo
-sudo chmod +x /usr/local/bin/odo
+if not $is_steam
 
-# openshift crc
-# install `crc` first from here:
-# https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.20/html/getting_started_guide/using-codeready-containers_gsg
-# https://wiki.archlinux.org/index.php/OpenShift#openshift_v4
+  if test (read -P "Install docker/podman" -n 1) = "y"
+    # DOCKER/PODMAN
+    pikaur -S --noconfirm podman catatonit crun
+    # needed for cgroups
+    # see: https://wiki.archlinux.org/index.php/Podman
+    sudo touch /etc/sub{u,g}id
+    sudo  usermod --add-subuids 165536-231072 --add-subgids 165536-231072 (whoami)
+    # add dockerhub
+    echo "[registries.search]
+    registries = ['docker.io']" | sudo tee -a /etc/containers/registries.conf
 
-# INSTALL
-pikaur -S libvirt qemu qemu-arch-extra
-sudo pacman -Syu ebtables dnsmasq
-sudo systemctl restart libvirtd
-# CRC SETUP
-crc setup
-crc start
+    # DOCKER-COMPOSE
+    sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-(uname -s)-(uname -m) -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
 
+    # OPEN SHIFT
+    # Minishift & OC Cli
+    pikaur -Sy minishift origin-client
+    # ODO Cli
+    sudo curl -L https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-linux-amd64 -o /usr/local/bin/odo
+    sudo chmod +x /usr/local/bin/odo
 
-# MANUAL/LOCAL BUILDS
-
-
-# CUSTOM KERNEL
-## xenomod
-gpg --receive-keys 38DBBDC86092693E
-pikaur -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
-sudo ln -s /usr/src/linux-manjaro-xanmod  /usr/src/linux
-
-# install beta, because of DKMS
-pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
-
-sudo groupadd plugdev
-sudo usermod -aG plugdev $USER
+    # openshift crc
+    # install `crc` first from here:
+    # https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.20/html/getting_started_guide/using-codeready-containers_gsg
+    # https://wiki.archlinux.org/index.php/OpenShift#openshift_v4
+    # # CRC SETUP
+    # crc setup
+    # crc start
+  end
 
 
+
+  # bluetooth a2dp
+  # pikaur -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
+  # equalizer
+  # pikaur -Sy pulseeffects
+  # NVIDIA INTEL HYBRID STUFF
+  # sudo mhwd -i pci video-hybrid-intel-nvidia-450xx-prime
+  # pikaur -S cuda vulkan-mesa-layers vulkan-intel lib32-vulkan-intel  lib32-amdvlk  lib32-nvidia-utils  lib32-vulkan-mesa-layers
+  # sudo mhwd -r pci video-nvidia-455xx
+  # sudo pikaur -S lib32-opencl-nvidia-455xx opencl-nvidia
+
+  # sudo pikaur -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
+
+
+  if test (read -P "Install qemu/libwirt" -n 1) = "y"
+    pikaur -S libvirt qemu qemu-arch-extra
+    sudo pacman -Syu ebtables dnsmasq
+    sudo systemctl restart libvirtd
+  end
+
+  # MANUAL/LOCAL BUILDS
+  # CUSTOM KERNEL
+  ## xenomod
+  gpg --receive-keys 38DBBDC86092693E
+  pikaur -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
+  sudo ln -s /usr/src/linux-manjaro-xanmod  /usr/src/linux
+
+  # install beta, because of DKMS
+  pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
+  sudo groupadd plugdev
+  sudo usermod -aG plugdev $USER
+
+
+end
 cd ~/Downloads
 pikaur -S chrome-remote-desktop --noconfirm
 cp /opt/google/chrome-remote-desktop/chrome-remote-desktop .
@@ -473,62 +491,67 @@ patch -i chrome-remote-desktop--use_existing_session.patch chrome-remote-desktop
 sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop
 
 # TWEAKS
-# System76 scheduler
-pikaur -S system76-scheduler-git --noconfirm
-sudo systemctl enable --now com.system76.Scheduler.service
+if not $is_steam
+  # fix ntfs-3g disk access on mount as user
+  sudo usermod -a -G disk (whoami)
+  # System76 scheduler
+  pikaur -S system76-scheduler-git --noconfirm
+  sudo systemctl enable --now com.system76.Scheduler.service
+end
+
 # increase number of file watcher
 echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && sudo touch /etc/sysctl.conf && sudo sysctl -p
-
-# fix ntfs-3g disk access on mount as user
-sudo usermod -a -G disk (whoami)
-
-# fix vscode signin isues
-pikaur -S --nonconfirm qtkeychain gnome-keyring
 
 # fix .ssh
 chmod 600 .ssh/*
 
-# moonlander
-sudo touch /etc/udev/rules.d/50-oryx.rules
+if test (read -P "Fix moonlander rules?" -n 1) = "y"
+  # moonlander
+  sudo touch /etc/udev/rules.d/50-oryx.rules
 
-echo "
- # Rule for all ZSA keyboards
- SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", GROUP=\"plugdev\"
- # Rule for the Moonlander
- SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", ATTR{idProduct}==\"1969\", GROUP=\"plugdev\"
- "| sudo tee -a /etc/udev/rules.d/50-oryx.rules
+  echo "
+   # Rule for all ZSA keyboards
+   SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", GROUP=\"plugdev\"
+   # Rule for the Moonlander
+   SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", ATTR{idProduct}==\"1969\", GROUP=\"plugdev\"
+   "| sudo tee -a /etc/udev/rules.d/50-oryx.rules
 
-sudo touch /etc/udev/rules.d/50-wally.rules
-echo "
-# STM32 rules for the Moonlander and Planck EZ
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
-  MODE:="0666", \
-  SYMLINK+="stm32_dfu"
- "| sudo tee -a /etc/udev/rules.d/50-wally.rules
+  sudo touch /etc/udev/rules.d/50-wally.rules
+  echo "
+  # STM32 rules for the Moonlander and Planck EZ
+  SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
+    MODE:="0666", \
+    SYMLINK+="stm32_dfu"
+   "| sudo tee -a /etc/udev/rules.d/50-wally.rules
 
-# nordvpn
-pikaur -Syu --noconfirm nordvpn-bin
-sudo groupadd -r nordvpn
-sudo systemctl enable --now nordvpnd.service
-sudo gpasswd -a (whoami) nordvpn
+end
+if test (read -P "Fix groups for nordvpn, 1password, docker?" -n 1) = "y"
+  # nordvpn
+  sudo groupadd -r nordvpn
+  sudo systemctl enable --now nordvpnd.service
+  sudo gpasswd -a (whoami) nordvpn
 
-# 1password
+  # 1password
+  sudo groupadd onepassword-cli
+  sudo chown root:onepassword-cli (which op) && \
+  sudo chmod g+s (which op)
 
-sudo groupadd onepassword-cli
-sudo chown root:onepassword-cli (which op) && \
-sudo chmod g+s (which op)
-# /TWEAKS
+  # DOCKER (REFRESH GROUP)
+  # needs to be at end, because it sources .bashrc again
+  # DOCKER
+  sudo groupadd docker
+  sudo usermod -aG docker (whoami)
+  sudo systemctl enable docker
+  sudo systemctl start docker
+  sudo chown (id -u):(id -g) /var/run/docker.sock
+  newgrp docker
+end
 
-# DOCKER (REFRESH GROUP)
-# needs to be at end, because it sources .bashrc again
-# DOCKER
-sudo groupadd docker
-sudo usermod -aG docker (whoami)
-sudo systemctl enable docker
-sudo systemctl start docker
-sudo chown (id -u):(id -g) /var/run/docker.sock
-newgrp docker
-
+# DELETE UNNEEDED PACKAGES
+if test (read -P "Remove all unneeded packages?" -n 1) = "y"
+  sudo pacman -Rs (pacman -Qtdq)
+end
+#
 # LAST RESORT KEY DB RESET
 # # update mirror-list
 # pacman-mirrors -g
