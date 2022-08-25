@@ -15,7 +15,7 @@ switch-to-activity-ef581a10-edd3-4f56-a66f-f5d408d066ca=none,none,Switch to acti
 [Alacritty.desktop]
 New=none,none,New Terminal
 _k_friendly_name=Alacritty
-_launch=Ctrl+Alt+Return\tMeta+Alt+Return,none,Alacritty
+_launch=Meta+Ctrl+Return\tMeta+Alt+Return\tCtrl+Alt+Return,none,Alacritty
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
@@ -404,7 +404,7 @@ _launch=none,none,Konsole
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
 _k_friendly_name=KRunner
-_launch=Alt+F2\tCtrl+Shift+Right\tShift+F2\tSearch,none,KRunner
+_launch=Alt+F2\tShift+F2\tSearch\tCtrl+Shift+Right\tMeta+Shift+Space,none,KRunner
 
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
@@ -459,7 +459,7 @@ activate widget 23=none,none,Activate Global Menu Widget
 activate widget 239=none,none,Activate Analog Clock Widget
 activate widget 27=none,none,Activate Application Menu Widget
 activate widget 272=none,none,Activate Application Launcher Widget
-activate widget 3=Meta+Space,none,Activate Application Launcher Widget
+activate widget 3=Meta+S\tMeta+Space,none,Activate Application Launcher Widget
 activate widget 32=none,none,Activate Application Launcher Widget
 activate widget 33=none,none,Activate Hard Disk Activity Widget
 activate widget 46=none,none,Activate Battery and Brightness Widget
