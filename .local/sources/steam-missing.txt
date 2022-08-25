@@ -62,13 +62,9 @@ dolphin
 dos2unix
 dosfstools
 double-conversion
-dracut
 drkonqi
 e2fsprogs
-ebook-tools
 editorconfig-core-c
-efibootmgr
-efivar
 elfutils
 ell
 enchant

@@ -65,7 +65,7 @@ THE THREE TYPES OF ALIAS
   abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr ta 'tmux a'
-  abbr upgrade 'pikaur -Syu --noconfirm'
+  abbr upgrade 'sudo pacman -Syu --noconfirm && pikaur -Syu --noconfirm'
   abbr upgrade-paru 'paru -Syu --skipreview --useask --noconfirm'
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
   abbr psax 'procs'
