@@ -303,6 +303,7 @@ pikaur -S --needed --noconfirm \
       --overwrite "/opt/google/chrome/*" \
   # xclip is for alacritty \
   alacritty xclip \
+  yakuake \
   # 1password:
   1password-cli \
   1password-beta \
