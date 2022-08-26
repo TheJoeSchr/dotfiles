@@ -47,6 +47,7 @@ THE THREE TYPES OF ALIAS
   # set -g fish_user_abbreviations
   abbr g 'git'
   abbr G 'git'
+  abbr ga 'git add'
   abbr gs 'git status'
   alias gl 'PAGER=/usr/bin/less git lg'
   alias gla 'PAGER=/usr/bin/less git lga'

@@ -1123,7 +1123,7 @@ EOF
   " Show all diagnostics.
   nnoremap <silent> <leader>a  :<C-u>CocList diagnostics<cr>
   " Manage extensions.
-  nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
+  " nnoremap <silent> <leader>fe  :<C-u>CocList extensions<cr>
   " Show commands.
   nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
   " Find symbol of current document.
@@ -1330,12 +1330,17 @@ endif
 " Enable vim-iced's default key mapping
 " This is recommended for newbies
 let g:iced_enable_default_key_mappings = v:true
+
+" Command to start REPL in :IcedJackIn.
+"  Default value is 'iced repl' .
+" let g:iced#nrepl#connect#jack_in_command = 'bb nrepl'
+
 " Format 
 " vim-sexp also provides formatting codes function. 
 " If you want to use vim-iced’s formatting function, you should define g:sexp_mappings as follows.
 let g:sexp_mappings = {'sexp_indent': '', 'sexp_indent_top': ''}
 let g:iced_formatter = 'joker'
-
+map <Leader>er :IcedInstantConnect babashka<CR>
 aug VimIcedAutoFormatOnWriting
   au!
   " Format whole buffer on writing files
