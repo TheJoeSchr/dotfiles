@@ -1378,13 +1378,21 @@ imap <silent> <S-Right> <C-o><Plug>CamelCaseMotion_w
 " ----------- EASYMOTIONS ----------------
 " change easymotion trigger back to leader instead of leader leader
 " map <Leader> <Plug>(easymotion-prefix)
-map <Leader>ll <Plug>(easymotion-lineforward)
-map <Leader>jj <Plug>(easymotion-j)
-map <Leader>kk <Plug>(easymotion-k)
-map <Leader>hh <Plug>(easymotion-linebackward)
-map <Leader>ww <Plug>(easymotion-w)
-map <Leader>bb <Plug>(easymotion-b)
-map <Leader>E <Plug>(easymotion-e)
+map <Leader><Leader>l <Plug>(easymotion-lineforward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><Leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>w <Plug>(easymotion-w)
+map <Leader><Leader>b <Plug>(easymotion-b)
+map <Leader><Leader>e <Plug>(easymotion-e)
+
+map <LocalLeader>l <Plug>(easymotion-lineforward)
+map <LocalLeader>j <Plug>(easymotion-j)
+map <LocalLeader>k <Plug>(easymotion-k)
+map <LocalLeader>h <Plug>(easymotion-linebackward)
+map <LocalLeader>w <Plug>(easymotion-w)
+map <LocalLeader>b <Plug>(easymotion-b)
+map <LocalLeader>e <Plug>(easymotion-e)
 " sunmap \hs
 " sunmap \hp
 " sunmap \hu
