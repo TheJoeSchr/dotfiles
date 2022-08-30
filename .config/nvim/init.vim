@@ -17,6 +17,7 @@ set nocompatible
 " Must stand before other uses
 " Maps leader to \
 let mapleader="\\"
+let maplocalleader=","
 " Map SPACE to None
 " Without that, pressing <Space> will not behave like other keys as mapleader.
 " <Space> in normal mode is mapped to <right>.
@@ -419,8 +420,7 @@ if !exists('g:vscode')
     " Plug 'davidhalter/jedi-vim' 
     " Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 
-    " CLOJURE(SCRIPT)
-    " required by vim-iced
+    " CLOJURE(-SCRIPT)
     " Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
     Plug 'guns/vim-sexp',    {'for': 'clojure'}
     " == SEXP MOTION MAPPINGS
@@ -445,8 +445,7 @@ if !exists('g:vscode')
     " cse[/cse]: surround element in brackets
     " cse{/cse}: surround element in braces
     Plug 'tpope/vim-sexp-mappings-for-regular-people'
-    Plug 'liquidz/vim-iced', {'for': 'clojure'}
-    Plug 'liquidz/vim-iced-coc-source', {'for': 'clojure'}
+    Plug 'Olical/conjure'
     Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' } " lot of *()
 
     " -- other
@@ -1326,29 +1325,9 @@ endif
 
 " ================== UNIVERSAL PLUGINS CONFIG =================
 
-" ------------------ VIM-ICED  ------------------
-" Enable vim-iced's default key mapping
-" This is recommended for newbies
-let g:iced_enable_default_key_mappings = v:true
+" ------------------ CONJURE  ------------------
 
-" Command to start REPL in :IcedJackIn.
-"  Default value is 'iced repl' .
-" let g:iced#nrepl#connect#jack_in_command = 'bb nrepl'
 
-" Format 
-" vim-sexp also provides formatting codes function. 
-" If you want to use vim-iced’s formatting function, you should define g:sexp_mappings as follows.
-let g:sexp_mappings = {'sexp_indent': '', 'sexp_indent_top': ''}
-let g:iced_formatter = 'joker'
-map <Leader>er :IcedInstantConnect babashka<CR>
-aug VimIcedAutoFormatOnWriting
-  au!
-  " Format whole buffer on writing files
-  au BufWritePre *.clj,*.cljs,*.cljc,*.edn execute ':IcedFormatSyncAll'
-
-  " Format only current form on writing files
-  " au BufWritePre *.clj,*.cljs,*.cljc,*.edn execute ':IcedFormatSync'
-aug END
 " ------------------ VIM-MAXIMIZER ------------------
 nnoremap <silent><C-w>O :MaximizerToggle<CR>
 vnoremap <silent><C-w>O :MaximizerToggle<CR>gv
