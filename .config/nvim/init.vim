@@ -1402,13 +1402,18 @@ map g/ <Plug>(incsearch-fuzzy-stay)
 " 'fs': 2 character Sneak
 " map fs <Plug>Sneak_s
 " map Fs <Plug>Sneak_S
-" let g:sneak#label = 2
+let g:sneak#label = 1
 
+" immediately after invoking Sneak you can move to the
+" next match by hitting `s` (or `S`) again
+let g:sneak#s_next = 1
+
+" DISABLED because of built-in sneak
 " replace f and/or t with one-character Sneak?
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+" map f <Plug>Sneak_f
+" map F <Plug>Sneak_F
+" map t <Plug>Sneak_t
+" map T <Plug>Sneak_T
 
 
 " --------- RIPGREP ---------
