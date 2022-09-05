@@ -14,10 +14,10 @@ set nocompatible
 " (eg. \\w for easymotion-w)
 " --------------------------
 "
+let maplocalleader=","
 " Must stand before other uses
 " Maps leader to \
 let mapleader="\\"
-let maplocalleader=","
 " Map SPACE to None
 " Without that, pressing <Space> will not behave like other keys as mapleader.
 " <Space> in normal mode is mapped to <right>.
@@ -316,10 +316,10 @@ if !exists('g:vscode')
       Plug 'haya14busa/incsearch.vim'
       Plug 'haya14busa/incsearch-fuzzy.vim'
       Plug 'haya14busa/incsearch-easymotion.vim'
-      " - helps with f scoping
-      Plug 'unblevable/quick-scope'
       " no visual delay after jk / kj
       Plug 'zhou13/vim-easyescape'
+      " - helps with sneak scoping
+      Plug 'unblevable/quick-scope'
       Plug 'justinmk/vim-sneak'
 
       " VIM-ABOLISH
@@ -1357,6 +1357,19 @@ imap <silent> <S-Right> <C-o><Plug>CamelCaseMotion_w
 " ----------- EASYMOTIONS ----------------
 " change easymotion trigger back to leader instead of leader leader
 " map <Leader> <Plug>(easymotion-prefix)
+" <leader>: space or \
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>f <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>w <Plug>(easymotion-w)
+map <Leader>b <Plug>(easymotion-b)
+map <Leader>e <Plug>(easymotion-e)
+
+
+" <leader><leader> only works with double \\
 map <Leader><Leader>l <Plug>(easymotion-lineforward)
 map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
@@ -1365,13 +1378,6 @@ map <Leader><Leader>w <Plug>(easymotion-w)
 map <Leader><Leader>b <Plug>(easymotion-b)
 map <Leader><Leader>e <Plug>(easymotion-e)
 
-map <LocalLeader>l <Plug>(easymotion-lineforward)
-map <LocalLeader>j <Plug>(easymotion-j)
-map <LocalLeader>k <Plug>(easymotion-k)
-map <LocalLeader>h <Plug>(easymotion-linebackward)
-map <LocalLeader>w <Plug>(easymotion-w)
-map <LocalLeader>b <Plug>(easymotion-b)
-map <LocalLeader>e <Plug>(easymotion-e)
 " sunmap \hs
 " sunmap \hp
 " sunmap \hu
