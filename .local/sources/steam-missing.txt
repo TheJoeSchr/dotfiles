@@ -469,6 +469,7 @@ qca-qt5
 qrencode
 qt5-base
 qt5-feedback
+qt5-x11extras
 rav1e
 re2
 rest
