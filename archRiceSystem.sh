@@ -49,6 +49,7 @@ if $is_steam
   # no --needed, doesn't updated headers
   sudo pacman -S gcc glibc lib32-glibc linux-headers linux-api-headers asp
   # FIX ALL THE BROKEN HEADERS
+  # installs packages with missing files
   cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
 end
 
@@ -344,10 +345,11 @@ else
     pikaur -S --noconfirm cmake ninja esbuild extra-cmake-modules
     sudo pacman -S \
      plasma-framework \
-     qt5-script qt5-svg qt5-declarative extra-cmake-modules \
+     qt5-script qt5-svg qt5-declarative \
+     extra-cmake-modules \
+     plasma \
      kdecoration \
      kconfig kcoreaddons \
-     plasma \
      kconfigwidgets \
      kcodecs \
      kwidgetsaddons \
