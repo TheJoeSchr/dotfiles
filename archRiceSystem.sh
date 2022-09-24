@@ -20,41 +20,44 @@ else
   printf "Host is not steamdeck\n"
 end
 
-if $is_steam
-  # prepare steam fs
-  sudo steamos-readonly disable
-  # rank mirror because pacman-key is slow
-  sudo pacman -S pacman-contrib --overwrite /etc/ld.so.conf.d/fakeroot.conf
-  if type -q "yay"
-    yay -S rankmirrors-systemd
+
+if test (read -P "Init keys and full ugprade?" -n 1) = "y"
+  if $is_steam
+    # prepare steam fs
+    sudo steamos-readonly disable
+    # rank mirror because pacman-key is slow
+    sudo pacman -S pacman-contrib --overwrite /etc/ld.so.conf.d/fakeroot.conf
+    if type -q "yay"
+      yay -S rankmirrors-systemd
+    end
+    # update keys
+    echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
+    sudo pacman -S gnupg archlinux-keyring
+    sudo pacman-key --init
+    sudo pacman-key --populate
+    sudo pacman-key --refresh-keys
+    sudo systemctl restart pacman-init
+    # update databases
+    sudo pacman -Fy
+    sudo pacman -Syy
   end
-  # update keys
-  echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
-  sudo pacman -S gnupg archlinux-keyring
-  sudo pacman-key --init
-  sudo pacman-key --populate
-  sudo pacman-key --refresh-keys
-  sudo systemctl restart pacman-init
-  # update databases
-  sudo pacman -Fy
-  sudo pacman -Syy
+
+  # install buildtools like eg. git make libffi glibc gcc
+  sudo pacman -S --needed --noconfirm base-devel 
+  sudo pacman -S --needed --noconfrim git ed python python-pip
+
+  # STEAMDECK: fix broken headers
+  if $is_steam
+    # no --needed, doesn't updated headers
+    sudo pacman -S gcc glibc lib32-glibc linux-headers linux-api-headers asp
+    # FIX ALL THE BROKEN HEADERS
+    # installs packages with missing files
+    cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
+  end
+
+  # update distro first
+  sudo pacman -Syu
 end
-
-# install buildtools like eg. git make libffi glibc gcc
-sudo pacman -S --needed --noconfirm base-devel 
-sudo pacman -S --needed --noconfrim git ed python python-pip
-
-# STEAMDECK: fix broken headers
-if $is_steam
-  # no --needed, doesn't updated headers
-  sudo pacman -S gcc glibc lib32-glibc linux-headers linux-api-headers asp
-  # FIX ALL THE BROKEN HEADERS
-  # installs packages with missing files
-  cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
-end
-
-# update distro first
-sudo pacman -Syu
 
 # PIKAUR
 if test (read -P "Install 'pikaur' via 'pacman'?" -n 1) = "y"
@@ -72,100 +75,102 @@ if not command -sq "pikaur"
   cd ~
 end
 
-# ESSENTIALS SYSTEM
-pikaur -S --needed --noconfirm \
-  fish \
-  tmux fpp \
-  # fish uses "hostname" in many scripts
-  inetutils \
-  #fails because of scdoc depenendy:
-  neovim-remote \
-  direnv \
-  babashka-bin \
-  ripgrep nnn jaapi-advcpmv \
-  # modern cli
-  bash-completion fzy fzf fd duf dust exa bottom bat procs tldr \
-  python3 python-pip python-poetry \
-  github-cli \
-  nordvpn-bin \
-  # fish z
-  zoxide \
+if test (read -P "Install cli essentials (fish, tmux, ...)" -n 1) = "y"
+  # ESSENTIALS SYSTEM
+  pikaur -S --needed --noconfirm \
+    fish \
+    tmux fpp \
+    # fish uses "hostname" in many scripts
+    inetutils \
+    #fails because of scdoc depenendy:
+    neovim-remote \
+    direnv \
+    babashka-bin \
+    ripgrep nnn jaapi-advcpmv \
+    # modern cli
+    bash-completion fzy fzf fd duf dust exa bottom bat procs tldr \
+    python3 python-pip python-poetry \
+    github-cli \
+    nordvpn-bin \
+    # fish z
+    zoxide \
 
-# ESSENTIALS w/ STEAM special cases
-  # eg. neovim-git htop  mosh urlview
-if $is_steam
-  # googler
-  pikaur -S googler-git \
-    --overwrite "/etc/bash_completion.d/googler" \
-  # sshuttle
-  pikaur -S sshuttle  --overwrite "/usr/lib/python3.*" && \
-    sudo pacman -S python
+  # ESSENTIALS w/ STEAM special cases
+    # eg. neovim-git htop  mosh urlview
+  if $is_steam
+    # googler
+    pikaur -S googler-git \
+      --overwrite "/etc/bash_completion.d/googler" \
+    # sshuttle
+    pikaur -S sshuttle  --overwrite "/usr/lib/python3.*" && \
+      sudo pacman -S python
 
-  # NVIM
-  pikaur -S neovim-git xsel
-  nvim --version # print current version
-  if test (read -P "Manually install NEOVIM-GIT (version >= 7 needed)?" -n 1) = "y"
-    # pikaur -S --needed neovim-git 
-    cd ~/.local/sources
-    pikaur -G neovim-git
-    cd neovim-git
-    makepkg --syncdeps --install --clean
-    cd 
-  end
-  # MOSH
-  pikaur -S --noconfirm mosh --overwrite "/etc/ufw/applications.d/mosh"
-  # URLVIEW
-  pikaur -S urlview --noconfirm --overwrite "/etc/urlview/*"
-  # HTOP
-  if test (read -P "Manually install htop?" -n 1) = "y"
-    # need at least this version for current ~/.htop
-    if nottest "htop 3.2.1" = (htop --version)
-      pikaur -S --noconfirm --needed ncurses libnl libcap && pikaur -S htop-git
+    # NVIM
+    pikaur -S neovim-git xsel
+    nvim --version # print current version
+    if test (read -P "Manually install NEOVIM-GIT (version >= 7 needed)?" -n 1) = "y"
+      # pikaur -S --needed neovim-git 
+      cd ~/.local/sources
+      pikaur -G neovim-git
+      cd neovim-git
+      makepkg --syncdeps --install --clean
+      cd 
+    end
+    # MOSH
+    pikaur -S --noconfirm mosh --overwrite "/etc/ufw/applications.d/mosh"
+    # URLVIEW
+    pikaur -S urlview --noconfirm --overwrite "/etc/urlview/*"
+    # HTOP
+    if test (read -P "Manually install htop?" -n 1) = "y"
+      # need at least this version for current ~/.htop
+      if nottest "htop 3.2.1" = (htop --version)
+        pikaur -S --noconfirm --needed ncurses libnl libcap && pikaur -S htop-git
 
-      # manually (fallback)
-      htop --version
-      if test (read -P "Manually install HTOP?" -n 1) = "y"
-        git clone https://github.com/htop-dev/htop ~/.local/sources/htop
-        cd ~/.local/sources/htop
-          ./autogen.sh && \
-          ./configure \
-                    --prefix=/usr \
-                    --sysconfdir=/etc \
-                    --enable-unicode \
-                    --enable-openvz \
-                    --enable-vserver
-          sudo make install
-        cd ~ 
+        # manually (fallback)
+        htop --version
+        if test (read -P "Manually install HTOP?" -n 1) = "y"
+          git clone https://github.com/htop-dev/htop ~/.local/sources/htop
+          cd ~/.local/sources/htop
+            ./autogen.sh && \
+            ./configure \
+                      --prefix=/usr \
+                      --sysconfdir=/etc \
+                      --enable-unicode \
+                      --enable-openvz \
+                      --enable-vserver
+            sudo make install
+          cd ~ 
+        end
       end
     end
-  end
-  # NVIMPAGER
-  if not command "nvimpager"
-    if test (read -P "Manually install NVIMPAGER?" -n 1) = "y"
-      cd ~/Downloads
-      git clone https://git.sr.ht/~sircmpwn/scdoc
-      cd scdoc
-      make
-      sudo make install
-      cd ~/Downloads
-      git clone https://github.com/lucc/nvimpager
-      cd nvimpager/
-      make PREFIX=$HOME/.local/bin install
-      cd ~
-      rm -rf ~/Downloads/nvimpager ~/Downloads/scdoc
-    end 
-  end
-else # not steam should just work
-  pikaur -S \ 
-    neovim-git nvimpager-git \
-    mosh \
-    urlview \
-    googler-git \
-    sshuttle \
+    # NVIMPAGER
+    if not command "nvimpager"
+      if test (read -P "Manually install NVIMPAGER?" -n 1) = "y"
+        cd ~/Downloads
+        git clone https://git.sr.ht/~sircmpwn/scdoc
+        cd scdoc
+        make
+        sudo make install
+        cd ~/Downloads
+        git clone https://github.com/lucc/nvimpager
+        cd nvimpager/
+        make PREFIX=$HOME/.local/bin install
+        cd ~
+        rm -rf ~/Downloads/nvimpager ~/Downloads/scdoc
+      end 
+    end
+  else # not steam should just work
+    pikaur -S \ 
+      neovim-git nvimpager-git \
+      mosh \
+      urlview \
+      googler-git \
+      sshuttle \
 
-# keep empty line for "end"
-end
-
+  # keep empty line for "end"
+  end
+# keep empty line
+end # / if cli essentials
 
 if test (read -P "Install pip wheel pynvim autopep8 flake8?" -n 1) = "y"
   pip3 install --user wheel pynvim 
