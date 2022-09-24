@@ -83,11 +83,15 @@ THE THREE TYPES OF ALIAS
   alias vimdiff "$EDITOR -d"
 
 
-  echo "Set Theme"
-  omf theme yimmy
+  if type -q "omf"
+    echo "Set Theme"
+    omf theme yimmy
+  end
   # zoxide init
-  zoxide init fish | source
-  abbr cd z
+  if type -q "zoxide"
+    zoxide init fish | source
+    abbr cd z
+  end
   # autostart ssh-add
   # fish_ssh_agent
   # autostart lf, or use CTRL+O to open it
@@ -95,6 +99,8 @@ THE THREE TYPES OF ALIAS
 end # /(INTERACTIVE)
 
 # noninteractive:
-# direnv hook fish | source
-eval (direnv hook fish)
+if type -q "direnv"
+  # direnv hook fish | source
+  eval (direnv hook fish)
+end
 

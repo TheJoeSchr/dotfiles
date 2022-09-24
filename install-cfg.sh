@@ -25,9 +25,19 @@ mkdir -p ~/Downloads
 sudo pacman-key --init
 sudo pacman-key --populate 
 sudo pacman-key --refresh-keys
-sudo pacman -S base-devel
+sudo pacman -S --noconfirm base-devel
+
 # need fish for scripting this...
-sudo pacman -S fish
+sudo pacman -S --noconfirm fish
+
+# set up basics
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+  # omf theme
+  fish -c 'omf install yimmy'
+  # fzf
+  fish -c 'fisher install PatrickF1/fzf.fish'
+  # zoxide: fish helper
+  fish -c 'fisher install jethrokuan/z'
 
 read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 5
 echo    # (optional) move to a new line
