@@ -93,7 +93,7 @@ pikaur -S --needed --noconfirm \
 
 # ESSENTIALS w/ STEAM special cases
   # eg. neovim-git htop  mosh urlview
-if $is_steam;
+if $is_steam
   # googler
   pikaur -S googler-git \
     --overwrite "/etc/bash_completion.d/googler" \
@@ -161,6 +161,8 @@ else # not steam should just work
     urlview \
     googler-git \
     sshuttle \
+
+# keep empty line for "end"
 end
 
 
