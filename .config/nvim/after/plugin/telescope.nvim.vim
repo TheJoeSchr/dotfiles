@@ -1,3 +1,5 @@
+" ============== only NATIVE VIM  ===================
+if !exists('g:vscode')
 lua << EOF
 require('telescope').setup {
     defaults = {
@@ -44,3 +46,4 @@ require('telescope').load_extension('dap')
 require("dapui").setup()
 return M
 EOF
+endif
