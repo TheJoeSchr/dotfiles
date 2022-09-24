@@ -99,14 +99,14 @@ if test (read -P "Install CLI essentials (fish, tmux, ...)" -n 1) = "y"
     # eg. neovim-git htop  mosh urlview
   if $is_steam
     # googler
-    pikaur -S googler-git \
+    pikaur -S --noconfirm googler-git \
       --overwrite "/etc/bash_completion.d/googler" \
     # sshuttle
-    pikaur -S sshuttle  --overwrite "/usr/lib/python3.*" && \
+    pikaur -S --noconfirm sshuttle  --overwrite "/usr/lib/python3.*" && \
       sudo pacman -S python
 
     # NVIM
-    pikaur -S neovim-git xsel
+    pikaur -S --noconfirm neovim-git xsel
     nvim --version # print current version
     if test (read -P "Manually install NEOVIM-GIT (version >= 7 needed)?" -n 1) = "y"
       # pikaur -S --needed neovim-git 
@@ -499,14 +499,21 @@ if not $is_steam
     sudo groupadd plugdev
     sudo usermod -aG plugdev $USER
   end
-
-
 end
-cd ~/Downloads
-pikaur -S chrome-remote-desktop --noconfirm
-cp /opt/google/chrome-remote-desktop/chrome-remote-desktop .
-patch -i chrome-remote-desktop--use_existing_session.patch chrome-remote-desktop
-sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop
+
+
+# chrome-remote-desktop
+if test (read -P "Install chrome-remote-desktop?" -n 1) = "y"
+  cd ~/Downloads
+  pikaur -S chrome-remote-desktop --noconfirm
+  if type -q "chrome-remote-desktop-patch"
+    chrome-remote-desktop-patch
+  else
+    cp /opt/google/chrome-remote-desktop/chrome-remote-desktop .
+    patch -i chrome-remote-desktop--use_existing_session.patch chrome-remote-desktop
+    sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop
+  end
+end
 
 # TWEAKS
 if not $is_steam
