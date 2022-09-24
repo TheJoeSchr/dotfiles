@@ -79,6 +79,7 @@ THE THREE TYPES OF ALIAS
   alias ll 'n -D'
   alias la 'll -H'
   alias tree 'll -a --level=3'
+  alias vimdiff "$EDITOR -d"
 
 
   echo "Set Theme"
