@@ -75,7 +75,7 @@ if not command -sq "pikaur"
   cd ~
 end
 
-if test (read -P "Install cli essentials (fish, tmux, ...)" -n 1) = "y"
+if test (read -P "Install CLI essentials (fish, tmux, ...)" -n 1) = "y"
   # ESSENTIALS SYSTEM
   pikaur -S --needed --noconfirm \
     fish \
@@ -262,147 +262,149 @@ if test (read -P "Install CLOJURE?" -n 1) = "y"
   cd ~
 end
 
-# ESSENTIALS GUI & DESKTOP
+if test (read -P "Install GUI essentials (alacritty, signal, steam)" -n 1) = "y"
+  # ESSENTIALS GUI & DESKTOP
 
-# 1. create some space on steamdeck 
-if $is_steam
-  # delete unneeded docs/fonts
-  pikaur -R \
-    qt5-examples qt5-doc
-  pikaur -R \
-    noto-fonts-cjk
+  # 1. create some space on steamdeck 
+  if $is_steam
+    # delete unneeded docs/fonts
+    pikaur -R \
+      qt5-examples qt5-doc
+    pikaur -R \
+      noto-fonts-cjk
 
-  # MOVE steam
-  if test (read -P "Move /usr/lib/steam?" -n 1) = "y"
-    sudo rsync -avzh --remove-source-files --progress /usr/lib/steam ~/.local/lib/ && \
-    sudo rmdir /usr/lib/steam/steam_launcher/ && \
-    sudo rmdir /usr/lib/steam/ &&  \
-    sudo ln -s /home/deck/.local/lib/steam/ /usr/lib/steam
+    # MOVE steam
+    if test (read -P "Move /usr/lib/steam?" -n 1) = "y"
+      sudo rsync -avzh --remove-source-files --progress /usr/lib/steam ~/.local/lib/ && \
+      sudo rmdir /usr/lib/steam/steam_launcher/ && \
+      sudo rmdir /usr/lib/steam/ &&  \
+      sudo ln -s /home/deck/.local/lib/steam/ /usr/lib/steam
+    end
+    # MOVE signal-desktop
+    if test (read -P "Move /usr/lib/signal-desktop?" -n 1) = "y"
+       sudo rsync -avzh --remove-source-files --progress /usr/lib/signal-desktop ~/.local/lib/ && \
+       sudo rm -rf /usr/lib/signal-desktop/ &&  \
+       sudo ln -s /home/deck/.local/lib/signal-desktop/ /usr/lib/signal-desktop
+    end
+    # MOVE python3.10
+    if test (read -P "Move /usr/lib/python3.10?" -n 1) = "y"
+       sudo rsync -avzh --remove-source-files --progress /usr/lib/python3.10 ~/.local/lib/ && \
+       sudo rm -rf /usr/lib/python3.10/ &&  \
+       sudo ln -s /home/deck/.local/lib/python3.10/ /usr/lib/python3.10
+    end
+    # MOVE insync
+    if test (read -P "Move /usr/lib/insync?" -n 1) = "y"
+       sudo rsync -avzh --remove-source-files --progress /usr/lib/insync ~/.local/lib/ && \
+       sudo rm -rf /usr/lib/insync/ &&  \
+       sudo ln -s /home/deck/.local/lib/insync/ /usr/lib/insync
+    end
+    # MOVE jvm
+    if test (read -P "Move /usr/lib/jvm?" -n 1) = "y"
+       sudo rsync -avzh --remove-source-files --progress /usr/lib/jvm ~/.local/lib/ && \
+       sudo rm -rf /usr/lib/jvm/ &&  \
+       sudo ln -s /home/deck/.local/lib/jvm/ /usr/lib/jvm
+    end
   end
-  # MOVE signal-desktop
-  if test (read -P "Move /usr/lib/signal-desktop?" -n 1) = "y"
-     sudo rsync -avzh --remove-source-files --progress /usr/lib/signal-desktop ~/.local/lib/ && \
-     sudo rm -rf /usr/lib/signal-desktop/ &&  \
-     sudo ln -s /home/deck/.local/lib/signal-desktop/ /usr/lib/signal-desktop
-  end
-  # MOVE python3.10
-  if test (read -P "Move /usr/lib/python3.10?" -n 1) = "y"
-     sudo rsync -avzh --remove-source-files --progress /usr/lib/python3.10 ~/.local/lib/ && \
-     sudo rm -rf /usr/lib/python3.10/ &&  \
-     sudo ln -s /home/deck/.local/lib/python3.10/ /usr/lib/python3.10
-  end
-  # MOVE insync
-  if test (read -P "Move /usr/lib/insync?" -n 1) = "y"
-     sudo rsync -avzh --remove-source-files --progress /usr/lib/insync ~/.local/lib/ && \
-     sudo rm -rf /usr/lib/insync/ &&  \
-     sudo ln -s /home/deck/.local/lib/insync/ /usr/lib/insync
-  end
-  # MOVE jvm
-  if test (read -P "Move /usr/lib/jvm?" -n 1) = "y"
-     sudo rsync -avzh --remove-source-files --progress /usr/lib/jvm ~/.local/lib/ && \
-     sudo rm -rf /usr/lib/jvm/ &&  \
-     sudo ln -s /home/deck/.local/lib/jvm/ /usr/lib/jvm
-  end
-end
-# 2. install GUI apps
-pikaur -S --needed --noconfirm \
-  filelight \
-      --overwrite "/etc/xdg/filelightrc" \
-  kdeconnect \
-      --overwrite "/etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop" \
-  google-chrome kdialog \
-      --overwrite "/opt/google/chrome/*" \
-  # xclip is for alacritty \
-  alacritty xclip \
-  yakuake \
-  # 1password:
-  1password-cli \
-  1password-beta \
-      --overwrite "/opt/1Password/*" \
-  # vscode
-  # (needed for sync auth)
-  gnome-keyring libsecret libgnome-keyring \
-      --overwrite "/etc/xdg/autostart/gnome-keyring-*" \
-  visual-studio-code-bin \
-      --overwrite "/opt/visual-studio-code/*" \
-  # unify for logitech setpoint
-  ltunify \
-  # FONTS
-  powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack \
-  # MAYBE NOT SO ESSENTIAL...
-  zathura \
-  signal-desktop \
-  cpupower-gui cpupower \
-      --overwrite "/etc/cpupower_gui*" \
-  insync \
-
-if not $is_steam
+  # 2. install GUI apps
   pikaur -S --needed --noconfirm \
-    latte-dock-git \
-    noto-fonts \
+    filelight \
+        --overwrite "/etc/xdg/filelightrc" \
+    kdeconnect \
+        --overwrite "/etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop" \
+    google-chrome kdialog \
+        --overwrite "/opt/google/chrome/*" \
+    # xclip is for alacritty \
+    alacritty xclip \
+    yakuake \
+    # 1password:
+    1password-cli \
+    1password-beta \
+        --overwrite "/opt/1Password/*" \
+    # vscode
+    # (needed for sync auth)
+    gnome-keyring libsecret libgnome-keyring \
+        --overwrite "/etc/xdg/autostart/gnome-keyring-*" \
+    visual-studio-code-bin \
+        --overwrite "/opt/visual-studio-code/*" \
+    # unify for logitech setpoint
+    ltunify \
+    # FONTS
+    powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack \
+    # MAYBE NOT SO ESSENTIAL...
+    zathura \
+    signal-desktop \
+    cpupower-gui cpupower \
+        --overwrite "/etc/cpupower_gui*" \
+    insync \
 
-  pikaur -S --needed --noconfirm \
-    kwin-bismuth-bin \
-    appimagelauncher-git \
+  if not $is_steam
+    pikaur -S --needed --noconfirm \
+      latte-dock-git \
+      noto-fonts \
 
-else
-  # KWIN-BISMUTH
-  if test (read -P "Manually install KWIN-BISMUTH?" -n 1) = "y"
-    cd ~/.local/sources
-    pikaur -G kwin-bismuth
-    cd kwin-bismuth
-    # maybe?
-    pikaur -S --noconfirm cmake ninja esbuild extra-cmake-modules
-    sudo pacman -S \
-     plasma-framework \
-     qt5-script qt5-svg qt5-declarative \
-     extra-cmake-modules \
-     plasma \
-     kdecoration \
-     kconfig kcoreaddons \
-     kconfigwidgets \
-     kcodecs \
-     kwidgetsaddons \
-     kglobalaccel \
-     kauth ki18n \
-     kdeclarative  && \
+    pikaur -S --needed --noconfirm \
+      kwin-bismuth-bin \
+      appimagelauncher-git \
 
-    makepkg --syncdeps --install --clean
+  else
+    # KWIN-BISMUTH
+    if test (read -P "Manually install KWIN-BISMUTH?" -n 1) = "y"
+      cd ~/.local/sources
+      pikaur -G kwin-bismuth
+      cd kwin-bismuth
+      # maybe?
+      pikaur -S --noconfirm cmake ninja esbuild extra-cmake-modules
+      sudo pacman -S \
+       plasma-framework \
+       qt5-script qt5-svg qt5-declarative \
+       extra-cmake-modules \
+       plasma \
+       kdecoration \
+       kconfig kcoreaddons \
+       kconfigwidgets \
+       kcodecs \
+       kwidgetsaddons \
+       kglobalaccel \
+       kauth ki18n \
+       kdeclarative  && \
+
+      makepkg --syncdeps --install --clean
+    end
+
+    # APPIMAGELAUNCHER
+    if test (read -P "Manually install APPIMAGELAUNCHER?" -n 1) = "y"
+      cd ~/.local/sources/
+      pikaur -G appimagelauncher-git
+      cd appimagelauncher-git
+      sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
+      makepkg --syncdeps --install --clean
+      cd ~
+    end
+
+    # CMDG
+    if test (read -P "Manually install CMDG?" -n 1) = "y"
+      git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
+      cd ~/.local/sources/cmdg
+      pikaur -S go --noconfirm
+      go build ./cmd/cmdg
+      sudo cp cmdg /usr/local/bin
+      # press Ctrl-A u to open urls in mail
+      pikaur -S --noconfirm urlview lynx \
+        --overwrite "/etc/lynx.lss"
+      pikaur -R go
+      cd ~
+    end
+
+    # 1PASSWORD
+    if test (read -P "Manually install 1PASSWORD?" -n 1) = "y"
+      cd ~/.local/sources/
+      curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+      git clone https://aur.archlinux.org/1password.git
+      cd 1password &&  makepkg -si
+      cd ~
+    end
   end
-
-  # APPIMAGELAUNCHER
-  if test (read -P "Manually install APPIMAGELAUNCHER?" -n 1) = "y"
-    cd ~/.local/sources/
-    pikaur -G appimagelauncher-git
-    cd appimagelauncher-git
-    sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
-    makepkg --syncdeps --install --clean
-    cd ~
-  end
-
-  # CMDG
-  if test (read -P "Manually install CMDG?" -n 1) = "y"
-    git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
-    cd ~/.local/sources/cmdg
-    pikaur -S go --noconfirm
-    go build ./cmd/cmdg
-    sudo cp cmdg /usr/local/bin
-    # press Ctrl-A u to open urls in mail
-    pikaur -S --noconfirm urlview lynx \
-      --overwrite "/etc/lynx.lss"
-    pikaur -R go
-    cd ~
-  end
-
-  # 1PASSWORD
-  if test (read -P "Manually install 1PASSWORD?" -n 1) = "y"
-    cd ~/.local/sources/
-    curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-    git clone https://aur.archlinux.org/1password.git
-    cd 1password &&  makepkg -si
-    cd ~
-  end
-end
+end # GUI essentials
 
 if test (read -P "Install ta-lib" -n 1) = "y"
 # TA-LIB
@@ -463,7 +465,6 @@ if not $is_steam
   end
 
 
-
   # bluetooth a2dp
   # pikaur -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
   # equalizer
@@ -485,15 +486,19 @@ if not $is_steam
 
   # MANUAL/LOCAL BUILDS
   # CUSTOM KERNEL
-  ## xenomod
-  gpg --receive-keys 38DBBDC86092693E
-  pikaur -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
-  sudo ln -s /usr/src/linux-manjaro-xanmod  /usr/src/linux
+  if test (read -P "Install xenomod" -n 1) = "y"
+    ## xenomod
+    gpg --receive-keys 38DBBDC86092693E
+    pikaur -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
+    sudo ln -s /usr/src/linux-manjaro-xanmod  /usr/src/linux
+  end
 
-  # install beta, because of DKMS
-  pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
-  sudo groupadd plugdev
-  sudo usermod -aG plugdev $USER
+  if test (read -P "Install nvidia-beta driver?" -n 1) = "y"
+    # install beta, because of DKMS
+    pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
+    sudo groupadd plugdev
+    sudo usermod -aG plugdev $USER
+  end
 
 
 end
@@ -505,15 +510,21 @@ sudo cp ./chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-
 
 # TWEAKS
 if not $is_steam
-  # fix ntfs-3g disk access on mount as user
-  sudo usermod -a -G disk (whoami)
-  # System76 scheduler
-  pikaur -S system76-scheduler-git --noconfirm
-  sudo systemctl enable --now com.system76.Scheduler.service
+  if test (read -P "Fix ntfs-3g disk access? on mount as user?" -n 1) = "y"
+    # fix ntfs-3g disk access on mount as user
+    sudo usermod -a -G disk (whoami)
+  end
+  if test (read -P "Install system76 scheduler?" -n 1) = "y"
+    # System76 scheduler
+    pikaur -S system76-scheduler-git --noconfirm
+    sudo systemctl enable --now com.system76.Scheduler.service
+  end
 end
 
-# increase number of file watcher
-echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && sudo touch /etc/sysctl.conf && sudo sysctl -p
+if test (read -P "Increase number of file watchers?" -n 1) = "y"
+  # increase number of file watcher
+  echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && sudo touch /etc/sysctl.conf && sudo sysctl -p
+end
 
 # fix .ssh
 chmod 600 .ssh/*
