@@ -253,7 +253,7 @@ if test (read -P "Install CLOJURE?" -n 1) = "y"
   # build clojure
   pikaur -G clojure && \
     cd clojure/repos/community-any && \
-    makepkg --syncdeps --clean --force && \
+    makepkg --noconfirm --syncdeps --clean --force && \
     sudo pacman -U --noconfirm clojure-*.pkg.tar.zst --overwrite "*" && \
   # leiningen
   gpg --receive-keys 040193357D0606ED && \
@@ -368,7 +368,7 @@ if test (read -P "Install GUI essentials (alacritty, signal, steam)" -n 1) = "y"
        kauth ki18n \
        kdeclarative  && \
 
-      makepkg --syncdeps --install --clean
+      makepkg --noconfirm --syncdeps --install --clean
     end
 
     # APPIMAGELAUNCHER
@@ -377,7 +377,7 @@ if test (read -P "Install GUI essentials (alacritty, signal, steam)" -n 1) = "y"
       pikaur -G appimagelauncher-git
       cd appimagelauncher-git
       sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
-      makepkg --syncdeps --install --clean
+      makepkg --noconfirm  --syncdeps --install --clean
       cd ~
     end
 
@@ -534,7 +534,7 @@ if test (read -P "Increase number of file watchers?" -n 1) = "y"
 end
 
 # fix .ssh
-chmod 600 .ssh/*
+chmod 600 ".ssh/*"
 
 if test (read -P "Fix moonlander rules?" -n 1) = "y"
   # moonlander
