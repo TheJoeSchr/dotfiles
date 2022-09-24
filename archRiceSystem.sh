@@ -84,7 +84,7 @@ pikaur -S --needed --noconfirm \
   babashka-bin \
   ripgrep nnn jaapi-advcpmv \
   # modern cli
-  bash-completion fzy fzf fd duf dust exa bat procs tldr \
+  bash-completion fzy fzf fd duf dust exa bottom bat procs tldr \
   python3 python-pip python-poetry \
   github-cli \
   nordvpn-bin \
@@ -116,24 +116,26 @@ if $is_steam;
   # URLVIEW
   pikaur -S urlview --noconfirm --overwrite "/etc/urlview/*"
   # HTOP
-  # need at least this version for current ~/.htop
-  if nottest "htop 3.2.1" = (htop --version)
-    pikaur -S --noconfirm --needed ncurses libnl libcap && pikaur -S htop-git
+  if test (read -P "Manually install htop?" -n 1) = "y"
+    # need at least this version for current ~/.htop
+    if nottest "htop 3.2.1" = (htop --version)
+      pikaur -S --noconfirm --needed ncurses libnl libcap && pikaur -S htop-git
 
-    # manually (fallback)
-    htop --version
-    if test (read -P "Manually install HTOP?" -n 1) = "y"
-      git clone https://github.com/htop-dev/htop ~/.local/sources/htop
-      cd ~/.local/sources/htop
-        ./autogen.sh && \
-        ./configure \
-                  --prefix=/usr \
-                  --sysconfdir=/etc \
-                  --enable-unicode \
-                  --enable-openvz \
-                  --enable-vserver
-        sudo make install
-      cd ~ 
+      # manually (fallback)
+      htop --version
+      if test (read -P "Manually install HTOP?" -n 1) = "y"
+        git clone https://github.com/htop-dev/htop ~/.local/sources/htop
+        cd ~/.local/sources/htop
+          ./autogen.sh && \
+          ./configure \
+                    --prefix=/usr \
+                    --sysconfdir=/etc \
+                    --enable-unicode \
+                    --enable-openvz \
+                    --enable-vserver
+          sudo make install
+        cd ~ 
+      end
     end
   end
   # NVIMPAGER
