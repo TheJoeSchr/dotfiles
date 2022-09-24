@@ -23,8 +23,6 @@ end
 if $is_steam
   # prepare steam fs
   sudo steamos-readonly disable
-  # need nvim
-  yay -S neovim-git xsel
   # rank mirror because pacman-key is slow
   sudo pacman -S pacman-contrib --overwrite /etc/ld.so.conf.d/fakeroot.conf
   yay -S rankmirrors-systemd
@@ -102,6 +100,7 @@ if $is_steam
     sudo pacman -S python
 
   # NVIM
+  pikaur -S neovim-git xsel
   nvim --version # print current version
   if test (read -P "Manually install NEOVIM-GIT (version >= 7 needed)?" -n 1) = "y"
     # pikaur -S --needed neovim-git 
