@@ -15,7 +15,7 @@ switch-to-activity-ef581a10-edd3-4f56-a66f-f5d408d066ca=none,none,Switch to acti
 [Alacritty.desktop]
 New=none,none,New Terminal
 _k_friendly_name=Alacritty
-_launch=Meta+Ctrl+Return\tMeta+Alt+Return\tCtrl+Alt+Return,none,Alacritty
+_launch=Meta+Ctrl+Return\tCtrl+|\tMeta+Shift+Return\tCtrl+Shift+F1,none,Alacritty
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
@@ -115,7 +115,7 @@ Activate Window Demanding Attention=Ctrl+Alt+A,Meta+Ctrl+A,Activate Window Deman
 Cube=none,Ctrl+F11,Desktop Cube
 Cylinder=none,none,Desktop Cylinder
 Decrease Opacity=Meta+Shift+O,,Decrease Opacity of Active Window by 5 %
-Expose=Meta+Z,Ctrl+F9,Toggle Present Windows (Current desktop)
+Expose=none,Ctrl+F9,Toggle Present Windows (Current desktop)
 ExposeAll=Ctrl+F10\tLaunch (C),Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
 ExposeClass=Ctrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
 FlipSwitchAll=none,none,Toggle Flip Switch (All desktops)
@@ -157,7 +157,7 @@ MoveZoomDown=none,Meta+Ctrl+Down,Move Down
 MoveZoomLeft=none,Meta+Ctrl+Left,Move Left
 MoveZoomRight=none,Meta+Ctrl+Right,Move Right
 MoveZoomUp=none,Meta+Ctrl+Up,Move Up
-Overview=,Meta+W,Toggle Overview
+Overview=Meta+Z,Meta+W,Toggle Overview
 Setup Window Shortcut=none,,Setup Window Shortcut
 Show Desktop=Meta+Shift+D,Meta+D,Show Desktop
 ShowDesktopGrid=Ctrl+F8,Ctrl+F8,Show Desktop Grid
@@ -277,7 +277,7 @@ Window to Desktop 7=none,,Window to Desktop 7
 Window to Desktop 8=none,,Window to Desktop 8
 Window to Desktop 9=none,,Window to Desktop 9
 Window to Next Desktop=none,,Window to Next Desktop
-Window to Next Screen=Ctrl+Alt+Left\tMeta+Shift+Tab\tCtrl+Alt+Shift+Backspace\tAlt+Shift+Backspace\tCtrl+Alt+Shift+Tab,Meta+Shift+Right,Window to Next Screen
+Window to Next Screen=Meta+Shift+Backspace\tCtrl+Alt+Left\tAlt+Shift+Backspace\tCtrl+Alt+Shift+Backspace\tMeta+Shift+Tab\tCtrl+Alt+Shift+Tab,Meta+Shift+Right,Window to Next Screen
 Window to Previous Desktop=none,,Window to Previous Desktop
 Window to Previous Screen=none,Meta+Shift+Left,Window to Previous Screen
 Window to Screen 0=none,,Window to Screen 0
@@ -349,6 +349,7 @@ activate entry 6=none,Meta+6,Activate Entry 6
 activate entry 7=none,Meta+7,Activate Entry 7
 activate entry 8=none,Meta+8,Activate Entry 8
 activate entry 9=none,Meta+9,Activate Entry 9
+activate widget 78=Meta+Space,none,Activate Application Launcher Widget
 clear-history=none,,Clear Clipboard History
 clipboard_action=none,Meta+Ctrl+X,Automatic Action Popup Menu
 cycleNextAction=none,,Next History Item
@@ -382,11 +383,11 @@ show-on-mouse-pos=none,Meta+V,Open Klipper at Mouse Position
 
 [mediacontrol]
 _k_friendly_name=Media Controller
-mediavolumedown=none,,Media volume down
-mediavolumeup=none,,Media volume up
+mediavolumedown=none,none,Media volume down
+mediavolumeup=none,none,Media volume up
 nextmedia=Ctrl+Shift+J\tMedia Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
-playmedia=none,,Play media playback
+playmedia=none,none,Play media playback
 playpausemedia=Ctrl+Shift+Space\tMedia Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous\tCtrl+Shift+K,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
@@ -404,7 +405,7 @@ _launch=none,none,Konsole
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
 _k_friendly_name=KRunner
-_launch=Alt+F2\tShift+F2\tSearch\tCtrl+Shift+Right\tMeta+Shift+Space,none,KRunner
+_launch=Shift+F2\tSearch\tAlt+F2\tMeta+Shift+Space,none,KRunner
 
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
@@ -459,7 +460,7 @@ activate widget 23=none,none,Activate Global Menu Widget
 activate widget 239=none,none,Activate Analog Clock Widget
 activate widget 27=none,none,Activate Application Menu Widget
 activate widget 272=none,none,Activate Application Launcher Widget
-activate widget 3=Meta+S\tMeta+Space,none,Activate Application Launcher Widget
+activate widget 3=Meta+S,none,Activate Application Launcher Widget
 activate widget 32=none,none,Activate Application Launcher Widget
 activate widget 33=none,none,Activate Hard Disk Activity Widget
 activate widget 46=none,none,Activate Battery and Brightness Widget
@@ -471,7 +472,7 @@ activate widget 73=Alt+F1,none,Activate Application Launcher Widget
 activate widget 82=none,none,Activate Application Launcher Widget
 activate widget 84=none,none,Activate Application Launcher Widget
 clear-history=none,none,Clear Clipboard History
-clipboard_action=none,Ctrl+Alt+X,Enable Clipboard Actions
+clipboard_action=none,Meta+Ctrl+X,Automatic Action Popup Menu
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels
 cycleNextAction=none,none,Next History Item
 cyclePrevAction=none,none,Previous History Item
@@ -479,7 +480,7 @@ edit_clipboard=none,none,Edit Contents…
 manage activities=none,Meta+Q,Show Activity Switcher
 next activity=none,Meta+Tab,Walk through activities
 previous activity=none,Meta+Shift+Tab,Walk through activities (Reverse)
-repeat_action=none,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
+repeat_action=none,Meta+Ctrl+R,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
 show-barcode=none,none,Show Barcode…
 show-on-mouse-pos=none,Meta+V,Open Klipper at Mouse Position
@@ -505,4 +506,4 @@ _k_friendly_name=Wacom Tablet
 
 [yakuake]
 _k_friendly_name=Yakuake
-toggle-window-state=Ctrl+Shift+Return\tMeta+Shift+Return,F12,Open/Retract Yakuake
+toggle-window-state=Ctrl+Alt+Return\tMeta+Alt+Return,F12,Open/Retract Yakuake
