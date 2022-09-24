@@ -71,15 +71,15 @@ ZOrdering=true
 [Effect-diminactive]
 DimFullScreen=false
 
+[Effect-kwin4_effect_incinerate]
+Color=255,150,115
+
 [Effect-kwin4_effect_translucency]
 IndividualMenuConfig=true
 MoveResize=69
 
 [Effect-presentwindows]
 BorderActivateAll=9
-
-[Effect-slide]
-SlideBackground=false
 
 [Effect-zoom]
 IndividualMenuConfig=true
@@ -111,22 +111,24 @@ desktopchangeosdEnabled=true
 desktopgridEnabled=false
 diminactiveEnabled=true
 flipswitchEnabled=true
+glideEnabled[$d]
 highlightwindowEnabled=true
 krohnkiteEnabled=false
 kwin4_effect_eyeonscreenEnabled=true
 kwin4_effect_fadeEnabled=false
+kwin4_effect_scaleEnabled=true
 kwin4_effect_incinerateEnabled=true
 kwin4_effect_squashEnabled=false
 kwin4_effect_translucencyEnabled=true
 kwin4_effect_windowapertureEnabled=false
 lattewindowcolorsEnabled=true
-magiclampEnabled=true
 minimizeallEnabled=false
 resizeEnabled=true
 screenedgeEnabled=false
 sheetEnabled=true
 slidebackEnabled=true
 synchronizeskipswitcherEnabled=false
+trackmouseEnabled=true
 videowallEnabled=false
 wobblywindowsEnabled=true
 zoomEnabled=false
