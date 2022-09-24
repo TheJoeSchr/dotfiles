@@ -56,6 +56,7 @@ THE THREE TYPES OF ALIAS
   alias du 'dust -d 1'
   alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
   abbr e 'nvim'
+  abbr db 'distrobox'
   alias lf 'lfcd' 
   abbr fda 'fd -uu'
   alias find 'fd -uu'
