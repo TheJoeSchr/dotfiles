@@ -25,7 +25,9 @@ if $is_steam
   sudo steamos-readonly disable
   # rank mirror because pacman-key is slow
   sudo pacman -S pacman-contrib --overwrite /etc/ld.so.conf.d/fakeroot.conf
-  yay -S rankmirrors-systemd
+  if type -q "yay"
+    yay -S rankmirrors-systemd
+  end
   # update keys
   echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
   sudo pacman -S gnupg archlinux-keyring
@@ -39,8 +41,8 @@ if $is_steam
 end
 
 # install buildtools like eg. git make libffi glibc gcc
-sudo pacman -S --needed base-devel 
-sudo pacman -S --needed git ed python python-pip
+sudo pacman -S --needed --noconfirm base-devel 
+sudo pacman -S --needed --noconfrim git ed python python-pip
 
 # STEAMDECK: fix broken headers
 if $is_steam
