@@ -24,10 +24,10 @@ touch ~/.bashrc.local
 mkdir -p ~/Downloads
 sudo pacman-key --init
 sudo pacman-key --populate 
+sudo pacman-key --refresh-keys
+sudo pacman -S base-devel
 # need fish for scripting this...
 sudo pacman -S fish
-. .bashrc
-
 
 read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 5
 echo    # (optional) move to a new line
@@ -36,3 +36,7 @@ then
   chmod +x ~/archRiceSystem.sh 
   /usr/bin/env fish ~/archRiceSystem.sh
 fi
+
+# source new files
+. .bashrc
+
