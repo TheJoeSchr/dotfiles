@@ -7,8 +7,8 @@ touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
 # IS STEAMDECK
-set host (uname --nodename)
-if test $host = "steamdeck"
+set HOSTNAME (uname --nodename)
+if string match 'steamdeck*' $HOSTNAME
   set is_steam true
 else
   set is_steam false
