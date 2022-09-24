@@ -57,7 +57,7 @@ end
 sudo pacman -Syu
 
 # PIKAUR
-if test (read -P "Is AUR support in \'Add/Remove Software\' enabled?" -n 1) = "y"
+if test (read -P "Install 'pikaur' via 'pacman'?" -n 1) = "y"
   # install AUR helper:
   # try automatic
   sudo pamac install pikaur
@@ -109,7 +109,7 @@ if $is_steam
     cd ~/.local/sources
     pikaur -G neovim-git
     cd neovim-git
-    makepkg--syncdeps --install --clean
+    makepkg --syncdeps --install --clean
     cd 
   end
   # MOSH
