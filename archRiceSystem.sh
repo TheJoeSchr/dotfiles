@@ -22,9 +22,10 @@ end
 
 if test (read -P "Init keys and full ugprade?" -n 1) = "y"
   # on steamdeck: make writeable
-  if test $(uname --nodename) = "steamdeck" ; 
+  if test (uname --nodename) = "steamdeck" ; 
     # set root password
-    read -p "Enter new passwd:" -s -r; echo "$USER:$REPLY" | chpasswd
+    set REPLY (read -P "Enter new passwd:" -s) ; 
+    echo "$USER:$REPLY" | chpasswd
     echo;
 
     if test (read -P "Did it work? If no, did you manually set it via 'passwd'?" -n 1) = "y"
