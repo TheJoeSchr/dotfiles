@@ -14,6 +14,12 @@ else
   set is_steam false
 end
 
+if test (uname --nodename) = "steamdeck" 
+  set is_steam_host true
+else
+  set is_steam_host false
+end
+
 if $is_steam
   printf "Host is steamdeck\n"
 else
@@ -22,26 +28,30 @@ end
 
 if test (read -P "Init keys and full ugprade?" -n 1) = "y"
   # on steamdeck: make writeable
-  if test (uname --nodename) = "steamdeck" ; 
-    # set root password
-    set REPLY (read -P "Enter new passwd:" -s) ; 
-    echo "$USER:$REPLY" | chpasswd
-    echo;
-
-    if test (read -P "Did it work? If no, did you manually set it via 'passwd'?" -n 1) = "y"
+  if $is_steam_host; 
+    if test (read -P "If no, did you manually set 'passwd'?" -n 1) = "y"
       # make writeable
       sudo steamos-readonly disable
       # enable ssh access
       sudo systemctl enable --now sshd
+    else
+      exit
     end
   end #/steamdeck
-  
+
   # init & refresh keys
   echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
   sudo pacman-key --init
   sudo pacman-key --populate 
   sudo pacman-key --refresh-keys
-  sudo pacman -Sy archlinux-keyring gnupg && sudo pacman -Su
+  sudo pacman -Sy archlinux-keyring
+  if $is_steam
+    sudo pacman -Sy holo-keyring
+  else
+    sudo pacman -Sy holo-keyring
+  fi
+
+  sudo pacman -Su gnupg
 
   # rank mirror because pacman-key is slow
   if type -q "yay"
@@ -73,7 +83,7 @@ if test (read -P "Init keys and full ugprade?" -n 1) = "y"
 end
 
 # PIKAUR
-if test (read -P "Install 'pikaur' via 'pacman'?" -n 1) = "y"
+if test (read -P "Install 'pikaur' via 'pamac'?" -n 1) = "y"
   # install AUR helper:
   # try automatic
   sudo pamac install pikaur
