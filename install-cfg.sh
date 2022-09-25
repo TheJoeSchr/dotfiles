@@ -3,7 +3,22 @@
 # call with
 # 
 # curl -Lks https://github.com/JoeSchr/dotfiles/raw/master/install-cfg.sh | /bin/bash
+if [[ $(uname --nodename) = "steamdeck" ]]; 
+then
+ # set root password
+ passwd
+ # make writeable
+ sudo steamos-readonly disable
+ # enable ssh access
+ sudo systemctl enable --now sshd
+fi
 
+# upgrade system
+sudo pacman-key --init
+sudo pacman-key --populate 
+sudo pacman-key --refresh-keys
+sudo pacman -Syu --noconfirm
+# install essentials
 sudo pacman -Sy --noconfirm git which rsync fish neovim fzf base-devel
 
 git clone --bare https://github.com/JoeSchr/dotfiles.git $HOME/.cfg
@@ -24,10 +39,6 @@ $config config status.showUntrackedFiles no
 touch ~/.vimrc.local
 touch ~/.bashrc.local
 mkdir -p ~/Downloads
-sudo pacman-key --init
-sudo pacman-key --populate 
-sudo pacman-key --refresh-keys
-sudo pacman -Syu --noconfirm
 
 # set up basics
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
