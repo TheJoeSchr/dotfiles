@@ -1,8 +1,10 @@
 #! /bin/bash
 
 # call with
-# sudo pacman -Sy git which rsync fish
+# 
 # curl -Lks https://github.com/JoeSchr/dotfiles/raw/master/install-cfg.sh | /bin/bash
+
+sudo pacman -Sy --noconfirm git which rsync fish nvim fzf base-devel
 
 git clone --bare https://github.com/JoeSchr/dotfiles.git $HOME/.cfg
 
@@ -25,10 +27,7 @@ mkdir -p ~/Downloads
 sudo pacman-key --init
 sudo pacman-key --populate 
 sudo pacman-key --refresh-keys
-sudo pacman -S --noconfirm base-devel
-
-# need fish for scripting this...
-sudo pacman -S --noconfirm fish
+sudo pacman -Syu --noconfirm
 
 # set up basics
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
@@ -47,6 +46,10 @@ then
   /usr/bin/env fish ~/archRiceSystem.sh
 fi
 
-# source new files
-. .bashrc
-
+read -p "source .bashrc (and start fish first time)?" -n 1 -r -t 5
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  # source new files
+  . .bashrc
+fi
