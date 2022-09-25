@@ -8,7 +8,7 @@ then
  # set root password
  echo; read -p "Enter new passwd:" -s -r; echo "$USER:$REPLY" | chpasswd
  echo;
- read -p "Did it work? If no, did you manually set it[via 'passwd'?" -n 1 -r
+ read -p "Did it work? If no, did you manually set it via 'passwd'?" -n 1 -r
  echo    # (optional) move to a new line
  if [[ $REPLY =~ ^[Yy]$ ]]
  then
