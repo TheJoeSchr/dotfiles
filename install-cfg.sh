@@ -23,7 +23,7 @@ fi
 sudo pacman-key --init
 sudo pacman-key --populate 
 sudo pacman-key --refresh-keys
-sudo pacman -Syu --noconfirm
+sudo pacman -Sy archlinux-keyring && sudo pacman -Su
 # install essentials
 sudo pacman -Sy --noconfirm git which rsync fish neovim fzf base-devel
 
