@@ -59,7 +59,7 @@ THE THREE TYPES OF ALIAS
   abbr db 'distrobox'
   alias lf 'lfcd' 
   abbr fda 'fd -uu'
-  alias find 'fd -uu'
+  abbr find 'fd -uu'
   abbr install 'pikaur -S --needed --noconfirm'
   abbr mail 'cmdg'
   abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
