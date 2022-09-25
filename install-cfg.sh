@@ -27,6 +27,7 @@ sudo pacman -Syu --noconfirm
 # install essentials
 sudo pacman -Sy --noconfirm git which rsync fish neovim fzf base-devel
 
+rm -rf $HOME/.cfg
 git clone --bare https://github.com/JoeSchr/dotfiles.git $HOME/.cfg
 
 config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"
