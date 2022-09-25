@@ -20,39 +20,51 @@ else
   printf "Host is not steamdeck\n"
 end
 
-
 if test (read -P "Init keys and full ugprade?" -n 1) = "y"
-  if $is_steam
-    # prepare steam fs
-    sudo steamos-readonly disable
-    # rank mirror because pacman-key is slow
-    sudo pacman -S pacman-contrib --overwrite /etc/ld.so.conf.d/fakeroot.conf
-    if type -q "yay"
-      yay -S rankmirrors-systemd
-    end
-    # update keys
-    echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
-    sudo pacman -S gnupg archlinux-keyring
-    sudo pacman-key --init
-    sudo pacman-key --populate
-    sudo pacman-key --refresh-keys
-    sudo systemctl restart pacman-init
-    # update databases
-    sudo pacman -Fy
-    sudo pacman -Syy
-  end
+  # on steamdeck: make writeable
+  if test $(uname --nodename) = "steamdeck" ; 
+    # set root password
+    read -p "Enter new passwd:" -s -r; echo "$USER:$REPLY" | chpasswd
+    echo;
 
+    if test (read -P "Did it work? If no, did you manually set it via 'passwd'?" -n 1) = "y"
+      # make writeable
+      sudo steamos-readonly disable
+      # enable ssh access
+      sudo systemctl enable --now sshd
+    end
+  end #/steamdeck
+  
+  # init & refresh keys
+  echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
+  sudo pacman-key --init
+  sudo pacman-key --populate 
+  sudo pacman-key --refresh-keys
+  sudo pacman -Sy archlinux-keyring gnupg && sudo pacman -Su
+
+  # rank mirror because pacman-key is slow
+  if type -q "yay"
+    sudo pacman -S pacman-contrib
+    yay -S rankmirrors-systemd
+  end
+  sudo systemctl restart pacman-init
+  # update databases
+  sudo pacman -Fy
+  sudo pacman -Syy
+  
   # install buildtools like eg. git make libffi glibc gcc
-  sudo pacman -S --needed --noconfirm base-devel 
-  sudo pacman -S --needed --noconfrim git ed python python-pip
+  sudo pacman -S --noconfirm base-devel 
+  sudo pacman -S --noconfrim git ed python python-pip
 
   # STEAMDECK: fix broken headers
   if $is_steam
     # no --needed, doesn't updated headers
     sudo pacman -S gcc glibc lib32-glibc linux-headers linux-api-headers asp
     # FIX ALL THE BROKEN HEADERS
-    # installs packages with missing files
-    cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
+    if test (read -P "Re-install all packages with missing headers?" -n 1) = "y"
+      # installs packages with missing files
+      cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
+    end
   end
 
   # update distro first
@@ -64,6 +76,12 @@ if test (read -P "Install 'pikaur' via 'pacman'?" -n 1) = "y"
   # install AUR helper:
   # try automatic
   sudo pamac install pikaur
+end
+
+if $is_steam
+  if not command -sq "pikaur"
+    yay -S pikaur-aurnews
+  end
 end
 
 if not command -sq "pikaur"
