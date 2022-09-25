@@ -213,16 +213,13 @@ end
 if test (read -P "Install fisher + theme + plugins?" -n 1) = "y"
   # FISHER 
   fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
-
-  # omf
-  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-  # omf theme
-  fish -c 'omf install yimmy'
+  
   # fzf
   fish -c 'fisher install PatrickF1/fzf.fish'
+  
   # ssh-agent
   # fish -c 'fisher install danhper/fish-ssh-agent'
-
+  
   # zoxide: fish helper
   # use:
   # z alias cd
@@ -240,12 +237,18 @@ if test (read -P "Install fisher + theme + plugins?" -n 1) = "y"
   # fish -c 'fisher install andreiborisov/sponge'
   # fish -c 'fisher install gazorby/fish-abbreviation-tips'
 
+ 
+  # omf
+  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | NONINTERACTIVE=true fish
+  # omf theme
+  fish -c 'omf install yimmy'
+
   # MANUAL: install OH-MY-FISH
   if test (read -P "Manually install OMF?" -n 1) = "y"
     cd ~/.local/sources
     git clone -c core.autocrlf=false https://github.com/oh-my-fish/oh-my-fish
     cd oh-my-fish
-    bin/install --offline
+    bin/install --offline --noninteractive
     cd 
   end
 end
