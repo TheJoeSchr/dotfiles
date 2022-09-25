@@ -3,30 +3,6 @@
 # call with
 # 
 # curl -Lks https://github.com/JoeSchr/dotfiles/raw/master/install-cfg.sh | /bin/bash
-if [[ $(uname --nodename) = "steamdeck" ]]; 
-then
- # set root password
- echo; read -p "Enter new passwd:" -s -r; echo "$USER:$REPLY" | chpasswd
- echo;
- read -p "Did it work? If no, did you manually set it via 'passwd'?" -n 1 -r
- echo    # (optional) move to a new line
- if [[ $REPLY =~ ^[Yy]$ ]]
- then
-  # make writeable
-  sudo steamos-readonly disable
-  # enable ssh access
-  sudo systemctl enable --now sshd
- fi
-fi
-
-# upgrade system
-sudo pacman-key --init
-sudo pacman-key --populate 
-sudo pacman-key --refresh-keys
-sudo pacman -Sy archlinux-keyring && sudo pacman -Su
-# install essentials
-sudo pacman -Sy --noconfirm git which rsync fish neovim fzf base-devel
-
 rm -rf $HOME/.cfg
 git clone --bare https://github.com/JoeSchr/dotfiles.git $HOME/.cfg
 
@@ -50,14 +26,8 @@ read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 5
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  # set up fish basics
-  # fzf
-  fish -c 'fisher install PatrickF1/fzf.fish'
-  # zoxide: fish helper
-  fish -c 'fisher install jethrokuan/z'
-  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | NONINTERACTIVE=true fish
-  # omf theme
-  fish -c 'omf install yimmy'
+  # need to install fish first
+  sudo pacman -Sy --noconfirm fish
   
   chmod +x ~/archRiceSystem.sh 
   /usr/bin/env fish ~/archRiceSystem.sh
