@@ -25,13 +25,12 @@ git clone --bare https://github.com/JoeSchr/dotfiles.git $HOME/.cfg
 
 config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
-mkdir -p $HOME/.backup-cfg/.config/autostart/
 $config checkout
 if [ $? = 0 ]; then
   echo "Checked out config.";
   else
-    echo "Backing up pre-existing dot files.";
-    $config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} rsync -av --relative --remove-source-files {} .backup-cfg/{}
+    echo "Deleting pre-existing dot files.";  
+    $config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} rm -rf {}
 fi;
 $config checkout
 $config config status.showUntrackedFiles no
@@ -40,25 +39,25 @@ touch ~/.vimrc.local
 touch ~/.bashrc.local
 mkdir -p ~/Downloads
 
-# set up basics
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-  # omf theme
-  fish -c 'omf install yimmy'
-  # fzf
-  fish -c 'fisher install PatrickF1/fzf.fish'
-  # zoxide: fish helper
-  fish -c 'fisher install jethrokuan/z'
-
 read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 5
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
+  # set up fish basics
+  # fzf
+  fish -c 'fisher install PatrickF1/fzf.fish'
+  # zoxide: fish helper
+  fish -c 'fisher install jethrokuan/z'
+  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | NONINTERACTIVE=true fish
+  # omf theme
+  fish -c 'omf install yimmy'
+  
   chmod +x ~/archRiceSystem.sh 
   /usr/bin/env fish ~/archRiceSystem.sh
 fi
 
-read -p "source .bashrc (and start fish first time)?" -n 1 -r -t 5
-echo    # (optional) move to a new line
+read -p "source .bashrc?" -n 1 -r -t 5
+echo  # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   # source new files
