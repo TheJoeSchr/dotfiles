@@ -4,7 +4,7 @@
 # 
 # curl -Lks https://github.com/JoeSchr/dotfiles/raw/master/install-cfg.sh | /bin/bash
 
-sudo pacman -Sy --noconfirm git which rsync fish nvim fzf base-devel
+sudo pacman -Sy --noconfirm git which rsync fish neovim fzf base-devel
 
 git clone --bare https://github.com/JoeSchr/dotfiles.git $HOME/.cfg
 
