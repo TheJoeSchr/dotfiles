@@ -2,7 +2,6 @@
 
 # Because of this file's existence, neither ~/.bash_login nor ~/.profile
 # will be sourced.
-
 # See /usr/share/doc/bash/examples/startup-files for examples.
 # The files are located in the bash-doc package.
 
