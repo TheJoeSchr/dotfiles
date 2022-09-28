@@ -6,7 +6,7 @@ touch ~/.vimrc.local
 touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
-# IS STEAMDECK
+# IS STEAMDECK (includes running in distrobox)
 set HOSTNAME (uname --nodename)
 if string match 'steamdeck*' $HOSTNAME
   set is_steam true
@@ -14,6 +14,7 @@ else
   set is_steam false
 end
 
+# IS STEAMDECK METAL
 if test (uname --nodename) = "steamdeck" 
   set is_steam_host true
 else
@@ -26,49 +27,30 @@ else
   printf "Host is not steamdeck\n"
 end
 
-if test (read -P "Init keys and full ugprade?" -n 1) = "y"
-  # on steamdeck: make writeable
-  if $is_steam_host; 
-    if test (read -P "If no, did you manually set 'passwd'?" -n 1) = "y"
-      # make writeable
-      sudo steamos-readonly disable
-      # enable ssh access
-      sudo systemctl enable --now sshd
-    else
-      exit
-    end
-  end #/steamdeck
+# on steamdeck: first make writeable
+if $is_steam_host;
+  if test (read -P "Did you manually set 'passwd'?" -n 1) = "y"
+    # make writeable
+    sudo steamos-readonly disable
+    # enable ssh access
+    sudo systemctl enable --now sshd
+  else
+    exit
+  end
+end #/steamdeck
 
+if test (read -P "Init keys and full upgrade?" -n 1) = "y"
   # init & refresh keys
   echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
-  sudo pacman-key --init
-  sudo pacman-key --populate 
-  sudo pacman-key --refresh-keys
-  sudo pacman -Sy archlinux-keyring
-  if $is_steam
+
+  env bash ~/scripts/init-pacman-keys.sh # also does full system upgrades
+  if $is_steam_host
     sudo pacman -Sy holo-keyring
   else
     sudo pacman -Sy holo-keyring
   fi
-
-  sudo pacman -Su gnupg
-
-  # rank mirror because pacman-key is slow
-  if type -q "yay"
-    sudo pacman -S pacman-contrib
-    yay -S rankmirrors-systemd
-  end
-  sudo systemctl restart pacman-init
-  # update databases
-  sudo pacman -Fy
-  sudo pacman -Syy
-  
-  # install buildtools like eg. git make libffi glibc gcc
-  sudo pacman -S --noconfirm base-devel 
-  sudo pacman -S --noconfrim git ed python python-pip
-
   # STEAMDECK: fix broken headers
-  if $is_steam
+  if $is_steam_host
     # no --needed, doesn't updated headers
     sudo pacman -S gcc glibc lib32-glibc linux-headers linux-api-headers asp
     # FIX ALL THE BROKEN HEADERS
@@ -77,32 +59,16 @@ if test (read -P "Init keys and full ugprade?" -n 1) = "y"
       cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
     end
   end
+end # / full upgrade
 
-  # update distro first
-  sudo pacman -Syu
-end
 
-# PIKAUR
-if test (read -P "Install 'pikaur' via 'pamac'?" -n 1) = "y"
-  # install AUR helper:
-  # try automatic
-  sudo pamac install pikaur
-end
-
-if $is_steam
-  if not command -sq "pikaur"
-    yay -S pikaur-aurnews
+# install AUR helper:
+if not command -sq "pikaur"
+  if test (read -P "Install pikaur" -n 1) = "y"
+    env bash ~/scripts/install-aur-and-mirror-helpers.fish
   end
 end
 
-if not command -sq "pikaur"
-  # PIKAUR manual
-  cd ~/.local/sources
-  git clone https://aur.archlinux.org/pikaur.git
-  cd pikaur
-  makepkg -fsri
-  cd ~
-end
 
 if test (read -P "Install CLI essentials (fish, tmux, ...)" -n 1) = "y"
   # ESSENTIALS SYSTEM

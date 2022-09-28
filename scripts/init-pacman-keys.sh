@@ -24,5 +24,3 @@ time pacman -Sy --noconfirm archlinux-keyring && pacman -Su --noconfirm
 echo
 echo "UPGRADE THE SYSTEM"
 time pacman -Syu --noconfirm
-:e install-buildtools.sh
-
