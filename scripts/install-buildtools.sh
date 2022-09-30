@@ -6,4 +6,12 @@
 echo
 echo
 echo "INSTALL BUILDTOOLS"
-time pacman -S --needed --noconfirm base-devel git lib32-gcc-libs ed neovim rsync python python-pip
+
+cliapps="./install-cli-essentials.csv"
+# read from csv all tools tagged with "B" for buildtools
+for app in $(grep "B," $cliapps | cut -d, -f2 ) ; 
+do 
+  echo "INSTALLING: $app"; 
+  pacman -S --needed --noconfirm $app >/dev/null 2>&1;
+done
+

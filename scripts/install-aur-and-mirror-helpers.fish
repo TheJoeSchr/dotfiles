@@ -36,3 +36,4 @@ if not type -q "rankmirrors"
   pikaur -S --noconfirm pacman-contrib
   pikaur -S --noconfirm --needed rankmirrors-systemd
 end
+
