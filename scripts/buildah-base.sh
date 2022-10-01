@@ -9,24 +9,24 @@ source ./buildah-common.sh
 IMAGE=$1
 export BASE=$(buildah --cgroup-manager=cgroupfs from $IMAGE)
 
-echo "config workingdir /tmp"
+echo "INSTALL BABASHKA"
+buildah run $BASE /bin/sh -c "bash < <(curl -s https://raw.githubusercontent.com/babashka/babashka/master/install)"
+
+# echo "config workingdir /tmp"
 buildah config --workingdir /tmp $BASE
-echo "copy scripts /tmp"
+# echo "copy scripts /tmp"
 buildah copy $BASE ./* .
-echo "run ./init-pacman-keys.sh"
+echo "RUN ./INIT-PACMAN-KEYS.SH"
 buildah run $BASE /bin/sh "./init-pacman-keys.sh"
 buildah run $BASE /bin/sh "./install-buildtools.sh"
-
-buildah run $BASE /bin/sh -c "pacman -S --noconfirm fish"
-buildah copy $BASE ./*.fish .
-
 
 # >USER
 entry_pkguser $BASE
 
-echo "Install aur helpers"
-buildah run $BASE fish "./install-aur-and-mirror-helpers.fish"
-buildah run $BASE /bin/sh -c "pikaur -S --needed --noconfirm babashka-bin"
+echo "INSTALL AUR HELPERS"
+buildah run $BASE /bin/sh "./install-aur-and-mirror-helpers.sh"
+buildah run $BASE which "pikaur"
+buildah run $BASE which "yay"
 
 # /USER
 exit_pkguser $BASE
@@ -40,9 +40,9 @@ echo
 echo "MOUNT: $BASEMOUNT"
 echo "CONTAINER: $BASE"
 echo
-echo "Cleanup"
-buildah run $BASE /bin/sh -c "pacman -Sc --noconfirm"
-buildah run $BASE /bin/sh -c "rm -rf /tmp"
+# echo "Cleanup"
+# buildah run $BASE /bin/sh -c "pacman -Sc --noconfirm"
+# buildah run $BASE /bin/sh -c "rm -rf /tmp"
 
 # save envvars for easy consume via source
 ENVFILE="$(basename -s .sh $0).env"
@@ -53,5 +53,5 @@ export BASE=$BASE
 export BASEMOUNT=$BASEMOUNT
 EOF
 
-# for switchting from root to specific user
+# for switching from root to specific user
 # exec su "$1" -s /bin/fish
