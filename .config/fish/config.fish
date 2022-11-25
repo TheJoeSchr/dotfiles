@@ -75,11 +75,11 @@ THE THREE TYPES OF ALIAS
   alias pbpaste 'xsel --clipboard --output'
   alias ls 'exa -G --icons'
   alias lll 'ls -lT --level=1'
+  alias tree 'lll -a --level=3'
   # alias n => ./functions/n.fish 
   alias N 'sudo -E nnn -DH'
   alias ll 'n -D'
   alias la 'll -H'
-  alias tree 'll -a --level=3'
   alias vimdiff "$EDITOR -d"
 
 
