@@ -92,6 +92,15 @@ THE THREE TYPES OF ALIAS
     zoxide init fish | source
     abbr cd z
   end
+
+  if type -q "tmux"
+    # if inside tmux refresh DBUS
+    switch $TERM
+        case "screen*"
+            echo "Refresh DBUS '$DBUS_SESSION_BUS_ADDRESS' for tmux"
+            tmux-refresh
+    end
+  end
   # autostart ssh-add
   # fish_ssh_agent
   # autostart lf, or use CTRL+O to open it
