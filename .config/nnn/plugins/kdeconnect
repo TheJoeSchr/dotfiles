@@ -13,9 +13,9 @@ if [ -s "$selection" ]; then
     kdeconnect-cli -d "$id" --share "$(cat "$selection")"
 
     # If you want a system notification, uncomment the next 3 lines.
-    #notify-send -a "Kdeconnect" "Sending $(cat "$selection")"
-#else
-    #notify-send -a "Kdeconnect" "No file selected"
+    notify-send -a "Kdeconnect" "Sending $(cat "$selection")"
+else
+    notify-send -a "Kdeconnect" "No file selected"
 
     # Clear selection
     if [ -p "$NNN_PIPE" ]; then

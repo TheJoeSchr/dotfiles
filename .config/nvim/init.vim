@@ -217,8 +217,8 @@ nnoremap <c-F3> :set hlsearch!<CR>
 
 " exit insert mode without ESC
 " native, but with delay
-imap jk <Esc>
-imap kj <Esc>
+" imap jk <Esc>
+" imap kj <Esc>
 
 " Paste in visual mode without yanking the old value
 " like `xnoremap p pgvy` but works with register
@@ -316,8 +316,6 @@ if !exists('g:vscode')
       Plug 'haya14busa/incsearch.vim'
       Plug 'haya14busa/incsearch-fuzzy.vim'
       Plug 'haya14busa/incsearch-easymotion.vim'
-      " no visual delay after jk / kj
-      Plug 'zhou13/vim-easyescape'
       " - helps with sneak scoping
       Plug 'unblevable/quick-scope'
       Plug 'justinmk/vim-sneak'
@@ -383,7 +381,7 @@ if !exists('g:vscode')
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
-    
+
     " -- DEBUGGER --"
     " Plug 'puremourning/vimspector'
     Plug 'mfussenegger/nvim-dap'
@@ -736,19 +734,22 @@ dap.configurations.javascript = {
 vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='▸', texthl='', linehl='', numhl=''})
 EOF
-
+  
+  "" manually configure different testrunner if auto-detect fails
+  ""lua require('dap-python').test_runner = 'pytest'
   lua require('dap.ext.vscode').load_launchjs()
-  " find local virtualenv
-  lua require('dap-python').setup(string.format("%s/bin/python", os.getenv('VIRTUAL_ENV'))) 
+  "" find local virtualenv
+  lua require('dap-python').setup(string.format('%s/bin/python', os.getenv('VIRTUAL_ENV'))) 
+
   nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
-  " nnoremap <S-k> :lua require'dap'.step_out()<CR>
+  "" nnoremap <S-k> :lua require'dap'.step_out()<CR>"
   nnoremap <leader>dk :lua require'dap'.step_out()<CR>
-  " nnoremap <S-l> :lua require'dap'.step_into()<CR>
+  "" nnoremap <S-l> :lua require'dap'.step_into()<CR>
   nnoremap <leader>dl :lua require'dap'.step_into()<CR>
   " nnoremap <S-j> :lua require'dap'.step_over()<CR>
   nnoremap <leader>dj :lua require'dap'.step_over()<CR>
   nnoremap <leader>dd :lua require'dap'.step_over()<CR>
-  " like F5, start to debug
+  "" like F5, start to debug
   nnoremap <F5> :lua require'dap'.continue()<CR>
   nnoremap <leader>DD :lua require'dap'.continue()<CR>
 
@@ -1284,8 +1285,6 @@ if exists('g:vscode')
       Plug 'haya14busa/incsearch-easymotion.vim'
       " - helps with f scoping
       Plug 'unblevable/quick-scope'
-      " no visual delay after jk / kj
-      Plug 'zhou13/vim-easyescape'
       Plug 'justinmk/vim-sneak'
       " Surround
       Plug 'tpope/vim-surround'
