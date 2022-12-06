@@ -48,7 +48,7 @@ THE THREE TYPES OF ALIAS
   abbr g 'git'
   abbr G 'git'
   abbr ga 'git add'
-  abbr gs 'git status'
+  abbr gs 'git st'
   alias gl 'PAGER=/usr/bin/less git lg'
   alias gla 'PAGER=/usr/bin/less git lga'
   alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
