@@ -21,6 +21,7 @@
   ci = commit -v
   ca = !git ci --amend
   cim = !git ci -m
+  cc = cim
   st = status
   br = branch
   df = diff --histogram --color-moved=plain
