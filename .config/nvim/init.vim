@@ -117,6 +117,7 @@ set winbl=10
 
 " HIGHLIGHTS:
 " (needs to be in INSERT MODE)
+" - ~x~o omnicomplete (files)
 " - ^x^n for JUST this file
 " - ^x^f for filenames (works with our path trick!)
 " - ^x^] for tags only
@@ -306,7 +307,7 @@ if !exists('g:vscode')
     " UNIVERSAL:
     " >============== UNIVERSAL PLUGINS: NATIVE VIM ===================
       " ------ needs to be duplicated because can't call plug#begin twice
-      Plug 'szw/vim-maximizer'
+      Plug 'vimwiki/vimwiki'
       Plug 'bkad/CamelCaseMotion'
       " Fuzzy Finder
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
@@ -346,11 +347,14 @@ if !exists('g:vscode')
       " close other buffers (and more)
       Plug 'Asheq/close-buffers.vim'
       " github copilot
-      " Plug 'github/copilot.vim'
+      Plug 'github/copilot.vim'
+      Plug 'terror/chatgpt.nvim', { 'do': 'pip install -r requirements.txt' }
 
     " ============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
 
     " === NATIVE ONLY ===
+    " F3
+    Plug 'szw/vim-maximizer'
     " Repeat.vim remaps . in a way that plugins can tap into it.
     Plug 'tpope/vim-repeat'
     " Startify
@@ -524,6 +528,16 @@ if !exists('g:vscode')
   " CONFIG NATIVE PLUGINS:
   " ----------------------
   " ---------------
+  "  --- VIMWIKI
+  " This will make sure vimwiki will only set the filetype of markdown files inside a wiki directory, rather than globally.
+  let g:vimwiki_global_ext = 0
+  let g:vimwiki_list = [{'path':'~/zk/', 
+                        \ 'syntax': 'markdown', 'ext': '.md'}] 
+  let g:vimwiki_ext2syntax = {'.md': 'markdown',
+                  \ '.mkd': 'markdown',
+                  \ '.wiki': 'media',
+                  \ '.py': 'media'}
+  "
   " --- GOYO ------------------
   let g:goyo_height='100%'
   function! s:goyo_enter()
@@ -734,7 +748,7 @@ dap.configurations.javascript = {
 vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='▸', texthl='', linehl='', numhl=''})
 EOF
-  
+
   "" manually configure different testrunner if auto-detect fails
   ""lua require('dap-python').test_runner = 'pytest'
   lua require('dap.ext.vscode').load_launchjs()
@@ -742,21 +756,21 @@ EOF
   lua require('dap-python').setup(string.format('%s/bin/python', os.getenv('VIRTUAL_ENV'))) 
 
   nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
-  "" nnoremap <S-k> :lua require'dap'.step_out()<CR>"
   nnoremap <leader>dk :lua require'dap'.step_out()<CR>
-  "" nnoremap <S-l> :lua require'dap'.step_into()<CR>
   nnoremap <leader>dl :lua require'dap'.step_into()<CR>
-  " nnoremap <S-j> :lua require'dap'.step_over()<CR>
+  nnoremap <S-F4> :lua require'dap'.step_into()<CR>
   nnoremap <leader>dj :lua require'dap'.step_over()<CR>
+  nnoremap <F4> :lua require'dap'.step_over()<CR>
   nnoremap <leader>dd :lua require'dap'.step_over()<CR>
   "" like F5, start to debug
   nnoremap <F5> :lua require'dap'.continue()<CR>
   nnoremap <leader>DD :lua require'dap'.continue()<CR>
+  nnoremap <S-F5> <Cmd>lua require'dap'.run_last()<CR>
 
   nnoremap <leader>DQ :lua require'dap'.close()<CR>
   nnoremap <leader>dH :lua require'dap'.up()<CR>
   nnoremap <leader>dL :lua require'dap'.down()<CR>
-  nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.stop();require'dap'.run_last()<CR>
+  nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
   nnoremap <leader>dr :lua require'dap'.repl.open({}, 'split')<CR><C-w>l
   nnoremap <leader>dh :lua require'dap.ui.variables'.hover()<CR>
   vnoremap <leader>dh :lua require'dap.ui.variables'.visual_hover()<CR>
@@ -1274,7 +1288,6 @@ if exists('g:vscode')
     " ============== UNIVERSAL PLUGINS: VSCODE-NEOVIM ===================
     " ------ needs to be duplicated because can't call plug#begin twice
       Plug 'bkad/CamelCaseMotion'
-      Plug 'szw/vim-maximizer'
       " Fuzzy Find
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
       Plug 'junegunn/fzf.vim'
@@ -1325,10 +1338,17 @@ endif
 " ================== UNIVERSAL PLUGINS CONFIG =================
 
 " ------------------ CONJURE  ------------------
+function! ClerkShow()
+  exe "w"
+  exe "ConjureEval (nextjournal.clerk/show! \"" . expand("%:p") . "\")"
+endfunction
 
+nmap <localleader>cs :execute ClerkShow()<CR>
 
 " ------------------ VIM-MAXIMIZER ------------------
 nnoremap <silent><C-w>O :MaximizerToggle<CR>
+" nnoremap <silent><C-w>_ :MaximizerToggle<CR>
+" nnoremap <silent><C-w>= :MaximizerToggle<CR>
 vnoremap <silent><C-w>O :MaximizerToggle<CR>gv
 inoremap <silent><C-w>O <C-o>:MaximizerToggle<CR>
 " ------------------ CAMELCASEMOTION ------------------
