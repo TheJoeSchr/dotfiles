@@ -25,5 +25,6 @@ then
   printf "\nInstall rankmirrors:\n"
   pikaur -S --noconfirm pacman-contrib >/dev/null 2>&1
   pikaur -S --noconfirm --needed rankmirrors-systemd >/dev/null 2>&1
+  rankmirrors /etc/pacman.d/mirrorlist > /etc/pacman.d/mirrorlist
 fi
 

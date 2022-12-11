@@ -12,11 +12,12 @@ export BASE=$(buildah --cgroup-manager=cgroupfs from $IMAGE)
 echo "INSTALL BABASHKA"
 buildah run $BASE /bin/sh -c "bash < <(curl -s https://raw.githubusercontent.com/babashka/babashka/master/install)"
 
-# echo "config workingdir /tmp"
+# SET WORKINGDIR /TMP
 buildah config --workingdir /tmp $BASE
-# echo "copy scripts /tmp"
+# COPY SCRIPTS /TMP
 buildah copy $BASE ./* .
-echo "RUN ./INIT-PACMAN-KEYS.SH"
+
+# RUN KEY INIT AND INSTALL BASICS
 buildah run $BASE /bin/sh "./init-pacman-keys.sh"
 buildah run $BASE /bin/sh "./install-buildtools.sh"
 
@@ -26,7 +27,6 @@ entry_pkguser $BASE
 echo "INSTALL AUR HELPERS"
 buildah run $BASE /bin/sh "./install-aur-and-mirror-helpers.sh"
 buildah run $BASE which "pikaur"
-buildah run $BASE which "yay"
 
 # /USER
 exit_pkguser $BASE
@@ -40,9 +40,8 @@ echo
 echo "MOUNT: $BASEMOUNT"
 echo "CONTAINER: $BASE"
 echo
-# echo "Cleanup"
-# buildah run $BASE /bin/sh -c "pacman -Sc --noconfirm"
-# buildah run $BASE /bin/sh -c "rm -rf /tmp"
+
+cleanup $BASE
 
 # save envvars for easy consume via source
 ENVFILE="$(basename -s .sh $0).env"
