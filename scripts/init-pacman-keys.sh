@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 # MEANT TO BE RUN AS ROOT
-echo $0
+echo "NOW RUNNING: $0"
 
 # TWEAKS
 # Make pacman colorful, concurrent downloads and Pacman eye-candy.
