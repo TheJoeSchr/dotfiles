@@ -1,7 +1,20 @@
 #! /bin/bash
+ntpdate 0.us.pool.ntp.org >/dev/null 2>&1
+
+putgitrepo() {
+	# Downloads a gitrepo $1 and places the files in $2 only overwriting conflicts
+	echo "Downloading and installing config files..."
+	[ -z "$3" ] && branch="master" || branch="$repobranch"
+	dir=$(mktemp -d)
+	[ ! -d "$2" ] && mkdir -p "$2"
+	chown "$name":wheel "$dir" "$2"
+	sudo -u "$name" git -C "$repodir" clone --depth 1 \
+		--single-branch --no-tags -q --recursive -b "$branch" \
+		--recurse-submodules "$1" "$dir"
+	sudo -u "$name" cp -rfT "$dir" "$2"
+}
 
 # call with
-# 
 # curl -Lks https://github.com/TheJoeSchr/dotfiles/raw/master/install.sh | env bash
 rm -rf $HOME/.cfg
 git clone --bare https://github.com/TheJoeSchr/dotfiles.git $HOME/.cfg
