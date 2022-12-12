@@ -43,7 +43,6 @@ end
 require('telescope').load_extension('gh')
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('dap')
-require("dapui").setup()
 return M
 EOF
 endif
