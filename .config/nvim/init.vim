@@ -537,6 +537,24 @@ if !exists('g:vscode')
                   \ '.mkd': 'markdown',
                   \ '.wiki': 'media',
                   \ '.py': 'media'}
+  " don't use global default mappings, too invasive especiall with easymotion on <leader>w
+  let g:vimwiki_key_mappings =
+    \ {
+    \   'all_maps': 1,
+    \   'global': 0,
+    \   'headers': 1,
+    \   'text_objs': 1,
+    \   'table_format': 1,
+    \   'table_mappings': 1,
+    \   'lists': 1,
+    \   'links': 1,
+    \   'html': 1,
+    \   'mouse': 0,
+    \ }
+  nmap <LocalLeader><LocalLeader>ww <Plug>VimwikiIndex
+  nmap <LocalLeader><LocalLeader>wt <Plug><Plug>VimwikiTabIndex
+  nmap <LocalLeader><LocalLeader>ws <Plug>VimwikiUISelect
+
   "
   " --- GOYO ------------------
   let g:goyo_height='100%'
@@ -718,36 +736,9 @@ if !exists('g:vscode')
   \}
   " ---------------- NVIM-DAP -----------------
   " mfussenegger/nvim-dap
-
-lua << EOF
-local dap = require('dap')
-dap.adapters.node2 = {
-  type = 'executable',
-  command = 'node',
-  args = {os.getenv('HOME') .. '/.local/sources/vscode-node-debug2/out/src/nodeDebug.js'},
-}
-dap.configurations.javascript = {
-  {
-    name = 'Launch',
-    type = 'node2',
-    request = 'launch',
-    program = '${file}',
-    cwd = vim.fn.getcwd(),
-    sourceMaps = true,
-    protocol = 'inspector',
-    console = 'integratedTerminal',
-  },
-  {
-    -- For this to work you need to make sure the node process is started with the `--inspect` flag.
-    name = 'Attach to process',
-    type = 'node2',
-    request = 'attach',
-    processId = require'dap.utils'.pick_process,
-  },
-}
-vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
-vim.fn.sign_define('DapStopped', {text='▸', texthl='', linehl='', numhl=''})
-EOF
+  " in after/plugin/nvim-dap.vim
+  " dap.configurations.javascript = {
+  " dap.adapters.node2 = {
 
   "" manually configure different testrunner if auto-detect fails
   ""lua require('dap-python').test_runner = 'pytest'
@@ -785,24 +776,28 @@ EOF
   vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
 
   " Plug 'nvim-telescope/telescope-dap.nvim'
-
-  "  in ./**/telescope.nvim.vim
-" lua << EOF
-" require('telescope').setup()
-" require('telescope').load_extension('dap')
-" EOF
+  " already in ./**/telescope.nvim.vim
+  " require('telescope').setup()
+  " require('telescope').load_extension('dap')
 
   nnoremap <leader>dvf :Telescope dap frames<CR>
   nnoremap <leader>dvc :Telescope dap commands<CR>
   nnoremap <leader>dvb :Telescope dap list_breakpoints<CR>
 
   " theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
+  "
   let g:dap_virtual_text = v:true
+  " in after/plugin/nvim-dap-virtual-text.vim
+  " require("nvim-dap-virtual-text").setup {
 
   " Plug 'rcarriga/nvim-dap-ui'
+  " in after/plugin/nvim-dap.vim
+  " require("dapui").setup()
+
   nnoremap <leader>du :lua require("dapui").toggle()<CR>
 
   " jank/vim-test and mfussenegger/nvim-dap nnoremap <leader>dt :TestNearest -strategy=jest<CR>
+  "
   function! JestStrategy(cmd)
     let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
     let fileName = matchlist(a:cmd, '\v'' -- (.*)$')[1]
@@ -849,15 +844,9 @@ EOF
 
   " ---------------- NNN -----------------
 
-lua << EOF
-require("nnn").setup()
-EOF
-
     " KEY BINDINGS
     " _ as netrw on alternativa
     nnoremap _ <cmd>NnnExplorer %:p:h<CR>
-    " picker with telescope style keybinds
-    nnoremap <leader>fp <cmd>NnnPicker<CR>
     " _ as netrw on alternativa
     " (beware tmux overlap)
     " tnoremap <C-A-O> <cmd>NnnExplorer<CR>
@@ -951,10 +940,12 @@ EOF
   nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
   " file finder
   nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+  " file finder via nnn
+  nnoremap <leader>fp <cmd>NnnPicker<CR>
   " grep files
-  nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+  nnoremap <leader>fs <cmd>lua require('telescope.builtin').live_grep()<cr>
   " rg | fzf
-  nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+  nnoremap <leader>fg :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
   nnoremap <leader>fG :Rg 
   " find word under cursor
   nnoremap <leader>fw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
@@ -965,7 +956,7 @@ EOF
   nnoremap <Leader>fl <cmd>lua require('telescope.builtin').git_commits()<cr>
   nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
   noremap <leader>: <cmd>lua require('telescope.builtin').command_history()<cr>
-  noremap <leader>f: <cmd>lua require('telescope.builtin').commands()<cr>
+  noremap <leader>f: <cmd>lua require('telescope.builtin').commands_history()<cr>
   noremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
   noremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
   noremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
@@ -1275,6 +1266,7 @@ endif
 " set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
 
 " NOW WE CAN:
+"
 " - Run :make to run RSpec
 " - :cl to list errors
 " - :cc# to jump to error by number
@@ -1282,6 +1274,7 @@ endif
 " ==== /CURRENTLY UNUSED (from 90% without plugin) =====
 
 " ============== VSCODE-NEOVIM ===================
+"
 if exists('g:vscode')
   " -------------- PLUGINS VSCODE -------------------
   call plug#begin('~/.vim/plugged')
@@ -1318,6 +1311,7 @@ if exists('g:vscode')
   nmap gcc <Plug>VSCodeCommentaryLine
 
   " window navigate like with tmux plugin
+  "
   xnoremap <silent> <C-j> :<C-u>call VSCodeNotify('workbench.action.focusBelowGroup')<CR>
   nnoremap <silent> <C-k> :<C-u>call VSCodeNotify('workbench.action.focusAboveGroup')<CR>
   xnoremap <silent> <C-k> :<C-u>call VSCodeNotify('workbench.action.focusAboveGroup')<CR>
@@ -1330,14 +1324,16 @@ if exists('g:vscode')
   " set clipboard=
 
   " don't display line numbers
+  "
   set relativenumber!
   set number!
 endif
 " ============== / VSCODE-NEOVIM ===================
-
+"
 " ================== UNIVERSAL PLUGINS CONFIG =================
-
+"
 " ------------------ CONJURE  ------------------
+"
 function! ClerkShow()
   exe "w"
   exe "ConjureEval (nextjournal.clerk/show! \"" . expand("%:p") . "\")"
@@ -1346,12 +1342,13 @@ endfunction
 nmap <localleader>cs :execute ClerkShow()<CR>
 
 " ------------------ VIM-MAXIMIZER ------------------
+"
 nnoremap <silent><C-w>O :MaximizerToggle<CR>
-" nnoremap <silent><C-w>_ :MaximizerToggle<CR>
-" nnoremap <silent><C-w>= :MaximizerToggle<CR>
 vnoremap <silent><C-w>O :MaximizerToggle<CR>gv
 inoremap <silent><C-w>O <C-o>:MaximizerToggle<CR>
+
 " ------------------ CAMELCASEMOTION ------------------
+"
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
@@ -1362,6 +1359,7 @@ sunmap e
 sunmap ge
 
 " don't use this, muscle memory already too strong
+"
 " omap <silent> iw <Plug>CamelCaseMotion_iw
 " xmap <silent> iw <Plug>CamelCaseMotion_iw
 " omap <silent> ib <Plug>CamelCaseMotion_ib
@@ -1389,6 +1387,7 @@ map <Leader>e <Plug>(easymotion-e)
 
 
 " <leader><leader> only works with double \\
+" 
 map <Leader><Leader>l <Plug>(easymotion-lineforward)
 map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
@@ -1402,6 +1401,7 @@ map <Leader><Leader>e <Plug>(easymotion-e)
 " sunmap \hu
 
 " ----------- FUZZYSEACH (<Space>/) ----------------
+"
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
   \   'converters': [incsearch#config#fuzzyword#converter()],
