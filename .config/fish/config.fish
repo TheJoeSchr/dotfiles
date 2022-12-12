@@ -55,6 +55,9 @@ THE THREE TYPES OF ALIAS
   abbr lga 'gla'
   alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
   abbr cfg 'config'
+  # use both because sometimes I start typing cng and then realize I want to use config
+  abbr cng 'config'
+  abbr cnfg 'config'
   alias du 'dust -d 1'
   alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
   abbr e 'nvim'
