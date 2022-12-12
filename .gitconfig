@@ -11,6 +11,7 @@
   name = Joe Schr
   email = 8218910+TheJoeSchr@users.noreply.github.com
 [push]
+  autoSetupRemote = true
   default = simple
 [alias]
     # replace .bashrc
