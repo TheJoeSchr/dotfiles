@@ -311,7 +311,8 @@ if !exists('g:vscode')
       Plug 'bkad/CamelCaseMotion'
       " Fuzzy Finder
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
-      " Plug 'junegunn/fzf.vim'
+      " need twice to create folder for other extensions
+      Plug 'junegunn/fzf.vim'
       Plug 'stsewd/fzf-checkout.vim'
       " Easymotion fuzzy search
       Plug 'haya14busa/incsearch.vim'
