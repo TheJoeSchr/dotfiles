@@ -222,6 +222,7 @@ if test (read -P "Install fisher + theme + plugins?" -n 1) = "y"
 
   # MANUAL: install OH-MY-FISH
   if test (read -P "Manually install OMF?" -n 1) = "y"
+    mkdir -p ~/.local/sources
     cd ~/.local/sources
     git clone -c core.autocrlf=false https://github.com/oh-my-fish/oh-my-fish
     cd oh-my-fish
