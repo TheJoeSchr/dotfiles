@@ -533,7 +533,9 @@ if test (read -P "Increase number of file watchers?" -n 1) = "y"
 end
 
 # fix .ssh
-chmod 600 ".ssh/*"
+if test (read -P "Fix .ssh/* permisssions" -n 1) = "y"
+  chmod 600 "~/.ssh/*"
+end
 
 if test (read -P "Fix moonlander rules?" -n 1) = "y"
   # moonlander
