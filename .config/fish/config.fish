@@ -17,11 +17,11 @@ if status --is-interactive
   echo Setting key bindings...
   fish_vi_key_bindings
   # Tab is history expand
-  bind -M insert \t forward-char
+  # bind -M insert \t complete
   # C-p completes history expand
   bind -M insert \cP forward-char
   # Tab-Tab is complete
-  bind -M insert \t\t complete
+  # bind -M insert \t\t complete
   # C-f moves one word forward
   bind -M insert \cF nextd-or-forward-word
   # Setting fd as the default source for fzf
