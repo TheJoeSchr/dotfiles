@@ -1,9 +1,4 @@
-# Rename this file to match the name of the function
-# set -x NNN_OPENER ~/.local/sources/pistol/pistol
-# e.g. ~/.config/fish/functions/n.fish
-# or, add the lines to the 'config.fish' file.
-
-function n --wraps nnn --description 'support nnn quit and change directory'
+function nnn-cd --wraps nnn --description 'opens nnn and change to directory at nnn quit'
     # Block nesting of nnn in subshells
     if test -n "$NNNLVL"
         if [ (expr $NNNLVL + 0) -ge 1 ]
@@ -31,10 +26,17 @@ function n --wraps nnn --description 'support nnn quit and change directory'
     # The command function allows one to alias this function to `nnn` without
     # making an infinitely recursive alias
     # -P v + => opens preview-tui mapped to 'v'
-    command nnn -axcJruD $argv
+    # -H hidden files
+    # -D dirs in context colors
+    # -p takes output file as an argument
+    # - print to stdout
+    # `-p -` print selected to stdout
+    #
+    nnn-cmd -DHp - $argv
 
     if test -e $NNN_TMPFILE
         source $NNN_TMPFILE
         rm $NNN_TMPFILE
     end
 end
+

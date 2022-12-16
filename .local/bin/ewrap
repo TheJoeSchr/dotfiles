@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+if [ -n "$TMUX" ] ; then
+    # tmux session running
+    tmux split-window -h "nvr \"$*\""
+else
+    # Remove option --tab for new window
+    konsole -e "nvr \"$*\""
+fi

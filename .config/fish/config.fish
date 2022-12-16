@@ -2,11 +2,9 @@ echo Setting global exports...
 set -gx SHELL (which bash)
 set -gx PAGER nvimpager
 set -gx EDITOR nvim
-set -gx VISUAL nvr
+set -gx VISUAL nvr # ewrap is used by nnn with editor split
 set -gx BROWSER google-chrome-stable
 # nnn
-set -x NNN_OPENER ~/.config/nnn/plugins/nuke 
-set -x NNN_PLUG 'f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch'
 set -x USE_PISTOL 1
 # always try to set DISPLAY
 set -q DISPLAY; or set -gx DISPLAY ":0"
@@ -18,16 +16,18 @@ fish_add_path ~/.local/podman/bin
 if status --is-interactive
   echo Setting key bindings...
   fish_vi_key_bindings
-  # Tab is complete
-  bind -M insert \t complete
+  # Tab is history expand
+  bind -M insert \t forward-char
   # C-p completes history expand
   bind -M insert \cP forward-char
-  bind -M insert \c\t forward-char
+  # Tab-Tab is complete
+  bind -M insert \t\t complete
   # C-f moves one word forward
   bind -M insert \cF nextd-or-forward-word
   # Setting fd as the default source for fzf
   export FZF_DEFAULT_COMMAND='fd --type f'
 
+# need `:` for multiline comment
 : '
 THE THREE TYPES OF ALIAS
 ==============================
@@ -81,10 +81,24 @@ THE THREE TYPES OF ALIAS
   alias ls 'exa -G --icons'
   alias lll 'ls -lT --level=1'
   alias tree 'lll -a --level=3'
-  # alias n => ./functions/n.fish 
-  alias N 'sudo -E nnn -DH'
-  alias ll 'n -D'
+  # NNN aliases
+  # -P v + => opens preview-tui mapped to 'v'
+  # -n nav-by-type
+  # -J no jump into directory
+  # -H hidden files
+  # -D dirs in context colors
+  # -p takes output file as an argument
+  # - print to stdout
+  # `-p -` print selected to stdout
+  alias N 'sudo -E (fish -c nnn-with-editor-split -H)'
+  # find
+  alias n 'nnn-prints-selection'
+  # explore and go
+  alias ll 'nnn-cd'
   alias la 'll -H'
+  # functions/fileexplorer_user_key_bindings.fish
+  # ALT+o => nnn-nav-by-type
+  # CTRL+o or ALT+t => nnn-filepicker
   alias vimdiff "$EDITOR -d"
 
 
