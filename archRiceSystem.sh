@@ -34,6 +34,8 @@ if $is_steam_host;
     sudo steamos-readonly disable
     # enable ssh access
     sudo systemctl enable --now sshd
+    # fix permission problems for X11 sockets for distrobox
+    sudo cp ~/scripts/fix_tmp.sh /etc/profile.d/
   else
     exit
   end
