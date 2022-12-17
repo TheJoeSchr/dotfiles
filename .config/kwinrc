@@ -135,10 +135,10 @@ zoomEnabled=false
 
 [Script-bismuth]
 enableQuarterLayout=true
-floatingClass=steam,corekeyboard
+floatingClass=corekeyboard,steamwebhelper
 floatingTitle=CoreKeyboard
 ignoreActivity=Gaming
-ignoreClass=yakuake,spectacle,Conky,zoom,steam,systemsettings
+ignoreClass=yakuake,spectacle,Conky,zoom,steamwebhelper,systemsettings
 ignoreScreen=3
 ignoreTitle=Steam Keyboard,CoreKeyboard
 limitTileWidth=true
