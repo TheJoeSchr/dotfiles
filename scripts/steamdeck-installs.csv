@@ -1,0 +1,13 @@
+B,git
+B,tmux
+B,cmake, "needed for telescope-fzf"
+B,direnv, "unclutter .profile, source .envrc for each dir automatically"
+B,babashka-bin, "babashka-bin, run clojure scritps"
+B,ripgrep, "ripgrep, modern ci"
+B,fzf, "ripgrep, modern ci"
+B,exa, "better ls"
+B,zoxide, "used by fish z"
+B,xsel, "needed for neovim"
+B,python, python3
+K,kwin-bismuth
+F,ttf-nerd-fonts-hack-complete-git, "nerd fonts fixes for exa icons etc"
