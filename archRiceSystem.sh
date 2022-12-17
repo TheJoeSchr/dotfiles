@@ -43,18 +43,16 @@ end #/steamdeck
 
 if test (read -P "Init keys and full upgrade?" -n 1) = "y"
   # init & refresh keys
-  echo "keyserver hkps://keyserver.ubuntu.com" >> sudo tee -a /etc/pacman.d/gnupg/gpg.conf
-
-  env bash ~/scripts/init-pacman-keys.sh # also does full system upgrades
+  sudo env bash ~/archlinux/init-pacman-keys.sh # also does full system upgrades
   if $is_steam_host
-    sudo pacman -Sy holo-keyring
-  else
-    sudo pacman -Sy holo-keyring
-  fi
+    echo "Installing holo-keyring"
+    sudo pacman -Syu --noconfirm holo-keyring
+  end 
   # STEAMDECK: fix broken headers
   if $is_steam_host
+    echo "Steamdeck: fixing broken headers of buildtools"
     # no --needed, doesn't updated headers
-    sudo pacman -S gcc glibc lib32-glibc linux-headers linux-api-headers asp
+    sudo pacman -S --noconfirm gcc glibc lib32-glibc linux-headers linux-api-headers asp cmake
     # FIX ALL THE BROKEN HEADERS
     if test (read -P "Re-install all packages with missing headers?" -n 1) = "y"
       # installs packages with missing files
@@ -67,13 +65,26 @@ end # / full upgrade
 # install AUR helper:
 if not command -sq "pikaur"
   if test (read -P "Install pikaur" -n 1) = "y"
-    env bash ~/scripts/install-aur-and-mirror-helpers.fish
+  cd ~/archlinux # change PWD for ./common.sh import
+    # need build tools first
+    sudo env bash ~/archlinux/install-buildtools.sh
+    env bash ~/archlinux/install-aur-and-mirror-helpers.sh
+  cd -
+  echo $PWD
   end
 end
 
 
+# FIRST TRY SCRIPT, MAY FAIL BECAUSE GIT SUBMODULES NOT CHECKED OUT
+if test (read -P "Install CLI essentials via install-cli-essentials.csv" -n 1) = "y"
+  cd ~/archlinux # change PWD for ./common.sh import
+  sudo env bash ~/archlinux/install-cli-essentials.sh
+  cd -
+  echo $PWD
+end
+
+# ESSENTIALS SYSTEM
 if test (read -P "Install CLI essentials (fish, tmux, ...)" -n 1) = "y"
-  # ESSENTIALS SYSTEM
   pikaur -S --needed --noconfirm \
     fish \
     tmux fpp \
