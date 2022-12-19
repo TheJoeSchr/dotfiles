@@ -32,7 +32,7 @@ function nnn-cd --wraps nnn --description 'opens nnn and change to directory at 
     # - print to stdout
     # `-p -` print selected to stdout
     #
-    nnn-cmd -DHp - $argv
+    nnn-with-editor-split -DHp - $argv
 
     if test -e $NNN_TMPFILE
         source $NNN_TMPFILE
