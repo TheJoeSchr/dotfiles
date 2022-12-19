@@ -97,23 +97,21 @@ THE THREE TYPES OF ALIAS
   alias lll 'ls -lT --level=1'
   alias tree 'lll -a --level=3'
   # NNN aliases
-  # -P v + => opens preview-tui mapped to 'v'
-  # -n nav-by-type
-  # -J no jump into directory
   # -H hidden files
-  # -D dirs in context colors
-  # -p takes output file as an argument
-  # - print to stdout
-  # `-p -` print selected to stdout
-  alias N 'sudo -E (fish -c nnn-with-editor-split -H)'
-  # find
-  alias n 'nnn-prints-selection'
-  # explore and go
-  alias ll 'nnn-cd'
-  alias la 'll -H'
+  # -e      text in $VISUAL/$EDITOR/
+  # -E      internal edits in EDITOR
+  # sudo -E persevere enviornment
+  # sudoedit doesn't work
+  alias N 'sudo -E fish -c "nnn-prints-selection -HeE"'
   # functions/fileexplorer_user_key_bindings.fish
   # ALT+o => nnn-nav-by-type
   # CTRL+o or ALT+t => nnn-filepicker
+  # no cd but prints selections to stdout (useful for piping)
+  alias n 'nnn-prints-selection'
+  alias nnn 'n'
+  # goes to cd
+  alias ll 'nnn-cd'
+  alias la 'll -H'
   alias vimdiff "$EDITOR -d"
 
 
@@ -137,8 +135,6 @@ THE THREE TYPES OF ALIAS
   end
   # autostart ssh-add
   # fish_ssh_agent
-  # autostart lf, or use CTRL+O to open it
-  # lfcd
 end # /(INTERACTIVE)
 
 # noninteractive:
