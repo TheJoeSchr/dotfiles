@@ -7,7 +7,7 @@ function nnn-filepicker --wraps nnn --description 'opens nnn and prints selected
 
   # setting up indirection instead of calling nnn directly
   # so can expand later when forgot fish shell syntax
-  set -l nnn_cmd "nnn -p - " 
+  set -l nnn_cmd "nnn-with-editor-split -p - " 
   set -l call_nnn (eval $nnn_cmd $dir)  # set -l result (eval $nnn_cmd $dir | __fzf_preview_file $fzf_query $prefix)
   set -l result $call_nnn
 

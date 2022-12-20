@@ -4,8 +4,6 @@ set -gx PAGER nvimpager
 set -gx EDITOR nvim
 set -gx VISUAL nvr # ewrap is used by nnn with editor split
 set -gx BROWSER google-chrome-stable
-# nnn
-set -x USE_PISTOL 1
 # always try to set DISPLAY
 set -q DISPLAY; or set -gx DISPLAY ":0"
 # add user bin to path
@@ -111,7 +109,7 @@ THE THREE TYPES OF ALIAS
   # ALT+o => nnn-nav-by-type
   # CTRL+o or ALT+t => nnn-filepicker
   # no cd but prints selections to stdout (useful for piping)
-  alias n 'nnn-prints-selection'
+  alias n 'nnn-with-editor-split'
   alias nnn 'n'
   # goes to cd
   alias ll 'nnn-cd'
