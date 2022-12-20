@@ -111,6 +111,8 @@ THE THREE TYPES OF ALIAS
   # no cd but prints selections to stdout (useful for piping)
   alias n 'nnn-with-editor-split'
   alias nnn 'n'
+  # use like (nfp) instead of (nnn-filepicker) because it replaces cli
+  alias nfp 'n -p -'
   # goes to cd
   alias ll 'nnn-cd'
   alias la 'll -H'
