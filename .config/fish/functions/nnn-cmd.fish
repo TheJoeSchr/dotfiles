@@ -1,6 +1,8 @@
 function nnn-cmd --wraps "nnn" --description 'lowest common nnn command'
     set -x NNN_OPENER ~/.config/nnn/plugins/nuke 
     set -x NNN_PLUG 'f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch'
+    # nnn
+    set -x USE_PISTOL 1
     # -a autosetup share selection (see NNN_FIFO)
     # -x
     #         show notifications on selection cp, mv, rm completion (requires .ntfy plugin)
@@ -8,9 +10,9 @@ function nnn-cmd --wraps "nnn" --description 'lowest common nnn command'
     #         show xterm title (if non-picker mode)
     # -c cli-only NNN_OPENER (trumps -e)
     # -r use advcpmv patched cp, mv
-    # -u use selection if available, don't prompt to choose between selection and hovered entry
     #
     # UNUSED
+    # -u use selection if available, don't prompt to choose between selection and hovered entry
     # -n nav-by-type
     # -J disable auto-advance on selection (eg. selecting an entry will no longer move cursor to the next entry)
     # -H hidden files
@@ -18,6 +20,6 @@ function nnn-cmd --wraps "nnn" --description 'lowest common nnn command'
     # -p takes output file as an argument
     # - print to stdout
     # `-p -` print selected to stdout
-    command nnn -axcru $argv
+    command nnn -axcr $argv
 end
 
