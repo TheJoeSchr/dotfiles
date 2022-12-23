@@ -21,7 +21,9 @@ git clone --bare https://github.com/TheJoeSchr/dotfiles.git $HOME/.cfg
 
 config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
+echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
 #$config fetch --all
+# doesn't work
 read -p "Deleting pre-existing dot files?" -n 1 -r -t 15
 if [[ $REPLY =~ ^[Nn]$ ]]
 then

@@ -34,6 +34,8 @@ if $is_steam_host;
     sudo steamos-readonly disable
     # enable ssh access
     sudo systemctl enable --now sshd
+    # disable wifi powersave for lagfree ssh
+    sudo iw dev wlan0 set power_save off
     # fix permission problems for X11 sockets for distrobox
     sudo cp ~/scripts/fix_tmp.sh /etc/profile.d/
   else
@@ -43,10 +45,16 @@ end #/steamdeck
 
 if test (read -P "Init keys and full upgrade?" -n 1) = "y"
   # init & refresh keys
+  if not $is_steam_host
   sudo env bash ~/archlinux/init-pacman-keys.sh # also does full system upgrades
+  end
   if $is_steam_host
     echo "Installing holo-keyring"
-    sudo pacman -Syu --noconfirm holo-keyring
+    sudo pacman-key --init
+    sudo pacman-key --populate archlinux
+    sudo pacman-key --populate holo
+    sudo pacman -Sy --noconfirm holo-keyring
+    sudo pacman -S --noconfirm tmux fish nvim git
   end 
   # STEAMDECK: fix broken headers
   if $is_steam_host
@@ -76,9 +84,13 @@ end
 
 
 # FIRST TRY SCRIPT, MAY FAIL BECAUSE GIT SUBMODULES NOT CHECKED OUT
-if test (read -P "Install CLI essentials via install-cli-essentials.csv" -n 1) = "y"
+if test (read -P "Install CLI essentials" -n 1) = "y"
   cd ~/archlinux # change PWD for ./common.sh import
-  sudo env bash ~/archlinux/install-cli-essentials.sh
+  if not $is_steam_host
+    sudo env bash ~/archlinux/install-steamdeck-essentials.sh
+  else
+    sudo env bash ~/archlinux/install-cli-essentials.sh
+  end
   cd -
   echo $PWD
 end
