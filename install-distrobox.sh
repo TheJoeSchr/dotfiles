@@ -7,8 +7,11 @@ curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/extras/install
 # fix permissions
 echo "need sudo for X11 socket permission fix"
 sudo cp ~/scripts/fix_tmp.sh /etc/profile.d/ #everytime
-# now
+# fix X11 port now
 ./scripts/fix_tmp.sh
+
+# set xhost ready to share
+echo "xhost +SI:localuser:\$USER" >> ~/.envrc
 
 # create new distrobox container "base"
 PATH="$PATH":.local/podman/bin/podman distrobox create -Y -i ghcr.io/thejoeschr/archlinux:latest -n base
