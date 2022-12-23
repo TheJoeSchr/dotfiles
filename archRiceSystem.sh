@@ -37,7 +37,7 @@ if $is_steam_host;
     # disable wifi powersave for lagfree ssh
     sudo iw dev wlan0 set power_save off
     # fix permission problems for X11 sockets for distrobox
-    sudo cp ~/scripts/fix_tmp.sh /etc/profile.d/
+    sudo cp ~/scripts/fix_tmp_x11.sh /etc/profile.d/
   else
     exit
   end

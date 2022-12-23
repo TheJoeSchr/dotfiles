@@ -6,9 +6,9 @@ curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -
 curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/extras/install-podman | sh -s -- --prefix ~/.local
 # fix permissions
 echo "need sudo for X11 socket permission fix"
-sudo cp ~/scripts/fix_tmp.sh /etc/profile.d/ #everytime
+sudo cp ~/scripts/fix_tmp_x11.sh /etc/profile.d/ #everytime
 # fix X11 port now
-./scripts/fix_tmp.sh
+./scripts/fix_tmp_x11.sh
 
 # set xhost ready to share
 echo "xhost +SI:localuser:\$USER" >> ~/.envrc
