@@ -22,21 +22,19 @@ git clone --bare https://github.com/TheJoeSchr/dotfiles.git $HOME/.cfg
 config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 #$config fetch --all
-echo    # (optional) move to a new line
 read -p "Deleting pre-existing dot files?" -n 1 -r -t 15
 if [[ $REPLY =~ ^[Nn]$ ]]
 then
   $config reset --hard master
 fi
 
-# $config checkout master
+$config checkout master
 $config config status.showUntrackedFiles no
 
 touch ~/.vimrc.local
 touch ~/.bashrc.local
 mkdir -p ~/Downloads
 
-echo    # (optional) move to a new line
 read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 15
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -47,7 +45,6 @@ then
   /usr/bin/env fish ~/archRiceSystem.sh
 fi
 
-echo    # (optional) move to a new line
 read -p "source .bashrc?" -n 1 -r -t 15
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
