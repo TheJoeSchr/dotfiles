@@ -12,6 +12,13 @@ fish_add_path ~/.local/podman/bin
 
 # INTERACTIVE
 if status --is-interactive
+  set HOSTNAME (uname --nodename)
+  if test (uname --nodename) = "steamdeck"
+    set is_steam_host true
+  else
+    set is_steam_host false
+  end
+
   echo Setting key bindings...
   fish_vi_key_bindings
   # ---- almost perfect
@@ -89,7 +96,12 @@ THE THREE TYPES OF ALIAS
   abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr ta 'tmux a'
-  abbr upgrade 'sudo pacman -Syu --noconfirm && pikaur -Syu --noconfirm'
+  if not $is_steam_host
+    abbr upgrade 'sudo pacman -Syu --noconfirm && pikaur -Syu --noconfirm'
+  else
+    # no upgrade for steamdeck
+    abbr upgrade 'sudo pacman -Sy --noconfirm && pikaur -Sy --noconfirm'
+  end
   abbr upgrade-paru 'paru -Syu --skipreview --useask --noconfirm'
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
   abbr psax 'procs'
