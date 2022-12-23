@@ -9,9 +9,8 @@ echo "need sudo for X11 socket permission fix"
 sudo cp ~/scripts/fix_tmp_x11.sh /etc/profile.d/ #everytime
 # fix X11 port now
 ./scripts/fix_tmp_x11.sh
-
 # set xhost ready to share
-echo "xhost +SI:localuser:\$USER" >> ~/.envrc
+echo "xhost +si:localuser:\$USER" | sudo tee -a /etc/X11/xinit/xinitrc.d/xhost.sh
 
 # create new distrobox container "base"
 PATH="$PATH":.local/podman/bin/podman distrobox create -Y -i ghcr.io/thejoeschr/archlinux:latest -n base

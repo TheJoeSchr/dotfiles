@@ -12,9 +12,6 @@
 
 # Uncomment this line when using i3.
 # export STATUSBAR="i3blocks" 
-
-# enables graphical applications with distrobox
-xhost +si:localuser:$USER
 export GUI_EDITOR=$(which goneovim)
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/xprofile" ] && . "${XDG_CONFIG_HOME:-$HOME/.config}/xprofile"
