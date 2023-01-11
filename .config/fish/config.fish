@@ -121,13 +121,13 @@ THE THREE TYPES OF ALIAS
   # ALT+o => nnn-nav-by-type
   # CTRL+o or ALT+t => nnn-filepicker
   # no cd but prints selections to stdout (useful for piping)
-  alias n 'nnn-with-editor-split'
-  alias nnn 'n'
+  abbr n 'nnn'
+  alias nnn 'nnn-cd -P v'
   # use like (nfp) instead of (nnn-filepicker) because it replaces cli
-  alias nfp 'n -p -'
+  alias nfp 'nnn-with-editor-split -p -'
   # goes to cd
-  alias ll 'nnn-cd'
-  alias la 'll -H'
+  abbr ll 'nnn'
+  abbr la 'll -H'
   alias vimdiff "$EDITOR -d"
 
 
