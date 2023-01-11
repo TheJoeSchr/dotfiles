@@ -18,8 +18,8 @@ function nnn-cd --wraps nnn --description 'opens nnn and change to directory at 
     end
 
     # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
+    stty start undef
+    stty stop undef
     # stty lwrap undef
     # stty lnext undef
 
