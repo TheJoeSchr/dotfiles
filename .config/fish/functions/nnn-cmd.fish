@@ -3,6 +3,7 @@ function nnn-cmd --wraps "nnn" --description 'lowest common nnn command'
     set -x NNN_PLUG 'f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch'
     # nnn
     set -x USE_PISTOL 1
+    set -x PAGER "bat --style=plain" # -p is plain/no line numbers
     # -a autosetup share selection (see NNN_FIFO)
     # -x
     #         show notifications on selection cp, mv, rm completion (requires .ntfy plugin)
