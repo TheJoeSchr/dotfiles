@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
-cmd="nvr \"$*\""
+cmd="nvr"
 if [ -n "$TMUX" ] ; then
     # tmux session running
-    tmux split-window -h $cmd
+    tmux split-window -h "$cmd \"$*\""
 else
     # Remove option --tab for new window
     if [ $XDG_SESSION_TYPE != "tty" ]; then
-        konsole -e $cmd
+        konsole -e "$cmd \"$*\""
     else
         echo "nvim \"$*\""
         exec nvim "$*"
