@@ -349,7 +349,6 @@ if !exists('g:vscode')
       Plug 'Asheq/close-buffers.vim'
       " github copilot
       Plug 'github/copilot.vim'
-      Plug 'terror/chatgpt.nvim', { 'do': 'pip install -r requirements.txt' }
 
     " ============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
 
@@ -367,13 +366,20 @@ if !exists('g:vscode')
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'kyoh86/telescope-windows.nvim'
     " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake' }
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
     Plug 'nvim-telescope/telescope-github.nvim'
     Plug 'nvim-telescope/telescope-dap.nvim'
+    Plug 'TheJoeSchr/telescope-rg'
     " for checkhealth
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'TheJoeSchr/telescope-rg'
+    " ChatGPT
+    " Plug 'terror/chatgpt.nvim', { 'do': 'pip install -r requirements.txt' }
+    Plug 'muniftanjim/nui.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    " require setup in after/telescope.nvim
+    Plug 'jackmort/chatgpt.nvim'
     " -- themes
     Plug 'artanikin/vim-synthwave84'
     Plug 'flazz/vim-colorschemes'
@@ -393,6 +399,8 @@ if !exists('g:vscode')
     Plug 'mfussenegger/nvim-dap-python'
     Plug 'theHamsta/nvim-dap-virtual-text'
     Plug 'rcarriga/nvim-dap-ui'
+    " not working yet
+    " Plug 'Olical/clojure-dap'
     " -- linter (works with eslint)
     " Plug 'dense-analysis/ale' # disable for now, using coc todo lint, format
     " and autocomplete
@@ -413,8 +421,8 @@ if !exists('g:vscode')
 
     " PYTHON
     " iPython support
-    Plug 'jpalardy/vim-slime', { 'for': 'python' }
-    Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+    " Plug 'jpalardy/vim-slime', { 'for': 'python' }
+    " Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
     " jupyter notebook support
     Plug 'jupyter-vim/jupyter-vim'
     " Plug 'goerz/jupytext.vim'
@@ -450,7 +458,14 @@ if !exists('g:vscode')
     Plug 'tpope/vim-sexp-mappings-for-regular-people'
     Plug 'Olical/conjure'
     Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' } " lot of *()
-
+    " Jack in to Boot, Clj & Leiningen from Vim. Inspired by the feature in CIDER.el
+    " :Boot [args]
+    " :Clj [args]
+    " :Lein [args]
+    Plug 'tpope/vim-dispatch'
+    Plug 'clojure-vim/vim-jack-in'
+    " Only in Neovim:
+    Plug 'radenling/vim-dispatch-neovim'
     " -- other
     " Ansible
     Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
@@ -536,8 +551,7 @@ if !exists('g:vscode')
                         \ 'syntax': 'markdown', 'ext': '.md'}] 
   let g:vimwiki_ext2syntax = {'.md': 'markdown',
                   \ '.mkd': 'markdown',
-                  \ '.wiki': 'media',
-                  \ '.py': 'media'}
+                  \ '.wiki': 'media' }
   " don't use global default mappings, too invasive especiall with easymotion on <leader>w
   let g:vimwiki_key_mappings =
     \ {
@@ -796,6 +810,9 @@ if !exists('g:vscode')
   " require("dapui").setup()
 
   nnoremap <leader>du :lua require("dapui").toggle()<CR>
+  " send expression to debug REPL
+  vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>
+  " nnoremap ee V<Cmd>lua require("dapui").eval()<CR>
 
   " jank/vim-test and mfussenegger/nvim-dap nnoremap <leader>dt :TestNearest -strategy=jest<CR>
   "
@@ -945,6 +962,7 @@ if !exists('g:vscode')
   nnoremap <leader>fp <cmd>NnnPicker<CR>
   " grep files
   nnoremap <leader>fs <cmd>lua require('telescope.builtin').live_grep()<cr>
+  nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
   " rg | fzf
   nnoremap <leader>fg :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
   nnoremap <leader>fG :Rg 
@@ -961,6 +979,10 @@ if !exists('g:vscode')
   noremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
   noremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
   noremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
+  noremap <leader>fi <cmd>lua require('telescope.builtin').keymaps()<cr>
+  " ChatGPT
+  nnoremap <leader>fr ggVG<cmd>lua require('chatgpt').edit_with_instructions()<CR>
+  vnoremap <leader>fr <cmd>lua require('chatgpt').edit_with_instructions()<CR>
   " ---------------- /Telescope --------
   " ---------------- Vista --------
   " How each level is indented and what to prepend.
@@ -1001,6 +1023,7 @@ if !exists('g:vscode')
     \ 'coc-snippets',
     \ 'coc-tsserver',
     \ 'coc-diagnostic',
+    \ 'coc-conjure',
     \ ]
   "  TextEdit might fail if hidden is not set.
   set hidden
