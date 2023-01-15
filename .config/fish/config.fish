@@ -1,12 +1,11 @@
 echo Setting global exports...
-# set -gx SHELL (which bash)
-set -gx SHELL (which fish)
+set -gx SHELL (which bash) # needs bash for nvim python
 set -gx PAGER nvimpager
 set -gx EDITOR nvim
 set -gx VISUAL nvr # ewrap is used by nnn with editor split
 set -gx BROWSER google-chrome-stable
 # always try to set DISPLAY
-set -q DISPLAY; or set -gx DISPLAY ":0"
+# set -q DISPLAY; or set -gx DISPLAY ":0"
 # add user bin to path
 fish_add_path ~/.local/bin
 fish_add_path ~/.local/podman/bin
@@ -22,33 +21,9 @@ if status --is-interactive
 
   echo Setting key bindings...
   fish_vi_key_bindings
-  # ---- almost perfect
-  # TAB
-  # is history expand:
-  # - git a<Tab+Space> -> git add
-  # - cd ~/.con<Tab+/> -> cd ~/.config/ (autocomplete directory name from history prompt)
-  bind -M insert \t complete-and-search
-  # bind --user -M visual \t nextd-or-forward-word
-  # bind --preset -M visual \t nextd-or-forward-word
-  # bind -M visual \t nextd-or-forward-word
-  # bind -M insert \t nextd-or-forward-word
+  # usually automatically, but call to overwrite
+  fish_user_key_bindings
 
-  # TAB-TAB
-  # complete full line of history expand
-  # - cd ~/.con<Tab+Tab+Space> -> cd ~/.config/fish/ (from history)
-  # bind -M insert \t\t forward-char
-
-  # TAB-TAB-TAB
-  # is complete-and-search 
-  # cd ~/.con<Tab+Tab+Tab> -> cd ~/.con<Search directory names>
-  # - git a<Tab-Tab+Tab> -> git a<Search arguments>
-  # - cd ~/ish<Tab-Tab+Tab> -> cd ~/fish (autocomplete directory name if unique)
-  # bind -M insert \t\t\t complete-and-search # <Enter> is abort if empty
-
-  # C-p completes history expand
-  bind -M insert \cP forward-char
-  # C-f moves one word forward
-  bind -M insert \cF nextd-or-forward-word
   # Setting fd as the default source for fzf
   export FZF_DEFAULT_COMMAND='fd --type f'
 
@@ -108,6 +83,7 @@ THE THREE TYPES OF ALIAS
   abbr psax 'procs'
   alias pbcopy 'xsel --clipboard --input'
   alias pbpaste 'xsel --clipboard --output'
+  abbr poetryshell 'SHELL=(which fish) poetry shell'
   alias ls 'exa -G --icons'
   alias lll 'ls -lT --level=1'
   alias tree 'lll -a --level=3'
