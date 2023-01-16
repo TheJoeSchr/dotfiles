@@ -94,7 +94,8 @@ Meta=org.kde.lattedock,/Latte,org.kde.LatteDock,activateLauncherMenu
 
 [MouseBindings]
 CommandAll1=Nothing
-CommandAll2=Move
+CommandAll2=Resize
+CommandAll3=Move
 CommandAllKey=Alt
 
 [NightColor]
@@ -112,7 +113,6 @@ desktopgridEnabled=false
 diminactiveEnabled=true
 flipswitchEnabled=true
 glideEnabled[$d]
-highlightwindowEnabled=true
 krohnkiteEnabled=false
 kwin4_effect_eyeonscreenEnabled=true
 kwin4_effect_fadeEnabled=false
@@ -172,12 +172,14 @@ count=0
 
 [TabBox]
 ActivitiesMode=0
-MinimizedMode=1
+LayoutName=big_icons
+OrderMinimizedMode=1
 SwitchingMode=1
 
 [TabBoxAlternative]
-LayoutName=coverswitch
-ShowTabBox=false
+ActivitiesMode=0
+LayoutName=big_icons
+OrderMinimizedMode=1
 
 [Wayland]
 VirtualKeyboardEnabled=false
