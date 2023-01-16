@@ -43,7 +43,7 @@ if $is_steam_host;
   end
 end #/steamdeck
 
-if test (read -P "Init keys and full upgrade?" -n 1) = "y"
+if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = "y"
   # init & refresh keys
   if not $is_steam_host
   sudo env bash ~/archlinux/init-pacman-keys.sh # also does full system upgrades
@@ -64,7 +64,7 @@ if test (read -P "Init keys and full upgrade?" -n 1) = "y"
     # FIX ALL THE BROKEN HEADERS
     if test (read -P "Re-install all packages with missing headers?" -n 1) = "y"
       # installs packages with missing files
-      cat ~/.local/sources/steam-missing.txt | sudo pacman -S -
+      cat ~/.local/sources/steam-missing.txt | sudo pacman -S --noconfirm -
     end
   end
 end # / full upgrade
