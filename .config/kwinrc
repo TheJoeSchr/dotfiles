@@ -143,7 +143,6 @@ ignoreScreen=3
 ignoreTitle=Steam Keyboard,CoreKeyboard
 limitTileWidth=true
 limitTileWidthRatio=1.15
-maximizeSoleTile=true
 newWindowAsMaster=true
 noTileBorder=true
 preventProtrusion=false
