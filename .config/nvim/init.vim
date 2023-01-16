@@ -1,9 +1,10 @@
 " ==================
 " GLOBAL SETTINGS:
 " ==================
+"
 
 " NOCOMPATIBLE:
-" enter the current millenium, vi not used
+" enter the current millennium, vi not used
 set nocompatible
 
 " LEADER IS "SPACE" AND "\":
@@ -95,6 +96,13 @@ set noshowmode
 
 " Set floating window to be slightly transparent
 set winbl=10
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
 " NOW WE CAN:
 " - Hit tab to :find by partial match
 " - Use * to make it fuzzy
@@ -202,6 +210,7 @@ set list
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 
+
 " only keep open buffer
 command! BufOnly silent! execute "%bd|e#|bd#"
 
@@ -243,9 +252,9 @@ noremap  <buffer> <silent> $ g$
 command! W write
 
 " Use Ctrl+S for save
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
+noremap <C-S>          :update<CR>
+vnoremap <C-S>         <C-C>:update<CR>
+inoremap <C-S>         <C-O>:update<CR>
 
 " FULL-SCREEN TERMINAL switching, very convenient
 nnoremap <leader>t :stop<CR>
@@ -307,6 +316,28 @@ if !exists('g:vscode')
     " UNIVERSAL:
     " >============== UNIVERSAL PLUGINS: NATIVE VIM ===================
       " ------ needs to be duplicated because can't call plug#begin twice
+      " :Remove: Delete a file on disk without E211: File no longer available.
+      " :Delete: Delete a file on disk and the buffer too.
+      " :Move: Rename a buffer and the file on disk simultaneously. See also :Rename, :Copy, and :Duplicate.
+      " :Chmod: Change the permissions of the current file.
+      " :Mkdir: Create a directory, defaulting to the parent of the current file.
+      " :Cfind: Run find and load the results into the quickfix list.
+      " :Clocate: Run locate and load the results into the quickfix list.
+      " :Lfind/:Llocate: Like above, but use the location list.
+      " :Wall: Write every open window. Handy for kicking off tools like guard.
+      " :SudoWrite: Write a privileged file with sudo.
+      " :SudoEdit: Edit a privileged file with sudo.
+      Plug 'tpope/vim-eunuch'
+      " Peekaboo will show you the contents of the registers on the sidebar when you hit " or @ in normal mode or <CTRL-R> in insert mode
+
+      " You can toggle fullscreen mode by pressing spacebar.
+      Plug 'junegunn/vim-peekaboo'
+      " Comment stuff out. 
+      " gcc: comment out a line (takes a count)
+      " gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
+      " vmap gc: in visual mode to comment out the selection, 
+      " gc in operator pending mode to target a comment
+      Plug 'tpope/vim-commentary'
       Plug 'vimwiki/vimwiki'
       Plug 'bkad/CamelCaseMotion'
       " Fuzzy Finder
@@ -377,13 +408,12 @@ if !exists('g:vscode')
     " ChatGPT
     " Plug 'terror/chatgpt.nvim', { 'do': 'pip install -r requirements.txt' }
     Plug 'muniftanjim/nui.nvim'
-    Plug 'nvim-lua/plenary.nvim'
     " require setup in after/telescope.nvim
     Plug 'jackmort/chatgpt.nvim'
     " -- themes
     Plug 'artanikin/vim-synthwave84'
-    Plug 'flazz/vim-colorschemes'
-    Plug 'sonph/onehalf', {'rtp': 'vim/'}
+    " Plug 'flazz/vim-colorschemes'
+    " Plug 'sonph/onehalf', {'rtp': 'vim/'}
     Plug 'morhetz/gruvbox'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'ericbn/vim-solarized'
@@ -489,9 +519,9 @@ if !exists('g:vscode')
     Plug 'luukvbaal/nnn.nvim'
 
     " airline
-    Plug 'vim-airline/vim-airline'
-    " airline theme
-    Plug 'vim-airline/vim-airline-themes'
+    " Plug 'vim-airline/vim-airline'
+    " " airline theme
+    " Plug 'vim-airline/vim-airline-themes'
     " TMUX
     Plug 'christoomey/vim-tmux-navigator'
 
@@ -506,13 +536,15 @@ if !exists('g:vscode')
     " see tags, overview, etc
     Plug 'liuchengxu/vista.vim'
 
+    Plug 'ThePrimeagen/refactoring.nvim'
+
     " AUTOCOMPLETION: basially port of vscode autocompletion
     " https://github.com/neoclide/coc.nvim
-    if has('win32')
-      Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.cmd'}
-    else
-      Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    endif
+    " if has('win32')
+    "   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.cmd'}
+    " else
+    "   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " endif
   call plug#end() " /Initialize plugin system
 
   " ----------------
@@ -560,7 +592,7 @@ if !exists('g:vscode')
     \   'headers': 1,
     \   'text_objs': 1,
     \   'table_format': 1,
-    \   'table_mappings': 1,
+    \   'table_mappings': 0,
     \   'lists': 1,
     \   'links': 1,
     \   'html': 1,
@@ -761,34 +793,44 @@ if !exists('g:vscode')
   "" find local virtualenv
   lua require('dap-python').setup(string.format('%s/bin/python', os.getenv('VIRTUAL_ENV'))) 
 
-  nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
-  nnoremap <leader>dk :lua require'dap'.step_out()<CR>
-  nnoremap <leader>dl :lua require'dap'.step_into()<CR>
-  nnoremap <S-F4> :lua require'dap'.step_into()<CR>
-  nnoremap <leader>dj :lua require'dap'.step_over()<CR>
-  nnoremap <F4> :lua require'dap'.step_over()<CR>
-  nnoremap <leader>dd :lua require'dap'.step_over()<CR>
   "" like F5, start to debug
   nnoremap <F5> :lua require'dap'.continue()<CR>
   nnoremap <leader>DD :lua require'dap'.continue()<CR>
   nnoremap <S-F5> <Cmd>lua require'dap'.run_last()<CR>
+  nnoremap <leader>DL :lua require'dap'.run_last()<CR>
+
+  nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
+
+  nnoremap <leader>dk :lua require'dap'.step_out()<CR>
+  nnoremap <M-F5> :lua require'dap'.step_out()<CR>
+
+  nnoremap <leader>dl :lua require'dap'.step_into()<CR>
+  nnoremap <S-F4> :lua require'dap'.step_into()<CR>
+
+  nnoremap <leader>dj :lua require'dap'.step_over()<CR>
+  nnoremap <F4> :lua require'dap'.step_over()<CR>
+  nnoremap <leader>dd :lua require'dap'.step_over()<CR>
+
+  nnoremap <leader>dc <cmd>lua require('dap').run_to_cursor()<CR>
 
   nnoremap <leader>DQ :lua require'dap'.close()<CR>
   nnoremap <leader>dH :lua require'dap'.up()<CR>
   nnoremap <leader>dL :lua require'dap'.down()<CR>
   nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
-  nnoremap <leader>dr :lua require'dap'.repl.open({}, 'split')<CR><C-w>l
-  nnoremap <leader>dh :lua require'dap.ui.variables'.hover()<CR>
-  vnoremap <leader>dh :lua require'dap.ui.variables'.visual_hover()<CR>
+  " dap.ui is from nvim-dap
+  vnoremap <leader>dh :lua require'dap.ui.widgets'.preview()<CR>
   nnoremap <leader>dh :lua require'dap.ui.widgets'.hover()<CR>
-  nnoremap <leader>d? :lua require'dap.ui.variables'.scopes()<CR>
   nnoremap <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
+  " dapui is nvim-dap-u
+  nnoremap <leader>ds :lua require("dapui").float_element('scopes')<CR>
+
   nnoremap <leader>de :lua require'dap'.set_exception_breakpoints({"all"})<CR>
   nnoremap <leader>da :lua require'debugHelper'.attach()<CR>
   nnoremap <leader>dA :lua require'debugHelper'.attachToRemote()<CR>
   nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
   nnoremap <silent> <leader>df :lua require('dap-python').test_class()<CR>
-  vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
+
+  vnoremap <silent> <leader>dv <ESC>:lua require('dap-python').debug_selection()<CR>
 
   " Plug 'nvim-telescope/telescope-dap.nvim'
   " already in ./**/telescope.nvim.vim
@@ -798,6 +840,7 @@ if !exists('g:vscode')
   nnoremap <leader>dvf :Telescope dap frames<CR>
   nnoremap <leader>dvc :Telescope dap commands<CR>
   nnoremap <leader>dvb :Telescope dap list_breakpoints<CR>
+  nnoremap <leader>dvv :Telescope dap variables<CR>
 
   " theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
   "
@@ -809,9 +852,18 @@ if !exists('g:vscode')
   " in after/plugin/nvim-dap.vim
   " require("dapui").setup()
 
+  " Mappings DAPUI
+    " expand = { "<CR>", "<2-LeftMouse>" },
+    " open = "o",
+    " remove = "d",
+    " edit = "e",
+    " repl = "r",
+    " toggle = "t",
+  " eg inscopes press 'o' to open a variable
   nnoremap <leader>du :lua require("dapui").toggle()<CR>
   " send expression to debug REPL
   vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>
+  nnoremap <leader>dr :lua require'dap'.repl.open({}, 'split')<CR><C-w>l
   " nnoremap ee V<Cmd>lua require("dapui").eval()<CR>
 
   " jank/vim-test and mfussenegger/nvim-dap nnoremap <leader>dt :TestNearest -strategy=jest<CR>
@@ -960,9 +1012,13 @@ if !exists('g:vscode')
   nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
   " file finder via nnn
   nnoremap <leader>fp <cmd>NnnPicker<CR>
-  " grep files
-  nnoremap <leader>fs <cmd>lua require('telescope.builtin').live_grep()<cr>
+
+  " grep in curren buffer
+  nnoremap <leader>fs <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
+  " grep all files in workdir
   nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
+  " serach in current buffe
+  nnoremap <leader>fs <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
   " rg | fzf
   nnoremap <leader>fg :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
   nnoremap <leader>fG :Rg 
@@ -974,16 +1030,18 @@ if !exists('g:vscode')
   nnoremap <leader>; <cmd>lua require('telescope.builtin').oldfiles()<cr>
   nnoremap <Leader>fl <cmd>lua require('telescope.builtin').git_commits()<cr>
   nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-  noremap <leader>: <cmd>lua require('telescope.builtin').command_history()<cr>
-  noremap <leader>f: <cmd>lua require('telescope.builtin').commands_history()<cr>
-  noremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
-  noremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
-  noremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
-  noremap <leader>fi <cmd>lua require('telescope.builtin').keymaps()<cr>
+  nnoremap <leader>f: <cmd>lua require('telescope.builtin').commands_history()<cr>
+  nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
+  nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
+  nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
+  nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfixhistory()<cr>
   " ChatGPT
   nnoremap <leader>fr ggVG<cmd>lua require('chatgpt').edit_with_instructions()<CR>
   vnoremap <leader>fr <cmd>lua require('chatgpt').edit_with_instructions()<CR>
   " ---------------- /Telescope --------
+  " ---------------- Unimpaired --------
+  " open quickfix
+  nnoremap <leader>yq :copen<CR>
   " ---------------- Vista --------
   " How each level is indented and what to prepend.
   " This could make the display more compact or more spacious.
@@ -1005,178 +1063,37 @@ if !exists('g:vscode')
   " Move to the vista window when it is opened. Set this option to `0` to stay in current windown when opening the vista sidebar.
   let g:vista_stay_on_open = 1
 
-  let g:vista_default_executive = "coc"
-  " ---------------- COC ------------
-  " coc config
-  " automatically installs this coc extension
-  " probably needs restart, check with <leader>e
-  let g:coc_global_extensions = [
-    \ '@yaegassy/coc-volar',
-    \ 'coc-css',
-    \ 'coc-eslint',
-    \ 'coc-git',
-    \ 'coc-html',
-    \ 'coc-json',
-    \ 'coc-pairs',
-    \ 'coc-prettier',
-    \ 'coc-pyright',
-    \ 'coc-snippets',
-    \ 'coc-tsserver',
-    \ 'coc-diagnostic',
-    \ 'coc-conjure',
-    \ ]
-  "  TextEdit might fail if hidden is not set.
-  set hidden
+  " let g:vista_default_executive = "coc"
+  "
+  " ---------------- REFACTOR ------------
+  "
+  " Telescope with refactor operations
+  " <leader>rr in ~/.config/nvim/after/plugin/telescope.nvim.vim
+  " <leader>r* in ~/.config/nvim/after/plugin/refactoring.nvim.vim
+  " visual mode
+  " <leader>re Extract Function
+  " <leader>rf Extract Function To File
+  " <leader>rv Extract Variable
+  " <leader>ri Inline Variable
+  " normal mod                                                                e
+  "<leader>rb  Extract Block
+  "<leader>rbf Extract Block To File
+  " Inline var
+  "<leader>ri Inline Variable
 
-  " Some servers have issues with backup files, see #649.
-  set nobackup
-  set nowritebackup
+  "
 
-  " Give more space for displaying messages.
-  set cmdheight=2
+  " ---------------- Copilot ------------
+  " Fixes <tab> not working well with coc and copilot 
+  " let g:copilot_no_tab_map = v:true
+  " inoremap <silent><expr> <TAB>
+  "       \ coc#pum#visible() ? coc#pum#next(1):
+  "       \ exists('b:_copilot.suggestions') ? copilot#Accept("\<CR>") :
+  "       \ CheckBackSpace() ? "\<Tab>" :
+  "       \ coc#refresh()
 
-  " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-  " delays and poor user experience.
-  set updatetime=300
-
-  " Don't pass messages to |ins-completion-menu|.
-  set shortmess+=c
-
-  " Always show the signcolumn, otherwise it would shift the text each time
-  " diagnostics appear/become resolved.
-  " actually don't know patch number, just know not working with nvim 0.2
-  if has('patch8.1.1068')
-    set signcolumn=yes
-  endif
-
-  " Use tab for trigger completion with characters ahead and navigate.
-  " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-  " other plugin before putting this into your config.
-  inoremap <silent><expr> <TAB>
-    \ coc#pum#visible() ? coc#_select_confirm() :
-    \ coc#expandableOrJumpable() ?
-    \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
-
-  let g:coc_snippet_next = '<tab>'
-
-  " Use `[g` and `]g` to navigate diagnostics
-  nmap <silent> [g <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-  " GoTo code navigation.
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
-
-  " Use K to show documentation in preview window.
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
-  nnoremap <silent> gh :call <SID>show_documentation()<CR>
-
-  function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-      execute 'h '.expand('<cword>')
-    else
-      call CocAction('doHover')
-    endif
-  endfunction
-
-  " Highlight the symbol and its references when holding the cursor.
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-
-  " Symbol renaming.
-  nmap <leader>rn <Plug>(coc-rename)
-
-  " Formatting selected code (with code).
-  xmap <leader>=  <Plug>(coc-format-selected)
-  nmap <leader>=  <Plug>(coc-format-selected)
-  nmap <leader>+  :Format<CR>
-  " add snowflake exception for VUE
-  " see: https://github.com/neoclide/coc-prettier/issues/73#issuecomment-742580180
-  command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-  autocmd BufWritePre *.vue Prettier
-
-  augroup tsandjsgroupd
-    autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder.
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  augroup end
-
-  " Applying codeAction to the selected region.
-  " Example: `<leader>aap` for current paragraph
-  xmap <leader>a  <Plug>(coc-codeaction-selected)
-  nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-  " Remap keys for applying codeAction to the current line.
-  nmap <leader>ac  <Plug>(coc-codeaction)
-  " Apply AutoFix to problem on the current line.
-  nmap <leader>aq  <Plug>(coc-fix-current)
-
-  " Introduce function text object
-  " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-  xmap if <Plug>(coc-funcobj-i)
-  xmap af <Plug>(coc-funcobj-a)
-  omap if <Plug>(coc-funcobj-i)
-  omap af <Plug>(coc-funcobj-a)
-
-  " NOTE: Requires 'textDocument/selectionRange' support from the language server.
-  " coc-tsserver, coc-python are the examples of servers that support it.
-  xmap <silent> <TAB> <Plug>(coc-range-select)
-  " don't use TAB in normal mode, it blocks CTRL-I
-  " nmap <silent> <TAB> <Plug>(coc-range-select)
-
-  " Add `:Format` command to format current buffer.
-  command! -nargs=0 Format :call CocAction('format')
-
-  " Add `:Fold` command to fold current buffer.
-  command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-  " Add `:OR` command for organize imports of the current buffer.
-  command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-  " Add (Neo)Vim's native statusline support.
-  " NOTE: Please see `:h coc-status` for integrations with external plugins that
-  " provide custom statusline: lightline.vim, vim-airline.
-  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-  " Mappings using CoCList:
-  " Show all diagnostics.
-  nnoremap <silent> <leader>a  :<C-u>CocList diagnostics<cr>
-  " Manage extensions.
-  " nnoremap <silent> <leader>fe  :<C-u>CocList extensions<cr>
-  " Show commands.
-  nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
-  " Find symbol of current document.
-  nnoremap <silent> <leader>O  :<C-u>CocList --normal outline <cr>
-  nnoremap <silent> <leader>o  :<C-u>Vista coc<cr>
-  " Search workspace symbols.
-  nnoremap <silent> <leader>S  :<C-u>CocList -I symbols -k<cr>
-  nnoremap <silent> <leader>s  :<C-u>Vista finder coc<cr>
-  " Do default action for next item.
-  nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
-  " Do default action for previous item.
-  nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
-  " Resume latest coc list.
-  nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>-----
-  " hover popup scroll "
-  if has('nvim-0.4.3') || has('patch-8.2.0750')
-            nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-            nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-            inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-            inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  endif
-  " ---------------- /COC ------------
   " ----------------- AIRLINE ---------------
-  let g:airline#extensions#tabline#enabled = 1
+  " let g:airline#extensions#tabline#enabled = 1
 
   " ---------------- FIRENVIM --------------
   let g:firenvim_config = {
@@ -1253,49 +1170,178 @@ if !exists('g:vscode')
     wincmd p
   endfunction
   " ------------------ /FUGITIVE -------------"
+  " ---------------- COC ------------             
+  " coc config
+  " automatically installs this coc extension
+  " probably needs restart, check with <leader>e
+  " let g:coc_global_extensions = [
+  "   \ '@yaegassy/coc-volar',
+  "   \ 'coc-css',
+  "   \ 'coc-eslint',
+  "   \ 'coc-git',
+  "   \ 'coc-html',
+  "   \ 'coc-json',
+  "   \ 'coc-pairs',
+  "   \ 'coc-prettier',
+  "   \ 'coc-pyright',
+  "   \ 'coc-snippets',
+  "   \ 'coc-tsserver',
+  "   \ 'coc-diagnostic',
+  "   \ 'coc-conjure',
+  "   \ ]
+  " "  TextEdit might fail if hidden is not set.
+  " set hidden
+
+  " " Some servers have issues with backup files, see #649.
+  " set nobackup
+  " set nowritebackup
+
+  " " Give more space for displaying messages.
+  " set cmdheight=2
+
+  " " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+  " " delays and poor user experience.
+  " set updatetime=300
+
+  " " Don't pass messages to |ins-completion-menu|.
+  " set shortmess+=c
+
+  " " Always show the signcolumn, otherwise it would shift the text each time
+  " " diagnostics appear/become resolved.
+  " " actually don't know patch number, just know not working with nvim 0.2
+  " if has('patch8.1.1068')
+  "   set signcolumn=yes
+  " endif
+
+  " " Use tab for trigger completion with characters ahead and navigate.
+  " " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+  " " other plugin before putting this into your config.
+  " inoremap <silent><expr> <TAB>
+  "   \ coc#pum#visible() ? coc#_select_confirm() :
+  "   \ coc#expandableOrJumpable() ?
+  "   \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  "   \ <SID>check_back_space() ? "\<TAB>" :
+  "   \ coc#refresh()
+
+  " function! s:check_back_space() abort
+  "   let col = col('.') - 1
+  "   return !col || getline('.')[col - 1]  =~# '\s'
+  " endfunction
+
+  " let g:coc_snippet_next = '<tab>'
+
+  " " Use `[g` and `]g` to navigate diagnostics
+  " nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  " nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+  " " GoTo code navigation.
+  " nmap <silent> gd <Plug>(coc-definition)
+  " nmap <silent> gy <Plug>(coc-type-definition)
+  " nmap <silent> gi <Plug>(coc-implementation)
+  " nmap <silent> gr <Plug>(coc-references)
+
+  " " Use K to show documentation in preview window.
+  " nnoremap <silent> K :call <SID>show_documentation()<CR>
+  " nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
+  " function! s:show_documentation()
+  "   if (index(['vim','help'], &filetype) >= 0)
+  "     execute 'h '.expand('<cword>')
+  "   else
+  "     call CocAction('doHover')
+  "   endif
+  " endfunction
+
+  " " Highlight the symbol and its references when holding the cursor.
+  " autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  " " Symbol renaming.
+  " nmap <leader>rn <Plug>(coc-rename)
+
+  " " Formatting selected code (with code).
+  " xmap <leader>=  <Plug>(coc-format-selected)
+  " nmap <leader>=  <Plug>(coc-format-selected)
+  " nmap <leader>+  :Format<CR>
+  " " add snowflake exception for VUE
+  " " see: https://github.com/neoclide/coc-prettier/issues/73#issuecomment-742580180
+  " command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+  " autocmd BufWritePre *.vue Prettier
+
+  " augroup tsandjsgroupd
+  "   autocmd!
+  "   " Setup formatexpr specified filetype(s).
+  "   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  "   " Update signature help on jump placeholder.
+  "   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " augroup end
+
+  " " Applying codeAction to the selected region.
+  " " Example: `<leader>aap` for current paragraph
+  " xmap <leader>a  <Plug>(coc-codeaction-selected)
+  " nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+  " " Remap keys for applying codeAction to the current line.
+  " nmap <leader>ac  <Plug>(coc-codeaction)
+  " " Apply AutoFix to problem on the current line.
+  " nmap <leader>aq  <Plug>(coc-fix-current)
+
+  " " Introduce function text object
+  " " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+  " xmap if <Plug>(coc-funcobj-i)
+  " xmap af <Plug>(coc-funcobj-a)
+  " omap if <Plug>(coc-funcobj-i)
+  " omap af <Plug>(coc-funcobj-a)
+
+  " " NOTE: Requires 'textDocument/selectionRange' support from the language server.
+  " " coc-tsserver, coc-python are the examples of servers that support it.
+  " xmap <silent> <TAB> <Plug>(coc-range-select)
+  " " don't use TAB in normal mode, it blocks CTRL-I
+  " " nmap <silent> <TAB> <Plug>(coc-range-select)
+
+  " " Add `:Format` command to format current buffer.
+  " command! -nargs=0 Format :call CocAction('format')
+
+  " " Add `:Fold` command to fold current buffer.
+  " command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+  " " Add `:OR` command for organize imports of the current buffer.
+  " command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+  " " Add (Neo)Vim's native statusline support.
+  " " NOTE: Please see `:h coc-status` for integrations with external plugins that
+  " " provide custom statusline: lightline.vim, vim-airline.
+  " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+  " " Mappings using CoCList:
+  " " Show all diagnostics.
+  " nnoremap <silent> <leader>a  :<C-u>CocList diagnostics<cr>
+  " " Manage extensions.
+  " " nnoremap <silent> <leader>fe  :<C-u>CocList extensions<cr>
+  " " Show commands.
+  " nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
+  " " Find symbol of current document.
+  " nnoremap <silent> <leader>O  :<C-u>CocList --normal outline <cr>
+  " nnoremap <silent> <leader>o  :<C-u>Vista coc<cr>
+  " " Search workspace symbols.
+  " nnoremap <silent> <leader>S  :<C-u>CocList -I symbols -k<cr>
+  " nnoremap <silent> <leader>s  :<C-u>Vista finder coc<cr>
+  " " Do default action for next item.
+  " nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
+  " " Do default action for previous item.
+  " nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
+  " " Resume latest coc list.
+  " nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>-----
+  " " hover popup scroll "
+  " if has('nvim-0.4.3') || has('patch-8.2.0750')
+  "           nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  "           nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  "           inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  "           inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  " endif
+  " ---------------- /COC ------------
 endif
 " ============== / only NATIVE VIM  ===================
 
-" ==== CURRENTLY UNUSED (from 90% without plugin) =====
-
-" TAG JUMPING:
-" ==================
-
-" Create the `tags` file (may need to install ctags first)
-" command! MakeTags !ctags -R .
-
-" NOW WE CAN:
-" - Use ^] to jump to tag under cursor
-" - Use g^] for ambiguous tags
-" - Use ^t to jump back up the tag stack
-
-" SNIPPETS:
-" =========
-
-" EXAMPLE:
-" Make an empty HTML template and move cursor to title
-" nnoremap <leader>html :-1read $HOME/.vim/.skeleton.html<CR>3jw
-
-" NOW WE CAN:
-" - Take over the world!
-"   (with much fewer keystrokes)
-
-" BUILD INTEGRATION:
-" ==================
-
-" Steal Mr. Bradley's formatter & add it to our spec_helper
-" http://philipbradley.net/rspec-into-vim-with-quickfix
-
-" Configure the `make` command to run RSpec
-" set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
-
-" NOW WE CAN:
-"
-" - Run :make to run RSpec
-" - :cl to list errors
-" - :cc# to jump to error by number
-" - :cn and :cp to navigate forward and back
-" ==== /CURRENTLY UNUSED (from 90% without plugin) =====
 
 " ============== VSCODE-NEOVIM ===================
 "
@@ -1304,6 +1350,9 @@ if exists('g:vscode')
   call plug#begin('~/.vim/plugged')
     " ============== UNIVERSAL PLUGINS: VSCODE-NEOVIM ===================
     " ------ needs to be duplicated because can't call plug#begin twice
+      Plug 'tpope/vim-eunuch'
+      Plug 'junegunn/vim-peekaboo'
+      Plug 'tpope/vim-commentary'
       Plug 'bkad/CamelCaseMotion'
       " Fuzzy Find
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': { -> fzf#install() } }
@@ -1356,6 +1405,8 @@ endif
 "
 " ================== UNIVERSAL PLUGINS CONFIG =================
 "
+" ~/.config/nvim/lua/plugins.lua
+lua require('plugins')
 " ------------------ CONJURE  ------------------
 "
 function! ClerkShow()
@@ -1443,8 +1494,10 @@ map g/ <Plug>(incsearch-fuzzy-stay)
 
 " --------- SNEAK-----------
 " 'fs': 2 character Sneak
-" map fs <Plug>Sneak_s
-" map Fs <Plug>Sneak_S
+" forward
+map fs <Plug>Sneak_s
+" beak
+map Fs <Plug>Sneak_S
 let g:sneak#label = 1
 
 " immediately after invoking Sneak you can move to the
@@ -1479,17 +1532,60 @@ let g:sneak#s_next = 1
 " endif
 
 " --------- CLOSE-BUFFERS ---------
-nnoremap <silent> Q     :bd <CR>
+nnoremap <silent> Q     :close<CR>
 nnoremap <silent> <leader>q     :Bdelete other<CR>
 nnoremap <silent> <leader><C-q> :Bdelete menu<CR>
 " ================== / UNIVERSAL PLUGINS CONFIG =================
 
-  " in ~/.config/nvim/lua/telescope.lua
-  " lua require("telescope-config")
+" in ~/.config/nvim/lua/telescope.lua
+" lua require("telescope-config")
+
+" ==== CURRENTLY UNUSED (from 90% without plugin) =====
+
+" TAG JUMPING:
+" ==================
+
+" Create the `tags` file (may need to install ctags first)
+" command! MakeTags !ctags -R .
+
+" NOW WE CAN:
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+
+" SNIPPETS:
+" =========
+
+" EXAMPLE:
+" Make an empty HTML template and move cursor to title
+" nnoremap <leader>html :-1read $HOME/.vim/.skeleton.html<CR>3jw
+
+" NOW WE CAN:
+" - Take over the world!
+"   (with much fewer keystrokes)
+
+" BUILD INTEGRATION:
+" ==================
+
+" Steal Mr. Bradley's formatter & add it to our spec_helper
+" http://philipbradley.net/rspec-into-vim-with-quickfix
+
+" Configure the `make` command to run RSpec
+" set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
+
+" NOW WE CAN:
+"
+" - Run :make to run RSpec
+" - :cl to list errors
+" - :cc# to jump to error by number
+" - :cn and :cp to navigate forward and back
+" ==== /CURRENTLY UNUSED (from 90% without plugin) =====
+
 
 " (Shift+) F8 rotates through TDD phases red, green, refactor
 source ~/.config/nvim/tddcolors.vim
 
+lua require("newinit")
 source ~/.vimrc.local
 " ==== .vimrc.local EXAMPLE =======
 
@@ -1516,3 +1612,4 @@ source ~/.vimrc.local
 " need to come after colorscheme
 " set background transparent
 " hi Normal guibg=NONE ctermbg=NONE
+
