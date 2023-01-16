@@ -1,7 +1,8 @@
 # If not running interactively, don't do anything
+source .bashrc.local;
 case $- in
     *i*) ;;
-      *) return;;
+      *)  return;;
 esac
 
 SSH_ENV="$HOME/.ssh/agent-environment"

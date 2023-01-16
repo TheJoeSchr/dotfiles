@@ -51,5 +51,6 @@
   "diagnostic-languageserver.filetypes": {
     "clojure": "clj_kondo_lint"
     //"clj": "clj_kondo_lint"
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
