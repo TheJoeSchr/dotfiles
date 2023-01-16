@@ -21,6 +21,7 @@
   go = checkout
   ci = commit -v
   ca = !git ci --amend
+  ce = commit -C HEAD --amend
   cim = !git ci -m
   cc = cim
   st = status

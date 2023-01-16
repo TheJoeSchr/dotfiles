@@ -564,22 +564,7 @@ end
 
 if test (read -P "Fix moonlander rules?" -n 1) = "y"
   # moonlander
-  sudo touch /etc/udev/rules.d/50-oryx.rules
-
-  echo "
-   # Rule for all ZSA keyboards
-   SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", GROUP=\"plugdev\"
-   # Rule for the Moonlander
-   SUBSYSTEM==\"usb\", ATTR{idVendor}==\"3297\", ATTR{idProduct}==\"1969\", GROUP=\"plugdev\"
-   "| sudo tee -a /etc/udev/rules.d/50-oryx.rules
-
-  sudo touch /etc/udev/rules.d/50-wally.rules
-  echo "
-  # STM32 rules for the Moonlander and Planck EZ
-  SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
-    MODE:="0666", \
-    SYMLINK+="stm32_dfu"
-   "| sudo tee -a /etc/udev/rules.d/50-wally.rules
+  sudo ln -s ~/.local/share/50-zsa.rules /etc/udev/rules.d/50-zsa.rules
 
 end
 if test (read -P "Fix groups for nordvpn, 1password, docker?" -n 1) = "y"
