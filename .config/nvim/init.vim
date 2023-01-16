@@ -405,11 +405,6 @@ if !exists('g:vscode')
     Plug 'TheJoeSchr/telescope-rg'
     " for checkhealth
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " ChatGPT
-    " Plug 'terror/chatgpt.nvim', { 'do': 'pip install -r requirements.txt' }
-    Plug 'muniftanjim/nui.nvim'
-    " require setup in after/telescope.nvim
-    Plug 'jackmort/chatgpt.nvim'
     " -- themes
     Plug 'artanikin/vim-synthwave84'
     " Plug 'flazz/vim-colorschemes'
