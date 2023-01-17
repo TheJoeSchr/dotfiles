@@ -393,7 +393,6 @@ if !exists('g:vscode')
     " Center Text
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/limelight.vim'
-    Plug 'TheJoeSchr/telescope-rg'
     " for checkhealth
     " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     " -- themes
