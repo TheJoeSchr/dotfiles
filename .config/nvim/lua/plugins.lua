@@ -8,7 +8,17 @@ return require("packer").startup({
 	function(use)
 		-- Core
 		use("wbthomason/packer.nvim")
-		use({ -- LSP Configuration & Plugins
+		-- It's important that you set up neoconf.nvim BEFORE nvim-lspconfig.
+		-- use({
+		-- 	"folke/neoconf.nvim",
+		-- 	config = function()
+		-- 		require("neoconf").setup({
+		-- 			-- override any of the default settings here
+		-- 		})
+		-- 	end,
+		-- })
+		-- LSP Configuration & Plugins
+		use({
 			"neovim/nvim-lspconfig",
 			requires = {
 				-- Automatically install LSPs to stdpath for neovim
@@ -93,6 +103,7 @@ return require("packer").startup({
 				"nvim-telescope/telescope-github.nvim",
 				"nvim-telescope/telescope-dap.nvim",
 				"nvim-telescope/telescope-fzf-native.nvim",
+				"TheJoeSchr/telescope-rg",
 			},
 			config = function()
 				require("configs.plugins.telescope").setup()
