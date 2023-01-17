@@ -257,7 +257,7 @@ vnoremap <C-S>         <C-C>:update<CR>
 inoremap <C-S>         <C-O>:update<CR>
 
 " FULL-SCREEN TERMINAL switching, very convenient
-nnoremap <leader>t :stop<CR>
+" Use <Ctrl-Z>
 
 " SPLITS:
 " ================
@@ -393,18 +393,9 @@ if !exists('g:vscode')
     " Center Text
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/limelight.vim'
-    " Fuzzy project file search
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'kyoh86/telescope-windows.nvim'
-    " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake' }
-    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-    Plug 'nvim-telescope/telescope-github.nvim'
-    Plug 'nvim-telescope/telescope-dap.nvim'
     Plug 'TheJoeSchr/telescope-rg'
     " for checkhealth
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     " -- themes
     Plug 'artanikin/vim-synthwave84'
     " Plug 'flazz/vim-colorschemes'
