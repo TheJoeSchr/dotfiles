@@ -15,7 +15,7 @@ function lfcd
     set tmp (mktemp)
     set -l LF (which lf)
 
-    EDITOR=nvr $LF -last-dir-path=$tmp $argv
+    EDITOR=vmux $LF -last-dir-path=$tmp $argv
     if test -f "$tmp"
         set dir (cat $tmp)
         rm -f $tmp
