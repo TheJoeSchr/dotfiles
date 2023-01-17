@@ -1,8 +1,15 @@
 echo Setting global exports...
 set -gx SHELL (which bash) # needs bash for nvim python
+# export environment variable VMUX_EDITOR, either vim or nvim
+set -gx VMUX_EDITOR nvim
+set -gx VMUX_REALEDITOR_NVIM_QT /usr/bin/nvim-qt
+set -gx VMUX_REALEDITOR_NVR /usr/bin/nvr
+set -gx VMUX_GLOBAL 1
+set -gx VMUX_NOT_SELECT_PANE 1
+
 set -gx PAGER nvimpager
 set -gx EDITOR nvim
-set -gx VISUAL nvr # ewrap is used by nnn with editor split
+set -gx VISUAL vmux # ewrap is used by nnn with editor split
 set -gx BROWSER google-chrome-stable
 # always try to set DISPLAY
 # set -q DISPLAY; or set -gx DISPLAY ":0"
@@ -87,6 +94,7 @@ THE THREE TYPES OF ALIAS
   alias ls 'exa -G --icons'
   alias lll 'ls -lT --level=1'
   alias tree 'lll -a --level=3'
+  alias nvr vmux
   # NNN aliases
   # -H hidden files
   # -e      text in $VISUAL/$EDITOR/

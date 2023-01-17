@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-cmd="nvr"
+cmd="vmux"
 if [ -n "$TMUX" ] ; then
     # tmux session running
     tmux split-window -h "$cmd \"$*\""
