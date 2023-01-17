@@ -1146,6 +1146,7 @@ SceneGraphBackend[$d]
 [Shortcuts]
 Close[$d]
 KeyBindings[$d]
+WhatsThis[$d]
 
 [Voice]
 Shortcut=
