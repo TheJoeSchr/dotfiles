@@ -7,7 +7,8 @@ local M = {}
 local function set_options()
   -- Set 24-bit colors
   vim.o.termguicolors = true
-  vim.cmd([[colorscheme onedark]])
+  -- vim.cmd([[colorscheme onedark]])
+  vim.cmd[[colorscheme tokyonight]]
   --
   -- [[ Highlight on yank ]]
   -- See `:help vim.highlight.on_yank()`
