@@ -25,7 +25,7 @@ return {
   -- Peekaboo will show you the contents of the registers on the sidebar when you hit -- or @ in normal mode or <CTRL-R> in insert mode
 
   -- You can toggle fullscreen mode by pressing spacebar.
-  "junegunn/vim-peekaboo",
+  -- "junegunn/vim-peekaboo",
   -- Comment stuff out.
   -- gcc: comment out a line (takes a count)
   -- gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
@@ -40,9 +40,14 @@ return {
   "junegunn/fzf.vim",
   "stsewd/fzf-checkout.vim",
   -- Easymotion fuzzy search
-  "haya14busa/incsearch.vim",
-  "haya14busa/incsearch-fuzzy.vim",
-  "haya14busa/incsearch-easymotion.vim",
+  {
+    "haya14busa/incsearch.vim",
+    event = "VeryLazy",
+    dependencies = {
+      "haya14busa/incsearch-fuzzy.vim",
+      "haya14busa/incsearch-easymotion.vim",
+    },
+  },
   -- - helps with sneak scoping
   "unblevable/quick-scope",
   "https://gitlab.com/yorickpeterse/nvim-window.git",
@@ -64,43 +69,40 @@ return {
   -- dot.case (cr.),
   -- space case (cr<space>),
   -- and Title Case (crt) are all just 3 keystrokes away.
-  "tpope/vim-abolish",
+  { "tpope/vim-abolish", event = "BufReadPost" },
   -- Surround
-  "tpope/vim-surround",
+  { "tpope/vim-surround", event = "BufReadPost" },
   -- unimpaired ([p,]p etc)
-  "tpope/vim-unimpaired",
+  { "tpope/vim-unimpaired", event = "VeryLazy" },
   -- fish file editing
-  "dag/vim-fish",
+  -- "dag/vim-fish",
   -- close other buffers (and more)
   "Asheq/close-buffers.vim",
   -- github copilot
-  "github/copilot.vim",
-
-  -- ============== / UNIVERSAL PLUGINS: NATIVE VIM ===================
+  { "github/copilot.vim", event = "VeryLazy" },
+  -- === / UNIVERSAL PLUGINS: NATIVE VIM
   -- === NATIVE ONLY ===
   -- F3
-  "szw/vim-maximizer",
-  -- Repeat.vim remaps . in a way that plugins can tap into it.
-  "tpope/vim-repeat",
+  { "szw/vim-maximizer", event = "VeryLazy" },
   -- Startify
-  "mhinz/vim-startify",
+  -- "mhinz/vim-startify",
   -- Center Text
   "junegunn/goyo.vim",
   "junegunn/limelight.vim",
   -- for checkhealth
   -- "nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate",}
   -- -- themes
-  "artanikin/vim-synthwave84",
+  -- "artanikin/vim-synthwave84",
   -- "flazz/vim-colorschemes",
   -- "sonph/onehalf', {'rtp': 'vim/",}
-  "morhetz/gruvbox",
-  "dracula/vim",
-  "ericbn/vim-solarized",
+  -- "morhetz/gruvbox",
+  -- "dracula/vim",
+  -- "ericbn/vim-solarized",
 
   -- -- git helper
   -- "airblade/vim-gitgutter", -- replaced by gitsigns?
-  "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
+  { "tpope/vim-fugitive", event = "VeryLazy" },
+  { "tpope/vim-rhubarb", event = "VeryLazy" },
 
   -- -- DEBUGGER ----
   -- "puremourning/vimspector",
@@ -114,16 +116,16 @@ return {
   -- "dense-analysis/ale", # disable for now, using coc todo lint, format
   -- and autocomplete
   -- -- emulate vscode-vim stuff
-  "tpope/vim-commentary",
+  -- "tpope/vim-commentary",
   -- -- original easymotion
   "easymotion/vim-easymotion",
   -- -- typescript support
-  "leafgarland/typescript-vim",
-  -- -- vue
-  "pangloss/vim-javascript",
-  -- VUE syntax highlight
-  "digitaltoad/vim-pug",
-  "posva/vim-vue",
+  -- "leafgarland/typescript-vim",
+  -- -- -- vue
+  -- "pangloss/vim-javascript",
+  -- -- VUE syntax highlight
+  -- "digitaltoad/vim-pug",
+  -- "posva/vim-vue",
   -- -- vue: vetur alternative
   -- :CocInstall @yaegassy/coc-volar
   -- "yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile",}
