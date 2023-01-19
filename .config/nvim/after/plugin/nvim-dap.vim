@@ -4,11 +4,6 @@
   " dap.configurations.javascript = {
   " dap.adapters.node2 = {
 
-  "" manually configure different testrunner if auto-detect fails
-  ""lua require('dap-python').test_runner = 'pytest'
-  lua require('dap.ext.vscode').load_launchjs()
-  "" find local virtualenv
-  lua require('dap-python').setup(string.format('%s/bin/python', os.getenv('VIRTUAL_ENV'))) 
 
   "" like F5, start to debug
   nnoremap <F5> :lua require'dap'.continue()<CR>
@@ -60,7 +55,6 @@
   nnoremap <leader>dvv :Telescope dap variables<CR>
 
   " theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
-  "
   let g:dap_virtual_text = v:true
   " in after/plugin/nvim-dap-virtual-text.vim
   " require("nvim-dap-virtual-text").setup {
