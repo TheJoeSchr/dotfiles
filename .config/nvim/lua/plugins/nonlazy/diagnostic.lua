@@ -1,3 +1,5 @@
+local M = {}
+
 local wk = require("which-key")
 
 local function set_commands()
@@ -30,9 +32,13 @@ local function set_signs()
   end
 end
 
-set_commands()
-set_keymaps()
-set_signs()
-vim.diagnostic.config({
-  virtual_text = false,
-})
+function M.setup()
+  set_commands()
+  set_keymaps()
+  set_signs()
+  vim.diagnostic.config({
+    virtual_text = false,
+  })
+end
+
+return M
