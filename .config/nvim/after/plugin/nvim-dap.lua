@@ -1,4 +1,11 @@
 local dap = require("dap")
+-- find vscode setup
+require("dap.ext.vscode").load_launchjs()
+-- manually configure different testrunner if auto-detect fails
+--find local virtualenv
+require("dap-python").setup(string.format("%s/bin/python", os.getenv("VIRTUAL_ENV")))
+require("dap-python").test_runner = "pytest"
+
 dap.adapters.node2 = {
   type = "executable",
   command = "node",
