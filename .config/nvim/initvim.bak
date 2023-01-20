@@ -295,12 +295,12 @@ set splitright
 " but I've changed the background colour of my terminal to a dark non-black shade,
 " and set below
 " The result of this is that in diff mode, differing text shows up with a black background,
-" and unchanged text is coloured with the terminal background colour. 
-" For side-by-side diffs, this works wonderfully, since you can tell immediately 
-" based on the other side whether a given line is a change or add; for non-side-by-side 
+" and unchanged text is coloured with the terminal background colour.
+" For side-by-side diffs, this works wonderfully, since you can tell immediately
+" based on the other side whether a given line is a change or add; for non-side-by-side
 " you will be able to see an unchanged part in a changed line.
 " This means that you can leave syntax colouring on and still be able to see diffs.
-" Again, you do need to be able to set the background colour of the terminal to 
+" Again, you do need to be able to set the background colour of the terminal to
 " a unique, dark, non-black shade.
 :highlight DiffAdd ctermbg=None
 :highlight DiffChange ctermbg=None
@@ -332,10 +332,10 @@ if !exists('g:vscode')
 
       " You can toggle fullscreen mode by pressing spacebar.
       Plug 'junegunn/vim-peekaboo'
-      " Comment stuff out. 
+      " Comment stuff out.
       " gcc: comment out a line (takes a count)
       " gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
-      " vmap gc: in visual mode to comment out the selection, 
+      " vmap gc: in visual mode to comment out the selection,
       " gc in operator pending mode to target a comment
       Plug 'tpope/vim-commentary'
       Plug 'vimwiki/vimwiki'
@@ -443,7 +443,7 @@ if !exists('g:vscode')
     " Plug 'goerz/jupytext.vim'
     Plug 'untitled-ai/jupyter_ascending.vim'
     " for Python code completion based on Jedi, a Python language server.
-    " Plug 'davidhalter/jedi-vim' 
+    " Plug 'davidhalter/jedi-vim'
     " Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 
     " CLOJURE(-SCRIPT)
@@ -453,11 +453,11 @@ if !exists('g:vscode')
     " W, B, E, gE to use WORD motions
 
     " List manipulation mappings
-    " >f and <f to move a form 
+    " >f and <f to move a form
     " >e and <e to move an element.
 
     " >), <), >(, and <( to handle slurpage and barfage are handled,
-    " where the angle bracket indicates the direction, 
+    " where the angle bracket indicates the direction,
     " the parenthesis indicates which end to operate on.
 
     " Insertion mappings
@@ -564,8 +564,8 @@ if !exists('g:vscode')
   "  --- VIMWIKI
   " This will make sure vimwiki will only set the filetype of markdown files inside a wiki directory, rather than globally.
   let g:vimwiki_global_ext = 0
-  let g:vimwiki_list = [{'path':'~/zk/', 
-                        \ 'syntax': 'markdown', 'ext': '.md'}] 
+  let g:vimwiki_list = [{'path':'~/zk/',
+                        \ 'syntax': 'markdown', 'ext': '.md'}]
   let g:vimwiki_ext2syntax = {'.md': 'markdown',
                   \ '.mkd': 'markdown',
                   \ '.wiki': 'media' }
@@ -766,13 +766,180 @@ if !exists('g:vscode')
   let g:ale_linters = {
       \ 'clojure': ['clj-kondo', 'joker']
   \}
+{
+  " dap.adapters.node2 = {
+
+  "" manually configure different testrunner if auto-detect fails
+  ""lua require('dap-python').test_runner = 'pytest'
+  lua require('dap.ext.vscode').load_launchjs()
+  "" find local virtualenv
+  lua require('dap-python').setup(string.format('%s/bin/python', os.getenv('VIRTUAL_ENV'))) 
+
+  "" like F5, start to debug
+  nnoremap <F5> :lua require'dap'.continue()<CR>
+  nnoremap <leader>DD :lua require'dap'.continue()<CR>
+  nnoremap <S-F5> <Cmd>lua require'dap'.run_last()<CR>
+  nnoremap <leader>DL :lua require'dap'.run_last()<CR>
+
+  nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
+
+  nnoremap <leader>dk :lua require'dap'.step_out()<CR>
+  nnoremap <M-F5> :lua require'dap'.step_out()<CR>
+
+  nnoremap <leader>dl :lua require'dap'.step_into()<CR>
+  nnoremap <S-F4> :lua require'dap'.step_into()<CR>
+
+  nnoremap <leader>dj :lua require'dap'.step_over()<CR>
+  nnoremap <F4> :lua require'dap'.step_over()<CR>
+  nnoremap <leader>dd :lua require'dap'.step_over()<CR>
+
+  nnoremap <leader>dc <cmd>lua require('dap').run_to_cursor()<CR>
+
+  nnoremap <leader>DQ :lua require'dap'.close()<CR>
+  nnoremap <leader>dH :lua require'dap'.up()<CR>
+  nnoremap <leader>dL :lua require'dap'.down()<CR>
+  nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
+  " dap.ui is from nvim-dap
+  vnoremap <leader>dh :lua require'dap.ui.widgets'.preview()<CR>
+  nnoremap <leader>dh :lua require'dap.ui.widgets'.hover()<CR>
+  nnoremap <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
+  " dapui is nvim-dap-u
+  nnoremap <leader>ds :lua require("dapui").float_element('scopes')<CR>
+
+  nnoremap <leader>de :lua require'dap'.set_exception_breakpoints({"all"})<CR>
+  nnoremap <leader>da :lua require'debugHelper'.attach()<CR>
+  nnoremap <leader>dA :lua require'debugHelper'.attachToRemote()<CR>
+  nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
+  nnoremap <silent> <leader>df :lua require('dap-python').test_class()<CR>
+
+  vnoremap <silent> <leader>dv <ESC>:lua require('dap-python').debug_selection()<CR>
+
+  " Plug 'nvim-telescope/telescope-dap.nvim'
+  " already in ./**/telescope.nvim.vim
+  " require('telescope').setup()
+  " require('telescope').load_extension('dap')
+
+  nnoremap <leader>dvf :Telescope dap frames<CR>
+  nnoremap <leader>dvc :Telescope dap commands<CR>
+  nnoremap <leader>dvb :Telescope dap list_breakpoints<CR>
+  nnoremap <leader>dvv :Telescope dap variables<CR>
+
+  " theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
+  "
+  let g:dap_virtual_text = v:true
+  " in after/plugin/nvim-dap-virtual-text.vim
+  " require("nvim-dap-virtual-text").setup {
+
+  " Plug 'rcarriga/nvim-dap-ui'
+  " in after/plugin/nvim-dap.vim
+  " require("dapui").setup()
+
+  " Mappings DAPUI
+    " expand = { "<CR>", "<2-LeftMouse>" },
+    " open = "o",
+    " remove = "d",
+    " edit = "e",
+    " repl = "r",
+    " toggle = "t",
+  " eg inscopes press 'o' to open a variable
+  nnoremap <leader>du :lua require("dapui").toggle()<CR>
+  " send expression to debug REPL
+  vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>
+  nnoremap <leader>dr :lua require'dap'.repl.open({}, 'split')<CR><C-w>l
+  " nnoremap ee V<Cmd>lua require("dapui").eval()<CR>
+
+  " ---------------- NVIM-DAP -----------------
+  " mfussenegger/nvim-dap
+  " in after/plugin/nvim-dap.vim
+  " dap.configurations.javascript = {
+  " dap.adapters.node2 = {
+
+  "" manually configure different testrunner if auto-detect fails
+  ""lua require('dap-python').test_runner = 'pytest'
+  lua require('dap.ext.vscode').load_launchjs()
+  "" find local virtualenv
+  lua require('dap-python').setup(string.format('%s/bin/python', os.getenv('VIRTUAL_ENV')))
+
+  "" like F5, start to debug
+  nnoremap <F5> :lua require'dap'.continue()<CR>
+  nnoremap <leader>DD :lua require'dap'.continue()<CR>
+  nnoremap <S-F5> <Cmd>lua require'dap'.run_last()<CR>
+  nnoremap <leader>DL :lua require'dap'.run_last()<CR>
+
+  nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
+
+  nnoremap <leader>dk :lua require'dap'.step_out()<CR>
+  nnoremap <M-F5> :lua require'dap'.step_out()<CR>
+
+  nnoremap <leader>dl :lua require'dap'.step_into()<CR>
+  nnoremap <S-F4> :lua require'dap'.step_into()<CR>
+
+  nnoremap <leader>dj :lua require'dap'.step_over()<CR>
+  nnoremap <F4> :lua require'dap'.step_over()<CR>
+  nnoremap <leader>dd :lua require'dap'.step_over()<CR>
+
+  nnoremap <leader>dc <cmd>lua require('dap').run_to_cursor()<CR>
+
+  nnoremap <leader>DQ :lua require'dap'.close()<CR>
+  nnoremap <leader>dH :lua require'dap'.up()<CR>
+  nnoremap <leader>dL :lua require'dap'.down()<CR>
+  nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
+  " dap.ui is from nvim-dap
+  vnoremap <leader>dh :lua require'dap.ui.widgets'.preview()<CR>
+  nnoremap <leader>dh :lua require'dap.ui.widgets'.hover()<CR>
+  nnoremap <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
+  " dapui is nvim-dap-u
+  nnoremap <leader>ds :lua require("dapui").float_element('scopes')<CR>
+
+  nnoremap <leader>de :lua require'dap'.set_exception_breakpoints({"all"})<CR>
+  nnoremap <leader>da :lua require'debugHelper'.attach()<CR>
+  nnoremap <leader>dA :lua require'debugHelper'.attachToRemote()<CR>
+  nnoremap <silent> <leader>dn :lua require('dap-python').test_method()<CR>
+  nnoremap <silent> <leader>df :lua require('dap-python').test_class()<CR>
+
+  vnoremap <silent> <leader>dv <ESC>:lua require('dap-python').debug_selection()<CR>
+
+  " Plug 'nvim-telescope/telescope-dap.nvim'
+  " already in ./**/telescope.nvim.vim
+  " require('telescope').setup()
+  " require('telescope').load_extension('dap')
+
+  nnoremap <leader>dvf :Telescope dap frames<CR>
+  nnoremap <leader>dvc :Telescope dap commands<CR>
+  nnoremap <leader>dvb :Telescope dap list_breakpoints<CR>
+  nnoremap <leader>dvv :Telescope dap variables<CR>
+
+  " theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
+  "
+  let g:dap_virtual_text = v:true
+  " in after/plugin/nvim-dap-virtual-text.vim
+  " require("nvim-dap-virtual-text").setup {
+
+  " Plug 'rcarriga/nvim-dap-ui'
+  " in after/plugin/nvim-dap.vim
+  " require("dapui").setup()
+
+  " Mappings DAPUI
+    " expand = { "<CR>", "<2-LeftMouse>" },
+    " open = "o",
+    " remove = "d",
+    " edit = "e",
+    " repl = "r",
+    " toggle = "t",
+  " eg inscopes press 'o' to open a variable
+  nnoremap <leader>du :lua require("dapui").toggle()<CR>
+  " send expression to debug REPL
+  vnoremap <M-k> <Cmd>lua require("dapui").eval()<CR>
+  nnoremap <leader>dr :lua require'dap'.repl.open({}, 'split')<CR><C-w>l
+  " nnoremap ee V<Cmd>lua require("dapui").eval()<CR>
+
   " jank/vim-test and mfussenegger/nvim-dap nnoremap <leader>dt :TestNearest -strategy=jest<CR>
   "
   function! JestStrategy(cmd)
     let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
     let fileName = matchlist(a:cmd, '\v'' -- (.*)$')[1]
     call luaeval("require'debugHelper'.debugJest([[" . testName . "]], [[" . fileName . "]])")
-  endfunction      
+  endfunction
   let g:test#custom_strategies = {'jest': function('JestStrategy')}
   " ---------------- VIMSPECTOR -----------------
   " " packadd! vimspector
@@ -913,15 +1080,13 @@ if !exists('g:vscode')
   " file finder via nnn
   nnoremap <leader>fp <cmd>NnnPicker<CR>
 
-  " grep in curren buffer
-  nnoremap <leader>fs <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
   " grep all files in workdir
   nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
-  " serach in current buffe
+  " search in current buffe
   nnoremap <leader>fs <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
   " rg | fzf
   nnoremap <leader>fg :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
-  nnoremap <leader>fG :Rg 
+  nnoremap <leader>fG :Rg
   " find word under cursor
   nnoremap <leader>fw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
 
@@ -932,12 +1097,15 @@ if !exists('g:vscode')
   nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
   nnoremap <leader>f: <cmd>lua require('telescope.builtin').commands_history()<cr>
   nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
-  nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
+  nnoremap <leader>ft <cmd>Telescope lsp_document_symbols<CR>
   nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
   nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfixhistory()<cr>
   " ChatGPT
   nnoremap <leader>fr ggVG<cmd>lua require('chatgpt').edit_with_instructions()<CR>
   vnoremap <leader>fr <cmd>lua require('chatgpt').edit_with_instructions()<CR>
+
+  " Vista
+  nnoremap <leader>o  <cmd>Vista nvim_lsp<CR>
   " ---------------- /Telescope --------
   " ---------------- Unimpaired --------
   " open quickfix
@@ -963,7 +1131,7 @@ if !exists('g:vscode')
   " Move to the vista window when it is opened. Set this option to `0` to stay in current windown when opening the vista sidebar.
   let g:vista_stay_on_open = 1
 
-  " let g:vista_default_executive = "coc"
+  let g:vista_default_executive = "nvim_lsp"
   "
   " ---------------- REFACTOR ------------
   "
@@ -984,7 +1152,7 @@ if !exists('g:vscode')
   "
 
   " ---------------- Copilot ------------
-  " Fixes <tab> not working well with coc and copilot 
+  " Fixes <tab> not working well with coc and copilot
   " let g:copilot_no_tab_map = v:true
   " inoremap <silent><expr> <TAB>
   "       \ coc#pum#visible() ? coc#pum#next(1):
@@ -1023,11 +1191,11 @@ if !exists('g:vscode')
   nnoremap <silent> <leader>Gl :Gclog <CR>
   command! GHistory call s:view_git_history
 
-  " auto-clean fugitive bufffers (vimcasts #34) 
+  " auto-clean fugitive bufffers (vimcasts #34)
   autocmd BufReadPost fugitive://* set bufhidden=delete
 
   " maps .. to the above command, but only for buffers containing a git blob or tree:
-  autocmd User fugitive 
+  autocmd User fugitive
     \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
     \   nnoremap <buffer> .. :edit %:h<CR> |
     \ endif
@@ -1070,7 +1238,7 @@ if !exists('g:vscode')
     wincmd p
   endfunction
   " ------------------ /FUGITIVE -------------"
-  " ---------------- COC ------------             
+  " ---------------- COC ------------
   " coc config
   " automatically installs this coc extension
   " probably needs restart, check with <leader>e
@@ -1221,7 +1389,6 @@ if !exists('g:vscode')
   " nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
   " " Find symbol of current document.
   " nnoremap <silent> <leader>O  :<C-u>CocList --normal outline <cr>
-  " nnoremap <silent> <leader>o  :<C-u>Vista coc<cr>
   " " Search workspace symbols.
   " nnoremap <silent> <leader>S  :<C-u>CocList -I symbols -k<cr>
   " nnoremap <silent> <leader>s  :<C-u>Vista finder coc<cr>
@@ -1362,7 +1529,7 @@ map <Leader>e <Plug>(easymotion-e)
 
 
 " <leader><leader> only works with double \\
-" 
+"
 map <Leader><Leader>l <Plug>(easymotion-lineforward)
 map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
@@ -1432,9 +1599,11 @@ let g:sneak#s_next = 1
 " endif
 
 " --------- CLOSE-BUFFERS ---------
-nnoremap <silent> Q     :close<CR>
-nnoremap <silent> <leader>q     :Bdelete other<CR>
-nnoremap <silent> <leader><C-q> :Bdelete menu<CR>
+" nnoremap <silent> Q     :close<CR>
+nnoremap <silent> Q     :Bdelete menu<CR>
+nnoremap <silent> <C-q> :Bdelete menu<CR>
+nnoremap <silent> <leader>Q     :Bdelete other<CR>
+nnoremap <silent> <leader>q :Bdelete menu<CR>
 " ================== / UNIVERSAL PLUGINS CONFIG =================
 
 " in ~/.config/nvim/lua/telescope.lua
@@ -1512,4 +1681,3 @@ source ~/.vimrc.local
 " need to come after colorscheme
 " set background transparent
 " hi Normal guibg=NONE ctermbg=NONE
-
