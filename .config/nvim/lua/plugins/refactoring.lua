@@ -126,6 +126,7 @@ set_keymaps()
 
 return {
   "ThePrimeagen/refactoring.nvim",
+  lazy = true,
   config = true,
   keys = {
     { "<leader>r", desc = "[R]efactor" },
