@@ -32,6 +32,9 @@ if status --is-interactive
   fish_vi_key_bindings
   # usually automatically, but call to overwrite
   fish_user_key_bindings
+  # Ctrl-f directory
+  # Ctrl-Alt-v environment variable
+  fzf_configure_bindings --directory=\cf --variables=\e\cv
 
   # Setting fd as the default source for fzf
   export FZF_DEFAULT_COMMAND='fd --type f'
