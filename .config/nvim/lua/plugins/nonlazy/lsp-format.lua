@@ -1,6 +1,6 @@
 local M = {}
 
-local lsp_format = require('lsp-format')
+local lsp_format = require("lsp-format")
 
 function M.setup()
   lsp_format.setup({

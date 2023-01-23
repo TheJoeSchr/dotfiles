@@ -22,6 +22,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.cmd([[hi Normal guibg=None ctermbg=None]]) -- maybe can use `vim.api.nvim_set_hl` instead
 vim.cmd([[hi NonText ctermbg=NONE]])
 
+--  save on focus lost
+vim.cmd([[au FocusLost * silent! wa]])
+
 local opt = vim.opt
 -- -- Show matching brackets.
 opt.showmatch = true
@@ -45,23 +48,23 @@ opt.completeopt = { "menuone", "noselect" }
 -- -- Set the spelling language to US English.
 -- opt.spelllang = 'en_us'
 -- -- Highlight the line on which the cursor lies
--- opt.cursorline = true
+opt.cursorline = true
 -- -- Show line numbers
 -- opt.number = true
 -- -- Don't show insert mode; taken care of by lualine
 -- opt.showmode = false
 
 -- -- Decrease the time to update the swap file
--- opt.updatetime = 500
+opt.updatetime = 50
 -- -- Enable concealing, for example, rendering bold text in Markdown but hiding
 -- -- the asterisks
 -- opt.conceallevel = 2
 -- -- Leave most folds open by default.
 opt.foldlevelstart = 99
 -- -- Increase cmdheight
--- opt.cmdheight = 2
+opt.cmdheight = 2
 -- -- Set completion options
--- opt.completeopt = { 'menuone', 'noselect' }
+opt.completeopt = { "menuone", "noselect" }
 --
 -- Lazy.nvim defaults
 --
@@ -93,7 +96,7 @@ opt.foldlevelstart = 99
 -- opt.shiftround = true -- Round indent
 -- opt.shiftwidth = 2 -- Size of an indent
 -- opt.showmode = false -- dont show mode since we have a statusline
--- opt.sidescrolloff = 8 -- Columns of context
+opt.sidescrolloff = 16 -- Columns of context
 -- opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 -- opt.smartcase = true -- Don't ignore case with capitals
 -- opt.smartindent = true -- Insert indents automatically
@@ -105,6 +108,10 @@ opt.foldlevelstart = 99
 -- opt.timeoutlen = 300
 -- -- Use the persistent-undo feature
 -- opt.undofile = true
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
 -- -- Maximum number of changes that can be undone
 opt.undolevels = 10000
 -- -- Maximum number lines to save for undo on a buffer reload
@@ -114,10 +121,11 @@ opt.undoreload = 10000
 -- opt.winminwidth = 5 -- minimum window width
 -- opt.wrap = false -- Disable line wrap
 --
--- if vim.fn.has("nvim-0.9.0") == 1 then
---   opt.splitkeep = "screen"
---   opt.shortmess = "filnxtToOFWIcC"
--- end
+if vim.fn.has("nvim-0.9.0") == 1 then
+  opt.splitkeep = "screen"
+  opt.shortmess = "filnxtToOFWIcC"
+end
+
 --
 -- -- fix markdown indentation settings
 -- vim.g.markdown_recommended_style = 0

@@ -1,5 +1,3 @@
-local M = {}
-
 local wk = require("which-key")
 
 local function set_commands()
@@ -10,11 +8,12 @@ end
 
 local function set_keymaps()
   wk.register({
-    e = {
+    x = {
       name = "Diagnostic",
       l = { "<cmd>DiagnosticLine<CR>", "show for current line" },
       n = { "<cmd>DiagnosticNext<CR>", "jump to next" },
       p = { "<cmd>DiagnosticPrev<CR>", "jump to previous" },
+      E = { "<cmd>DiagnosticLine<CR>", "show diagnostic for current line" },
     },
   }, {
     prefix = "<leader>",
@@ -32,13 +31,11 @@ local function set_signs()
   end
 end
 
-function M.setup()
-  set_commands()
-  set_keymaps()
-  set_signs()
-  vim.diagnostic.config({
-    virtual_text = false,
-  })
-end
+set_commands()
+set_keymaps()
+set_signs()
+vim.diagnostic.config({
+  virtual_text = false,
+})
 
-return M
+return {}

@@ -1,7 +1,3 @@
--- since this is just an example spec, don't actually load anything here and return an empty spec
-if false then
-  return {}
-end
 -- every spec file under config.plugins will be loaded automatically by lazy.nvim
 --
 -- In your plugin files, you can:
@@ -24,8 +20,9 @@ return {
   "tpope/vim-eunuch",
 
   -- Use netrw instead of nerdtree, improve with `0-`
-  -- { "tpope/vim-vinegar", keys = { "-", "<Plug>VinegarUp", desc = "VinegarUp" } },
+  { "tpope/vim-vinegar", keys = { "-", "<Plug>VinegarUp", desc = "VinegarUp" } },
   -- Also use nnn as filepicker
+  -- "luukvbaal/nnn.nvim",
   -- EXPLORER MODE
   -- :NnnExplorer
   -- to open nnn in a vertical split simliar to NERDTree/nvim-tree.
@@ -41,7 +38,7 @@ return {
   -- In both modes it's possible to select multiple files before pressing Enter. Doing so will open the entire selection all at once, excluding the hovered file.
   -- { "luukvbaal/nnn.nvim", lazy = false, enabled = true, config = true },
   -- use nnn instead
-  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  -- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   -- Comment stuff out.
   -- gcc: comment out a line (takes a count)
   -- gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
@@ -113,10 +110,21 @@ return {
 
   -- -- DEBUGGER ----
   -- "puremourning/vimspector",
-  "mfussenegger/nvim-dap",
-  "mfussenegger/nvim-dap-python",
-  "theHamsta/nvim-dap-virtual-text",
-  "rcarriga/nvim-dap-ui",
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "mfussenegger/nvim-dap-python",
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+    },
+    keys = { D = { D = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" } }, prefix = "<leader>" },
+  },
+
+  "nvim-treesitter/playground",
+  "theprimeagen/harpoon",
+  "mbbill/undotree",
+  "tpope/vim-fugitive",
+
   -- not working yet
   -- "Olical/clojure-dap",
   -- -- linter (works with eslint)
@@ -125,7 +133,6 @@ return {
   -- -- emulate vscode-vim stuff
   -- "tpope/vim-commentary",
   -- -- original easymotion
-  "easymotion/vim-easymotion",
   -- -- typescript support
   -- "leafgarland/typescript-vim",
   -- -- -- vue
@@ -211,7 +218,7 @@ return {
   -- CODE OUTLINE
   -- mainly used via <leader>o
   -- see tags, overview, etc
-  "liuchengxu/vista.vim",
+  -- "liuchengxu/vista.vim",
 
   "ThePrimeagen/refactoring.nvim",
   -- easily jump to any location and enhanced f/t motions for Leap
@@ -251,48 +258,30 @@ return {
   },
 
   -- override nvim-cmp and add cmp-emoji
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "L3MON4D3/LuaSnip",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-path",
-      "onsails/lspkind.nvim",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-emoji",
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
-    end,
-  },
-
-  -- add pyright to lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      -- Useful status updates for LSP
-      "j-hui/fidget.nvim",
-    },
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
-      },
-    },
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   dependencies = {
+  --     "L3MON4D3/LuaSnip",
+  --     "hrsh7th/cmp-buffer",
+  --     "hrsh7th/cmp-nvim-lsp",
+  --     "hrsh7th/cmp-nvim-lua",
+  --     "hrsh7th/cmp-path",
+  --     "onsails/lspkind.nvim",
+  --     "saadparwaiz1/cmp_luasnip",
+  --     "hrsh7th/cmp-emoji",
+  --   },
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     local cmp = require("cmp")
+  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+  --   end,
+  -- },
 
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
   { import = "lazyvim.plugins.extras.lang.typescript" },
   -- add jsonls and schemastore ans setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
-
   -- use mini.starter instead of alpha
   { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
