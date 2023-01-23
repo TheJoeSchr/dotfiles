@@ -22,10 +22,26 @@ return {
   -- :SudoWrite: Write a privileged file with sudo.
   -- :SudoEdit: Edit a privileged file with sudo.
   "tpope/vim-eunuch",
-  -- Peekaboo will show you the contents of the registers on the sidebar when you hit -- or @ in normal mode or <CTRL-R> in insert mode
 
-  -- You can toggle fullscreen mode by pressing spacebar.
-  -- "junegunn/vim-peekaboo",
+  -- Use netrw instead of nerdtree, improve with `0-`
+  -- { "tpope/vim-vinegar", keys = { "-", "<Plug>VinegarUp", desc = "VinegarUp" } },
+  -- Also use nnn as filepicker
+  -- EXPLORER MODE
+  -- :NnnExplorer
+  -- to open nnn in a vertical split simliar to NERDTree/nvim-tree.
+
+  -- In this mode, the plugin makes use of nnn's -F flag to listen for opened files. Pressing Enter on a file will open that file in a new buffer, while keeping the nnn window open.
+
+  -- PICKER MODE
+  -- :NnnPicker to open nnn in a floating window.
+
+  -- In this mode nnn's -p flag is used to listen for opened files on program exit. Picker mode implies only a single selection will be made before quitting nnn and thus the floating window.
+
+  -- SELECTION
+  -- In both modes it's possible to select multiple files before pressing Enter. Doing so will open the entire selection all at once, excluding the hovered file.
+  -- { "luukvbaal/nnn.nvim", lazy = false, enabled = true, config = true },
+  -- use nnn instead
+  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   -- Comment stuff out.
   -- gcc: comment out a line (takes a count)
   -- gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
@@ -33,21 +49,12 @@ return {
   -- gc in operator pending mode to target a comment
   "tpope/vim-commentary",
   "vimwiki/vimwiki",
-  "bkad/CamelCaseMotion",
+  { "bkad/CamelCaseMotion", lazy = false },
   -- Fuzzy Finder
   -- "junegunn/fzf', { 'dir': '~/.fzf', 'do",: { -> fzf#install() } }
   -- need twice to create folder for other extensions
   "junegunn/fzf.vim",
   "stsewd/fzf-checkout.vim",
-  -- Easymotion fuzzy search
-  {
-    "haya14busa/incsearch.vim",
-    event = "VeryLazy",
-    dependencies = {
-      "haya14busa/incsearch-fuzzy.vim",
-      "haya14busa/incsearch-easymotion.vim",
-    },
-  },
   -- - helps with sneak scoping
   "unblevable/quick-scope",
   "https://gitlab.com/yorickpeterse/nvim-window.git",
@@ -166,7 +173,12 @@ return {
   -- cse[/cse]: surround element in brackets
   -- cse{/cse}: surround element in braces
   "tpope/vim-sexp-mappings-for-regular-people",
-  { "Olical/conjure", dependencies = { "guns/vim-sexp" } },
+  {
+    "Olical/conjure",
+    dependencies = { "guns/vim-sexp" },
+    keys = { "<localleader>cs", ":execute ClerkShow()<CR>" },
+    ft = { "clojure", "python", "lua" },
+  },
   "jiangmiao/auto-pairs",
   -- lot of *()
   -- Jack in to Boot, Clj & Leiningen from Vim. Inspired by the feature in CIDER.el
@@ -180,24 +192,6 @@ return {
   -- -- other
   -- Ansible
   -- "pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh", }
-
-  -- Use netrw instead of nerdtree, improve with `0-`
-  "tpope/vim-vinegar",
-  -- Also use nnn as filepicker
-  -- EXPLORER MODE
-  -- :NnnExplorer
-  -- to open nnn in a vertical split simliar to NERDTree/nvim-tree.
-
-  -- In this mode, the plugin makes use of nnn's -F flag to listen for opened files. Pressing Enter on a file will open that file in a new buffer, while keeping the nnn window open.
-
-  -- PICKER MODE
-  -- :NnnPicker to open nnn in a floating window.
-
-  -- In this mode nnn's -p flag is used to listen for opened files on program exit. Picker mode implies only a single selection will be made before quitting nnn and thus the floating window.
-
-  -- SELECTION
-  -- In both modes it's possible to select multiple files before pressing Enter. Doing so will open the entire selection all at once, excluding the hovered file.
-  "luukvbaal/nnn.nvim",
 
   -- airline
   -- "vim-airline/vim-airline",
@@ -273,42 +267,6 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
-    end,
-  },
-
-  -- change some telescope options and a keymap to browse plugin files
-  {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      -- add a keymap to browse plugin files
-      -- stylua: ignore
-      {
-        "<leader>fp",
-        function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-        desc = "Find Plugin File",
-      },
-    },
-    dependencies = { "nvim-telescope/telescope-github.nvim" },
-    -- change some options
-    opts = {
-      defaults = {
-        layout_strategy = "horizontal",
-        layout_config = { prompt_position = "top" },
-        sorting_strategy = "ascending",
-        winblend = 0,
-      },
-    },
-  },
-
-  -- add telescope-fzf-native
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make" } },
-    -- apply the config and additionally load fzf-native
-    config = function(_, opts)
-      local telescope = require("telescope")
-      telescope.setup(opts)
-      telescope.load_extension("fzf")
     end,
   },
 
