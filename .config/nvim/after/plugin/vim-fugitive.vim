@@ -1,8 +1,8 @@
   " ---------------- FUGITIVE --------------
-  nnoremap <leader>g :Git <CR>
-  nnoremap <leader>G :Git <CR>
-  nnoremap <leader>Gd :0Gclog <CR>
-  nnoremap <leader>Gl :Gclog <CR>
+  " nnoremap <leader>g :Git <CR>
+  " nnoremap <leader>G :Git <CR>
+  " nnoremap <leader>Gd :0Gclog <CR>
+  " nnoremap <leader>Gl :Gclog <CR>
   command! GHistory call s:view_git_history
 
   " auto-clean fugitive bufffers (vimcasts #34) 

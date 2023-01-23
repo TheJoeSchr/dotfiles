@@ -1,7 +1,13 @@
-local M = {}
-local chatgpt = require("chatgpt")
-function M.setup()
-  chatgpt.setup({
+return {
+  "jackMort/ChatGPT.nvim",
+  enabled = false,
+  config = true,
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
+  },
+  opts = {
     welcome_message = "Hi", -- set to "" if you don't like the fancy godot robot
     loading_text = "loading",
     question_sign = "", -- you can use emoji if you want e.g. 🙂
@@ -69,7 +75,5 @@ function M.setup()
       new_session = "<C-n>",
       cycle_windows = "<Tab>",
     },
-  })
-end
-
-return M
+  },
+}
