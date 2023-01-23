@@ -53,10 +53,9 @@
 --   ":lua require('refactoring').select_refactor()<CR>",
 --   { noremap = true, silent = true, expr = false }
 -- )
-local refactoring = require("refactoring")
-local wk = require("which-key")
-
-local function set_keymaps()
+--
+local function set_keymaps(refactoring)
+  local wk = require("which-key")
   wk.register({
     r = {
       name = "refactoring",
@@ -122,12 +121,14 @@ local function set_keymaps()
   })
 end
 
-set_keymaps()
-
 return {
   "ThePrimeagen/refactoring.nvim",
-  lazy = true,
-  config = true,
+  config = function(_, o)
+    local refactoring = require("refactoring")
+    refactoring.setup()
+    set_keymaps(refactoring)
+    return o
+  end,
   keys = {
     { "<leader>r", desc = "[R]efactor" },
   },
