@@ -112,7 +112,7 @@ THE THREE TYPES OF ALIAS
   alias nfp 'nnn-with-editor-split -p -'
   # goes to cd
   abbr ll 'nnn'
-  abbr la 'll -H'
+  abbr la 'exa --all -1'
   alias vimdiff "$EDITOR -d"
 
 
