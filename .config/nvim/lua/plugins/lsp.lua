@@ -1,3 +1,4 @@
+-- also see /after/plugin/lsp.lua
 return {
   {
     "VonHeikemen/lsp-zero.nvim",
@@ -6,6 +7,13 @@ return {
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
+
+      -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+      -- { "folke/neodev.nvim" },
+      -- { "jose-elias-alvarez/null-ls.nvim" },
+      -- { "jose-elias-alvarez/nvim-lsp-ts-utils" },
+      --
+      -- { "simrat39/inlay-hints.nvim" },
 
       -- Autocompletion
       { "hrsh7th/nvim-cmp" },

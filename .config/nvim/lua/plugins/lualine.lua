@@ -1,5 +1,3 @@
-local M = {}
-
 local lualine = require("lualine")
 local navic = require("nvim-navic")
 
@@ -14,10 +12,10 @@ local function diff_source()
   end
 end
 
-function M.setup()
+function setup()
   lualine.setup({
     options = {
-      theme = "onedark",
+      theme = "tokyonight", -- TODO tokyonight
       globalstatus = true,
     },
     sections = {
@@ -61,4 +59,16 @@ function M.setup()
   })
 end
 
-return M
+return {
+  "nvim-lualine/lualine.nvim",
+  config = function(_, o)
+    setup()
+    return o
+  end,
+  opts = {
+    options = {
+      theme = "onedark", -- TODO tokyonight
+      globalstatus = true,
+    },
+  },
+}
