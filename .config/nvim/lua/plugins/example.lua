@@ -74,6 +74,11 @@ return {
 
   -- add telescope-fzf-native
   {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+  },
+  -- add telescope-fzf-native
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make" } },
     -- apply the config and additionally load fzf-native
