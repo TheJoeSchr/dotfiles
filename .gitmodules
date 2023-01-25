@@ -1,3 +1,6 @@
 [submodule "archlinux"]
 	path = archlinux
 	url = git@github.com:TheJoeSchr/archlinux.git
+[submodule ".config/nvim/lua/LazyVim"]
+	path = .config/nvim/lua/LazyVim
+	url = https://github.com/TheJoeSchr/LazyVim
