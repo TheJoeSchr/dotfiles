@@ -1,6 +1,6 @@
 function nnn-cmd --wraps "nnn" --description 'lowest common nnn command'
     set -x NNN_OPENER ~/.config/nnn/plugins/nuke 
-    set -x NNN_PLUG 'f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch'
+    set -x NNN_PLUG 'f:finder;o:fzopen;P:mocplay;p:fzplug;z:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch'
     # nnn
     set -x USE_PISTOL 1
     set -x PAGER "bat --style=plain" # -p is plain/no line numbers
