@@ -9,9 +9,9 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     -- import LazyVim plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- { "TheJoeSchr/LazyVim", dir = "~/.local/share/nvim/lazy/LazyVimJoe/", import = "lazyvim.plugins" },
+    -- { "TheJoeSchr/LazyVim", dir = "~/.local/share/nvim/lazy/LazyVim/", import = "lazyvim.plugins" },
     -- { dir = "~/.local/share/nvim/lazy/LazyVimJoe/", import = "lazyvim.plugins" },
+    { "TheJoeschr/LazyVim", dir = "~/.config/nvim/lua/LazyVim/", import = "lazyvim.plugins" },
     { import = "plugins" },
     -- import any extras modules here
     -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
