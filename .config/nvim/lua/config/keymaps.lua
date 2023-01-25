@@ -4,7 +4,7 @@
 
 -- MINE
 -- just format
-vim.keymap.set("n", "<C-s>", vim.lsp.buf.formatting())
+vim.keymap.set("n", "<C-s>", "<cmd>LspZeroFormat<CR>")
 -- save (and autoformat)
 vim.keymap.set("n", "<C-S>", "<cmd>write<CR>")
 -- Q closes buffer
