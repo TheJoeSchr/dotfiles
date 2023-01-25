@@ -68,6 +68,7 @@ THE THREE TYPES OF ALIAS
   alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
   abbr cs 'config st'
   abbr ci 'config ci'
+  abbr ca 'config ca'
   abbr cfg 'config'
   abbr cf 'config'
   alias du 'dust -d 1'
