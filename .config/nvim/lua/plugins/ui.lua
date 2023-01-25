@@ -32,7 +32,17 @@ local function set_keymaps()
     prefix = "<leader>",
   })
 end
-
 set_keymaps()
-
-return {}
+return {
+  "rcarriga/nvim-notify",
+  opts = {
+    background_colour = "#000000",
+    timeout = 500,
+    max_height = function()
+      return math.floor(vim.o.lines * 0.75)
+    end,
+    max_width = function()
+      return math.floor(vim.o.columns * 0.55)
+    end,
+  },
+}
