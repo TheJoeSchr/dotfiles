@@ -259,19 +259,33 @@ else
   esac
 fi
 # # -- EXAMPLES BASHRC.LOCAL
-# # Reboot directly to Windows
+
+# source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+
+# echo "Local Config"
+# # gets sourced in ~/.profile, which gets called by ~/.bash_profile
+# # source ~/.profile.local
+
+# # exit if inside tmux
+# if [[ "$TERM" =~ "screen".* ]]; then
+#   echo "Already inside TMUX"
+# else
+#   read -t 2 -n 1 -p "Start tmux (y/N)? " answer
+#   [ -z "$answer" ] && answer="N"  # 'no' default choice
+#   case ${answer:0:1} in
+#      y|Y )
+#          echo "Starting tmux-init"
+#          tmux attach -t base || tmux new -s base
+#          ;;
+#      * )
+#          echo "No Tmux"
+#          ;;
+#   esac
+# fi
+
+
+
 # # Inspired by http://askubuntu.com/questions/18170/how-to-reboot-into-windows-from-ubuntu
-# reboot_to_windows ()
-# {
-#     windows_title=$(grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
-#     sudo grub-reboot "$windows_title"
-# }
-# alias winreboot='reboot_to_windows'
-# alias manjaroreboot='sudo grub-reboot "Manjaro Linux"'
-
-# ## POSTGRAPHILE DOCKER
-# export PG_DUMP="docker-compose exec -T db pg_dump"
-
 
 # ## WSL
 # # FIX on WSL so it doesn't get windows npm/yarn
@@ -281,15 +295,12 @@ fi
 # export PATH=$(echo "$PATH" | sed -e 's/\/mnt\/c\/Program Files (x86)\/Yarn\/bin\/://')
 # export PATH=$(echo "$PATH" | sed -e 's/\/mnt\/c\/Users\/Joe\/AppData\/Local\/Yarn\/bin://')
 
-
-# ## ALIASES
+# # ALIASES
 # ## TMUX
 # alias tmux-init="tmux attach -t base || tmux new -s base"
 # alias ca="config add"
 # alias cs="config status"
 # alias tmux-init="tmux attach -t base || tmux new -s base"
-# alias pip="pip3"
-#
 ## search stackoverflow with googler
 ##alias so='googler -j -w stackoverflow.com (xsel)'
 
