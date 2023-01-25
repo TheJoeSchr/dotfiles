@@ -66,6 +66,7 @@ THE THREE TYPES OF ALIAS
   abbr lg 'glg'
   abbr lga 'gla'
   alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+  abbr cs 'config st'
   abbr cfg 'config'
   abbr cf 'config'
   alias du 'dust -d 1'
