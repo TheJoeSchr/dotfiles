@@ -89,6 +89,7 @@ THE THREE TYPES OF ALIAS
   abbr rm rip
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr ta 'tmux a'
+  abbr tff 'tf -y'
   if not $is_steam_host
     abbr upgrade 'sudo pacman -Syu --noconfirm && pikaur -Syu --noconfirm'
   else
