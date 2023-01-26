@@ -1,9 +1,13 @@
-# If not running interactively, don't do anything
-source .bashrc.local;
-case $- in
-    *i*) ;;
-      *)  return;;
-esac
+# If not running interactively, skipps this file
+if [ -t 0 ]; then
+  # .bashrc.local bgets sourced at the end of this file
+  echo "Running interactively, loading .bashrc"
+else
+  echo "Not running interactively, skipping .bashrc"
+  [ -e $HOME/.profile ] && source $HOME/.profile
+  return
+  # [ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
+fi
 
 SSH_ENV="$HOME/.ssh/agent-environment"
 
@@ -27,19 +31,18 @@ else
     start_agent;
 fi
 
-# JUST USE FISH
-if [ -e /usr/bin/fish ]; then
+if command -v fish >/dev/null; then
   # if don't want to use fish, just use exit in .bashrc.local
   [ -e ~/.bashrc.local ] && . ~/.bashrc.local
 
     ## FISH
-    echo " |---------------------------------------------------|"
-    echo " | ESCAPE HATCH:                                     |"
-    echo " | \`bash --norc\`  or \`bash -c \"\"\`                    |"
-    echo " | to manually enter Bash                            |"
-    echo " | without executing the commands from ~/.bashrc     |"
-    echo " | which would run \`exec -l fish\`                    |"
-    echo " |---------------------------------------------------|"
+    # echo " |---------------------------------------------------|"
+    # echo " | ESCAPE HATCH:                                     |"
+    # echo " | \`bash --norc\`  or \`bash -c \"\"\`                    |"
+    # echo " | to manually enter Bash                            |"
+    # echo " | without executing the commands from ~/.bashrc     |"
+    # echo " | which would run \`exec -l fish\`                    |"
+    # echo " |---------------------------------------------------|"
 
     # To have commands such as `bash -c 'echo test'` run the command in Bash instead of starting fish
     # from: /usr/bin/[ --help:
@@ -56,7 +59,7 @@ fi
 
 # NO FISH
 echo "NO FISH"
-# USE BASH INTERACTIVLY ONLY
+# USE BASH INTERACTIVELY ONLY
 
 # vi mode in bash!!!
 set -o vi
@@ -240,7 +243,7 @@ function killgrep {
 export -f killgrep
 
 # source local commands
-. ~/.bashrc.local
+source  ~/.bashrc.local
 
  # exit if inside tmux
 if [[ "$TERM" =~ "screen".* ]]; then
