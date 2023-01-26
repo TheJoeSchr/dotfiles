@@ -27,7 +27,7 @@
   cc = cim
   st = status
   br = branch
-  df = diff --histogram --color-moved=plain
+  df = !git diff --histogram  && git diff --histogram --cached
   feat = merge --no-ff --no-commit
   pl = pull --rebase
   ps = push
