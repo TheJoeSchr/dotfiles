@@ -93,10 +93,10 @@ TopLeft=None
 Meta=org.kde.lattedock,/Latte,org.kde.LatteDock,activateLauncherMenu
 
 [MouseBindings]
-CommandAll1=Nothing
 CommandAll2=Resize
-CommandAll3=Move
+CommandAll3=Raise
 CommandAllKey=Alt
+CommandAllWheel=Change Opacity
 
 [NightColor]
 LatitudeAuto=48.2155
