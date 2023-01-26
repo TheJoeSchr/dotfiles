@@ -1,3 +1,6 @@
+-- TODO: configure firenvim
+--
+--
 -- every spec file under config.plugins will be loaded automatically by lazy.nvim
 --
 -- In your plugin files, you can:
