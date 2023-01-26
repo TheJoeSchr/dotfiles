@@ -1,4 +1,3 @@
-echo Setting global exports...
 set -gx SHELL (which bash) # needs bash for nvim python
 # export environment variable VMUX_EDITOR, either vim or nvim
 set -gx VMUX_EDITOR nvim
@@ -21,6 +20,7 @@ end
 
 # INTERACTIVE
 if status --is-interactive
+  echo Starting fish shell interactivily...
   set HOSTNAME (uname --nodename)
   if test (uname --nodename) = "steamdeck"
     set is_steam_host true
@@ -28,7 +28,6 @@ if status --is-interactive
     set is_steam_host false
   end
 
-  echo Setting key bindings...
   fish_vi_key_bindings
   # usually automatically, but call to overwrite
   fish_user_key_bindings
@@ -53,7 +52,12 @@ THE THREE TYPES OF ALIAS
  - function: 
     Make something functionally equivalent to one or more something elses, and optionally permute data that are being worked on with (argv).Strictly speaking, alias is itself just an alias for a function that blindly accepts argv and tacks them to the end of its something else. But this pattern is so prolific that it got its own name, so we will consider it unique for today.
 '
-  echo Setting abbreviations...
+  # no upgrade by default for steamdeck
+  if not $is_steam_host
+    abbr upgrade 'sudo pacman -Syu --noconfirm && pikaur -Syu --noconfirm'
+  else 
+    abbr upgrade 'sudo pacman -Sy --noconfirm && pikaur -Sy --noconfirm'
+  end
   # Abbreviations are stored in a variable named fish_user_abbreviations. This is automatically created as a universal variable the first time an abbreviation is created. If you want your abbreviations to be private to a particular fish session you can put the following in your *~/.config/fish/config.fish* file before you define your first abbrevation:
   # You can create abbreviations directly on the command line and they will be saved automatically and made visible to other fish sessions if fish_user_abbreviations is a universal variable. If you keep the variable as universal, abbr --add statements in config.fish will do nothing but slow down startup slightly.
   # set -g fish_user_abbreviations
@@ -89,13 +93,9 @@ THE THREE TYPES OF ALIAS
   abbr rm rip
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr ta 'tmux a'
+  abbr tp 'tmux-sessionizer'
   abbr tff 'tf -y'
-  if not $is_steam_host
-    abbr upgrade 'sudo pacman -Syu --noconfirm && pikaur -Syu --noconfirm'
-  else
-    # no upgrade for steamdeck
-    abbr upgrade 'sudo pacman -Sy --noconfirm && pikaur -Sy --noconfirm'
-  end
+
   abbr upgrade-paru 'paru -Syu --skipreview --useask --noconfirm'
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
   abbr psax 'procs'
@@ -123,7 +123,6 @@ THE THREE TYPES OF ALIAS
 
 
   if type -q "omf"
-    echo "Set Theme"
     omf theme yimmy
   end
   # zoxide init
@@ -136,10 +135,20 @@ THE THREE TYPES OF ALIAS
     # if inside tmux refresh DBUS
     switch $TERM
         case "screen*"
-            echo "Refresh DBUS '$DBUS_SESSION_BUS_ADDRESS' for tmux"
+            # echo "Refresh DBUS '$DBUS_SESSION_BUS_ADDRESS' for tmux"
             tmux-refresh
     end
   end
+  echo "        _            _       _____ _     _          "
+  echo "       | | ___   ___( )___  |  ___(_)___| |__       "
+  echo "    _  | |/ _ \ / _ \// __| | |_  | / __| '_ \      "
+  echo "   | |_| | (_) |  __/ \__ \ |  _| | \__ \ | | |     "
+  echo "    \___/ \___/ \___| |___/ |_|   |_|___/_| |_|     "
+  echo "                                                    "
+  echo "    ESCAPE HATCH: \`bash --norc\`  or \`bash -c \"\"\` "
+  echo "    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _   "
+  echo "                                                    "
+  echo "                                                    "
   # autostart ssh-add
   # fish_ssh_agent
 end # /(INTERACTIVE)

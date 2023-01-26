@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 echo "Local Config"
