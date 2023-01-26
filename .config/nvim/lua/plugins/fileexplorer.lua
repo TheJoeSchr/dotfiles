@@ -5,13 +5,10 @@ return {
     cmd = "Neotree",
     enabled = true,
     keys = {
-      {
-        "-",
-        function()
-          require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
-        end,
-        desc = "Explorer NeoTree (root dir)",
-      },
+      { "-", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
+      { "<C-p>", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
+      { "<C-n>", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
+      { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
       { "<leader>fP", "<cmd>Neotree toggle<CR>", desc = "Explorer NeoTree (cwd)" },
     },
     init = function()
@@ -33,7 +30,6 @@ return {
   {
     "luukvbaal/nnn.nvim",
     enabled = true,
-    lazy = false,
     keys = {
       { "<leader>pp", "<cmd>NnnExplorer<CR>", desc = "NNN Explorer" },
       { "<leader>fp", "<cmd>NnnPicker <CR>", desc = "NNN Picker (root dir)" },

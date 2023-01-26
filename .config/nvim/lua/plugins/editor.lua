@@ -64,17 +64,14 @@ return {
     },
     keys = {
 
-      { "<Leader>e", desc = "<Plug>(easymotion)" },
-
-      { "<Leader>el", "<Plug>(easymotion-lineforward)" },
-      { "<Leader>ej", "<Plug>(easymotion-j)" },
-      { "<Leader>ek", "<Plug>(easymotion-k)" },
-      { "<Leader>eh", "<Plug>(easymotion-linebackward)" },
-      { "<Leader>ew", "<Plug>(easymotion-w)" },
-      { "<Leader>eww", "<Plug>(easymotion-w)" },
-      { "<Leader>eb", "<Plug>(easymotion-b)" },
-      { "<Leader>ebb", "<Plug>(easymotion-b)" },
-      { "<Leader>ee", "<Plug>(easymotion-e)" },
+      { "<Leader>E", "<Plug>(easymotion)" },
+      { "<Leader>L", "<Plug>(easymotion-lineforward)" },
+      { "<Leader>J", "<Plug>(easymotion-j)" },
+      { "<Leader>K", "<Plug>(easymotion-k)" },
+      { "<Leader>H", "<Plug>(easymotion-linebackward)" },
+      { "<Leader>W", "<Plug>(easymotion-w)" },
+      { "<Leader>B", "<Plug>(easymotion-b)" },
+      { "<Leader>E", "<Plug>(easymotion-e)" },
     },
   },
 }
