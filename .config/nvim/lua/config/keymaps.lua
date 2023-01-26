@@ -10,6 +10,9 @@ vim.keymap.set("n", "<C-S>", "<cmd>write<CR>")
 -- Q closes buffer
 vim.keymap.set("n", "Q", "<cmd>bd<CR>")
 
+-- fugitive (git)
+vim.keymap.set("n", "<leader>G", "<cmd>:0Gclog<CR>", { desc = "fugitive" })
+vim.keymap.set("n", "<leader>g", "<cmd>:G<CR>", { desc = "fugitive" })
 -- https://github.com/ThePrimeagen/init.lua
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
