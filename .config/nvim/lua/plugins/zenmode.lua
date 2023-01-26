@@ -10,6 +10,6 @@ return {
     },
   },
   keys = {
-    { "n", "<leader>zz", ":ZenMode<CR>" },
+    { "n", "<leader>uF", ":ZenMode<CR>", { desc = "ZenMode" } },
   },
 }
