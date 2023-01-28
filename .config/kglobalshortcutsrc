@@ -28,6 +28,44 @@ Switch keyboard layout to EurKEY (US)=none,none,Switch keyboard layout to EurKEY
 Switch to Next Keyboard Layout=none,Ctrl+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
+[bismuth]
+_k_friendly_name=Window Tiling
+decrease_master_size=Meta+<\tCtrl+Alt+<,,Decrease Master Area Size
+decrease_master_win_count=Meta+\\,\tCtrl+Alt+\\,,Meta+[,Decrease Master Area Window Count
+decrease_window_height=Meta+[\tCtrl+Alt+[,Meta+Ctrl+K,Decrease Window Height
+decrease_window_width=Ctrl+Alt+{\tMeta+{,Meta+Ctrl+H,Decrease Window Width
+focus_bottom_window=none,Meta+J,Focus Bottom Window
+focus_left_window=Ctrl+Alt+H\tMeta+H\tMeta+Left,Meta+H,Focus Left Window
+focus_next_window=Ctrl+Alt+K\tAlt+~,,Focus Next Window
+focus_prev_window=Ctrl+Alt+J\tAlt+`,,Focus Previous Window
+focus_right_window=Meta+Right\tMeta+L\tCtrl+Alt+L,Meta+L,Focus Right Window
+focus_upper_window=none,Meta+K,Focus Upper Window
+increase_master_size=Meta+>\tCtrl+Alt+>,,Increase Master Area Size
+increase_master_win_count=Meta+.\tCtrl+Alt+.,Meta+],Increase Master Area Window Count
+increase_window_height=Ctrl+Alt+]\tMeta+],Meta+Ctrl+J,Increase Window Height
+increase_window_width=Ctrl+Alt+}\tMeta+},Meta+Ctrl+L,Increase Window Width
+move_window_to_bottom_pos=none,Meta+Shift+J,Move Window Down
+move_window_to_left_pos=none,Meta+Shift+H,Move Window Left
+move_window_to_next_pos=Meta+Ctrl+Shift+J\tMeta+Shift+J\tCtrl+Alt+Shift+J,,Move Window to the Next Position
+move_window_to_prev_pos=Meta+Ctrl+Shift+K\tMeta+Shift+K\tCtrl+Alt+Shift+K,,Move Window to the Previous Position
+move_window_to_right_pos=none,Meta+Shift+L,Move Window Right
+move_window_to_upper_pos=none,Meta+Shift+K,Move Window Up
+next_layout=Meta+\\\\\tMeta+/,Meta+\\\\,Switch to the Next Layout
+prev_layout=Ctrl+Alt+|\tMeta+Del\tMeta+|,Meta+|,Switch to the Previous Layout
+push_window_to_master=Ctrl+Alt+Return\tMeta+Return,Meta+Return,Push Active Window to Master Area
+rotate=Meta+R,Meta+R,Rotate
+rotate_part=Meta+Ctrl+R,Meta+Shift+R,Rotate Part
+rotate_reverse=none,,Rotate (Reverse)
+toggle_float_layout=Meta+W\tCtrl+Alt+W,Meta+Shift+F,Toggle Floating Layout
+toggle_monocle_layout=Meta+F\tCtrl+Alt+F,Meta+M,Toggle Monocle Layout
+toggle_quarter_layout=none,,Toggle Quarter Layout
+toggle_spiral_layout=none,,Toggle Spiral Layout
+toggle_spread_layout=none,,Toggle Spread Layout
+toggle_stair_layout=Ctrl+Alt+R\tCtrl+Alt+Shift+R,,Toggle Stair Layout
+toggle_three_column_layout=Ctrl+Alt+T\tMeta+T,,Toggle Three Column Layout
+toggle_tile_layout=Ctrl+Alt+Shift+T\tMeta+Shift+T,Meta+T,Toggle Tile Layout
+toggle_window_floating=Ctrl+Alt+Shift+W\tMeta+Shift+W,Meta+F,Toggle Active Window Floating
+
 [chrome-liilpfdpgflgkkhnlidnoibpejakplck-profile_2.desktop]
 _k_friendly_name=ViRTC
 _launch=none,none,Launch ViRTC
@@ -49,7 +87,7 @@ _k_friendly_name=Touchpad
 [kded5]
 Show System Activity=none,Ctrl+Esc,Show System Activity
 _k_friendly_name=KDE Daemon
-display=Meta+P\tDisplay\tCtrl+Alt+P\tMeta+Ö,Display\tMeta+P,Switch Display
+display=Display\tMeta+P\tMeta+Ö\tCtrl+Alt+Shift+P,Display\tMeta+P,Switch Display
 
 [khotkeys]
 _k_friendly_name=Custom Shortcuts Service
