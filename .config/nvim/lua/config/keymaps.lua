@@ -7,9 +7,7 @@ local v = require("utils/maps") -- Options are automatically loaded before lazy.
 -- md2pdf
 -- TODO: make extension
 -- md2pdf NAME.md && okular NAME.pdf
--- just format
--- -- Set the Enter key to Space
-v.nmap("<CR>", " ")
+-- just format -- Set the Enter key to Space v.nmap("<CR>", " ")
 vim.keymap.set("n", "<C-s>", "<cmd>LspZeroFormat<CR>")
 -- save (and autoformat)
 vim.keymap.set("n", "<C-S>", "<cmd>write<CR>")
@@ -27,15 +25,15 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- keep cursor in place when concatenating lines
 vim.keymap.set("n", "J", "mzJ`z")
 -- keep cursor in place when scrolling
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-f>", "<C-f>zz")
-vim.keymap.set("n", "<C-b>", "<C-b>zz")
--- Ctrl-y to scroll down (like in chrome/onehand)
-vim.keymap.set("n", "<C-y>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- vim.keymap.set("n", "<C-f>", "<C-f>zz")
+-- vim.keymap.set("n", "<C-b>", "<C-b>zz")
+-- -- Ctrl-y to scroll down (like in chrome/onehand)
+-- vim.keymap.set("n", "<C-y>", "<C-d>zz")
 -- keep cursor in place when searching
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+-- vim.keymap.set("n", "n", "nzzzv")
+-- vim.keymap.set("n", "N", "Nzzzv")
 
 -- greatest remap ever (keep register when pasting)
 vim.keymap.set({ "n", "x", "v" }, "<leader>p", [["_dP]])

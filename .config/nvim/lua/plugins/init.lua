@@ -115,18 +115,6 @@ return {
   { "tpope/vim-fugitive", event = "VeryLazy" },
   { "tpope/vim-rhubarb", event = "VeryLazy" },
 
-  -- -- DEBUGGER ----
-  -- "puremourning/vimspector",
-  {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-      "mfussenegger/nvim-dap-python",
-      "theHamsta/nvim-dap-virtual-text",
-      "rcarriga/nvim-dap-ui",
-    },
-    keys = { D = { D = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" } }, prefix = "<leader>" },
-  },
-
   "nvim-treesitter/playground",
   "theprimeagen/harpoon",
   "mbbill/undotree",
