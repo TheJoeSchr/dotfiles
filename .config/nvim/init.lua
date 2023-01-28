@@ -1,6 +1,5 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
--- require("plugins.nonlazy.dap").setup()
+require("config.lazy") -- require("plugins.nonlazy.dap").setup()
 -- require("plugins.nonlazy.diagnostic").setup()
 -- require("plugins.nonlazy.lualine").setup()
 -- require("plugins.nonlazy.nvim-window").setup()

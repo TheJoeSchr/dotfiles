@@ -1,5 +1,11 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  dependencies = {
+    -- highlight the current cursor context
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    -- show the current context of the cursor
+    "nvim-treesitter/nvim-treesitter-context",
+  },
   opts = {
     highlight = {
       enable = true,

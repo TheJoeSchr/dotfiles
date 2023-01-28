@@ -1,14 +1,19 @@
+local v = require("utils/maps") -- Options are automatically loaded before lazy.nvim startup
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
 -- MINE
+-- md2pdf
+-- TODO: make extension
+-- md2pdf NAME.md && okular NAME.pdf
 -- just format
+-- -- Set the Enter key to Space
+v.nmap("<CR>", " ")
 vim.keymap.set("n", "<C-s>", "<cmd>LspZeroFormat<CR>")
 -- save (and autoformat)
 vim.keymap.set("n", "<C-S>", "<cmd>write<CR>")
--- Q closes buffer
-vim.keymap.set("n", "Q", "<cmd>bd<CR>")
+-- Q closes buffer => ui/CloseBuffers
 
 -- fugitive (git)
 vim.keymap.set("n", "<leader>G", "<cmd>:0Gclog<CR>", { desc = "fugitive" })
@@ -33,7 +38,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- greatest remap ever (keep register when pasting)
-vim.keymap.set({ "n","x","v" }, "<leader>p", [["_dP]])
+vim.keymap.set({ "n", "x", "v" }, "<leader>p", [["_dP]])
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
