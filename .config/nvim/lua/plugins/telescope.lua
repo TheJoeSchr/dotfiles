@@ -1,3 +1,4 @@
+local Util = require("lazyvim.util")
 return {
   -- add telescope-fzf-native
   {
@@ -35,7 +36,6 @@ return {
       -- nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
       -- nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
       -- nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
-      -- nnoremap <leader>fq <cmd>lua require('telescope.builtin').quickfixhistory()<cr>
       -- " ---------------- /Telescope --------
       -- nnoremap <leader>f: <cmd>lua require('telescope.builtin').commands_history()<cr>
       { "<leader>;", "<cmd>Telescope oldfiles<CR>", desc = "Recent Files" },
@@ -74,12 +74,15 @@ return {
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
       { "<leader>/", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      { "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
+      { "<C-p>", "<leader>ff", desc = "Fuzzy Finder", remap = true },
+      -- not working
+      -- { "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
       -- find
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>ff", Util.telescope("files"), desc = "Find Files (root dir)" },
-      { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "[B]uffers" },
+      { "<leader>ff", Util.telescope("files"), desc = "Find [f]iles (root dir)" },
+      { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "[F]ind [F]iles (cwd)" },
+      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "[R]ecent" },
+      { "<leader>fq", Util.telescope("quickfixhistory"), desc = "[Q]uickFixHistory" },
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
@@ -155,6 +158,32 @@ return {
       telescope.load_extension("fzf")
       return opts
     end,
+  },
+  {
+    "debugloop/telescope-undo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          undo = {
+            -- telescope-undo.nvim config, see below
+          },
+        },
+      })
+      require("telescope").load_extension("undo")
+      vim.keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>", { desc = "Telescope Undo" })
+    end,
+  },
+  {
+    "nvim-telescope/telescope-github.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+    },
   },
 }
       -- stylua: ignore

@@ -6,7 +6,6 @@ return {
     enabled = true,
     keys = {
       { "-", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-      { "<C-p>", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
       { "<C-n>", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
       { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
       { "<leader>fP", "<cmd>Neotree toggle<CR>", desc = "Explorer NeoTree (cwd)" },
@@ -57,7 +56,7 @@ return {
         cmd = 'NNN_PLUG="f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch" PAGER="bat --style=plain" EDITOR="nvim" VISUAL="ewrap" nnn -E -J -axcr -H',
       },
       picker = {
-        cmd = 'NNN_PLUG="f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch" PAGER="bat --style=plain" EDITOR="nvim" VISUAL="ewrap" nnn -E -J -axcr -H', -- with preview-tui ' -P v',
+        cmd = 'NNN_PLUG="f:finder;o:fzopen;P:mocplay;p:fzplug;z:autojump;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch" PAGER="bat --style=plain" EDITOR="nvim" VISUAL="ewrap" nnn -E -J -axcr -H', -- with preview-tui ' -P v',
         -- cmd = "nnn",
       },
       auto_open = {

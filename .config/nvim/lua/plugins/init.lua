@@ -20,10 +20,10 @@ return {
   -- :Wall: Write every open window. Handy for kicking off tools like guard.
   -- :SudoWrite: Write a privileged file with sudo.
   -- :SudoEdit: Edit a privileged file with sudo.
-  "tpope/vim-eunuch",
+  { "tpope/vim-eunuch" },
 
   -- Use netrw instead of nerdtree, improve with `0-`
-  { "tpope/vim-vinegar", keys = { "-", "<Plug>VinegarUp", desc = "VinegarUp" } },
+  -- { "tpope/vim-vinegar", keys = { "-", "<Plug>VinegarUp", desc = "VinegarUp" } },
   -- Also use nnn as filepicker
   -- "luukvbaal/nnn.nvim",
   -- EXPLORER MODE
@@ -47,17 +47,17 @@ return {
   -- gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
   -- vmap gc: in visual mode to comment out the selection,
   -- gc in operator pending mode to target a comment
-  "tpope/vim-commentary",
-  "vimwiki/vimwiki",
+  { "tpope/vim-commentary" },
+  { "vimwiki/vimwiki" },
   { "bkad/CamelCaseMotion", lazy = false },
   -- Fuzzy Finder
   -- "junegunn/fzf', { 'dir': '~/.fzf', 'do",: { -> fzf#install() } }
   -- need twice to create folder for other extensions
-  "junegunn/fzf.vim",
-  "stsewd/fzf-checkout.vim",
+  { "junegunn/fzf.vim" },
+  { "stsewd/fzf-checkout.vim" },
   -- - helps with sneak scoping
-  "unblevable/quick-scope",
-  "https://gitlab.com/yorickpeterse/nvim-window.git",
+  { "unblevable/quick-scope" },
+  { "https://gitlab.com/yorickpeterse/nvim-window.git" },
   -- "justinmk/vim-sneak", replaced by leap
 
   -- VIM-ABOLISH
@@ -84,9 +84,14 @@ return {
   -- fish file editing
   -- "dag/vim-fish",
   -- close other buffers (and more)
-  "Asheq/close-buffers.vim",
+  -- " nnoremap <silent> Q     :close<CR>
+  -- nnoremap <silent> Q     :Bdelete menu<CR>
+  -- nnoremap <silent> <C-q> :Bdelete menu<CR>
+  -- nnoremap <silent> <leader>Q     :Bdelete other<CR>
+  -- nnoremap <silent> <leader>q :Bdelete menu<CR>
+  { "Asheq/close-buffers.vim", keys = { "<leader>q", desc = "Close Buffers" } },
   -- github copilot
-  { "github/copilot.vim", event = "VeryLazy" },
+  { "github/copilot.vim", event = "InsertEnter" },
   -- === / UNIVERSAL PLUGINS: NATIVE VIM
   -- === NATIVE ONLY ===
   -- F3
@@ -94,8 +99,7 @@ return {
   -- Startify
   -- "mhinz/vim-startify",
   -- Center Text
-  "junegunn/goyo.vim",
-  "junegunn/limelight.vim",
+  -- {"junegunn/goyo.vim"},
   -- for checkhealth
   -- "nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate",}
   -- -- themes
@@ -149,13 +153,13 @@ return {
 
   -- PYTHON
   -- iPython support
+  -- for Python code completion based on Jedi, a Python language server.
   -- "jpalardy/vim-slime', { 'for': 'python", }
   -- "hanschen/vim-ipython-cell', { 'for': 'python", }
   -- jupyter notebook support
-  "jupyter-vim/jupyter-vim",
+  { "jupyter-vim/jupyter-vim" },
   -- "goerz/jupytext.vim",
-  "untitled-ai/jupyter_ascending.vim",
-  -- for Python code completion based on Jedi, a Python language server.
+  { "untitled-ai/jupyter_ascending.vim" },
   -- "davidhalter/jedi-vim",
   -- "pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main", }
 
@@ -182,23 +186,23 @@ return {
   -- cse(/cse)/cseb: surround element in parentheses
   -- cse[/cse]: surround element in brackets
   -- cse{/cse}: surround element in braces
-  "tpope/vim-sexp-mappings-for-regular-people",
+  { "tpope/vim-sexp-mappings-for-regular-people" },
   {
     "Olical/conjure",
     dependencies = { "guns/vim-sexp" },
     keys = { "<localleader>cs", ":execute ClerkShow()<CR>" },
     ft = { "clojure", "python", "lua" },
   },
-  "jiangmiao/auto-pairs",
+  { "jiangmiao/auto-pairs" },
   -- lot of *()
   -- Jack in to Boot, Clj & Leiningen from Vim. Inspired by the feature in CIDER.el
   -- :Boot [args]
   -- :Clj [args]
   -- :Lein [args]
-  "tpope/vim-dispatch",
-  "clojure-vim/vim-jack-in",
+  { "tpope/vim-dispatch" },
+  { "clojure-vim/vim-jack-in" },
   -- Only in Neovim:
-  "radenling/vim-dispatch-neovim",
+  { "radenling/vim-dispatch-neovim" },
   -- -- other
   -- Ansible
   -- "pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh", }
@@ -216,21 +220,21 @@ return {
 
   -- COLORED LOG file, start with
   -- :AnsiEsc
-  "powerman/vim-plugin-AnsiEsc",
+  { "powerman/vim-plugin-AnsiEsc" },
 
   -- CODE OUTLINE
   -- mainly used via <leader>o
   -- see tags, overview, etc
   -- "liuchengxu/vista.vim",
 
-  "ThePrimeagen/refactoring.nvim",
+  { "ThePrimeagen/refactoring.nvim" },
   -- easily jump to any location and enhanced f/t motions for Leap
-  "ggandor/leap.nvim",
-  "tpope/vim-surround",
-  "godlygeek/tabular", -- Quickly align text by pattern
-  "tpope/vim-repeat", -- Repeat actions better
-  "tpope/vim-abolish", -- Cool things with words!
-  "romainl/vim-qf", -- wrangle quickfix
+  { "ggandor/leap.nvim" },
+  { "tpope/vim-surround" },
+  { "godlygeek/tabular" }, -- Quickly align text by pattern
+  { "tpope/vim-repeat" }, -- Repeat actions better
+  { "tpope/vim-abolish" }, -- Cool things with words!
+  { "romainl/vim-qf" }, -- wrangle quickfix
 
   {
     "glacambre/firenvim",

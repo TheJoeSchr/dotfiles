@@ -1,29 +1,22 @@
--- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 --
 -- -- Set the localleader key to <space>
 vim.g.maplocalleader = ","
+-- SPACE as leader key
 vim.g.mapleader = " "
 -- Set 24-bit colors
 vim.o.termguicolors = true
 --
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = "*",
-})
+-- set the python host for neovim
+vim.cmd([[ let g:python3_host_prog = expand('/usr/bin/python') ]])
 -- [[  Set background transparent  ]]
 vim.cmd([[hi Normal guibg=None ctermbg=None]]) -- maybe can use `vim.api.nvim_set_hl` instead
 vim.cmd([[hi NonText ctermbg=NONE]])
-
 --  save on focus lost
 vim.cmd([[au FocusLost * silent! wa]])
+
+-- [[ Highlight on yank ]] => already in lazy.nvim
 
 local opt = vim.opt
 -- -- Show matching brackets.
