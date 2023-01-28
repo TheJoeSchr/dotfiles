@@ -61,10 +61,14 @@ THE THREE TYPES OF ALIAS
   abbr G 'git'
   abbr ga 'git add'
   abbr gs 'git st'
-  alias glg 'PAGER=/usr/bin/less git lg'
-  alias gla 'PAGER=/usr/bin/less git lga'
-  abbr lg 'glg'
-  abbr lga 'gla'
+  abbr gl 'PAGER=/usr/bin/less git lg'
+  abbr gla 'PAGER=/usr/bin/less git lga'
+  alias ls 'exa -G --icons'
+  alias lf 'nnn' 
+  abbr ll 'nnn' # goes to cd
+  alias lll 'ls -lT --level=1'
+  alias la 'exa --all -1'
+  abbr lal 'la -l'
   alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
   abbr cs 'config st'
   abbr ci 'config ci'
@@ -75,7 +79,6 @@ THE THREE TYPES OF ALIAS
   alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
   abbr e 'nvim'
   abbr db 'distrobox'
-  alias lf 'lfcd' 
   abbr fda 'fd -uu'
   abbr find 'fd -uu'
   abbr install 'pikaur -S --needed --noconfirm'
@@ -97,8 +100,6 @@ THE THREE TYPES OF ALIAS
   alias pbcopy 'xsel --clipboard --input'
   alias pbpaste 'xsel --clipboard --output'
   abbr poetryshell 'SHELL=(which fish) poetry shell'
-  alias ls 'exa -G --icons'
-  alias lll 'ls -lT --level=1'
   alias tree 'lll -a --level=3'
   alias nvr vmux
   # NNN aliases
@@ -116,9 +117,6 @@ THE THREE TYPES OF ALIAS
   alias nnn 'nnn-cd -P v'
   # use like (nfp) instead of (nnn-filepicker) because it replaces cli
   alias nfp 'nnn-with-editor-split -p -'
-  # goes to cd
-  abbr ll 'nnn'
-  abbr la 'exa --all -1'
   alias vimdiff "$EDITOR -d"
 
 
