@@ -11,7 +11,7 @@ local function set_keymaps()
       d = { "<cmd>Trouble document_diagnostics<cr>", "document_diagnostics" },
       l = { "<cmd>Trouble loclist<cr>", "location list" },
       q = { "<cmd>Trouble quickfix<cr>", "quickfix" },
-      r = { "<cmd>Trouble lsp_references<cr>", "LSP references" },
+      -- r = { "<cmd>Trouble lsp_references<cr>", "LSP references" },
     },
   }, {
     prefix = "<leader>",
