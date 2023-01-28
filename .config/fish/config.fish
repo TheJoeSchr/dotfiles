@@ -86,6 +86,7 @@ THE THREE TYPES OF ALIAS
   abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
   abbr rg 'rg -S'
   abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
+  abbr rm rip
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr ta 'tmux a'
   if not $is_steam_host
