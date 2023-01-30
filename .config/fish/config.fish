@@ -6,7 +6,7 @@ set -gx VMUX_REALEDITOR_NVR /usr/bin/nvr
 set -gx VMUX_GLOBAL 1
 set -gx VMUX_NOT_SELECT_PANE 1
 
-set -gx PAGER most
+set -gx PAGER nvimpager # or env less
 set -gx EDITOR nvim
 set -gx VISUAL vmux # ewrap is used by nnn with editor split
 set -gx BROWSER google-chrome-stable
