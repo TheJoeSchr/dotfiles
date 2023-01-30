@@ -22,13 +22,14 @@ return {
       },
     },
   },
-  -- --   -- file explorer
+  -- file explorer
   {
     "luukvbaal/nnn.nvim",
     enabled = true,
     keys = {
       { "-", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
-      { "<C-n>", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
+      -- <C-n> =>harpoon
+      -- { "<C-n>", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
       { "<leader>e", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
       { "<leader>fP", "<cmd>NnnPicker<CR>", desc = "NNN Picker" },
       { "<leader>fp", "<cmd>NnnExplorer<CR>", desc = "NNN Explorer (root dir)" },
