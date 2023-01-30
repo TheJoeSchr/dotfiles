@@ -1,7 +1,5 @@
 -- -- DEBUGGER ----
 -- "puremourning/vimspector",
--- -- DEBUGGER ----
--- "puremourning/vimspector",
 local wk = require("which-key")
 local function set_keymaps()
   wk.register({
@@ -12,16 +10,15 @@ local function set_keymaps()
         "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
         "Conditional Breakpoint",
       },
-      s = { "<cmd>lua require('dap').step_into()<CR>", "Step Into" },
-      n = { "<cmd>lua require('dap').step_over()<CR>", "Step Over" },
-      o = { "<cmd>lua require('dap').step_out()<CR>", "Step Out" },
-      u = { "<cmd>lua require('dap').up()<CR>", "Up" },
-      d = { "<cmd>lua require('dap').down()<CR>", "Down" },
+      l = { "<cmd>lua require('dap').step_into()<CR>", "Step Into" },
+      j = { "<cmd>lua require('dap').step_over()<CR>", "Step Over" },
+      k = { "<cmd>lua require('dap').step_out()<CR>", "Step Out" },
       q = { "<cmd>lua require('dap').terminate()<CR>", "Terminate" },
     },
     D = {
       D = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
     },
+    F5 = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
   }, {
     prefix = "<leader>",
   })
@@ -51,13 +48,19 @@ end
 -- },
 
 return {
-  "mfussenegger/nvim-dap",
-  dependencies = {
-    "mfussenegger/nvim-dap-python",
-    "theHamsta/nvim-dap-virtual-text",
-    "rcarriga/nvim-dap-ui",
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      -- DAP for LUA
+      { "jbyuki/one-small-step-for-vimkind" },
+      { "mfussenegger/nvim-dap-python" },
+      { "nvim-telescope/telescope-dap.nvim", keys = { "<leader>dd", desc = "DAP Debug" } },
+      { "rcarriga/nvim-dap-ui", keys = { "<leader>du", desc = "DAP UI" } },
+      { "theHamsta/nvim-dap-virtual-text" },
+    },
+    config = function()
+      set_keymaps()
+    end,
   },
-  config = function()
-    set_keymaps()
-  end,
+  { "folke/neodev.nvim", opts = { library = { plugins = { "nvim-dap-ui" }, types = true } } },
 }

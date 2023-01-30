@@ -23,12 +23,23 @@ dap.configurations.javascript = {
     processId = require("dap.utils").pick_process,
   },
 }
+-- one small step for humankind (lua dap)
+dap.configurations.lua = {
+  {
+    type = "nlua",
+    request = "attach",
+    name = "Attach to running Neovim instance",
+  },
+}
+
+dap.adapters.nlua = function(callback, config)
+  callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+end
 -- " nnoremap <leader>dt :TestNearest -strategy=jest<CR>
 require("dap.ext.vscode").load_launchjs()
 -- "" find local virtualenv
 require("dap-python").setup(string.format("%s/bin/python", os.getenv("VIRTUAL_ENV")))
 
-vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
-vim.fn.sign_define("DapStopped", { text = "▸", texthl = "", linehl = "", numhl = "" })
-
+-- vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
+-- vim.fn.sign_define("DapStopped", { text = "▸", texthl = "", linehl = "", numhl = "" })
 require("dapui").setup()
