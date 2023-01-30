@@ -89,7 +89,10 @@ return {
   -- nnoremap <silent> <C-q> :Bdelete menu<CR>
   -- nnoremap <silent> <leader>Q     :Bdelete other<CR>
   -- nnoremap <silent> <leader>q :Bdelete menu<CR>
-  { "Asheq/close-buffers.vim", keys = { "<leader>q", desc = "Close Buffers" } },
+  {
+    "Asheq/close-buffers.vim",
+    keys = { { "<leader>q", desc = "Close Buffers" }, { "<leader>Q", desc = "Close Buffers" } },
+  },
   -- github copilot
   { "github/copilot.vim", event = "InsertEnter" },
   -- === / UNIVERSAL PLUGINS: NATIVE VIM
@@ -274,6 +277,14 @@ return {
   --   end,
   -- },
 
+  -- Use your favorite package manager to install, for example in lazy.nvim
+  {
+    "tjdevries/sg.nvim",
+    build = "cargo build --workspace",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    -- nnoremap <space>ss <cmd>lua require('sg.telescope').fuzzy_search_results()<CR>
+    keys = { { "<leader>sS", "<cmd>lua require('sg.telescope').fuzzy_search_results()<CR>", desc = "Symbols Outline" } },
+  },
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
