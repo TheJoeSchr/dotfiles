@@ -17,17 +17,10 @@ local function set_keymaps()
       u = { "<cmd>lua require('dap').up()<CR>", "Up" },
       d = { "<cmd>lua require('dap').down()<CR>", "Down" },
       q = { "<cmd>lua require('dap').terminate()<CR>", "Terminate" },
-      l = { "<cmd>Lazy<CR>", "Lazy" },
     },
     -- D = {
     --   D = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
     -- },
-    g = {
-      l = {
-        "<cmd>Lazy<CR>",
-        "Lazy",
-      },
-    },
   }, {
     prefix = "<leader>",
   })
