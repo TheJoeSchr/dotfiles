@@ -1,4 +1,5 @@
 local Util = require("lazyvim.util")
+local builtin = require("telescope.builtin")
 return {
   -- add telescope-fzf-native
   {
@@ -40,8 +41,8 @@ return {
       -- nnoremap <leader>f: <cmd>lua require('telescope.builtin').commands_history()<cr>
       { "<leader>;", "<cmd>Telescope oldfiles<CR>", desc = "Recent Files" },
       { "<leader>'", "<cmd>Telescope marks<CR>", desc = "Jump to [M]ark" },
-      { "<leader>sc", "<cmd>Telescope commands<CR>", desc = "Recent Files" },
-      { "<leader>sC", "<cmd>Telescope command_history<CR>", desc = "Recent Files" },
+      { "<leader>sc", "<cmd>Telescope commands<CR>", desc = "[S]earch [c]ommands" },
+      { "<leader>sC", "<cmd>Telescope command_history<CR>", desc = "[S]earch [C]ommands" },
       { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "[S]earch [K]eymaps" },
       -- remap alias <leader>s to <leader>f
       { "<leader>fa", "<leader>sa", desc = "Auto Commands", remap = true },
@@ -78,10 +79,11 @@ return {
       -- not working
       -- { "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
       -- find
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "[B]uffers" },
+      { "<leader>fb", builtin.buffers, desc = "[B]uffers" },
       { "<leader>ff", Util.telescope("files"), desc = "Find [f]iles (root dir)" },
       { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "[F]ind [F]iles (cwd)" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "[R]ecent" },
+      { "<leader>fr", builtin.resume, desc = "[R]resume" },
+
       { "<leader>fq", Util.telescope("quickfixhistory"), desc = "[Q]uickFixHistory" },
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
