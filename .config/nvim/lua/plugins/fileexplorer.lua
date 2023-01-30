@@ -5,10 +5,7 @@ return {
     cmd = "Neotree",
     enabled = true,
     keys = {
-      { "-", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-      { "<C-n>", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-      { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-      { "<leader>fP", "<cmd>Neotree toggle<CR>", desc = "Explorer NeoTree (cwd)" },
+      { "<leader>fE", "<cmd>Neotree toggle<CR>", desc = "Explorer NeoTree (cwd)" },
     },
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
@@ -30,8 +27,11 @@ return {
     "luukvbaal/nnn.nvim",
     enabled = true,
     keys = {
-      { "<leader>pp", "<cmd>NnnExplorer<CR>", desc = "NNN Explorer" },
-      { "<leader>fp", "<cmd>NnnPicker <CR>", desc = "NNN Picker (root dir)" },
+      { "-", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
+      { "<C-n>", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
+      { "<leader>e", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
+      { "<leader>fP", "<cmd>NnnPicker<CR>", desc = "NNN Picker" },
+      { "<leader>fp", "<cmd>NnnExplorer<CR>", desc = "NNN Explorer (root dir)" },
     },
     opts = {
       -- # -a autosetup share selection (see NNN_FIFO)
