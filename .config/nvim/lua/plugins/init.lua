@@ -97,7 +97,7 @@ return {
   { "github/copilot.vim", event = "InsertEnter" },
   -- === / UNIVERSAL PLUGINS: NATIVE VIM
   -- === NATIVE ONLY ===
-  -- F3
+  -- F3 => zoom now
   { "szw/vim-maximizer", event = "VeryLazy" },
   -- Startify
   -- "mhinz/vim-startify",

@@ -1,31 +1,10 @@
 local function set_keymaps()
   -- vista
   vim.keymap.set("n", "<Leader>o", "<Leader>cs")
-  local wk = require("which-key")
-  -- dap
-  wk.register({
-    d = {
-      name = "debugger",
-      b = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Set Breakpoint" },
-      B = {
-        "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-        "Conditional Breakpoint",
-      },
-      s = { "<cmd>lua require('dap').step_into()<CR>", "Step Into" },
-      n = { "<cmd>lua require('dap').step_over()<CR>", "Step Over" },
-      o = { "<cmd>lua require('dap').step_out()<CR>", "Step Out" },
-      u = { "<cmd>lua require('dap').up()<CR>", "Up" },
-      d = { "<cmd>lua require('dap').down()<CR>", "Down" },
-      q = { "<cmd>lua require('dap').terminate()<CR>", "Terminate" },
-    },
-    -- D = {
-    --   D = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
-    -- },
-  }, {
-    prefix = "<leader>",
-  })
 end
+
 set_keymaps()
+
 return {
   { "tpope/vim-rhubarb", cmd = "Gbrowse" },
   {
@@ -125,28 +104,30 @@ return {
         -- left_ratio = 0.225,
         -- width_ratio = 0.775,
         -- height_ratio = 0.925,
-        -- exclude_filetypes = { 'lspinfo', 'mason', 'lazy', 'fzf', 'qf' },
-        -- disable_by_cursor = true, -- zoom-out/unfocus when you click anywhere else.
-        -- popup = {
-        --   -- NOTE: Add popup-effect (replace the window on-zoom with a `[No Name]`).
-        --   -- This way you won't see two windows of the same buffer
-        --   -- got updated at the same time.
-        --   enabled = true,
-        --   exclude = {
-        --     'dap-repl',
-        --     'dapui_stacks',
-        --     'dapui_watches',
-        --     'dapui_scopes',
-        --     'dapui_breakpoints',
-        --     'dapui_console',
-        --   }
-        -- },
+        exclude_filetypes = { "lspinfo", "mason", "lazy", "fzf", "qf" },
+        disable_by_cursor = true, -- zoom-out/unfocus when you click anywhere else.
+        popup = {
+          -- NOTE: Add popup-effect (replace the window on-zoom with a `[No Name]`).
+          -- This way you won't see two windows of the same buffer got updated at the same time.
+          enabled = true,
+          exclude = {
+            "dap-repl",
+            "dapui_stacks",
+            "dapui_watches",
+            "dapui_scopes",
+            "dapui_breakpoints",
+            "dapui_console",
+          },
+        },
         exclude_buftypes = { "terminal" },
       })
       vim.keymap.set("n", "<leader>af", "<cmd>NeoZoomToggle<CR>", { silent = false, nowait = true })
-      -- vim.keymap.set("n", "<CR>", function()
-      --   vim.cmd("NeoZoomToggle")
-      -- end, { silent = true, nowait = true })
+      vim.keymap.set("n", "F3", "<leader>af", { remap = true, silent = false, nowait = true })
+      vim.keymap.set("n", "<C-w>o", "<cmd>NeoZoomToggle<CR>", { silent = false, nowait = true })
+      -- vim.keymap.set("n", "<CR>", "<cmd>NeoZoomToggle<CR>", { silent = false, nowait = true })
+      vim.keymap.set("n", "<CR>", function()
+        vim.cmd("NeoZoomToggle")
+      end, { silent = true, nowait = true })
     end,
   },
   {

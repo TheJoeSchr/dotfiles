@@ -44,11 +44,6 @@
 
   vnoremap <silent> <leader>dv <ESC>:lua require('dap-python').debug_selection()<CR>
 
-  " Plug 'nvim-telescope/telescope-dap.nvim'
-  " already in ./**/telescope.nvim.vim
-  " require('telescope').setup()
-  " require('telescope').load_extension('dap')
-
   nnoremap <leader>dvf :Telescope dap frames<CR>
   nnoremap <leader>dvc :Telescope dap commands<CR>
   nnoremap <leader>dvb :Telescope dap list_breakpoints<CR>
@@ -56,13 +51,6 @@
 
   " theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
   let g:dap_virtual_text = v:true
-  " in after/plugin/nvim-dap-virtual-text.vim
-  " require("nvim-dap-virtual-text").setup {
-
-  " Plug 'rcarriga/nvim-dap-ui'
-  " in after/plugin/nvim-dap.vim
-  " require("dapui").setup()
-
   " Mappings DAPUI
     " expand = { "<CR>", "<2-LeftMouse>" },
     " open = "o",
