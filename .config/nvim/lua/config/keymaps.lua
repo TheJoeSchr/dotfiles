@@ -15,8 +15,11 @@ vim.keymap.set("n", "<C-S>", "<cmd>write<CR>")
 -- requies("ui/CloseBuffers")
 
 -- fugitive (git)
-vim.keymap.set("n", "<leader>G", "<cmd>:0Gclog<CR>", { desc = "fugitive" })
-vim.keymap.set("n", "<leader>g", "<cmd>:G<CR>", { desc = "fugitive" })
+vim.keymap.set("n", "<leader>GL", "<cmd>:0Gclog<CR>", { desc = "fu[g]itive [L]og" })
+vim.keymap.set("n", "<leader>GG", "<cmd>:G<CR>", { desc = "fu[g]itive [G]" })
+-- 3 way split (merge conflict, use `dp` & `do` to send hunks between diffs)
+vim.keymap.set("n", "<leader>gd3", "<cmd>:Gvdiffsplit<CR>", { desc = "[G]it: [3] way [d]iff split" })
+vim.keymap.set("n", "<leader>gdd", "<cmd>:Gdiff<CR>", { desc = "Diff" })
 -- https://github.com/ThePrimeagen/init.lua
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
