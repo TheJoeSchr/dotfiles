@@ -13,23 +13,24 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
-echo $selected_name
-echo $tmux_running
+echo "selected name: $selected_name"
+echo "tmux_running?: $tmux_running"
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected
-    exit 0
 fi
-
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    echo "Creating new session $selected_name"
+    # tmux has-session -t=$selected_name 2> /dev/null
+    echo "Session $selected_name not found\n
+    Creating new session..."
     tmux new-session -ds $selected_name -c $selected
-    # if in tmux, switch client to session
-    if [[ "$TERM" =~ "screen".* ]]; then
-        tmux switch-client -t $selected_name
-        exit 0
-    else # if not in tmux, attach to session
-        tmux attach-session -t $selected_name
-        exit 0
-    fi
+fi
+# if in tmux, switch client to session
+    echo "Session $selected_name not found"
+if [[ "$TERM" =~ "screen".* ]]; then
+    tmux switch-client -t $selected_name
+    exit 0
+else # if not in tmux, attach to session
+    tmux attach-session -t $selected_name
+    exit 0
 fi
 
