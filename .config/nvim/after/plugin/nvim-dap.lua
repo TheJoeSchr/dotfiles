@@ -40,6 +40,6 @@ require("dap.ext.vscode").load_launchjs()
 -- "" find local virtualenv
 require("dap-python").setup(string.format("%s/bin/python", os.getenv("VIRTUAL_ENV")))
 
--- vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
--- vim.fn.sign_define("DapStopped", { text = "▸", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpoint", { text = "🤖", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "▸", texthl = "", linehl = "", numhl = "" })
 require("dapui").setup()

@@ -73,6 +73,7 @@
   " nnoremap <leader>du :lua require("dapui").toggle()<CR>
   " send expression to debug REPL
   vnoremap <M-e> <Cmd>lua require("dapui").eval()<CR>
+  vnoremap ee <Cmd>lua require("dapui").eval()<CR>
+  vnoremap  ; <Cmd>lua require("dapui").eval()<CR>
   nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
-  " nnoremap ee V<Cmd>lua require("dapui").eval()<CR>
 
