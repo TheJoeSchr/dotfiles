@@ -37,7 +37,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-y>", "<C-d>")
 
 -- greatest remap ever (keep register when pasting)
-vim.keymap.set({ "n", "x", "v" }, "<leader>p", [["_dP]])
+vim.keymap.set({ "x", "v" }, "<leader>p", [["_dP]])
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
