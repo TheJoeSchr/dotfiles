@@ -194,6 +194,7 @@ BorderlessMaximizedWindows=false
 ElectricBorderMaximize=false
 ElectricBorderTiling=false
 FocusStealingPreventionLevel=2
+RollOverDesktops=true
 SeparateScreenFocus=true
 
 [org.kde.kdecoration2]
