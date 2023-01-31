@@ -106,7 +106,7 @@ return {
       { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
       { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
       {
-        "<leader>ss",
+        "<leader>cS",
         Util.telescope("lsp_document_symbols", {
           symbols = {
             "Class",
@@ -122,6 +122,24 @@ return {
           },
         }),
         desc = "Goto Symbol",
+      },
+      {
+        "<leader>ct",
+        Util.telescope("lsp_references", {
+          symbols = {
+            "Class",
+            "Function",
+            "Method",
+            "Constructor",
+            "Interface",
+            "Module",
+            "Struct",
+            "Trait",
+            "Field",
+            "Property",
+          },
+        }),
+        desc = "Go[t]o References",
       },
     },
     -- change some options
