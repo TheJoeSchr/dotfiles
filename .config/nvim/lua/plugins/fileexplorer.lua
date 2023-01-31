@@ -4,7 +4,15 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
     enabled = true,
+    lazy = false,
     keys = {
+      {
+        "-",
+        function()
+          require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
+        end,
+        desc = "Explorer NeoTree (root dir)",
+      },
       { "<leader>fE", "<cmd>Neotree toggle<CR>", desc = "Explorer NeoTree (cwd)" },
     },
     init = function()
@@ -27,7 +35,6 @@ return {
     "luukvbaal/nnn.nvim",
     enabled = true,
     keys = {
-      { "-", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
       -- <C-n> =>harpoon
       -- { "<C-n>", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
       { "<leader>e", "<leader>fP", desc = "File Explorer NNN(cwd)", remap = true },
