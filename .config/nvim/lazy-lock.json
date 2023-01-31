@@ -17,7 +17,7 @@
   "copilot.vim": { "branch": "release", "commit": "8c8416488ef21483dd5d2922ea194c05e9a3baaf" },
   "dressing.nvim": { "branch": "master", "commit": "4436d6f41e2f6b8ada57588acd1a9f8b3d21453c" },
   "fidget.nvim": { "branch": "main", "commit": "44585a0c0085765195e6961c15529ba6c5a2a13b" },
-  "firenvim": { "branch": "master", "commit": "b6be2e074b8f62815a45e31eb0966b4dd5e57810" },
+  "firenvim": { "branch": "master", "commit": "35b34ba566d9d9f6761cde3574f668d505c5137f" },
   "flit.nvim": { "branch": "main", "commit": "be110f9814a45788d10537fd59b3c76d956bb7ad" },
   "friendly-snippets": { "branch": "main", "commit": "a6f7a1609addb4e57daa6bedc300f77f8d225ab7" },
   "fzf-checkout.vim": { "branch": "master", "commit": "00d953bbe2fba8d816f61bfe675070d4505f7a4f" },
