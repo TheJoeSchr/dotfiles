@@ -4,11 +4,15 @@ if [ -n "$TMUX" ] ; then
     # tmux session running
     tmux split-window -h "$cmd \"$*\""
 else
+    session="nnn"
     # Remove option --tab for new window
     if [ $XDG_SESSION_TYPE != "tty" ]; then
-        konsole -e "$cmd \"$*\""
+        # konsole -e "$cmd \"$*\""
+        tmux new-session -s $session -c $PWD -d "$cmd \"$*\""
     else
         echo "nvim \"$*\""
-        exec nvim "$*"
+        # exec nvim "$*"
+        tmux new-session -s $session -c $PWD -d "$cmd \"$*\""
     fi
+    tmux attach-session -t $session
 fi
