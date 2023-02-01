@@ -87,6 +87,7 @@ return {
       { "<leader>fq", Util.telescope("quickfixhistory"), desc = "[Q]uickFixHistory" },
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
+      { "<leader>gC", "<cmd>Telescope git_bcommits<CR>", desc = "file commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
       -- search
       { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
