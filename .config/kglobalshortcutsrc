@@ -327,7 +327,7 @@ mediavolumeup=none,,Media volume up
 nextmedia=Ctrl+Shift+J\tMedia Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
 playmedia=none,,Play media playback
-playpausemedia=Ctrl+Shift+Space\tMedia Play,Media Play,Play/Pause media playback
+playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous\tCtrl+Shift+K,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
 
