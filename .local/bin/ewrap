@@ -1,18 +1,25 @@
 #!/usr/bin/env sh
 cmd="vmux"
+echo "start log" > /tmp/ewrap.log
 if [ -n "$TMUX" ] ; then
+    echo "if TMUX " >> /tmp/ewrap.log
     # tmux session running
     tmux split-window -h "$cmd \"$*\""
 else
     session="nnn"
+    echo "else TMUX " >> /tmp/ewrap.log
     # Remove option --tab for new window
     if [ $XDG_SESSION_TYPE != "tty" ]; then
+        echo "if $XDG_SESSION_TYPE " >> /tmp/ewrap.log
         # konsole -e "$cmd \"$*\""
         tmux new-session -s $session -c $PWD -d "$cmd \"$*\""
     else
-        echo "nvim \"$*\""
+        echo "else TTY " >> /tmp/ewrap.log
         # exec nvim "$*"
         tmux new-session -s $session -c $PWD -d "$cmd \"$*\""
     fi
-    tmux attach-session -t $session
+    echo "attach " >> /tmp/ewrap.log
+    exec tmux attach-session -t $session
+    echo "done " >> /tmp/ewrap.log
 fi
+echo "stop log " >> /tmp/ewrap.log
