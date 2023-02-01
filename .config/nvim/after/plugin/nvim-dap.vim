@@ -72,8 +72,9 @@
   " eg inscopes press 'o' to open a variable
   " nnoremap <leader>du :lua require("dapui").toggle()<CR>
   " send expression to debug REPL
+  " TODO: check if dapui is open and dap running
   vnoremap <M-e> <Cmd>lua require("dapui").eval()<CR>
-  vnoremap ee <Cmd>lua require("dapui").eval()<CR>
-  vnoremap  ; <Cmd>lua require("dapui").eval()<CR>
+  vnoremap <C-v> <Cmd>lua require("dapui").eval()<CR>
+  " vnoremap  ; <Cmd>lua require("dapui").eval()<CR>
   nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
 

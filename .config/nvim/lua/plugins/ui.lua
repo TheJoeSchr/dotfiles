@@ -6,6 +6,16 @@ end
 set_keymaps()
 
 return {
+  {
+    "utilyre/barbecue.nvim",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    config = true,
+  },
+
   { "tpope/vim-rhubarb", cmd = "Gbrowse" },
   {
     "folke/trouble.nvim",
