@@ -1,3 +1,28 @@
+local plugins =
+  ' NNN_PLUG="f:finder;o:fzopen;P:mocplay;p:fzplug;z:autojump;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch"'
+local apps = ' PAGER="bat --style=plain"'
+-- # -a autosetup share selection (see NNN_FIFO)
+-- # -x
+-- #         show notifications on selection cp, mv, rm completion (requires .ntfy plugin)
+-- #         copy path to system clipboard on selection (requires .cbcp plugin)
+-- #         show xterm title (if non-picker mode)
+-- # -c cli-only NNN_OPENER (trumps -e)
+-- # -r use advcpmv patched cp, mv
+-- #
+-- # UNUSED
+-- # -u use selection if available, don't prompt to choose between selection and hovered entry
+-- # -n nav-by-type
+-- # -J disable auto-advance on selection (eg. selecting an entry will no longer move cursor to the next entry)
+-- # -H hidden files
+-- # -D show directories in context color with NNN_FCOLORS set
+-- # -p takes output file as an argument
+-- # - print to stdout
+-- # `-p -` print selected to stdout
+-- with preview-tui ' -P v',
+-- "nnn -J -axcr -H -p -"
+local nnn_cmd = plugins .. apps .. " nnn"
+local nnn_cmd_picker = nnn_cmd .. " -J -axcr -H -p -"
+
 return {
   -- file explorer
   {
@@ -42,30 +67,14 @@ return {
       { "<leader>fp", "<cmd>NnnExplorer<CR>", desc = "NNN Explorer (root dir)" },
     },
     opts = {
-      -- # -a autosetup share selection (see NNN_FIFO)
-      -- # -x
-      -- #         show notifications on selection cp, mv, rm completion (requires .ntfy plugin)
-      -- #         copy path to system clipboard on selection (requires .cbcp plugin)
-      -- #         show xterm title (if non-picker mode)
-      -- # -c cli-only NNN_OPENER (trumps -e)
-      -- # -r use advcpmv patched cp, mv
-      -- #
-      -- # UNUSED
-      -- # -u use selection if available, don't prompt to choose between selection and hovered entry
-      -- # -n nav-by-type
-      -- # -J disable auto-advance on selection (eg. selecting an entry will no longer move cursor to the next entry)
-      -- # -H hidden files
-      -- # -D show directories in context color with NNN_FCOLORS set
-      -- # -p takes output file as an argument
-      -- # - print to stdout
-      -- # `-p -` print selected to stdout
-      explorer = {
-        -- cmd = "nnn", -- command overrride (-F1 flag is implied, -a flag is invalid!)
-        cmd = 'NNN_PLUG="f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch" PAGER="bat --style=plain" EDITOR="nvim" VISUAL="ewrap" nnn -E -J -axcr -H',
-      },
+      -- cmd = "nnn", -- command overrride (-F1 flag is implied, -a flag is invalid!)
       picker = {
-        cmd = 'NNN_PLUG="f:finder;o:fzopen;P:mocplay;p:fzplug;z:autojump;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch" PAGER="bat --style=plain" EDITOR="nvim" VISUAL="ewrap" nnn -E -J -axcr -H', -- with preview-tui ' -P v',
-        -- cmd = "nnn",
+        cmd = nnn_cmd_picker,
+      },
+      -- cmd = "nnn",
+      explorer = {
+        cmd = nnn_cmd,
+        -- cmd = 'EDITOR=nvim VISUAL=vmux NNN_PLUG="f:finder;o:fzopen;P:mocplay;p:fzplug;j:autojump;d:diffs;t:nmount;v:preview-tui;x:xdgdefault;l:launch" PAGER="bat --style=plain" nnn -E -J -axcr -H',
       },
       auto_open = {
         setup = nil, -- or "explorer" / "picker", auto open on setup function
