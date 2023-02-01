@@ -63,7 +63,6 @@ return {
       "haya14busa/incsearch-easymotion.vim",
     },
     keys = {
-
       { "<Leader>E", "<Plug>(easymotion)" },
       { "<Leader>L", "<Plug>(easymotion-lineforward)" },
       { "<Leader>J", "<Plug>(easymotion-j)" },
@@ -102,7 +101,7 @@ return {
             gs.next_hunk()
           end)
           return "<Ignore>"
-        end, { expr = true, desc = "Previous Hunk" })
+        end, { expr = true, desc = "Next Hunk" })
 
         map("n", "[c", function()
           if vim.wo.diff then
@@ -120,6 +119,10 @@ return {
     keys = {
       {
         "]c",
+        desc = "Next Hunk",
+      },
+      {
+        "[c",
         desc = "Previous Hunk",
       },
     },
