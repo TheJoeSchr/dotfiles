@@ -20,8 +20,8 @@ local apps = ' PAGER="bat --style=plain"'
 -- # `-p -` print selected to stdout
 -- with preview-tui ' -P v',
 -- "nnn -J -axcr -H -p -"
-local nnn_cmd = plugins .. apps .. " nnn"
-local nnn_cmd_picker = nnn_cmd .. " -J -axcr -H -p -"
+local nnn_cmd = plugins .. apps .. " nnn -H"
+local nnn_cmd_picker = nnn_cmd .. " -J -axcr -p -"
 
 return {
   -- file explorer
