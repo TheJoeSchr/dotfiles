@@ -36,7 +36,7 @@ if status --is-interactive
   fzf_configure_bindings --directory=\cf --variables=\e\cv
 
   # Setting fd as the default source for fzf
-  export FZF_DEFAULT_COMMAND='fd --type f'
+  set -gx FZF_DEFAULT_COMMAND 'fd --type f'
 
 # need `:` for multiline comment
 : '
