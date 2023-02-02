@@ -60,7 +60,8 @@ return {
       { "<leader>fo", "<leader>so", desc = "Options", remap = true },
       { "<leader>fw", "<leader>sw", desc = "Word (root dir)", remap = true },
       { "<leader>fW", "<leader>sW", desc = "Word (cwd)", remap = true },
-      { "<leader>fs", "<leader>ss", desc = "Goto Symbol", remap = true },
+      { "<leader>fs", builtin.current_buffer_fuzzy_find, desc = "Search (in current buffer)", remap = true },
+      { "<leader>fS", "<leader>ss", desc = "Goto Symbol", remap = true },
       -- add a keymap to browse plugin files
       {
         "<leader>fH",
@@ -107,7 +108,7 @@ return {
       { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
       { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
       {
-        "<leader>cS",
+        "<leader>cts",
         Util.telescope("lsp_document_symbols", {
           symbols = {
             "Class",
@@ -122,10 +123,10 @@ return {
             "Property",
           },
         }),
-        desc = "Goto Symbol",
+        desc = "[T]elescope [S]ymbol",
       },
       {
-        "<leader>ct",
+        "<leader>ctr",
         Util.telescope("lsp_references", {
           symbols = {
             "Class",
@@ -140,7 +141,7 @@ return {
             "Property",
           },
         }),
-        desc = "Go[t]o References",
+        desc = "[T]elescope [R]eferences",
       },
     },
     -- change some options
