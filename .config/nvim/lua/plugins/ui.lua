@@ -151,7 +151,7 @@ return {
       { "<leader>qq", "<cmd>Bdelete menu<CR>", desc = "Close Buffer menu" },
       { "Q", "<cmd>Bdelete menu<CR>", desc = "Close Buffer menu" },
       -- original V-block
-      { "<C-Q>", "<C-w>q", desc = "Quick Close Window", remap = true },
+      { "<C-Q>", "<C-w>q", desc = "Quick Close Window", { remap = true, nowait = true } },
       -- vim.keymap.set("n", "Q", "<cmd>bd<CR>")
       -- nnoremap <silent> Q     :Bdelete menu<CR>
     },
