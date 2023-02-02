@@ -25,13 +25,23 @@ local function set_commands()
   vim.cmd("command! LspWorkspaceRemove lua vim.lsp.buf.remove_workspace_folder()")
 end
 
+-- also after/lsp.lua
 local function set_keymaps(bufnr)
   wk.register({
     c = {
-      name = "LSP code changes",
+      name = "LSP code",
       a = { "<cmd>CodeActionMenu<CR>", "code actions" },
       f = { "<cmd>Format<CR>", "format" },
-      r = { "<cmd>LspRename<CR>", "rename variable" },
+      D = { "<cmd>LspTypeDef<CR>", "type definition" },
+      L = { "<cmd>LspDeclaration<CR>", "declaration" },
+      t = {
+        name = "LSP [T]elescope",
+        d = { "<cmd>Telescope lsp_definitions<CR>", "definitions" },
+        r = { "<cmd>Telescope lsp_references<CR>", "references" },
+        i = { "<cmd>Telescope lsp_implementations<CR>", "implementations" },
+      },
+      -- not working?
+      w = { "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", "[W]orkspace Symbols" },
     },
   }, {
     prefix = "<leader>",
@@ -39,15 +49,6 @@ local function set_keymaps(bufnr)
   })
   wk.register({
     K = { "<cmd>LspHover<CR>", "LSP hover" },
-    g = {
-      name = "LSP goto",
-      d = { "<cmd>Telescope lsp_definitions<CR>", "definitions" },
-      D = { "<cmd>LspTypeDef<CR>", "type definition" },
-      L = { "<cmd>LspDeclaration<CR>", "declaration" },
-      i = { "<cmd>Telescope lsp_implementations<CR>", "implementations" },
-      r = { "<cmd>Telescope lsp_references<CR>", "references" },
-    },
-    -- ['<C-S>'] = { '<cmd>LspSignatureHelp<CR>', 'LSP signature help' },
   }, {
     buffer = bufnr,
   })
@@ -108,5 +109,4 @@ function M.setup()
     on_attach = M.on_attach,
   })
 end
-
 return M
