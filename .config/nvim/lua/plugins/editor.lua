@@ -112,7 +112,24 @@ return {
           end)
           return "<Ignore>"
         end, { expr = true, desc = "Previous Hunk" })
+
         map("n", "<leader>gt", gs.toggle_deleted, "Show edited/deleted text")
+        map("n", "<leader>gT", gs.toggle_current_line_blame, "Toggle current line blame")
+        -- repeat from LazVim because seems to overwrite
+        map({ "n", "v" }, "<leader>g=", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+        map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+        map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
+        map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
+        map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
+        map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
+        map("n", "<leader>gb", function()
+          gs.blame_line({ full = true })
+        end, "Blame Line")
+        -- conflict with 3way giff
+        map("n", "<leader>gdt", gs.diffthis, "[D]iff [t]his")
+        map("n", "<leader>gdT", function()
+          gs.diffthis("~")
+        end, "[D]iff This [~]")
       end,
     },
     current_line_blame = false,
@@ -126,14 +143,5 @@ return {
         desc = "Previous Hunk",
       },
     },
-    -- map({ "n", "v" }, "<leader>g=", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-    -- map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-    -- map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
-    -- map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
-    -- map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
-    -- map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
-    -- map("n", "<leader>gb", function() gs.blame_line({ full = true }) end, "Blame Line")
-    -- map("n", "<leader>gd", gs.diffthis, "Diff This")
-    -- map("n", "<leader>gD", function() gs.diffthis("~") end, "Diff This ~")
   },
 }

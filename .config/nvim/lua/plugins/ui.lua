@@ -131,14 +131,14 @@ return {
         },
         exclude_buftypes = { "terminal" },
       })
-      vim.keymap.set("n", "<leader>af", "<cmd>NeoZoomToggle<CR>", { silent = false, nowait = true })
-      vim.keymap.set("n", "F3", "<leader>af", { remap = true, silent = false, nowait = true })
-      vim.keymap.set("n", "<C-w>o", "<cmd>NeoZoomToggle<CR>", { silent = false, nowait = true })
-      -- CR breaks too ofte
-      -- vim.keymap.set("n", "<CR>", "<cmd>NeoZoomToggle<CR>", { silent = false, nowait = true })
-      -- vim.keymap.set("n", "<CR>", function()
-      --   vim.cmd("NeoZoomToggle")
-      -- end, { silent = true, nowait = true })
+      vim.keymap.set(
+        "n",
+        "<leader>af",
+        "<cmd>NeoZoomToggle<CR>",
+        { desc = "NeoZoomToggle", silent = false, nowait = true }
+      )
+      vim.keymap.set("n", "<C-w>o", "<cmd>NeoZoomToggle<CR>", { desc = "NeoZoomToggle", silent = false, nowait = true })
+      vim.keymap.set("n", ";", "<cmd>NeoZoomToggle<CR>", { desc = "NeoZoomToggle", silent = false, nowait = true })
     end,
   },
   {

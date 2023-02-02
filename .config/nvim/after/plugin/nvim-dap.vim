@@ -25,7 +25,7 @@
 
   nnoremap <leader>dc <cmd>lua require('dap').run_to_cursor()<CR>
 
-  nnoremap <leader>DQ :lua require'dap'.close()<CR>
+  nnoremap <leader>dQ :lua require'dap'.terminate()<CR>
   nnoremap <leader>dH :lua require'dap'.up()<CR>
   nnoremap <leader>dL :lua require'dap'.down()<CR>
   nnoremap <leader>d_ :lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
