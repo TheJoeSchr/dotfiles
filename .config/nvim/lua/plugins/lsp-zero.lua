@@ -1,4 +1,3 @@
--- also see /after/plugin/lsp.lua
 return {
   {
     "VonHeikemen/lsp-zero.nvim",
@@ -26,6 +25,9 @@ return {
       -- Snippets
       { "L3MON4D3/LuaSnip" }, -- Required
       { "rafamadriz/friendly-snippets" }, -- Optional
+
+      -- Native LSP formatting
+      { "lukas-reineke/lsp-format.nvim" },
     },
   },
 
