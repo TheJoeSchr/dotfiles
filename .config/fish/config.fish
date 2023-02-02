@@ -69,7 +69,7 @@ THE THREE TYPES OF ALIAS
   abbr gla 'PAGER=/usr/bin/less git lga'
   alias ls 'exa -G --icons'
   alias lf 'nnn' 
-  abbr ll 'nnn' # goes to cd
+  abbr ll 'nnn-cd' # goes to cd
   alias lll 'ls -lT --level=1'
   alias la 'exa --all -1'
   abbr lal 'la -l'
@@ -103,7 +103,6 @@ THE THREE TYPES OF ALIAS
   alias pbpaste 'xsel --clipboard --output'
   abbr poetryshell 'SHELL=(which fish) poetry shell'
   alias tree 'lll -a --level=3'
-  alias nvr vmux
   # NNN aliases
   # -H hidden files
   # -e      text in $VISUAL/$EDITOR/
@@ -118,8 +117,8 @@ THE THREE TYPES OF ALIAS
   abbr n 'nnn'
   alias nnn 'nnn-cd -P v'
   # use like (nfp) instead of (nnn-filepicker) because it replaces cli
-  alias nfp 'nnn-with-editor-split -p -'
-  alias vimdiff "$EDITOR -d"
+  alias nfp 'nnn-with-editor-split -DH -P v -p -'
+  abbr vimdiff "$EDITOR -d"
 
 
   if type -q "omf"
