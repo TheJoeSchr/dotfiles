@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 cmd="vmux"
-echo "start log" > /tmp/ewrap.log
+echo "start log: $*" > /tmp/ewrap.log
+if [ -z "$*" ] ; then
+    echo "if empty " >> /tmp/ewrap.log
+    exit 1
+fi
 if [ -n "$TMUX" ] ; then
     echo "if TMUX " >> /tmp/ewrap.log
     # tmux session running
@@ -22,4 +26,5 @@ else
     exec tmux attach-session -t $session
     echo "done " >> /tmp/ewrap.log
 fi
-echo "stop log " >> /tmp/ewrap.log
+echo "stop log: $*" >> /tmp/ewrap.log
+
