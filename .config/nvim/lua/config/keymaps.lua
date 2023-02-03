@@ -14,6 +14,12 @@ vim.keymap.set("n", "<C-S>", "<cmd>write<CR>")
 -- Q closes buffer => ui/CloseBuffers
 -- requies("ui/CloseBuffers")
 
+-- no such mapping?
+-- vim.keymap.del("v", "<M-h>")
+-- vim.keymap.del("v", "<M-j>")
+-- vim.keymap.del("v", "<M-k>")
+-- vim.keymap.del("v", "<M-l>")
+
 -- fugitive (git)
 vim.keymap.set("n", "<leader>gL", "<cmd>:0Gclog<CR>", { desc = "fu[g]itive file[L]og in quickfix" })
 vim.keymap.set("n", "<leader>gl", "<cmd>:Gclog<CR>", { desc = "fu[g]itive [L]og in quickfix" })

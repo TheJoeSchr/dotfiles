@@ -1,6 +1,9 @@
 local function set_keymaps()
   -- vista
-  vim.keymap.set("n", "<Leader>o", "<Leader>cs")
+  vim.keymap.set("n", "<Leader>o", function()
+    vim.cmd([[hi Normal guibg=None ctermbg=None]]) -- maybe can use `vim.api.nvim_set_hl` instead
+    vim.cmd([[hi NonText ctermbg=NONE]])
+  end, { desc = "set background nil" })
 end
 
 set_keymaps()
@@ -167,8 +170,9 @@ return {
       "rcarriga/nvim-notify",
     },
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    config = function()
-      require("noice").setup({
+    config = function(_, opts)
+      -- TODO: merge with opts
+      require("noice").setup(vim.list_extend(opts, {
         lsp = {
           override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -184,7 +188,8 @@ return {
           inc_rename = true, -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = false, -- add a border to hover docs and signature help
         },
-      })
+      }))
+      return opts
     end,
   },
   -- lsp symbol in statusline

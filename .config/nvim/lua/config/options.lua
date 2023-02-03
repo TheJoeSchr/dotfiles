@@ -11,8 +11,8 @@ vim.o.termguicolors = true
 -- set the python host for neovim
 vim.cmd([[ let g:python3_host_prog = expand('/usr/bin/python') ]])
 -- [[  Set background transparent  ]]
-vim.cmd([[hi Normal guibg=None ctermbg=None]]) -- maybe can use `vim.api.nvim_set_hl` instead
-vim.cmd([[hi NonText ctermbg=NONE]])
+-- vim.cmd([[hi Normal guibg=None ctermbg=None]]) -- maybe can use `vim.api.nvim_set_hl` instead
+-- vim.cmd([[hi NonText ctermbg=NONE]])
 --  save on focus lost
 vim.cmd([[au FocusLost * silent! wa]])
 

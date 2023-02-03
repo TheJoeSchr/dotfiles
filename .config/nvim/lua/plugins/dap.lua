@@ -2,26 +2,29 @@
 -- "puremourning/vimspector",
 local wk = require("which-key")
 local function set_keymaps()
-  wk.register({
-    d = {
-      name = "debugger",
-      b = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Set Breakpoint" },
-      B = {
-        "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-        "Conditional Breakpoint",
+  k =
+    { "<cmd>lua require('dap').step_out()<CR>", "Step Out" }, wk.register({
+      d = {
+        name = "debugger",
+        b = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Set Breakpoint" },
+        B = {
+          "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+          "Conditional Breakpoint",
+        },
+        E = { "<Cmd>lua require('dapui').eval()<CR>", "Eval" },
+        j = { "<cmd>lua require('dap').step_over()<CR>", "Step Over" },
+        l = { "<cmd>lua require('dap').step_into()<CR>", "Step Into" },
+        q = { "<cmd>lua require('dap').terminate()<CR>", "Terminate" },
+        r = { "<cmd>lua require('dap').repl.open({}, 'split')()<CR>", "[R]epl split" },
+        -- nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
       },
-      l = { "<cmd>lua require('dap').step_into()<CR>", "Step Into" },
-      j = { "<cmd>lua require('dap').step_over()<CR>", "Step Over" },
-      k = { "<cmd>lua require('dap').step_out()<CR>", "Step Out" },
-      q = { "<cmd>lua require('dap').terminate()<CR>", "Terminate" },
-    },
-    D = {
-      D = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
-    },
-    F5 = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
-  }, {
-    prefix = "<leader>",
-  })
+      D = {
+        D = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
+      },
+      F5 = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
+    }, {
+      prefix = "<leader>",
+    })
 end
 
 -- -- DEBUGGER ----
@@ -81,13 +84,18 @@ return {
       --   " repl = "r",
       --   " toggle = "t",
       --   " eg inscopes press 'o' to open a variable
-      { "rcarriga/nvim-dap-ui", keys = { {
-        "<leader>du",
-        function()
-          require("dapui").toggle()
-        end,
-        desc = "DAP UI",
-      } } },
+      {
+        "rcarriga/nvim-dap-ui",
+        keys = {
+          {
+            "<leader>du",
+            function()
+              require("dapui").toggle()
+            end,
+            desc = "DAP UI",
+          },
+        },
+      },
     },
     config = function()
       set_keymaps()
