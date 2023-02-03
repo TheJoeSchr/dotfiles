@@ -12,18 +12,26 @@
   nnoremap <leader>DL :lua require'dap'.run_last()<CR>
 
   nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
+  nnoremap <M-d>b :lua require'dap'.toggle_breakpoint()<CR>
 
   nnoremap <leader>dk :lua require'dap'.step_out()<CR>
+  nnoremap <M-d>k :lua require'dap'.step_out()<CR>
   nnoremap <M-F5> :lua require'dap'.step_out()<CR>
 
-  nnoremap <leader>dl :lua require'dap'.step_into()<CR>
+  " nnoremap <leader>dl :lua require'dap'.step_into()<CR>
+  nnoremap <M-d>l :lua require'dap'.step_into()<CR>
+  nnoremap <M-l> :lua require'dap'.step_into()<CR>
   nnoremap <S-F4> :lua require'dap'.step_into()<CR>
 
-  nnoremap <leader>dj :lua require'dap'.step_over()<CR>
+  " nnoremap <leader>dj :lua require'dap'.step_over()<CR>
+  nnoremap <M-d>j :lua require'dap'.step_over()<CR>
+  nnoremap <M-j> :lua require'dap'.step_over()<CR>
   nnoremap <F4> :lua require'dap'.step_over()<CR>
   nnoremap <leader>dd :lua require'dap'.step_over()<CR>
 
   nnoremap <leader>dc <cmd>lua require('dap').run_to_cursor()<CR>
+  nnoremap <M-d>h <cmd>lua require('dap').run_to_cursor()<CR>
+  nnoremap <M-h> <cmd>lua require('dap').run_to_cursor()<CR>
 
   nnoremap <leader>dQ :lua require'dap'.terminate()<CR>
   nnoremap <leader>dH :lua require'dap'.up()<CR>
@@ -32,8 +40,9 @@
   " dap.ui is from nvim-dap
   vnoremap <leader>dh :lua require'dap.ui.widgets'.preview()<CR>
   nnoremap <leader>dh :lua require'dap.ui.widgets'.hover()<CR>
+  nnoremap <M-H> :lua require'dap.ui.widgets'.hover()<CR>
   nnoremap <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
-  " dapui is nvim-dap-u
+  " dapui is nvim-dap-ui
   nnoremap <leader>ds :lua require("dapui").float_element('scopes')<CR>
 
   nnoremap <leader>de :lua require'dap'.set_exception_breakpoints({"all"})<CR>
@@ -73,8 +82,10 @@
   " nnoremap <leader>du :lua require("dapui").toggle()<CR>
   " send expression to debug REPL
   " TODO: check if dapui is open and dap running
-  vnoremap <M-e> <Cmd>lua require("dapui").eval()<CR>
+  nnoremap <M-e> <Cmd>lua require("dapui").eval()<CR>
   vnoremap <C-v> <Cmd>lua require("dapui").eval()<CR>
+  vnoremap <leader>dE <Cmd>lua require("dapui").eval()<CR>
+    
   " vnoremap  ; <Cmd>lua require("dapui").eval()<CR>
-  nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
+  " nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
 
