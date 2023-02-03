@@ -12,13 +12,13 @@ return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
-  -- Configure LazyVim to load gruvbox
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox",
-    },
-  },
+  -- Use netrw instead of nerdtree, improve with `0-`
+  -- { "tpope/vim-vinegar", keys = { "-", "<Plug>VinegarUp", desc = "VinegarUp" } },
+  -- Also use nnn as filepicker
+  -- "luukvbaal/nnn.nvim",
+  -- EXPLORER MODE
+  -- :NnnExplorer
+  -- to open nnn in a vertical split simliar to NERDTree/nvim-tree.
 
   -- change trouble config
   {
