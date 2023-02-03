@@ -9,6 +9,14 @@ end
 set_keymaps()
 
 return {
+  -- themes
+  { "artanikin/vim-synthwave84" },
+  { "flazz/vim-colorschemes" },
+  { "sonph/onehalf" },
+  { "morhetz/gruvbox" },
+  { "dracula/vim" },
+  { "ericbn/vim-solarized" },
+  -- breadcrumbs
   {
     "utilyre/barbecue.nvim",
     version = "*",
