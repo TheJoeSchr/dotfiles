@@ -196,7 +196,6 @@ return {
   { "nvim-lua/lsp-status.nvim", lazy = false },
   {
     "stevearc/dressing.nvim",
-    -- enabled = false,
   },
   {
     "rcarriga/nvim-notify",
