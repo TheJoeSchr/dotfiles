@@ -22,41 +22,18 @@ return {
   -- :SudoEdit: Edit a privileged file with sudo.
   { "tpope/vim-eunuch" },
 
-  -- Use netrw instead of nerdtree, improve with `0-`
-  -- { "tpope/vim-vinegar", keys = { "-", "<Plug>VinegarUp", desc = "VinegarUp" } },
-  -- Also use nnn as filepicker
-  -- "luukvbaal/nnn.nvim",
-  -- EXPLORER MODE
-  -- :NnnExplorer
-  -- to open nnn in a vertical split simliar to NERDTree/nvim-tree.
-
-  -- In this mode, the plugin makes use of nnn's -F flag to listen for opened files. Pressing Enter on a file will open that file in a new buffer, while keeping the nnn window open.
-
   -- PICKER MODE
   -- :NnnPicker to open nnn in a floating window.
 
-  -- In this mode nnn's -p flag is used to listen for opened files on program exit. Picker mode implies only a single selection will be made before quitting nnn and thus the floating window.
-
-  -- SELECTION
-  -- In both modes it's possible to select multiple files before pressing Enter. Doing so will open the entire selection all at once, excluding the hovered file.
-  -- use nnn instead
   -- Comment stuff out.
   -- gcc: comment out a line (takes a count)
   -- gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
   -- vmap gc: in visual mode to comment out the selection,
   -- gc in operator pending mode to target a comment
   { "tpope/vim-commentary" },
+
   { "vimwiki/vimwiki" },
   { "bkad/CamelCaseMotion", lazy = false },
-  -- Fuzzy Finder
-  -- "junegunn/fzf', { 'dir': '~/.fzf', 'do",: { -> fzf#install() } }
-  -- need twice to create folder for other extensions
-  { "junegunn/fzf.vim" },
-  { "stsewd/fzf-checkout.vim" },
-  -- - helps with sneak scoping
-  { "unblevable/quick-scope" },
-  { "https://gitlab.com/yorickpeterse/nvim-window.git" },
-  -- "justinmk/vim-sneak", replaced by leap
 
   -- VIM-ABOLISH
   -- Abolish lets you quickly find, substitute, and abbreviate several variations
@@ -79,8 +56,11 @@ return {
   { "tpope/vim-surround", event = "BufReadPost" },
   -- unimpaired ([p,]p etc)
   { "tpope/vim-unimpaired", event = "VeryLazy" },
+
   -- fish file editing
-  -- "dag/vim-fish",
+  -- imortant, no lsp so far
+  { "dag/vim-fish", ft = "fish" },
+
   -- close other buffers (and more)
   -- " nnoremap <silent> Q     :close<CR>
   -- nnoremap <silent> Q     :Bdelete menu<CR>
@@ -93,67 +73,35 @@ return {
   },
   -- github copilot
   { "github/copilot.vim", event = "InsertEnter" },
-  -- === / UNIVERSAL PLUGINS: NATIVE VIM
-  -- === NATIVE ONLY ===
-  -- F3 => zoom now
+
   { "szw/vim-maximizer", event = "VeryLazy" },
-  -- Startify
-  -- "mhinz/vim-startify",
-  -- Center Text
-  -- {"junegunn/goyo.vim"},
-  -- for checkhealth
-  -- "nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate",}
-  -- -- themes
-  -- "artanikin/vim-synthwave84",
-  -- "flazz/vim-colorschemes",
-  -- "sonph/onehalf', {'rtp': 'vim/",}
-  -- "morhetz/gruvbox",
-  -- "dracula/vim",
-  -- "ericbn/vim-solarized",
+  {
+    "christoomey/vim-tmux-navigator",
+    -- needed otherwise doesn't work with lazy
+    event = "VimEnter",
+  },
+  -- {
+  --   { "https://gitlab.com/yorickpeterse/nvim-window.git" },
+  --   keys = { "<leader>wf", require("nvim-window").pick, desc = "Window Management" },
+  --   config = true,
+  -- },
 
   -- -- git helper
-  -- "airblade/vim-gitgutter", -- replaced by gitsigns?
   { "tpope/vim-fugitive", event = "VeryLazy" },
   { "tpope/vim-rhubarb", event = "VeryLazy" },
 
-  "nvim-treesitter/playground",
-  "theprimeagen/harpoon",
-  "mbbill/undotree",
-  "tpope/vim-fugitive",
+  { "theprimeagen/harpoon" },
+  { "mbbill/undotree" },
 
   -- not working yet
-  -- "Olical/clojure-dap",
-  -- -- linter (works with eslint)
-  -- "dense-analysis/ale", # disable for now, using coc todo lint, format
-  -- and autocomplete
-  -- -- emulate vscode-vim stuff
-  -- "tpope/vim-commentary",
-  -- -- original easymotion
-  -- -- typescript support
-  -- "leafgarland/typescript-vim",
-  -- -- -- vue
-  -- "pangloss/vim-javascript",
-  -- -- VUE syntax highlight
-  -- "digitaltoad/vim-pug",
-  -- "posva/vim-vue",
-  -- -- vue: vetur alternative
-  -- :CocInstall @yaegassy/coc-volar
-  -- "yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile",}
+  { "Olical/clojure-dap" },
 
   -- PYTHON
-  -- iPython support
-  -- for Python code completion based on Jedi, a Python language server.
-  -- "jpalardy/vim-slime', { 'for': 'python", }
-  -- "hanschen/vim-ipython-cell', { 'for': 'python", }
-  -- jupyter notebook support
-  -- { "jupyter-vim/jupyter-vim" },
+  -- use vim to write jupyter notebooks
   { "goerz/jupytext.vim", lazy = true },
-  -- { "untitled-ai/jupyter_ascending.vim" },
-  -- "davidhalter/jedi-vim",
-  -- "pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main", }
+  -- rest of REPL works with conjure
 
   -- CLOJURE(-SCRIPT)
-  -- "liuchengxu/vim-clap', { 'do",: { -> clap#installer#force_download() } }
   -- == SEXP MOTION MAPPINGS
   -- W, B, E, gE to use WORD motions
 
@@ -179,33 +127,16 @@ return {
   {
     "Olical/conjure",
     dependencies = { "guns/vim-sexp" },
-    keys = { "<localleader>cs", ":execute ClerkShow()<CR>" },
+    keys = { "<localleader>cs", ":execute ClerkShow()<CR>", desc = "Show Clerk" },
     ft = { "clojure", "python", "lua" },
   },
-  { "jiangmiao/auto-pairs" },
-  -- lot of *()
+
   -- Jack in to Boot, Clj & Leiningen from Vim. Inspired by the feature in CIDER.el
   -- :Boot [args]
   -- :Clj [args]
   -- :Lein [args]
-  { "tpope/vim-dispatch" },
+  { "tpope/vim-dispatch", dependencies = { "radenling/vim-dispatch-neovim" } },
   { "clojure-vim/vim-jack-in" },
-  -- Only in Neovim:
-  { "radenling/vim-dispatch-neovim" },
-  -- -- other
-  -- Ansible
-  -- "pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh", }
-
-  -- airline
-  -- "vim-airline/vim-airline",
-  -- -- airline theme
-  -- "vim-airline/vim-airline-themes",
-  -- TMUX
-  {
-    "christoomey/vim-tmux-navigator",
-    -- needed otherwise doesn't work with lazy
-    event = "VimEnter",
-  },
 
   -- COLORED LOG file, start with
   -- :AnsiEsc

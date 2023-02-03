@@ -1,3 +1,5 @@
-nnoremap <silent><C-w>O :MaximizerToggle<CR>
-vnoremap <silent><C-w>O :MaximizerToggle<CR>gv
-inoremap <silent><C-w>O <C-o>:MaximizerToggle<CR>
+" Disable default mapping
+let g:maximizer_set_default_mapping = 0
+
+nnoremap <C-w>O <cmd>MaximizerToggle<CR>
+inoremap <C-w><C-o> <cmd>MaximizerToggle<CR>
