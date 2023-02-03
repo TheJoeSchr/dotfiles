@@ -4,6 +4,28 @@ vim.g.loaded_netrwPlugin = 0
 vim.g.loaded_netrwSettings = 0
 vim.g.loaded_netrwFileHandlers = 0
 
+-- COPILOT
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.keymap.set("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+-- vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.keymap.set("i", "<C-n>", "copilot#Next()", { silent = true, expr = true })
+vim.keymap.set("i", "<C-e>", "copilot#Previous()", { silent = true, expr = true })
+-- diasable copilot for some filetypes
+-- denylist
+vim.g.copilot_filetypes = {
+  ["*"] = true,
+  ["javascript"] = true,
+  ["typescript"] = true,
+  ["lua"] = true,
+  ["rust"] = true,
+  ["c"] = true,
+  ["c#"] = true,
+  ["c++"] = true,
+  ["go"] = true,
+  ["python"] = true,
+}
+
 -- EASYMOTION
 vim.keymap.set(
   { "o", "v", "n", "s" },

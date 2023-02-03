@@ -130,7 +130,6 @@ return {
     keys = { "<localleader>cs", ":execute ClerkShow()<CR>", desc = "Show Clerk" },
     ft = { "clojure", "python", "lua" },
   },
-
   -- Jack in to Boot, Clj & Leiningen from Vim. Inspired by the feature in CIDER.el
   -- :Boot [args]
   -- :Clj [args]
@@ -142,11 +141,6 @@ return {
   -- :AnsiEsc
   { "powerman/vim-plugin-AnsiEsc" },
 
-  -- CODE OUTLINE
-  -- mainly used via <leader>o
-  -- see tags, overview, etc
-  -- "liuchengxu/vista.vim",
-
   { "ThePrimeagen/refactoring.nvim" },
   -- easily jump to any location and enhanced f/t motions for Leap
   { "ggandor/leap.nvim" },
@@ -156,6 +150,9 @@ return {
   { "tpope/vim-abolish" }, -- Cool things with words!
   { "romainl/vim-qf" }, -- wrangle quickfix
 
+  -- firenvim
+  -- connect to firefox, chrome, etc
+  -- useful for github, gmail, etc
   {
     "glacambre/firenvim",
     enabled = true,
@@ -188,27 +185,6 @@ return {
     keys = { { "<leader>co", "<cmd>SymbolsOutline<cr>", desc = "Symbols [O]utline" } },
     config = true,
   },
-
-  -- override nvim-cmp and add cmp-emoji
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = {
-  --     "L3MON4D3/LuaSnip",
-  --     "hrsh7th/cmp-buffer",
-  --     "hrsh7th/cmp-nvim-lsp",
-  --     "hrsh7th/cmp-nvim-lua",
-  --     "hrsh7th/cmp-path",
-  --     "onsails/lspkind.nvim",
-  --     "saadparwaiz1/cmp_luasnip",
-  --     "hrsh7th/cmp-emoji",
-  --   },
-  --   ---@param opts cmp.ConfigSchema
-  --   opts = function(_, opts)
-  --     local cmp = require("cmp")
-  --     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
-  --   end,
-  -- },
-
   -- Use your favorite package manager to install, for example in lazy.nvim
   {
     "tjdevries/sg.nvim",
