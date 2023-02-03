@@ -148,9 +148,9 @@ return {
   -- "jpalardy/vim-slime', { 'for': 'python", }
   -- "hanschen/vim-ipython-cell', { 'for': 'python", }
   -- jupyter notebook support
-  { "jupyter-vim/jupyter-vim" },
-  -- "goerz/jupytext.vim",
-  { "untitled-ai/jupyter_ascending.vim" },
+  -- { "jupyter-vim/jupyter-vim" },
+  { "goerz/jupytext.vim", lazy = true },
+  -- { "untitled-ai/jupyter_ascending.vim" },
   -- "davidhalter/jedi-vim",
   -- "pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main", }
 
