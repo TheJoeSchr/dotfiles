@@ -104,6 +104,7 @@ return {
       { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
       { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
+      { "<leader>te", "<cmd>Telescope file_browser<CR>", desc = "Telescope File Browser" },
       { "<leader>sw", Util.telescope("grep_string"), desc = "Word (root dir)" },
       { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
       { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
@@ -154,11 +155,12 @@ return {
       },
     },
     dependencies = {
-      "nvim-telescope/telescope-dap.nvim",
-      "nvim-telescope/telescope-symbols.nvim",
-      "nvim-telescope/telescope-fzf-writer.nvim",
-      "nvim-telescope/telescope-github.nvim",
-      "tsakirist/telescope-lazy.nvim",
+      { "nvim-telescope/telescope-dap.nvim" },
+      { "nvim-telescope/telescope-symbols.nvim" },
+      { "nvim-telescope/telescope-fzf-writer.nvim" },
+      { "nvim-telescope/telescope-github.nvim" },
+      { "tsakirist/telescope-lazy.nvim" },
+      { "nvim-telescope/telescope-file-browser.nvim" },
     },
     -- apply the config and additionally load fzf-native
     config = function(_, opts)
@@ -166,6 +168,7 @@ return {
       telescope.setup(opts)
       telescope.load_extension("dap")
       telescope.load_extension("gh")
+      telescope.load_extension("file_browser")
       return opts
     end,
   },
