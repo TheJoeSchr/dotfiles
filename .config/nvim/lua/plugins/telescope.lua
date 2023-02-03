@@ -148,7 +148,7 @@ return {
     opts = {
       defaults = {
         layout_strategy = "horizontal",
-        layout_config = { prompt_position = "top" },
+        layout_config = { prompt_position = "bottom" },
         sorting_strategy = "ascending",
         winblend = 0,
       },
@@ -169,17 +169,16 @@ return {
       return opts
     end,
   },
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  -- add telescope-fzf-native
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { { "nvim-telescope/telescope-fzf-native.nvim", build = "make" } },
-    -- apply the config and additionally load fzf-native
-    config = function(_, opts)
-      local telescope = require("telescope")
-      telescope.setup(opts)
-      telescope.load_extension("fzf")
-      return opts
-    end,
+    "telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
   },
   {
     "debugloop/telescope-undo.nvim",
