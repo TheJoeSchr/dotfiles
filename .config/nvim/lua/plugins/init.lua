@@ -39,9 +39,7 @@ return {
 
   -- SELECTION
   -- In both modes it's possible to select multiple files before pressing Enter. Doing so will open the entire selection all at once, excluding the hovered file.
-  -- { "luukvbaal/nnn.nvim", lazy = false, enabled = true, config = true },
   -- use nnn instead
-  -- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   -- Comment stuff out.
   -- gcc: comment out a line (takes a count)
   -- gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
