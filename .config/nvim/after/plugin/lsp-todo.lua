@@ -1,3 +1,6 @@
+if true then
+  return {}
+end
 local M = {}
 
 local cmp_lsp = require("cmp_nvim_lsp")
