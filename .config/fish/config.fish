@@ -61,64 +61,67 @@ THE THREE TYPES OF ALIAS
   # Abbreviations are stored in a variable named fish_user_abbreviations. This is automatically created as a universal variable the first time an abbreviation is created. If you want your abbreviations to be private to a particular fish session you can put the following in your *~/.config/fish/config.fish* file before you define your first abbrevation:
   # You can create abbreviations directly on the command line and they will be saved automatically and made visible to other fish sessions if fish_user_abbreviations is a universal variable. If you keep the variable as universal, abbr --add statements in config.fish will do nothing but slow down startup slightly.
   # set -g fish_user_abbreviations
-  abbr g 'git'
-  abbr G 'git'
-  abbr ga 'git add'
-  abbr gs 'git st'
-  abbr gl 'PAGER=/usr/bin/less git lg'
-  abbr gla 'PAGER=/usr/bin/less git lga'
-  alias ls 'exa -G --icons'
-  alias lf 'nnn' 
-  abbr ll 'nnn-cd' # goes to cd
-  alias lll 'ls -lT --level=1'
-  alias la 'exa --all -1'
-  abbr lal 'la -l'
-  alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-  abbr cs 'config st'
-  abbr ci 'config ci'
-  abbr ca 'config ca'
-  abbr cfg 'config'
+  abbr c 'config'
+  abbr ca 'config add '
+  abbr ccc 'config ci'
   abbr cf 'config'
-  alias du 'dust -d 1'
-  alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
-  abbr e 'nvim'
+  abbr cs 'config st'
   abbr db 'distrobox'
+  abbr e 'edit'
   abbr fda 'fd -uu'
   abbr find 'fd -uu'
+  abbr G 'git'
+  abbr g 'git'
+  abbr ga 'git add'
+  abbr gl 'PAGER=/usr/bin/less git lg'
+  abbr gla 'PAGER=/usr/bin/less git lga'
+  abbr gs 'git st'
   abbr install 'pikaur -S --needed --noconfirm'
-  abbr mail 'cmdg'
+  abbr lal 'la -l'
+  abbr ll 'nnn-cd' # goes to cd
+  abbr n 'nnn'
+  abbr poetry 'SHELL=(which fish) poetry'
+  abbr psax 'procs'
   abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
   abbr rg 'rg -S'
-  abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
   abbr rm rip
+  abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
   abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
   abbr ta 'tmux a'
-  abbr tp 'tmux-sessionizer'
   abbr tff 'tf -y'
-
+  abbr tp 'tmux-sessionizer'
   abbr upgrade-paru 'paru -Syu --skipreview --useask --noconfirm'
+  abbr vimdiff "$EDITOR -d"
   abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
-  abbr psax 'procs'
+
   alias pbcopy 'xsel --clipboard --input'
   alias pbpaste 'xsel --clipboard --output'
-  abbr poetryshell 'SHELL=(which fish) poetry shell'
   alias tree 'lll -a --level=3'
-  # NNN aliases
+  alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+  alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
+  alias du 'dust -d 1'
+  alias edit 'nvim'
+  alias la 'exa --all -1'
+  alias lf 'nnn' 
+  alias lll 'ls -lT --level=1'
+  alias ls 'exa -G --icons'
+  alias mail 'cmdg'
+
+  # NNN 
+  # ALT+o => nnn-nav-by-type
+  # CTRL+o or ALT+t => nnn-filepicker
+  # functions/fileexplorer_user_key_bindings.fish
+  
   # -H hidden files
   # -e      text in $VISUAL/$EDITOR/
   # -E      internal edits in EDITOR
-  # sudo -E persevere enviornment
-  # sudoedit doesn't work
+  # sudo -E preserve enviornment (sudoedit doesn't work)
+  # prints selections to stdout (useful for piping)
+  # but no change to directory
   alias N 'sudo -E fish -c "nnn-prints-selection -HeE"'
-  # functions/fileexplorer_user_key_bindings.fish
-  # ALT+o => nnn-nav-by-type
-  # CTRL+o or ALT+t => nnn-filepicker
-  # no cd but prints selections to stdout (useful for piping)
-  abbr n 'nnn'
   alias nnn 'nnn-cd -P v'
   # use like (nfp) instead of (nnn-filepicker) because it replaces cli
-  alias nfp 'nnn-with-editor-split -DH -P v -p -'
-  abbr vimdiff "$EDITOR -d"
+  alias nfp 'nnn-with-editor-split -eEDH -P v -p -'
 
 
   if type -q "omf"
