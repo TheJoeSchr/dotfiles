@@ -1,7 +1,8 @@
 -- Learn the keybindings, see :help lsp-zero-keybindings
 -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
+M = {}
 local lsp = require("lsp-zero")
-
+local neodev = require("neodev")
 local cmp_lsp = require("cmp_nvim_lsp")
 local lsp_format = require("lsp-format")
 local nvim_lsp = require("lspconfig")
@@ -145,9 +146,55 @@ end)
 
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
-
 lsp.setup()
 
 vim.diagnostic.config({
   virtual_text = true,
+})
+
+local function set_capabilities()
+  -- Add capabilities for nvim-cmp
+  local capabilities = cmp_lsp.default_capabilities()
+  -- Add capabilities for nvim-ufo
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+  M.capabilities = capabilities
+end
+
+function M.on_attach(client, bufnr)
+  M.on_attach_no_symbols(client, bufnr)
+
+  if vim.b.lsp_symbol_support_loaded then
+    return
+  end
+
+  navic.attach(client, bufnr)
+  vim.b.lsp_symbol_support_loaded = 1
+end
+
+function M.on_attach_no_symbols(client, bufnr)
+  lsp_format.on_attach(client)
+  if vim.b.lsp_buffer_set_up then
+    return
+  end
+
+  --Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  set_commands()
+  set_keymaps(bufnr)
+
+  vim.b.lsp_buffer_set_up = 1
+end
+
+set_capabilities()
+
+neodev.setup({
+  library = { plugins = { "neotest" }, types = true },
+})
+nvim_lsp.sumneko_lua.setup({
+  capabilities = M.capabilities,
+  on_attach = M.on_attach,
 })

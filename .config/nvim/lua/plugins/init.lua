@@ -178,13 +178,6 @@ return {
     opts = { use_diagnostic_signs = true },
   },
 
-  -- add symbols-outline
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>co", "<cmd>SymbolsOutline<cr>", desc = "Symbols [O]utline" } },
-    config = true,
-  },
   -- Use your favorite package manager to install, for example in lazy.nvim
   {
     "tjdevries/sg.nvim",
