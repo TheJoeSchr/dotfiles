@@ -57,42 +57,6 @@ local function set_keymaps(bufnr)
   })
 end
 
-local function set_capabilities()
-  -- Add capabilities for nvim-cmp
-  local capabilities = cmp_lsp.default_capabilities()
-  -- Add capabilities for nvim-ufo
-  capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-  }
-  M.capabilities = capabilities
-end
-
-function M.on_attach(client, bufnr)
-  M.on_attach_no_symbols(client, bufnr)
-
-  if vim.b.lsp_symbol_support_loaded then
-    return
-  end
-
-  navic.attach(client, bufnr)
-  vim.b.lsp_symbol_support_loaded = 1
-end
-
-function M.on_attach_no_symbols(client, bufnr)
-  lsp_format.on_attach(client)
-  if vim.b.lsp_buffer_set_up then
-    return
-  end
-
-  --Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-  set_commands()
-  set_keymaps(bufnr)
-
-  vim.b.lsp_buffer_set_up = 1
-end
 
 function M.setup()
   set_capabilities()

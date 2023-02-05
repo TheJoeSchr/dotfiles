@@ -10,7 +10,7 @@ local function set_keymaps()
         B = {
           "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
           "Conditional Breakpoint",
-      { "<leader>te", "<cmd>Telescope file_browser<CR>", desc = "Telescope File Browser" },
+          { "<leader>te", "<cmd>Telescope file_browser<CR>", desc = "Telescope File Browser" },
         },
         E = { "<Cmd>lua require('dapui').eval()<CR>", "Eval" },
         j = { "<cmd>lua require('dap').step_over()<CR>", "Step Over" },
