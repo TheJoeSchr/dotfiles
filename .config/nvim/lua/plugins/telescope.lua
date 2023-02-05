@@ -13,33 +13,6 @@ return {
       -- "   <leader>; - Search for open buffers
       -- "   <leader>fg - Search current directory (rg)
       -- "   <leader>fw - Search current directory for occurences of word under cursor
-      -- " Using lua functions
-      -- nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
-      -- " file finder
-      -- nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-      --
-      -- " grep in current buffer
-      -- nnoremap <leader>fs <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
-      -- " grep all files in workdir
-      -- nnoremap <leader>fa <cmd>lua require('telescope.builtin').live_grep()<cr>
-      -- " rg | fzf
-      -- nnoremap <leader>fA :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
-      -- nnoremap <leader>faw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
-      -- " search in current buffer
-      -- nnoremap <leader>fs <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>
-      -- " find word under cursor
-      --
-      -- nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-      -- nnoremap <Leader>' <cmd>lua require('telescope.builtin').marks()<cr>
-      -- nnoremap <leader>; <cmd>lua require('telescope.builtin').oldfiles()<cr>
-      -- nnoremap <Leader>fg <cmd>lua require('telescope.builtin').git_commits()<cr>
-      -- nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-      -- nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
-      -- nnoremap <leader>ft <cmd>lua require('telescope.builtin').tags()<cr>
-      -- nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
-      -- " ---------------- /Telescope --------
-      -- nnoremap <leader>f: <cmd>lua require('telescope.builtin').commands_history()<cr>
-      { "<leader>;", "<cmd>Telescope oldfiles<CR>", desc = "Recent Files" },
       { "<leader>'", "<cmd>Telescope marks<CR>", desc = "Jump to [M]ark" },
       { "<leader>sc", "<cmd>Telescope commands<CR>", desc = "[S]earch [c]ommands" },
       { "<leader>sC", "<cmd>Telescope command_history<CR>", desc = "[S]earch [C]ommands" },
@@ -70,15 +43,11 @@ return {
         end,
         desc = "Find Plugin File",
       },
-      -- -- ChatGPT
-      -- { "<leader>cg", "ggVG<cmd>lua require('chatgpt').edit_with_instructions()<CR>", desc = "ChatGPT" },
       -- Copy directy from LazyVim
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
       { "<leader>/", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       { "<C-p>", "<leader>ff", desc = "Fuzzy Finder", remap = true },
-      -- not working
-      -- { "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
       -- find
       { "<leader>fb", builtin.buffers, desc = "[B]uffers" },
       { "<leader>ff", Util.telescope("files"), desc = "Find [f]iles (root dir)" },
@@ -148,8 +117,8 @@ return {
     -- change some options
     opts = {
       defaults = {
-        layout_strategy = "horizontal",
-        layout_config = { prompt_position = "bottom" },
+        layout_strategy = "flex",
+        layout_config = { prompt_position = "top" },
         sorting_strategy = "ascending",
         winblend = 0,
       },
@@ -208,6 +177,15 @@ return {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope.nvim" },
     },
+  },
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require("telescope").load_extension("frecency")
+      vim.keymap.set("n", "<leader>;", "<cmd>Telescope frecency<cr>", { desc = "Recent Files" })
+    end,
+    keys = { "<leader>;" },
+    dependencies = { "kkharji/sqlite.lua", "nvim-telescope/telescope.nvim" },
   },
 }
       -- stylua: ignore

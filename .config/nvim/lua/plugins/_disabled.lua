@@ -32,5 +32,7 @@ return {
       require("mini.surround").setup(opts)
     end,
   },
-  { "echasnovski/mini.nvim", enabled = false },
+  { "echasnovski/mini.pairs", enabled = false },
+  { "echasnovski/mini.animate", enabled = false },
+  { "echasnovski/mini.move", enabled = false },
 }
