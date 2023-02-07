@@ -87,31 +87,23 @@ local function set_keymaps(bufnr)
   vim.keymap.set("n", "K", function()
     vim.lsp.buf.hover()
   end, opts)
-  -- vim.keymap.set("n", "<leader>cw", function()
-  --   vim.lsp.buf.workspace_symbol()
-  -- end, { desc = "[W]orkspace Symbols", buffer = bufnr, remap = false })
   vim.keymap.set("n", "<leader>vd", function()
     vim.diagnostic.open_float()
   end, opts)
-  vim.keymap.set("n", "[d", function()
-    vim.diagnostic.goto_next()
-  end, opts)
-  vim.keymap.set("n", "]d", function()
-    vim.diagnostic.goto_prev()
-  end, opts)
-  vim.keymap.set("n", "<leader>ca", function()
-    vim.lsp.buf.code_action()
-  end, { desc = "[C]ode [A]ction", buffer = bufnr, remap = false })
+  -- vim.keymap.set("n", "[d", function()
+  --   vim.diagnostic.goto_next()
+  -- end, opts)
+  -- vim.keymap.set("n", "]d", function()
+  --   vim.diagnostic.goto_prev()
+  -- end, opts)
   vim.keymap.set("n", "<leader>cR", function()
     vim.lsp.buf.references()
   end, { desc = "[R]eferences", buffer = bufnr, remap = false })
-  vim.keymap.set("n", "<leader>cr", function()
-    vim.lsp.buf.rename()
-  end, { desc = "[Rename]", buffer = bufnr, remap = false })
   vim.keymap.set("i", "<C-h>", function()
     vim.lsp.buf.signature_help()
   end, opts)
 end
+
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -180,8 +172,8 @@ function M.on_attach_no_symbols(client, bufnr)
     return
   end
 
-  --Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- Enable completion triggered by <c-x><c-o>
+  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   set_commands()
   set_keymaps(bufnr)
