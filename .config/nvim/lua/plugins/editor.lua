@@ -7,8 +7,8 @@ vim.g.loaded_netrwFileHandlers = 0
 -- COPILOT
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
-vim.keymap.set("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
--- vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.keymap.set("i", "<C-j>", "copilot#Accept()", { silent = true, expr = true })
+vim.keymap.set("i", "<C-;>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 vim.keymap.set("i", "<C-n>", "copilot#Next()", { silent = true, expr = true })
 vim.keymap.set("i", "<C-e>", "copilot#Previous()", { silent = true, expr = true })
 -- diasable copilot for some filetypes
@@ -126,6 +126,7 @@ return {
         local function map(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
+
         -- Navigation
         map("n", "]c", function()
           if vim.wo.diff then
