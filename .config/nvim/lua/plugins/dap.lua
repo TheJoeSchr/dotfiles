@@ -103,4 +103,31 @@ return {
     end,
   },
   { "folke/neodev.nvim", opts = { library = { plugins = { "nvim-dap-ui" }, types = true } } },
+  {
+    "aaronhallaert/continuous-testing.nvim",
+    opts =     -- %file will be replace with the test file
+{
+      notify = true, -- The default is false
+      run_tests_on_setup = true, -- The default is true, run test on attach
+      framework_setup = {
+        ruby = {
+          test_tool = "rspec",
+          test_cmd = "bundle exec rspec %file",
+        },
+        javascript = {
+          test_tool = "vitest", -- cwd of the executing test will be at package.json
+          test_cmd = "yarn vitest run %file",
+          root_pattern = "tsconfig.json", -- used to populate the root option of vitest
+        },
+      },
+      project_override = {
+        ["/Users/name/Developer/ruby-project"] = {
+          ruby = {
+            test_tool = "rspec",
+            test_cmd = "docker exec -it name -- bundle exec rspec %file",
+          },
+        },
+      },
+    },
+  },
 }

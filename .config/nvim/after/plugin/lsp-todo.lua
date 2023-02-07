@@ -9,25 +9,6 @@ local nvim_lsp = require("lspconfig")
 local navic = require("nvim-navic")
 local wk = require("which-key")
 
-local function set_commands()
-  -- Commands.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.cmd("command! LspDeclaration lua vim.lsp.buf.declaration()")
-  vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
-  vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
-  vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
-  vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
-  vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
-  vim.cmd("command! LspOrganize lua lsp_organize_imports()")
-  vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
-  vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
-  vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
-  vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
-  vim.cmd("command! LspWorkspaceList lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))")
-  vim.cmd("command! LspWorkspaceAdd lua vim.lsp.buf.add_workspace_folder()")
-  vim.cmd("command! LspWorkspaceRemove lua vim.lsp.buf.remove_workspace_folder()")
-end
-
 -- also after/lsp.lua
 local function set_keymaps(bufnr)
   wk.register({
@@ -57,9 +38,8 @@ local function set_keymaps(bufnr)
   })
 end
 
-
+set_keymaps()
 function M.setup()
-  set_capabilities()
 
   nvim_lsp.pyright.setup({
     capabilities = M.capabilities,

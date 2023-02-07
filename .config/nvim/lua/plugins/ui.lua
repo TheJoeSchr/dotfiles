@@ -224,7 +224,6 @@ return {
     },
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
     config = function(_, opts)
-      -- TODO: merge with opts
       require("noice").setup(vim.list_extend(opts, {
         lsp = {
           override = {
@@ -247,9 +246,7 @@ return {
   },
   -- lsp symbol in statusline
   { "nvim-lua/lsp-status.nvim", lazy = false },
-  {
-    "stevearc/dressing.nvim",
-  },
+  { "stevearc/dressing.nvim" },
   {
     "rcarriga/nvim-notify",
     opts = {
