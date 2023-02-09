@@ -15,25 +15,24 @@
   autoSetupRemote = true
   default = simple
 [alias]
-    # replace .bashrc
-  rr = rebase --continue
-  ri = rebase --interactive
-
-  go = checkout
-  ci = commit -v
-  ca = !git ci --amend
-  ce = commit -C HEAD --amend
-  cim = !git ci -m
-  cc = cim
-  st = status
+  ap = add --patch
   br = branch
+  ca = !git ci --amend
+  cc = cim
+  ce = commit -C HEAD --amend
+  ci = commit -v
+  cim = !git ci -m
   df = !git diff --histogram  && git diff --histogram --cached
   feat = merge --no-ff --no-commit
+  go = checkout
   pl = pull --rebase
   ps = push
-  ; reflog
-  re = gitk --all --date-order $(git log -g --pretty=%H)
+  ;reflog
+  re = !gitk --all --date-order $(git log -g --pretty=%H)
+  ri = rebase --interactive
+  rr = rebase --continue
   sh = stash save
+  st = status
   type = cat-file -t
   dump = cat-file -p
   ; delete remote branch
