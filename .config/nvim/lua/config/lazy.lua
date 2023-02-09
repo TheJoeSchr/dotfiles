@@ -13,6 +13,7 @@ require("lazy").setup({
     -- { "TheJoeSchr/LazyVim", dir = "~/.local/share/nvim/lazy/LazyVim/", import = "lazyvim.plugins" },
     -- { dir = "~/.local/share/nvim/lazy/LazyVimJoe/", import = "lazyvim.plugins" },
     { "TheJoeschr/LazyVim", dir = "~/.config/nvim/lua/LazyVim/", import = "lazyvim.plugins" },
+    -- { "TheJoeschr/chatgpt.nvim", dir = "~/.config/nvim/lua/chatgpt.nvim/", import = "rplugin.python3" },
     { import = "plugins" },
     -- import any extras modules here
     -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
