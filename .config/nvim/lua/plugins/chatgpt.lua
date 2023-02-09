@@ -83,12 +83,11 @@ return {
       cycle_windows = "<Tab>",
     },
   },
-
   -- {
-  --   "terror/chatgpt.nvim",
-  --   lazy = true,
-  --   make = "pip3 install -r requirements.txt",
-  --   keys = { { "<leader>ct", "ChatGPT", desc = "ChatGPT" } },
-  --   config = true,
+  --   "TheJoeSchr/chatgpt.nvim",
+  --   cmd = "chatcli",
+  --   lazy = false,
+  --   build = "pip3 install -r requirements.txt -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com",
+  --   keys = { { "<leader>cc", "chatcli", desc = "ChatGPT" } },
   -- },
 }
