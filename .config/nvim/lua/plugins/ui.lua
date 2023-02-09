@@ -137,32 +137,6 @@ return {
     end,
   },
   {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    config = function(_, opts)
-      require("zen-mode").setup({
-        window = {
-          backdrop = 0.95,
-        },
-      })
-      return opts
-    end,
-    opts = {
-      window = {
-        width = 90,
-        options = {
-          number = false,
-          relativenumber = false,
-        },
-      },
-      tmux = { enabled = true }, -- tmux statusline
-    },
-    keys = {
-      { "<C-w>O", ":ZenMode<CR>", desc = "ZenMode" },
-    },
-  },
-
-  {
     "nyngwang/NeoZoom.lua",
     config = function()
       require("neo-zoom").setup({
