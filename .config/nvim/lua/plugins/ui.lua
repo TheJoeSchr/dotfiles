@@ -161,15 +161,12 @@ return {
         },
         exclude_buftypes = { "terminal" },
       })
-      vim.keymap.set(
-        "n",
-        "<leader>af",
-        "<cmd>NeoZoomToggle<CR>",
-        { desc = "NeoZoomToggle", silent = false, nowait = true }
-      )
-      vim.keymap.set("n", "<C-w>o", "<cmd>NeoZoomToggle<CR>", { desc = "NeoZoomToggle", silent = false, nowait = true })
-      vim.keymap.set("n", ";", "<cmd>NeoZoomToggle<CR>", { desc = "NeoZoomToggle", silent = false, nowait = true })
     end,
+    keys = {
+      { "<leader>af", "<cmd>NeoZoomToggle<CR>", desc = "NeoZoomToggle" },
+      { "<C-w>o", "<cmd>NeoZoomToggle<CR>", desc = "NeoZoomToggle" },
+      { ";", "<cmd>NeoZoomToggle<CR>", desc = "NeoZoomToggle" },
+    },
   },
   {
     -- close other buffers (and more)
