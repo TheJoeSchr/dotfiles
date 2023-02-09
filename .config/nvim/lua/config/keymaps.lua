@@ -4,7 +4,8 @@ local v = require("utils/maps") -- Options are automatically loaded before lazy.
 -- Add any additional keymaps here
 
 -- MINE
--- md2pdf
+
+vim.keymap.set("i", "<C-g>", "<cmd>ChatGPTCompleteCode<CR>", { silent = true })
 --
 -- https://github.com/ThePrimeagen/init.lua
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
