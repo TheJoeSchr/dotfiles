@@ -9,6 +9,7 @@ return {
       desc = "ChatGPT Edit with Instructions",
     },
   },
+  event = "BufRead",
   dependencies = {
     "MunifTanjim/nui.nvim",
     "nvim-lua/plenary.nvim",
