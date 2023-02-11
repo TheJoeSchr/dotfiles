@@ -13,9 +13,6 @@
   \ }
   let fc = g:firenvim_config['localSettings']
   if exists('g:started_by_firenvim')
-    let g:airline_disable_statusline = 1
-    let g:airline#extensions#tabline#enabled = 0
-
     " make it light
     set background=light
     colorscheme edge
