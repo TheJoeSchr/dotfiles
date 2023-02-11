@@ -20,7 +20,7 @@ return {
   -- :Wall: Write every open window. Handy for kicking off tools like guard.
   -- :SudoWrite: Write a privileged file with sudo.
   -- :SudoEdit: Edit a privileged file with sudo.
-  { "tpope/vim-eunuch" },
+  { "tpope/vim-eunuch", event = "BufReadPost" },
 
   -- PICKER MODE
   -- :NnnPicker to open nnn in a floating window.
@@ -30,10 +30,10 @@ return {
   -- gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
   -- vmap gc: in visual mode to comment out the selection,
   -- gc in operator pending mode to target a comment
-  { "tpope/vim-commentary" },
+  { "tpope/vim-commentary", event = "BufReadPost" },
 
-  { "vimwiki/vimwiki" },
-  { "bkad/CamelCaseMotion", lazy = false },
+  { "vimwiki/vimwiki", keys = { { "<leader>ww", desc = "Vimwiki" }, event = "BufReadPost" } },
+  { "bkad/CamelCaseMotion", event = "BufReadPost" },
 
   -- VIM-ABOLISH
   -- Abolish lets you quickly find, substitute, and abbreviate several variations
@@ -61,16 +61,6 @@ return {
   -- imortant, no lsp so far
   { "dag/vim-fish", ft = "fish" },
 
-  -- close other buffers (and more)
-  -- " nnoremap <silent> Q     :close<CR>
-  -- nnoremap <silent> Q     :Bdelete menu<CR>
-  -- nnoremap <silent> <C-q> :Bdelete menu<CR>
-  -- nnoremap <silent> <leader>Q     :Bdelete other<CR>
-  -- nnoremap <silent> <leader>q :Bdelete menu<CR>
-  {
-    "Asheq/close-buffers.vim",
-    keys = { { "<leader>q", desc = "Close Buffers" }, { "<leader>Q", desc = "Close Buffers" } },
-  },
   -- github copilot
   { "github/copilot.vim", event = "InsertEnter" },
 
@@ -91,7 +81,7 @@ return {
   { "tpope/vim-rhubarb", event = "VeryLazy" },
 
   { "theprimeagen/harpoon" },
-  { "mbbill/undotree" },
+  { "mbbill/undotree", event = "BufRead" },
 
   -- not working yet
   { "Olical/clojure-dap" },

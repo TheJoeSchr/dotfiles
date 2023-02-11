@@ -5,7 +5,7 @@ return {
     { "<C-w>O", ":ZenMode<CR>", desc = "ZenMode" },
   },
   dependencies = {
-    "folke/twilight.nvim",
+    { "folke/twilight.nvim", event = "VeryLazy", opts = { context = 15 } },
     "lewis6991/gitsigns.nvim",
     "folke/lsp-colors.nvim",
   },
@@ -19,18 +19,18 @@ return {
       -- * an absolute number of cells when > 1
       -- * a percentage of the width / height of the editor when <= 1
       -- * a function that returns the width or the height
-      width = 0.5, -- width of the Zen window
-      height = 1, -- height of the Zen window
+      width = 0.55, -- width of the Zen window
+      height = 0.9, -- height of the Zen window
       -- by default, no options are changed for the Zen window
       -- uncomment any of the options below, or add other vim.wo options you want to apply
       options = {
         -- signcolumn = "no", -- disable signcolumn
         number = true, -- disable number column
         relativenumber = true, -- disable relative numbers
-        -- cursorline = false, -- disable cursorline
-        -- cursorcolumn = false, -- disable cursor column
+        cursorline = true, -- disable cursorline
+        cursorcolumn = true, -- disable cursor column
         -- foldcolumn = "0", -- disable fold column
-        list = false, -- disable whitespace characters
+        -- list = false, -- disable whitespace characters
       },
     },
     plugins = {
