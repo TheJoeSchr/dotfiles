@@ -31,11 +31,15 @@
 
   nnoremap <leader>dc <cmd>lua require('dap').run_to_cursor()<CR>
   nnoremap <M-d>c <cmd>lua require('dap').run_to_cursor()<CR>
-  nnoremap <M-h> <cmd>lua require('dap').run_to_cursor()<CR>
+  nnoremap <M-c> <cmd>lua require('dap').run_to_cursor()<CR>
 
   nnoremap <leader>dQ <cmd>lua require'dap'.terminate()<CR>
-  nnoremap <leader>dH <cmd>lua require'dap'.up()<CR>
-  nnoremap <leader>dL <cmd>lua require'dap'.down()<CR>
+  nnoremap <leader>dK <cmd>lua require'dap'.up()<CR>
+  nnoremap <M-k> <cmd>lua require'dap'.up()<CR>
+
+  nnoremap <leader>dh <cmd>lua require'dap'.down()<CR>
+  nnoremap <M-h> <cmd>lua require'dap'.down()<CR>
+
   nnoremap <leader>d_ <cmd>lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
   nnoremap <M-d>_ <cmd>lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
   " dap.ui is from nvim-dap

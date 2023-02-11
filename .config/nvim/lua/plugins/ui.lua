@@ -10,19 +10,17 @@ set_keymaps()
 
 return {
   -- themes
-  { "artanikin/vim-synthwave84" },
   { "flazz/vim-colorschemes" },
-  { "sonph/onehalf" },
-  { "morhetz/gruvbox" },
-  { "dracula/vim" },
-  { "ericbn/vim-solarized" },
-  {
-    "TheJoeSchr/zen-colors.nvim",
-    cmd = "ZenColors",
-    keys = { { "F8", "<cmd>ZenColors toggle<CR>", desc = "switch ZenColors" } },
-  },
-  {
-    -- add symbols-outline
+  { "sonph/onehalf", event = "VeryLazy" },
+  { "morhetz/gruvbox", event = "VeryLazy" },
+  { "catppuccin/nvim", name = "catppuccin", event = "VeryLazy" },
+  { "sainnhe/sonokai", event = "VeryLazy" },
+  { "sainnhe/edge", event = "VeryLazy" },
+  { "sainnhe/everforest", event = "VeryLazy" },
+  { "ericbn/vim-solarized", event = "VeryLazy" },
+
+  -- ui
+  { -- add symbols-outline
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
     keys = { { "<leader>co", "<cmd>SymbolsOutline<cr>", desc = "Symbols [O]utline" } },
@@ -69,9 +67,10 @@ return {
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
     config = true,
+    event = "VeryLazy",
   },
 
-  { "tpope/vim-rhubarb", cmd = "Gbrowse" },
+  { "tpope/vim-rhubarb", cmd = "Gbrowse", event = "VeryLazy" },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
@@ -170,13 +169,19 @@ return {
   },
   {
     -- close other buffers (and more)
+    -- " nnoremap <silent> Q     :close<CR>
+    -- nnoremap <silent> Q     :Bdelete menu<CR>
+    -- nnoremap <silent> <C-q> :Bdelete menu<CR>
+    -- nnoremap <silent> <leader>Q     :Bdelete other<CR>
+    -- nnoremap <silent> <leader>q :Bdelete menu<CR>
     "Asheq/close-buffers.vim",
+    event = "BufRead",
     keys = {
       { "<leader>QQ", "<cmd>Bdelete other<CR>", desc = "Delete All Other Buffers" },
       { "<leader>ax", "<cmd>qa<cr>", desc = "Close All" },
-      { "<leader>Q", "<cmd>Bdelete this<CR>", desc = "Delete This Buffers" },
+      { "<leader>Q", "<cmd>bd<CR>", desc = "Delete This Buffers" },
       { "<leader>qq", "<cmd>Bdelete menu<CR>", desc = "Close Buffer menu" },
-      { "Q", "<cmd>Bdelete menu<CR>", desc = "Close Buffer menu" },
+      { "Q", "<cmd>close<CR>", desc = "Close Buffer menu" },
       -- original V-block
       { "<C-Q>", "<C-w>q", desc = "Quick Close Window", { remap = true, nowait = true } },
       -- vim.keymap.set("n", "Q", "<cmd>bd<CR>")
