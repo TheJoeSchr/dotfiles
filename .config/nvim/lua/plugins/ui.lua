@@ -139,10 +139,6 @@ return {
     "nyngwang/NeoZoom.lua",
     config = function()
       require("neo-zoom").setup({
-        -- top_ratio = 0,
-        -- left_ratio = 0.225,
-        -- width_ratio = 0.775,
-        -- height_ratio = 0.925,
         exclude_filetypes = { "lspinfo", "mason", "lazy", "fzf", "qf" },
         disable_by_cursor = true, -- zoom-out/unfocus when you click anywhere else.
         popup = {
