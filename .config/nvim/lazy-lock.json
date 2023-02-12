@@ -3,7 +3,7 @@
   "ChatGPT.nvim": { "branch": "main", "commit": "ee7f528702bc7199f322b605cca76a2ae34717c9" },
   "FixCursorHold.nvim": { "branch": "master", "commit": "70a9516a64668cbfe59f31b66d0a21678c5e9b12" },
   "LuaSnip": { "branch": "master", "commit": "58fbfc627a93281a77f7d161d4ff702e639677b1" },
-  "NeoZoom.lua": { "branch": "main", "commit": "9a0f47236b3e396870504915f96d0fefc393b238" },
+  "NeoZoom.lua": { "branch": "main", "commit": "e3ec0e7b3f2059a510184c4bd781b343d5347c23" },
   "SchemaStore.nvim": { "branch": "main", "commit": "b37874a63ceac681a15b83d5c8e67f58fe571341" },
   "barbecue.nvim": { "branch": "main", "commit": "da49e99f16da4a5d9653f61cbd26301ae7f26258" },
   "bufferline.nvim": { "branch": "main", "commit": "84b0822b2af478d0b4f7b0f9249ca218855331db" },
