@@ -139,6 +139,14 @@ return {
     "nyngwang/NeoZoom.lua",
     config = function()
       require("neo-zoom").setup({
+        -- winopts = {
+        --   offset = {
+        --     top = 0.03,
+        --     left = 0.35,
+        --     width = 0.65,
+        --     height = 0.935,
+        --   },
+        -- },
         exclude_filetypes = { "lspinfo", "mason", "lazy", "fzf", "qf" },
         disable_by_cursor = true, -- zoom-out/unfocus when you click anywhere else.
         popup = {
