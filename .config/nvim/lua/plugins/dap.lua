@@ -102,11 +102,11 @@ return {
       set_keymaps()
     end,
   },
-  { "folke/neodev.nvim", opts = { library = { plugins = { "nvim-dap-ui" }, types = true } } },
+  { "folke/neodev.nvim", opts = { library = { plugins = { "nvim-dap-ui", "neotest" }, types = true } } },
   {
     "aaronhallaert/continuous-testing.nvim",
-    opts =     -- %file will be replace with the test file
-{
+    -- %file will be replace with the test file
+    opts = {
       notify = true, -- The default is false
       run_tests_on_setup = true, -- The default is true, run test on attach
       framework_setup = {

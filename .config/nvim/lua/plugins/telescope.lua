@@ -128,6 +128,14 @@ return {
       { "nvim-telescope/telescope-symbols.nvim" },
       { "nvim-telescope/telescope-fzf-writer.nvim" },
       { "nvim-telescope/telescope-github.nvim" },
+      -- :Telescope lazy
+      -- <C-o>	Open selected plugin repository in browser
+      -- <M-b>	Open selected plugin with file-browser
+      -- <C-f>	Open selected plugin with find files
+      -- <C-g>	Open selected plugin with live grep
+      -- <C-b>	Open lazy plugins picker, works only after having called first another action
+      -- <C-r>f	Open lazy root with find files
+      -- <C-r>g	Open lazy root with live grep
       { "tsakirist/telescope-lazy.nvim" },
       { "nvim-telescope/telescope-file-browser.nvim" },
     },
@@ -138,6 +146,7 @@ return {
       telescope.load_extension("dap")
       telescope.load_extension("gh")
       telescope.load_extension("file_browser")
+      telescope.load_extension("lazy")
       return opts
     end,
   },
