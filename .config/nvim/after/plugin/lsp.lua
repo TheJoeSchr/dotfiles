@@ -31,12 +31,12 @@ end
 
 lsp.ensure_installed({
   "tsserver",
-  "sumneko_lua",
+  -- "sumneko_lua",
   -- "rust_analyzer",
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure("sumneko_lua", {
+lsp.configure("lua_ls", {
   settings = {
     Lua = {
       diagnostics = {
@@ -183,10 +183,7 @@ end
 
 set_capabilities()
 
-neodev.setup({
-  library = { plugins = { "neotest" }, types = true },
-})
-nvim_lsp.sumneko_lua.setup({
+nvim_lsp.lua_ls.setup({
   capabilities = M.capabilities,
   on_attach = M.on_attach,
 })
