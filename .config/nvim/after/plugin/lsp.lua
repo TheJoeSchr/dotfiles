@@ -173,7 +173,7 @@ function on_attach_no_symbols(client, bufnr)
   end
 
   -- Enable completion triggered by <c-x><c-o>
-  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   set_commands()
   set_keymaps(bufnr)
