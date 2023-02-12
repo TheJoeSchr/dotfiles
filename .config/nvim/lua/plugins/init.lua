@@ -124,8 +124,11 @@ return {
   -- :Boot [args]
   -- :Clj [args]
   -- :Lein [args]
-  { "tpope/vim-dispatch", dependencies = { "radenling/vim-dispatch-neovim" } },
-  { "clojure-vim/vim-jack-in" },
+  {
+    "clojure-vim/vim-jack-in",
+    ft = { "clojure" },
+    dependencies = { "tpope/vim-dispatch", "radenling/vim-dispatch-neovim" },
+  },
 
   -- COLORED LOG file, start with
   -- :AnsiEsc
