@@ -18,7 +18,7 @@
 
     " make it light
     set background=light
-    colorscheme tokyonight-day
+    colorscheme edge
     " let g:airline_solarized_bg='light'
     " guifont to hack and larger
     set guifont=Hack Nerd Font Mono:18
