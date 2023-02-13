@@ -87,15 +87,27 @@ return {
   { "Olical/clojure-dap" },
 
   -- PYTHON
-  -- use vim to write jupyter notebooks
-  { "goerz/jupytext.vim", lazy = true },
+  {
+    -- use vim to write jupyter notebooks
+    "goerz/jupytext.vim",
+    ft = { "python", "jupytext" },
+    dependencies = {
+      -- "jupyter-vim/jupyter-vim", -- not sure if still working
+      "kana/vim-textobj-user",
+      -- add ]h, ah and ih to select code cells
+      "GCBallesteros/vim-textobj-hydrogen",
+    },
+  },
   -- rest of REPL works with conjure
 
   -- CLOJURE(-SCRIPT)
   -- == SEXP MOTION MAPPINGS
   -- W, B, E, gE to use WORD motions
 
+  -- == SEXP TEXT OBJECTS
+  -- a] and i] to select the current element
   -- List manipulation mappings
+  -- >l and <l to move a list
   -- >f and <f to move a form
   -- >e and <e to move an element.
 
@@ -104,6 +116,8 @@ return {
   -- the parenthesis indicates which end to operate on.
 
   -- Insertion mappings
+  -- ,i/I to wrap the current form in a list
+  -- ,w/W to wrap the current element in a list
   -- Use <I and >I to insert at the beginning and ending of a form.
 
   -- Mappings inspired by surround.vim
@@ -113,10 +127,9 @@ return {
   -- cse(/cse)/cseb: surround element in parentheses
   -- cse[/cse]: surround element in brackets
   -- cse{/cse}: surround element in braces
-  { "tpope/vim-sexp-mappings-for-regular-people" },
   {
     "Olical/conjure",
-    dependencies = { "guns/vim-sexp" },
+    dependencies = { { "guns/vim-sexp" }, { "tpope/vim-sexp-mappings-for-regular-people" } },
     keys = { "<localleader>cs", ":execute ClerkShow()<CR>", desc = "Show Clerk" },
     ft = { "clojure", "python", "lua" },
   },
