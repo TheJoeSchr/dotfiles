@@ -25,6 +25,7 @@ return {
         "bash",
         "c",
         "c_sharp",
+        "clojure",
         "cmake",
         "comment",
         "cpp",

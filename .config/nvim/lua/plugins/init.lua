@@ -198,9 +198,11 @@ return {
       ensure_installed = {
         "stylua",
         "shellcheck",
+        "debugpy",
         "shfmt",
         "flake8",
         "pyright",
+        "clojure-lsp",
       },
     },
   },
