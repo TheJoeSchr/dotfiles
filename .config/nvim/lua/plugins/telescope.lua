@@ -17,6 +17,8 @@ return {
       { "<leader>sc", "<cmd>Telescope commands<CR>", desc = "[S]earch [c]ommands" },
       { "<leader>sC", "<cmd>Telescope command_history<CR>", desc = "[S]earch [C]ommands" },
       { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "[S]earch [K]eymaps" },
+      -- dap
+      { "<leader>dc", "<cmd>Telescope dap commands<CR>", desc = "commits" },
       -- remap alias <leader>s to <leader>f
       { "<leader>fa", "<leader>sa", desc = "Auto Commands", remap = true },
       { "<leader>fB", "<leader>sb", desc = "Buffer", remap = true },
@@ -197,4 +199,4 @@ return {
     dependencies = { "kkharji/sqlite.lua", "nvim-telescope/telescope.nvim" },
   },
 }
-      -- stylua: ignore
+-- stylua: ignore
