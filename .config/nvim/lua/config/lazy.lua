@@ -10,9 +10,19 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     -- import LazyVim plugins
-    -- { "TheJoeSchr/LazyVim", dir = "~/.local/share/nvim/lazy/LazyVim/", import = "lazyvim.plugins" },
-    -- { dir = "~/.local/share/nvim/lazy/LazyVimJoe/", import = "lazyvim.plugins" },
-    { "TheJoeschr/LazyVim", dir = "~/.config/nvim/lua/LazyVim/", import = "lazyvim.plugins" },
+    --
+    --
+    -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- { "TheJoeschr/LazyVim", dir = "~/.config/nvim/lua/LazyVim/lua", import = "lazyvim.plugins" },
+    {
+      "TheJoeschr/LazyVim",
+      -- dir = "~/.config/nvim/lua/LazyVim/",
+      import = "lazyvim.plugins",
+      priority = 10000,
+      lazy = false,
+      config = true,
+      version = "*",
+    },
     -- { "TheJoeschr/chatgpt.nvim", dir = "~/.config/nvim/lua/chatgpt.nvim/", import = "rplugin.python3" },
     { import = "plugins" },
     -- import any extras modules here
