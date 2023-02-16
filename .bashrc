@@ -198,7 +198,6 @@ __git_complete go _git_checkout
 alias gp='git push'
 __git_complete gp _git_push
 
-
 alias gk='gitk --all&'
 alias gx='gitx --all'
 
@@ -286,8 +285,6 @@ fi
 #   esac
 # fi
 
-
-
 # # Inspired by http://askubuntu.com/questions/18170/how-to-reboot-into-windows-from-ubuntu
 
 # ## WSL
@@ -307,3 +304,5 @@ fi
 ## search stackoverflow with googler
 ##alias so='googler -j -w stackoverflow.com (xsel)'
 
+# Added by ProtonUp-Qt on 15-02-2023 22:32:46
+if [ -d "/home/joe/stl/prefix" ]; then export PATH="$PATH:/home/joe/stl/prefix"; fi
