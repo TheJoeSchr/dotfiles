@@ -5,6 +5,7 @@ local v = require("utils/maps") -- Options are automatically loaded before lazy.
 
 -- MINE
 
+-- Copilot
 vim.keymap.set("i", "<C-g>", "<cmd>ChatGPTCompleteCode<CR>", { silent = true })
 --
 -- https://github.com/ThePrimeagen/init.lua
