@@ -7,58 +7,58 @@
 
   "" like F5, start to debug
   nnoremap <F5> <cmd>lua require'dap'.continue()<CR>
-  nnoremap <leader>DD <cmd>lua require'dap'.continue()<CR>
+  nnoremap <localleader>DD <cmd>lua require'dap'.continue()<CR>
   nnoremap <S-F5> <Cmd>lua require'dap'.run_last()<CR>
-  nnoremap <leader>DL <cmd>lua require'dap'.run_last()<CR>
+  nnoremap <localleader>DL <cmd>lua require'dap'.run_last()<CR>
 
-  nnoremap <leader>db <cmd>lua require'dap'.toggle_breakpoint()<CR>
+  nnoremap <localleader>db <cmd>lua require'dap'.toggle_breakpoint()<CR>
   nnoremap <M-d>b <cmd>lua require'dap'.toggle_breakpoint()<CR>
 
-  nnoremap <leader>dk <cmd>lua require'dap'.step_out()<CR>
+  nnoremap <localleader>dk <cmd>lua require'dap'.step_out()<CR>
   nnoremap <M-d>k <cmd>lua require'dap'.step_out()<CR>
   nnoremap <M-F5> <cmd>lua require'dap'.step_out()<CR>
 
-  " nnoremap <leader>dl <cmd>lua require'dap'.step_into()<CR>
+  " nnoremap <localleader>dl <cmd>lua require'dap'.step_into()<CR>
   nnoremap <M-d>l <cmd>lua require'dap'.step_into()<CR>
   nnoremap <M-l> <cmd>lua require'dap'.step_into()<CR>
   nnoremap <S-F4> <cmd>lua require'dap'.step_into()<CR>
 
-  " nnoremap <leader>dj <cmd>lua require'dap'.step_over()<CR>
+  " nnoremap <localleader>dj <cmd>lua require'dap'.step_over()<CR>
   nnoremap <M-d>j <cmd>lua require'dap'.step_over()<CR>
   nnoremap <M-j> <cmd>lua require'dap'.step_over()<CR>
   nnoremap <F4> <cmd>lua require'dap'.step_over()<CR>
-  nnoremap <leader>dd <cmd>lua require'dap'.step_over()<CR>
+  nnoremap <localleader>dd <cmd>lua require'dap'.step_over()<CR>
 
-  nnoremap <leader>dc <cmd>lua require('dap').run_to_cursor()<CR>
+  nnoremap <localleader>dc <cmd>lua require('dap').run_to_cursor()<CR>
   nnoremap <M-d>c <cmd>lua require('dap').run_to_cursor()<CR>
   nnoremap <M-c> <cmd>lua require('dap').run_to_cursor()<CR>
 
-  nnoremap <leader>dQ <cmd>lua require'dap'.terminate()<CR>
-  nnoremap <leader>dK <cmd>lua require'dap'.up()<CR>
+  nnoremap <localleader>dQ <cmd>lua require'dap'.terminate()<CR>
+  nnoremap <localleader>dK <cmd>lua require'dap'.up()<CR>
   nnoremap <M-k> <cmd>lua require'dap'.up()<CR>
 
-  nnoremap <leader>dh <cmd>lua require'dap'.down()<CR>
+  nnoremap <localleader>dh <cmd>lua require'dap'.down()<CR>
   nnoremap <M-h> <cmd>lua require'dap'.down()<CR>
 
-  nnoremap <leader>d_ <cmd>lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
+  nnoremap <localleader>d_ <cmd>lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
   nnoremap <M-d>_ <cmd>lua require'dap'.disconnect();require'dap'.close();require'dap'.run_last()<CR>
   " dap.ui is from nvim-dap
-  vnoremap <leader>dh <cmd>lua require'dap.ui.widgets'.preview()<CR>
-  nnoremap <leader>dh <cmd>lua require'dap.ui.widgets'.hover()<CR>
+  vnoremap <localleader>dh <cmd>lua require'dap.ui.widgets'.preview()<CR>
+  nnoremap <localleader>dh <cmd>lua require'dap.ui.widgets'.hover()<CR>
   nnoremap <M-H> <cmd>lua require'dap.ui.widgets'.hover()<CR>
   nnoremap <M-d>h <cmd>lua require'dap.ui.widgets'.hover()<CR>
-  nnoremap <leader>d? <cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
+  nnoremap <localleader>d? <cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
   " dapui is nvim-dap-ui
-  nnoremap <leader>ds <cmd>lua require("dapui").float_element('scopes')<CR>
+  nnoremap <localleader>ds <cmd>lua require("dapui").float_element('scopes')<CR>
 
-  nnoremap <leader>de <cmd>lua require'dap'.set_exception_breakpoints({"all"})<CR>
-  nnoremap <leader>da <cmd>lua require'debugHelper'.attach()<CR>
-  nnoremap <leader>dA <cmd>lua require'debugHelper'.attachToRemote()<CR>
-  nnoremap <silent> <leader>dn <cmd>lua require('dap-python').test_method()<CR>
-  nnoremap <silent> <leader>df <cmd>lua require('dap-python').test_class()<CR>
+  nnoremap <localleader>de <cmd>lua require'dap'.set_exception_breakpoints({"all"})<CR>
+  nnoremap <localleader>da <cmd>lua require'debugHelper'.attach()<CR>
+  nnoremap <localleader>dA <cmd>lua require'debugHelper'.attachToRemote()<CR>
+  nnoremap <silent> <localleader>dn <cmd>lua require('dap-python').test_method()<CR>
+  nnoremap <silent> <localleader>df <cmd>lua require('dap-python').test_class()<CR>
 
-  vnoremap <silent> <leader>dv <ESC><cmd>lua require('dap-python').debug_selection()<CR>
-  vnoremap <silent> <leader>dtd <ESC><cmd>lua require('dap-python').debug_test()<CR>
+  vnoremap <silent> <localleader>dv <ESC><cmd>lua require('dap-python').debug_selection()<CR>
+  vnoremap <silent> <localleader>dtd <ESC><cmd>lua require('dap-python').debug_test()<CR>
 
   " Plug 'nvim-telescope/telescope-dap.nvim'
   " already in ./**/telescope.nvim.vim
@@ -86,13 +86,13 @@
     " repl = "r",
     " toggle = "t",
   " eg inscopes press 'o' to open a variable
-  " nnoremap <leader>du <cmd>lua require("dapui").toggle()<CR>
+  " nnoremap <localleader>du <cmd>lua require("dapui").toggle()<CR>
   " send expression to debug REPL
   " TODO: check if dapui is open and dap running
   nnoremap <M-e> <Cmd>lua require("dapui").eval()<CR>
   vnoremap <M-e> <Cmd>lua require("dapui").eval()<CR>
-  nnoremap <leader>dE <Cmd>lua require("dapui").eval()<CR>
+  nnoremap <localleader>dE <Cmd>lua require("dapui").eval()<CR>
     
   " vnoremap  ; <Cmd>lua require("dapui").eval()<CR>
-  " nnoremap <leader>dr <cmd>lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
+  " nnoremap <localleader>dr <cmd>lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
 
