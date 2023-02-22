@@ -14,7 +14,7 @@ Name_1=1
 Name_2=2
 Name_3=3
 Number=3
-Rows=1
+Rows=3
 
 [DrmOutputs][5ade8f275f][0ddc1eb932]
 Scale=1.25
@@ -196,6 +196,9 @@ ElectricBorderTiling=false
 FocusStealingPreventionLevel=2
 RollOverDesktops=true
 SeparateScreenFocus=true
+
+[Xwayland]
+Scale=1
 
 [org.kde.kdecoration2]
 BorderSize=NoSides
