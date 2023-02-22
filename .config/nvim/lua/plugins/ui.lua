@@ -4,6 +4,7 @@ local function set_keymaps()
     vim.cmd([[hi Normal guibg=None ctermbg=None]]) -- maybe can use `vim.api.nvim_set_hl` instead
     vim.cmd([[hi NonText ctermbg=NONE]])
   end, { desc = "set background nil" })
+  vim.keymap.set("n", "<Leader>ut", "<cmd>Twilight<CR>", { desc = "Twilight off/on" })
 end
 
 set_keymaps()
