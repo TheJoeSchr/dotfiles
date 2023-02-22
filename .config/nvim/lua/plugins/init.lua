@@ -77,9 +77,17 @@ return {
   -- },
 
   -- -- git helper
-  { "tpope/vim-fugitive", event = "VeryLazy" },
-  { "tpope/vim-rhubarb", event = "VeryLazy" },
-
+  {
+    "tpope/vim-fugitive",
+    keys = { { "<leader>gg" }, { "<leader>GG" } },
+    cmd = "G",
+    dependencies = {
+      { "tpope/vim-rhubarb" },
+    },
+  },
+  -- git diff branches
+  -- https://stackoverflow.com/questions/13304469/how-can-i-diff-two-branches-with-fugitive/75099935#75099935
+  { "idanarye/vim-merginal", cmd = "Merginal", dependencies = { "tpope/vim-fugitive" } },
   { "theprimeagen/harpoon" },
   { "mbbill/undotree", event = "BufRead" },
 
@@ -161,13 +169,13 @@ return {
   -- useful for github, gmail, etc
   {
     "glacambre/firenvim",
-    build = function()
-      vim.fn["firenvim#install"](0)
-    end,
-
     -- Lazy load firenvim
     -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
     cond = not not vim.g.started_by_firenvim,
+    build = function()
+      require("lazy").load({ plugins = "firenvim", wait = true })
+      vim.fn["firenvim#install"](0)
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
