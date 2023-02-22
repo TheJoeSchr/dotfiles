@@ -35,8 +35,14 @@ vim.keymap.set(
 )
 vim.keymap.set(
   { "o", "v", "n", "s" },
-  "<LocalLeader>L", -- "<LocalLeader>l" => blocked by conjure eval
+  "<LocalLeader><LocalLeader>l", -- "<LocalLeader>l" => blocked by conjure eval
   "<Plug>(easymotion-lineforward)",
+  { noremap = true, silent = false, expr = false }
+)
+vim.keymap.set(
+  { "o", "v", "n", "s" },
+  "<LocalLeader><LocalLeader>e", -- "<LocalLeader>l" => blocked by conjure eval
+  "<Plug>(easymotion-e)",
   { noremap = true, silent = false, expr = false }
 )
 vim.keymap.set(
@@ -72,6 +78,12 @@ vim.keymap.set(
 vim.keymap.set(
   { "o", "v", "n", "s" },
   "<LocalLeader>B", -- => blocked by some attach?
+  "<Plug>(easymotion-b)",
+  { noremap = true, silent = false, expr = false }
+)
+vim.keymap.set(
+  { "o", "v", "n", "s" },
+  "<localleader><LocalLeader>b", -- => blocked by some attach?
   "<Plug>(easymotion-b)",
   { noremap = true, silent = false, expr = false }
 )
