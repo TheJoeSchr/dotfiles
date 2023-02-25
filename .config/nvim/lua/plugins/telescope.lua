@@ -17,8 +17,6 @@ return {
       { "<leader>sc", "<cmd>Telescope commands<CR>", desc = "[S]earch [c]ommands" },
       { "<leader>sC", "<cmd>Telescope command_history<CR>", desc = "[S]earch [C]ommands" },
       { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "[S]earch [K]eymaps" },
-      -- dap
-      { "<leader>dc", "<cmd>Telescope dap commands<CR>", desc = "commits" },
       -- remap alias <leader>s to <leader>f
       { "<leader>fa", "<leader>sa", desc = "Auto Commands", remap = true },
       { "<leader>fB", "<leader>sb", desc = "Buffer", remap = true },
@@ -76,7 +74,7 @@ return {
       { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
       { "<leader>snn", "<cmd>Telescope notify<cr>", desc = "Notify" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-      { "<leader>te", "<cmd>Telescope file_browser<CR>", desc = "Telescope File Browser" },
+      { "<leader>fpt", "<cmd>Telescope file_browser<CR>", desc = "Telescope File Browser" },
       { "<leader>sw", Util.telescope("grep_string"), desc = "Word (root dir)" },
       { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
       { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },

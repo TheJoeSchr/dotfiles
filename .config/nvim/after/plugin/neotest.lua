@@ -48,6 +48,6 @@ wk.register({
     w = { "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", "[W]orkspace Symbols" },
   },
 }, {
-  prefix = "<leader>",
+  prefix = "<localleader>",
   buffer = bufnr,
 })
