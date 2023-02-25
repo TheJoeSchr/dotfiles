@@ -7,7 +7,7 @@ vim.g.loaded_netrwFileHandlers = 0
 -- COPILOT
 -- vim.g.copilot_no_tab_map = true
 -- vim.g.copilot_assume_mapped = true
-vim.keymap.set("i", "<C-j>", "copilot#Accept()", { silent = true, expr = true })
+vim.keymap.set("i", "<C-j>", "copilot#Accept('Tab')", { silent = true, expr = true })
 vim.keymap.set("i", "<C-Tab>", '<C-R>=copilot#Accept("")<CR>', { desc = "Copilot Accept", silent = true })
 vim.keymap.set("i", "<C-n>", "copilot#Next()", { silent = true, expr = true })
 vim.keymap.set("i", "<C-e>", "copilot#Previous()", { silent = true, expr = true })
