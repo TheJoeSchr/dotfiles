@@ -88,11 +88,6 @@
 [http]
   sslVerify = false
   cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
-[filter "lfs"]
-  process = git-lfs filter-process
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
 [winUpdater]
   recentlySeenVersion = 2.15.1.windows.2
 [branch]
