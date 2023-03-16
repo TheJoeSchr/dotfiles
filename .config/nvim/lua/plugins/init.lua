@@ -62,7 +62,7 @@ return {
   { "dag/vim-fish", ft = "fish" },
 
   -- github copilot
-  { "github/copilot.vim", lazy=true},
+  { "github/copilot.vim", event = "VeryLazy" },
 
   { "szw/vim-maximizer", event = "VeryLazy" },
   {
