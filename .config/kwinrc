@@ -14,7 +14,7 @@ Name_1=1
 Name_2=2
 Name_3=3
 Number=3
-Rows=3
+Rows=1
 
 [DrmOutputs][5ade8f275f][0ddc1eb932]
 Scale=1.25
@@ -94,7 +94,6 @@ Meta=org.kde.lattedock,/Latte,org.kde.LatteDock,activateLauncherMenu
 
 [MouseBindings]
 CommandAll2=Resize
-CommandAll3=Raise
 CommandAllKey=Alt
 CommandAllWheel=Change Opacity
 
