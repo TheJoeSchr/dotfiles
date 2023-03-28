@@ -20,6 +20,7 @@ require("lazy").setup({
       import = "lazyvim.plugins",
       priority = 10000,
       lazy = false,
+      cond = true,
       config = true,
       version = "*",
       pin = true,
