@@ -99,6 +99,7 @@ vim.keymap.set(
 -- })
 --
 return {
+  { "chipsenkbeil/distant.nvim", branch = "v0.2", cmd = "DistantConnect" },
   -- Easymotion fuzzy search
   {
     "easymotion/vim-easymotion",
