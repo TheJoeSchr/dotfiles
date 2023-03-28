@@ -47,8 +47,8 @@ opt.cmdheight = 4
 -- Set completion options
 opt.completeopt = { "menuone", "noselect" }
 -- Using easymotion
-opt.number = true -- Print line number
-opt.relativenumber = true -- Relative line numbers
+opt.number = false -- Print line number
+opt.relativenumber = false -- Relative line numbers
 --
 -- Lazy.nvim defaults
 opt.sidescrolloff = 99 -- Columns of context

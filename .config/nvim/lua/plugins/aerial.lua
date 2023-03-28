@@ -10,7 +10,7 @@ return {
       -- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
       -- min_width and max_width can be a list of mixed types.
       -- max_width = {40, 0.2} means "the lesser of 40 columns or 20% of total"
-      max_width = { 140, 0.4 },
+      max_width = { 120, 0.4 },
       width = nil,
       min_width = { 20, 0.2 },
 
@@ -41,7 +41,7 @@ return {
     --   unfocus       - close aerial when you leave the original source window
     --   switch_buffer - close aerial when you change buffers in the source window
     --   unsupported   - close aerial when attaching to a buffer that has no symbol source
-    close_automatic_events = { "unsupported" },
+    close_automatic_events = { "unsupported", "unfocus", "switch_buffer" },
 
     -- Keymaps in aerial window. Can be any value that `vim.keymap.set` accepts OR a table of keymap
     -- options with a `callback` (e.g. { callback = function() ... end, desc = "", nowait = true })
@@ -193,7 +193,7 @@ return {
 
     -- Automatically open aerial when entering supported buffers.
     -- This can be a function (see :help aerial-open-automatic)
-    open_automatic = true,
+    open_automatic = false,
 
     -- Run this command after jumping to a symbol (false will disable)
     post_jump_cmd = "normal! zz",
@@ -236,7 +236,7 @@ return {
     update_events = "TextChanged,InsertLeave",
 
     -- Show box drawing characters for the tree hierarchy
-    show_guides = false,
+    show_guides = true,
 
     -- Customize the characters used when show_guides = true
     guides = {
