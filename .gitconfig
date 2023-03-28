@@ -25,7 +25,9 @@
   df = !git diff --histogram  && git diff --histogram --cached
   feat = merge --no-ff --no-commit
   go = checkout
-  pl = pull --rebase
+  # rebase taking all remote changes
+  # ours is remote, theirs is local
+  pl = pull --rebase -s recursive -X ours
   ps = push
   ;reflog
   re = !gitk --all --date-order $(git log -g --pretty=%H)
