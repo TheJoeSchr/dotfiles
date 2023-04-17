@@ -8,7 +8,7 @@ set -gx VMUX_NOT_SELECT_PANE 1
 
 set -gx PAGER nvimpager # or env less
 set -gx EDITOR nvim
-set -gx VISUAL ewrap # ewrap is used by nnn with editor split
+set -gx VISUAL nvim # ewrap is used by nnn with editor split
 set -gx BROWSER google-chrome-stable
 # always try to set DISPLAY
 # set -q DISPLAY; or set -gx DISPLAY ":0"
