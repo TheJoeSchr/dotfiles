@@ -54,7 +54,7 @@ if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = "y"
     sudo pacman-key --populate archlinux
     sudo pacman-key --populate holo
     sudo pacman -Sy --noconfirm holo-keyring
-    sudo pacman -S --noconfirm tmux fish nvim git
+    sudo pacman -S --noconfirm tmux fish neovim git
   end 
   # STEAMDECK: fix broken headers
   if $is_steam_host
