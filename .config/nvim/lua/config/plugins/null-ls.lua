@@ -1,7 +1,7 @@
 local M = {}
 
-local null_ls = require('null-ls')
-local lsp_config = require('config.plugins.lsp')
+local null_ls = require("null-ls")
+local lsp_config = require("config.plugins.lsp")
 
 function M.setup()
   local code_actions = null_ls.builtins.code_actions
@@ -10,7 +10,7 @@ function M.setup()
   null_ls.setup({
     sources = {
       diagnostics.codespell,
-      diagnostics.flake8,
+      -- diagnostics.flake8,
       formatting.black,
       formatting.isort,
       formatting.stylua,
