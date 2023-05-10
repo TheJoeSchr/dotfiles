@@ -15,7 +15,7 @@ require("lazy").setup({
     -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- { "TheJoeschr/LazyVim", dir = "~/.config/nvim/lua/LazyVim/lua", import = "lazyvim.plugins" },
     {
-      "TheJoeschr/LazyVim",
+      "TheJoeSchr/LazyVim",
       -- dir = "~/.config/nvim/lua/LazyVim/lua/lazyvim",
       import = "lazyvim.plugins",
       priority = 10000,

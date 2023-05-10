@@ -137,6 +137,7 @@ return {
   -- cse{/cse}: surround element in braces
   {
     "Olical/conjure",
+    -- event = "VimEnter",
     dependencies = { { "guns/vim-sexp" }, { "tpope/vim-sexp-mappings-for-regular-people" } },
     keys = { "<localleader>cs", ":execute ClerkShow()<CR>", desc = "Show Clerk" },
     ft = { "clojure", "python", "lua" },
@@ -208,7 +209,7 @@ return {
         "shellcheck",
         "debugpy",
         "shfmt",
-        "flake8",
+        -- "flake8",
         "pyright",
         "clojure-lsp",
       },
