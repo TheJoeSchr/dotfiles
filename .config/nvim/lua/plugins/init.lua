@@ -62,7 +62,14 @@ return {
   { "dag/vim-fish", ft = "fish" },
 
   -- github copilot
-  { "github/copilot.vim", event = "VeryLazy" },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    opts = {
+      suggestion = { enabled = true },
+      panel = { enabled = true },
+    },
+  },
 
   { "szw/vim-maximizer", event = "VeryLazy" },
   {
