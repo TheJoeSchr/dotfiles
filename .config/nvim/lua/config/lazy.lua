@@ -27,7 +27,7 @@ require("lazy").setup({
       branch = "main",
     },
     -- { "TheJoeschr/chatgpt.nvim", dir = "~/.config/nvim/lua/chatgpt.nvim/", import = "rplugin.python3" },
-    { import = "plugins" },
+    { import = "lazyvim.plugins.extras.coding.copilot" },
     -- import any extras modules here
     -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
     -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
@@ -37,6 +37,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- use my own mini.starter instead of LazyVim's
     { import = "plugins.extras.ui.mini-starter" },
+    { import = "plugins" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
