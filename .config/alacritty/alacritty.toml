@@ -1,0 +1,73 @@
+live_config_reload = true
+import = [ "~/.config/alacritty/alacritty.local.toml" ]
+
+[env]
+TERM = "xterm-256color"
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "Hack Nerd Font"
+style = "Bold Italic"
+
+[colors.primary]
+background = "0x000000"
+foreground = "0xc0caf5"
+
+[colors.normal]
+black = "0x000000"
+red = "0xf7768e"
+green = "0x9ece6a"
+yellow = "0xe0af68"
+blue = "0x7aa2f7"
+magenta = "0xbb9af7"
+cyan = "0x7dcfff"
+white = "0xa9b1d6"
+
+[colors.bright]
+black = "0x414868"
+red = "0xf7768e"
+green = "0x9ece6a"
+yellow = "0xe0af68"
+blue = "0x7aa2f7"
+magenta = "0xbb9af7"
+cyan = "0x7dcfff"
+white = "0xc0caf5"
+
+[[colors.indexed_colors]]
+index = 16
+color = "0xff9e64"
+
+[[colors.indexed_colors]]
+index = 17
+color = "0xdb4b4b"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001b[13;2u"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control"
+chars = "\u001b[13;5u"
+
+[[keyboard.bindings]]
+key = "Space"
+mods = "Shift"
+chars = "\u001b[32;2u"
+
+[[keyboard.bindings]]
+key = "Space"
+mods = "Control"
+chars = "\u001b[32;5u"
