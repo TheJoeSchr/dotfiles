@@ -10,19 +10,20 @@
 #umask 022
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+	PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$HOME/.local/bin:$PATH"
 fi
 # adds pip bins to path
 export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
 export PY3_USER_BIN=="$(python3 -m site --user-base)/bin"
 export PATH=$PY_USER_BIN:$PY3_USER_BIN:$PATH
 
+export UID
 
 # Setting for the new UTF-8 terminal support in TMUX
 export LANGUAGE=en_US.UTF-8
