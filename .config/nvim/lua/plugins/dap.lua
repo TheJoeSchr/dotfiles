@@ -55,6 +55,7 @@ return {
     dependencies = {
       -- DAP for LUA
       { "jbyuki/one-small-step-for-vimkind" },
+      -- PYTHON
       { "mfussenegger/nvim-dap-python" },
       { "nvim-telescope/telescope-dap.nvim", keys = { "<leader>dd", desc = "DAP Debug" } },
       {
@@ -108,22 +109,10 @@ return {
       notify = true, -- The default is false
       run_tests_on_setup = true, -- The default is true, run test on attach
       framework_setup = {
-        ruby = {
-          test_tool = "rspec",
-          test_cmd = "bundle exec rspec %file",
-        },
         javascript = {
           test_tool = "vitest", -- cwd of the executing test will be at package.json
           test_cmd = "yarn vitest run %file",
           root_pattern = "tsconfig.json", -- used to populate the root option of vitest
-        },
-      },
-      project_override = {
-        ["/Users/name/Developer/ruby-project"] = {
-          ruby = {
-            test_tool = "rspec",
-            test_cmd = "docker exec -it name -- bundle exec rspec %file",
-          },
         },
       },
     },
