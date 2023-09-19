@@ -13,5 +13,4 @@ sudo cp ~/scripts/fix_tmp_x11.sh /etc/profile.d/ #everytime
 echo "xhost +si:localuser:\$USER" | sudo tee -a /etc/X11/xinit/xinitrc.d/xhost.sh
 
 # create new distrobox container "base"
-PATH="$PATH":.local/podman/bin/podman distrobox create -Y -i ghcr.io/thejoeschr/archlinux:latest -n base
-
+PATH="$PATH":.local/podman/bin/podman distrobox create -Y -i ghcr.io/thejoeschr/archlinux:latest -n main
