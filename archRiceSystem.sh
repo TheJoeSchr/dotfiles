@@ -96,7 +96,7 @@ if test (read -P "Install CLI essentials" -n 1) = "y"
 end
 
 # ESSENTIALS SYSTEM
-if test (read -P "Install CLI essentials (fish, tmux, ...)" -n 1) = "y"
+if test (read -P "Manually install CLI essentials (fish, tmux, ...)" -n 1) = "y"
   pikaur -S --needed --noconfirm \
     fish \
     tmux fpp \
@@ -118,9 +118,6 @@ if test (read -P "Install CLI essentials (fish, tmux, ...)" -n 1) = "y"
   # ESSENTIALS w/ STEAM special cases
     # eg. neovim-git htop  mosh urlview
   if $is_steam
-    # googler
-    pikaur -S --noconfirm googler-git \
-      --overwrite "/etc/bash_completion.d/googler" \
     # sshuttle
     pikaur -S --noconfirm sshuttle  --overwrite "/usr/lib/python3.*" && \
       sudo pacman -S python
@@ -136,8 +133,6 @@ if test (read -P "Install CLI essentials (fish, tmux, ...)" -n 1) = "y"
       makepkg --syncdeps --install --clean
       cd 
     end
-    # MOSH
-    pikaur -S --noconfirm mosh --overwrite "/etc/ufw/applications.d/mosh"
     # URLVIEW
     pikaur -S urlview --noconfirm --overwrite "/etc/urlview/*"
     # HTOP
@@ -182,9 +177,7 @@ if test (read -P "Install CLI essentials (fish, tmux, ...)" -n 1) = "y"
   else # not steam should just work
     pikaur -S \ 
       neovim-git nvimpager-git \
-      mosh \
       urlview \
-      googler-git \
       sshuttle \
 
   # keep empty line for "end"
@@ -363,7 +356,6 @@ if test (read -P "Install GUI essentials (alacritty, signal, steam)" -n 1) = "y"
 
   if not $is_steam
     pikaur -S --needed --noconfirm \
-      latte-dock-git \
       noto-fonts \
 
     pikaur -S --needed --noconfirm \
