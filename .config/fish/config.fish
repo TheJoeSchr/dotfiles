@@ -13,6 +13,7 @@ set -gx BROWSER google-chrome-stable
 # always try to set DISPLAY
 # set -q DISPLAY; or set -gx DISPLAY ":0"
 # add user bin to path
+fish_add_path ~/.bun/bin
 if [ ! -f /run/.containerenv ] && [ ! -f /.dockerenv ]
     fish_add_path ~/.local/bin
     fish_add_path ~/.local/podman/bin
