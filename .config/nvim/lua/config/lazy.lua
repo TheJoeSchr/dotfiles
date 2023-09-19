@@ -27,13 +27,15 @@ require("lazy").setup({
       branch = "main",
     },
     -- { "TheJoeschr/chatgpt.nvim", dir = "~/.config/nvim/lua/chatgpt.nvim/", import = "rplugin.python3" },
-    { import = "lazyvim.plugins.extras.coding.copilot" },
     -- import any extras modules here
+    { import = "lazyvim.plugins.extras.coding.copilot" },
     -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
     -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
     { import = "lazyvim.plugins.extras.lang.typescript" },
-    -- add jsonls and schemastore ans setup treesitter for json, json5 and jsonc
     { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.java" },
+    { import = "lazyvim.plugins.extras.lang.yaml" },
+    { import = "lazyvim.plugins.extras.lang.python" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- use my own mini.starter instead of LazyVim's
     { import = "plugins.extras.ui.mini-starter" },

@@ -137,7 +137,8 @@ return {
             gs.next_hunk()
           end)
           return "<Ignore>"
-        end, { expr = true, desc = "Next Hunk" })
+        end, "Next Hunk")
+        -- end, { expr = true, desc = "Next Hunk" })
 
         map("n", "[c", function()
           if vim.wo.diff then
@@ -147,7 +148,8 @@ return {
             gs.prev_hunk()
           end)
           return "<Ignore>"
-        end, { expr = true, desc = "Previous Hunk" })
+        end, "Previous Hunk")
+        -- end, { expr = true, desc = "Previous Hunk" })
 
         map("n", "<leader>gt", gs.toggle_deleted, "Show edited/deleted text")
         map("n", "<leader>gT", gs.toggle_current_line_blame, "Toggle current line blame")
