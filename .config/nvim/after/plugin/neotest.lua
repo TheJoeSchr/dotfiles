@@ -49,5 +49,5 @@ wk.register({
   },
 }, {
   prefix = "<localleader>",
-  buffer = bufnr,
+  -- buffer = bufnr,
 })
