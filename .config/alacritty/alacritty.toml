@@ -4,22 +4,21 @@ import = [ "~/.config/alacritty/alacritty.local.toml" ]
 [env]
 TERM = "xterm-256color"
 
-[font.normal]
-family = "Hack Nerd Font"
-style = "Regular"
-
-[font.bold]
-family = "Hack Nerd Font"
-style = "Bold"
-
-[font.italic]
-family = "Hack Nerd Font"
-style = "Italic"
-
-[font.bold_italic]
-family = "Hack Nerd Font"
-style = "Bold Italic"
-
+# [font.normal]
+# family = "Hack Nerd Font"
+# style = "Regular"
+#
+# [font.bold]
+# family = "Hack Nerd Font"
+# style = "Bold"
+#
+# [font.italic]
+# family = "Hack Nerd Font"
+# style = "Italic"
+#
+# [font.bold_italic]
+# family = "Hack Nerd Font"
+# style = "Bold Italic"
 [colors.primary]
 background = "0x000000"
 foreground = "0xc0caf5"
@@ -71,3 +70,6 @@ chars = "\u001b[32;2u"
 key = "Space"
 mods = "Control"
 chars = "\u001b[32;5u"
+
+
+
