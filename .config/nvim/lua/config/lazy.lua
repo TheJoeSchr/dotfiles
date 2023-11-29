@@ -16,7 +16,7 @@ require("lazy").setup({
     -- { "TheJoeschr/LazyVim", dir = "~/.config/nvim/lua/LazyVim/lua", import = "lazyvim.plugins" },
     {
       "TheJoeSchr/LazyVim",
-      -- dir = "~/.config/nvim/lua/LazyVim/lua/lazyvim",
+      dir = "~/.local/share/nvim/lazy/LazyVim",
       import = "lazyvim.plugins",
       priority = 10000,
       lazy = false,
@@ -28,7 +28,7 @@ require("lazy").setup({
     },
     -- { "TheJoeschr/chatgpt.nvim", dir = "~/.config/nvim/lua/chatgpt.nvim/", import = "rplugin.python3" },
     -- import any extras modules here
-    { import = "lazyvim.plugins.extras.coding.copilot" },
+    -- { import = "lazyvim.plugins.extras.coding.copilot" },
     -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
     -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
     { import = "lazyvim.plugins.extras.lang.typescript" },
