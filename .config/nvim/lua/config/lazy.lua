@@ -12,20 +12,20 @@ require("lazy").setup({
     -- import LazyVim plugins
     --
     --
-    -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- { "TheJoeschr/LazyVim", dir = "~/.config/nvim/lua/LazyVim/lua", import = "lazyvim.plugins" },
-    {
-      "TheJoeSchr/LazyVim",
-      dir = "~/.local/share/nvim/lazy/LazyVim",
-      import = "lazyvim.plugins",
-      priority = 10000,
-      lazy = false,
-      cond = true,
-      config = true,
-      version = "*",
-      pin = true,
-      branch = "main",
-    },
+    -- {
+    --   "TheJoeSchr/LazyVim",
+    --   dir = "~/.local/share/nvim/lazy/LazyVim",
+    --   import = "lazyvim.plugins",
+    --   priority = 10000,
+    --   lazy = false,
+    --   cond = true,
+    --   config = true,
+    --   version = "*",
+    --   pin = true,
+    --   branch = "main",
+    -- },
     -- { "TheJoeschr/chatgpt.nvim", dir = "~/.config/nvim/lua/chatgpt.nvim/", import = "rplugin.python3" },
     -- import any extras modules here
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
