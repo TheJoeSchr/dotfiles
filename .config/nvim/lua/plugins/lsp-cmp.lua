@@ -1,8 +1,7 @@
 return {
   {
-    -- TODO: actually not activated, but too hard too get rid of just now
     "VonHeikemen/lsp-zero.nvim",
-    branch = "v1.x",
+    branch = "v3.x",
     dependencies = {
       -- LSP Support
       { "neovim/nvim-lspconfig" },
