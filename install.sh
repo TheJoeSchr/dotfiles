@@ -4,7 +4,7 @@ ntpdate 0.us.pool.ntp.org >/dev/null 2>&1
 putgitrepo() {
 	# Downloads a gitrepo $1 and places the files in $2 only overwriting conflicts
 	echo "Downloading and installing config files..."
-	[ -z "$3" ] && branch="master" || branch="$repobranch"
+	[ -z "$3" ] && branch="main" || branch="$repobranch"
 	dir=$(mktemp -d)
 	[ ! -d "$2" ] && mkdir -p "$2"
 	chown "$name":wheel "$dir" "$2"
@@ -15,7 +15,7 @@ putgitrepo() {
 }
 
 # call with
-# curl -Lks https://github.com/TheJoeSchr/dotfiles/raw/master/install.sh | env bash
+# curl -Lks https://github.com/TheJoeSchr/dotfiles/raw/main/install.sh | env bash
 rm -rf $HOME/.cfg
 git clone --bare https://github.com/TheJoeSchr/dotfiles.git $HOME/.cfg
 
@@ -27,10 +27,10 @@ echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
 read -p "Deleting pre-existing dot files?" -n 1 -r -t 15
 if [[ $REPLY =~ ^[Nn]$ ]]
 then
-  $config reset --hard master
+  $config reset --hard main
 fi
 
-$config checkout master
+$config checkout main
 $config config status.showUntrackedFiles no
 
 touch ~/.vimrc.local
