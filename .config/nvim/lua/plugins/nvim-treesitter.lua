@@ -1,6 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       -- highlight the current cursor context
       { "nvim-treesitter/nvim-treesitter-textobjects" },
@@ -20,7 +22,7 @@ return {
       matchup = {
         enable = true,
       },
-
+      indent = { enable = true },
       ensure_installed = {
         "bash",
         "c",
@@ -67,6 +69,15 @@ return {
         "typescript",
         "vim",
         "yaml",
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
       },
     },
   },
