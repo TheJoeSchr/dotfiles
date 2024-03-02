@@ -182,6 +182,7 @@ count=0
 [TabBox]
 ActivitiesMode=0
 LayoutName=big_icons
+MinimizedMode=1
 OrderMinimizedMode=1
 SwitchingMode=1
 
