@@ -25,9 +25,8 @@ echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
 #$config fetch --all
 # doesn't work
 read -p "Deleting pre-existing dot files?" -n 1 -r -t 15
-if [[ $REPLY =~ ^[Nn]$ ]]
-then
-  $config reset --hard main
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+	$config reset --hard main
 fi
 
 $config checkout main
@@ -37,19 +36,17 @@ touch ~/.vimrc.local
 touch ~/.bashrc.local
 mkdir -p ~/Downloads
 
-read -p "run ~/archRiceSystem.sh ?" -n 1 -r -t 15
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  # need to install fish first
-  sudo pacman -Sy --noconfirm fish
-  
-  chmod +x ~/archRiceSystem.sh 
-  /usr/bin/env fish ~/archRiceSystem.sh
+read -p "run ~/archRiceSystem.fish ?" -n 1 -r -t 15
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	# need to install fish first
+	sudo pacman -Sy --noconfirm fish
+
+	chmod +x ~/archRiceSystem.fish
+	/usr/bin/env fish ~/archRiceSystem.fish
 fi
 
 read -p "source .bashrc?" -n 1 -r -t 15
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  # source new files
-  . .bashrc
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	# source new files
+	. .bashrc
 fi

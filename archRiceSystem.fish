@@ -1,7 +1,7 @@
 #! /bin/env fish
 
 mkdir ~/Downloads
-mkdir ~/.config mkdir ~/.local/sources
+mkdir ~/.config ~/.local/sources
 touch ~/.vimrc.local
 touch ~/.bashrc.local
 touch ~/.config/Xresources.local
