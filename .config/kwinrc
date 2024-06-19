@@ -118,7 +118,7 @@ desktopgridEnabled=false
 diminactiveEnabled=true
 flipswitchEnabled=true
 glideEnabled[$d]
-krohnkiteEnabled=false
+krohnkiteEnabled=true
 kwin4_effect_eyeonscreenEnabled=true
 kwin4_effect_fadeEnabled=false
 kwin4_effect_incinerateEnabled=true
@@ -162,10 +162,14 @@ PopupHideDelay=500
 
 [Script-krohnkite]
 debug=true
+directionalKeyDwm=true
+directionalKeyFocus=false
+enableFloatingLayout=true
 enableQuarterLayout=true
 limitTileWidthRatio=1.8
 maximizeSoleTile=true
 newWindowAsMaster=true
+noTileBorder=true
 screenGapLeft=1
 screenGapRight=1
 screenGapTop=1
@@ -200,10 +204,25 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][1203df46-d9c0-5ede-b1f3-cfdf237bb6ba]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][1d389db8-ee2e-50f6-9cb8-13d69fba20d8]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][451d502f-2066-5957-89ef-b54fceefc1df]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][58ca410b-ce44-58d6-82b9-fefe44aba0e3]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][5b7a5ba4-43cc-5910-8e98-f358f9d54b43]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][756e2809-261c-54c1-b241-b00754daa5e1]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][8194b6b4-4fdf-5c0c-a8b2-9053aeb9921c]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][d02c035d-eef0-5c68-aa2f-2e83d0ba08b1]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][db9ce450-307e-5e6b-9e32-7910740bab19]
@@ -213,7 +232,6 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 VirtualKeyboardEnabled=false
 
 [Windows]
-ActiveMouseScreen=false
 BorderlessMaximizedWindows=false
 ElectricBorderTiling=false
 FocusStealingPreventionLevel=2
@@ -221,7 +239,7 @@ RollOverDesktops=true
 SeparateScreenFocus=true
 
 [Xwayland]
-Scale=1
+Scale=1.5
 
 [org.kde.kdecoration2]
 BorderSize=NoSides
