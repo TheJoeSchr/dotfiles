@@ -109,7 +109,6 @@ LongitudeAuto=16.3075
 NightTemperature=5000
 
 [Plugins]
-bismuthEnabled=true
 blurEnabled=false
 contrastEnabled=true
 coverswitchEnabled=true
