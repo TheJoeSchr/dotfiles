@@ -86,7 +86,17 @@ vim.keymap.set(
 --   },
 -- })
 --
+require("which-key").add({
+  { "<leader>fgr", ":GrugFar<cr>", desc = "Grug Find and Replace", mode = "n" },
+})
+
 return {
+  {
+    "MagicDuck/grug-far.nvim",
+    config = function()
+      require("grug-far").setup({})
+    end,
+  },
   { "chipsenkbeil/distant.nvim", branch = "v0.2", cmd = "DistantConnect" },
   -- Easymotion fuzzy search
   {
