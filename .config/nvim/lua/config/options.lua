@@ -19,7 +19,7 @@ opt.showmatch = true
 -- -- Do smart case matching
 opt.smartcase = true
 -- -- Set completion options
-opt.completeopt = { "menuone", "noselect" }
+opt.completeopt = { "menuone", "noselect", "popup" }
 
 -- TJ kickstarter defaults
 -- Allow resizing of the window on session restore
@@ -44,8 +44,6 @@ opt.conceallevel = 2
 opt.foldlevelstart = 99
 -- Increase cmdheight
 opt.cmdheight = 4
--- Set completion options
-opt.completeopt = { "menuone", "noselect" }
 -- Using easymotion
 opt.number = false -- Print line number
 opt.relativenumber = false -- Relative line numbers
