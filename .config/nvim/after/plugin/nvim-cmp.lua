@@ -1,4 +1,3 @@
--- because borked
 local M = {}
 local cmp = require("cmp")
 --

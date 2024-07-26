@@ -1,4 +1,3 @@
--- vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
 vim.opt.shortmess:append("c")
 
 local lspkind = require("lspkind")
@@ -8,6 +7,7 @@ local cmp = require("cmp")
 
 cmp.setup({
   sources = {
+    { name = "cody" },
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "buffer" },
