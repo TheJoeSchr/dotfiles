@@ -79,7 +79,7 @@ IndividualMenuConfig=true
 MoveResize=69
 
 [Effect-overview]
-BorderActivate=1
+BorderActivate=9
 
 [Effect-presentwindows]
 BorderActivateAll=9
@@ -232,6 +232,7 @@ VirtualKeyboardEnabled=false
 
 [Windows]
 BorderlessMaximizedWindows=false
+ElectricBorderMaximize=false
 ElectricBorderTiling=false
 FocusStealingPreventionLevel=2
 RollOverDesktops=true
