@@ -31,8 +31,8 @@ return {
       local dap = require("dap")
       dap.adapters.php = {
         type = "executable",
-        command = "php-debug-adapter", -- adjust this to your actual path
-        args = {},
+        command = "node",
+        args = { os.getenv("HOME") .. "/.local/sources/vscode-php-debug/out/phpDebug.js" },
       }
       dap.configurations.php = {
         {
