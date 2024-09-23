@@ -1,30 +1,6 @@
 -- -- DEBUGGER ----
 -- "puremourning/vimspector",
 local wk = require("which-key")
-local function set_keymaps()
-  wk.register({
-    d = {
-      name = "debugger",
-      b = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Set Breakpoint" },
-      B = {
-        "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-        "Conditional Breakpoint",
-      },
-      E = { "<Cmd>lua require('dapui').eval()<CR>", "Eval" },
-      j = { "<cmd>lua require('dap').step_over()<CR>", "Step Over" },
-      l = { "<cmd>lua require('dap').step_into()<CR>", "Step Into" },
-      k = { "<cmd>lua require('dap').step_out()<CR>", "Step Out" },
-      q = { "<cmd>lua require('dap').terminate()<CR>", "Terminate" },
-      r = { "<cmd>lua require('dap').repl.open({}, 'split')()<CR>", "[R]epl split" },
-      -- nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
-    },
-    D = {
-      D = { "<cmd>lua require('dap').continue()<CR>", "Start/Continue" },
-    },
-  }, {
-    prefix = "<localleader>",
-  })
-end
 
 -- -- DEBUGGER ----
 -- "puremourning/vimspector",
@@ -97,9 +73,71 @@ return {
         },
       },
     },
-    config = function()
-      set_keymaps()
-    end,
+    keys = {
+      {
+        "<localleader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Set Breakpoint",
+      },
+      {
+        "<localleader>dB",
+        function()
+          require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+        end,
+        desc = "Conditional Breakpoint",
+      },
+      {
+        "<localleader>dE",
+        function()
+          require("dapui").eval()
+        end,
+        desc = "Eval",
+      },
+      {
+        "<localleader>dj",
+        function()
+          require("dap").step_over()
+        end,
+        desc = "Step Over",
+      },
+      {
+        "<localleader>dl",
+        function()
+          require("dap").step_into()
+        end,
+        desc = "Step Into",
+      },
+      {
+        "<localleader>dk",
+        function()
+          require("dap").step_out()
+        end,
+        desc = "Step Out",
+      },
+      {
+        "<localleader>dq",
+        function()
+          require("dap").terminate()
+        end,
+        desc = "Terminate",
+      },
+      {
+        "<localleader>dr",
+        function()
+          require("dap").repl.open({}, "split")
+        end,
+        desc = "[R]epl split",
+      },
+      {
+        "<localleader>DD",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Start/Continue",
+      },
+    },
   },
   { "folke/neodev.nvim", opts = { library = { plugins = { "nvim-dap-ui", "neotest" }, types = true } } },
   {
