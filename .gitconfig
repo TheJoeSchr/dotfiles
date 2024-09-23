@@ -23,6 +23,8 @@
   ci = commit -v
   cim = !git ci -m
   df = !git diff --histogram  && git diff --histogram --cached
+  dft = difftool
+  dlog = -c diff.external=difft log -p --ext-diff
   feat = merge --no-ff --no-commit
   go = checkout
   # rebase taking all remote changes
@@ -108,6 +110,7 @@
 [delta]
     navigate = true    # use n and N to move between diff sections
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    side-by-side = true
 [diff]
     colorMoved = default
 [rebase]
