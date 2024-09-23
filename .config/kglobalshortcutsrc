@@ -453,6 +453,7 @@ _launch=none
 [services][org.kde.spectacle.desktop]
 RecordRegion=none
 RecordWindow=none
+_launch=Print\tMeta+Shift+S\tCtrl+Alt+Shift+S
 
 [services][{8dc44129-ad8a-402b-bd0b-d54e7e967e01}.desktop]
 _launch=Ctrl+Alt+/
