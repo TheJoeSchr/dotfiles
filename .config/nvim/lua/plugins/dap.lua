@@ -70,10 +70,40 @@ return {
             end,
             desc = "DAP UI",
           },
+          {
+            "<localleader>ds",
+            function()
+              require("dapui").float_element("scopes")
+            end,
+            desc = "Debug Scopes",
+          },
+          {
+            "<localleader>dE",
+            function()
+              require("dapui").eval()
+            end,
+            desc = "Eval",
+          },
         },
       },
     },
     keys = {
+      {
+        "<localleader>dh",
+        function()
+          require("dap.ui.widgets").hover()
+        end,
+        mode = "n",
+        desc = "Hover (DAP)",
+      },
+      {
+        "<localleader>dh",
+        function()
+          require("dap.ui.widgets").preview()
+        end,
+        mode = "v",
+        desc = "Preview (DAP)",
+      },
       {
         "<localleader>db",
         function()
@@ -89,11 +119,11 @@ return {
         desc = "Conditional Breakpoint",
       },
       {
-        "<localleader>dE",
+        "<localleader>de",
         function()
-          require("dapui").eval()
+          require("dap").set_exception_breakpoints({ "all" })
         end,
-        desc = "Eval",
+        desc = "Breakpoint All Exceptions",
       },
       {
         "<localleader>dj",
