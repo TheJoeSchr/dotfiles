@@ -5,7 +5,7 @@ return {
     opts = {
       servers = {
         -- Add Intelephense for PHP LSP
-        intelephense = {},
+        phpactor = {},
       },
     },
   },
