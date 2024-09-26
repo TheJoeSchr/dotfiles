@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-# cmd="vmux"
-cmd="nvim"
+cmd="vmux"
+# cmd="nvr"
 echo "start log: $*" >/tmp/ewrap.log
 if [ -z "$*" ]; then
   echo "if empty " >>/tmp/ewrap.log
@@ -10,7 +10,9 @@ if [ -n "$TMUX" ]; then
   echo "if TMUX " >>/tmp/ewrap.log
   # tmux session running
   tmux split-window -h "$cmd \"$*\""
+  # $cmd "$*"
 else
+  cmd="nvim"
   session="nnn"
   echo "else TMUX " >>/tmp/ewrap.log
   # Remove option --tab for new window
