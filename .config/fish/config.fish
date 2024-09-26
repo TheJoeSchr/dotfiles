@@ -2,7 +2,7 @@ set -gx SHELL (which bash) # needs bash for nvim python
 # export environment variable VMUX_EDITOR, either vim or nvim
 set -gx VMUX_EDITOR nvim
 set -gx VMUX_REALEDITOR_NVIM_QT /usr/bin/nvim-qt
-set -gx VMUX_REALEDITOR_NVIM /usr/bin/nvim
+set -gx VMUX_REALEDITOR_NVIM (which nvim)
 set -gx VMUX_REALEDITOR_NVR /usr/bin/nvr
 
 set -gx PAGER nvimpager # or env less
