@@ -20,6 +20,10 @@ opt.showmatch = true
 opt.smartcase = true
 -- -- Set completion options
 opt.completeopt = { "menuone", "noselect", "popup" }
+-- Set tabstop and shiftwidth
+opt.expandtab = true -- Use spaces instead of tabs
+opt.tabstop = 2
+opt.shiftwidth = 2
 
 -- TJ kickstarter defaults
 -- Allow resizing of the window on session restore
