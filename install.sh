@@ -24,7 +24,7 @@ config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
 #$config fetch --all
 # doesn't work
-read -p "Deleting pre-existing dot files?" -n 1 -r -t 15
+read -p "Deleting pre-existing dot files?" -n 1 -r -t 15 REPLY
 echo # This is to move to a new line after reading input
 if [[ $REPLY =~ ^[Nn]$ ]]; then
     $config reset --hard main
@@ -37,7 +37,7 @@ touch ~/.vimrc.local
 touch ~/.bashrc.local
 mkdir -p ~/Downloads
 
-read -p "run ~/archRiceSystem.fish ?" -n 1 -r -t 15
+read -p "run ~/archRiceSystem.fish ?" -n 1 -r -t 15 REPLY
 echo # This is to move to a new line after reading input
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	# need to install fish first
@@ -47,7 +47,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	/usr/bin/env fish ~/archRiceSystem.fish
 fi
 
-read -p "source .bashrc?" -n 1 -r -t 15
+read -p "source .bashrc?" -n 1 -r -t 15 REPLY
 echo # This is to move to a new line after reading input
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	# source new files
