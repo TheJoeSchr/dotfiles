@@ -26,8 +26,8 @@ echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
 # doesn't work
 read -p "Deleting pre-existing dot files?" -n 1 -r -t 15 REPLY
 echo # This is to move to a new line after reading input
-if [[ $REPLY =~ ^[Nn]$ ]]; then
-    $config reset --hard main
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	$config reset --hard main
 fi
 
 $config checkout main
