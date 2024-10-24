@@ -1,4 +1,6 @@
 #! /bin/bash
+# call with
+#  curl -Lks https://github.com/TheJoeSchr/dotfiles/raw/main/install.sh -o install.sh && env bash -x install.sh
 ntpdate 0.us.pool.ntp.org >/dev/null 2>&1
 
 putgitrepo() {
@@ -14,8 +16,6 @@ putgitrepo() {
 	sudo -u "$name" cp -rfT "$dir" "$2"
 }
 
-# call with
-# curl -Lks https://github.com/TheJoeSchr/dotfiles/raw/main/install.sh | env bash
 rm -rf $HOME/.cfg
 git clone --bare https://github.com/TheJoeSchr/dotfiles.git $HOME/.cfg
 
