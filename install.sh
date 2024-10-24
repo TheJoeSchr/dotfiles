@@ -25,8 +25,9 @@ echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
 #$config fetch --all
 # doesn't work
 read -p "Deleting pre-existing dot files?" -n 1 -r -t 15
-if [[ $REPLY =~ ^[Nn]$ ]]
-	$config reset --hard main
+echo # This is to move to a new line after reading input
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    $config reset --hard main
 fi
 
 $config checkout main
@@ -37,6 +38,7 @@ touch ~/.bashrc.local
 mkdir -p ~/Downloads
 
 read -p "run ~/archRiceSystem.fish ?" -n 1 -r -t 15
+echo # This is to move to a new line after reading input
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	# need to install fish first
 	sudo pacman -Sy --noconfirm fish
@@ -46,6 +48,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 read -p "source .bashrc?" -n 1 -r -t 15
+echo # This is to move to a new line after reading input
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	# source new files
 	. .bashrc
