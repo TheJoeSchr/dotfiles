@@ -16,11 +16,14 @@ putgitrepo() {
 	sudo -u "$name" cp -rfT "$dir" "$2"
 }
 
-rm -rf $HOME/.cfg
-git clone --bare https://github.com/TheJoeSchr/dotfiles.git $HOME/.cfg
+read -p "Re-clone bare git at $HOME/.cfg?" -n 1 -r -t 15 REPLY
+echo # This is to move to a new line after reading input
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	rm -rf $HOME/.cfg
+	git clone --bare https://github.com/TheJoeSchr/dotfiles.git $HOME/.cfg
+fi
 
 config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-
 echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
 #$config fetch --all
 # doesn't work
