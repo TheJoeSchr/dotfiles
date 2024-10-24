@@ -60,7 +60,7 @@ if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = "y"
   if $is_steam_host
     echo "Steamdeck: fixing broken headers of buildtools"
     # no --needed, doesn't updated headers
-    sudo pacman -S --noconfirm gcc glibc lib32-glibc linux-headers linux-api-headers asp cmake
+    sudo pacman -S --noconfirm gcc glibc lib32-glibc linux-headers linux-api-headers cmake
     # FIX ALL THE BROKEN HEADERS
     if test (read -P "Re-install all packages with missing headers?" -n 1) = "y"
       # installs packages with missing files
