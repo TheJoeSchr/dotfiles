@@ -32,6 +32,9 @@ fi
 
 $config checkout main
 $config config status.showUntrackedFiles no
+# Checkout submodules
+$config submodule update --init --recursive
+
 
 touch ~/.vimrc.local
 touch ~/.bashrc.local
