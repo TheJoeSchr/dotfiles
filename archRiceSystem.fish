@@ -46,7 +46,7 @@ end #/steamdeck
 if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = "y"
   # init & refresh keys
   if not $is_steam_host
-  sudo env bash ~/archlinux/init-pacman-keys.sh # also does full system upgrades
+    sudo env bash ~/archlinux/init-pacman-keys.sh # also does full system upgrades
   end
   if $is_steam_host
     echo "Installing holo-keyring"
@@ -55,6 +55,7 @@ if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = "y"
     sudo pacman-key --populate holo
     sudo pacman -Sy --noconfirm holo-keyring
     sudo pacman -S --noconfirm tmux fish neovim git
+    sudo pacman -Syu --noconfirm
   end 
   # STEAMDECK: fix broken headers
   if $is_steam_host
@@ -79,6 +80,15 @@ if not command -sq "pikaur"
     env bash ~/archlinux/install-aur-and-mirror-helpers.sh
   cd -
   echo $PWD
+  end
+end
+
+if $is_steam_host
+  if test (read -P "Install steamos-btrfs" -n 1) = "y"
+    set t "$(mktemp -d)"
+    curl -sSL https://gitlab.com/popsulfr/steamos-btrfs/-/archive/main/steamos-btrfs-main.tar.gz | tar -xzf - -C "$t" --strip-components=1
+    "$t/install.sh"
+    env rm -rf "$t"
   end
 end
 
