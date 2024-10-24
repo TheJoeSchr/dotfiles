@@ -161,6 +161,13 @@ return {
         desc = "[R]epl split",
       },
       {
+        "<localleader>dc",
+        function()
+          require("dap").run_to_cursor()
+        end,
+        desc = "Run to Cursor",
+      },
+      {
         "<localleader>DD",
         function()
           require("dap").continue()
