@@ -25,7 +25,7 @@ echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
 #$config fetch --all
 # doesn't work
 read -p "Deleting pre-existing dot files?" -n 1 -r -t 15
-if [[ $REPLY =~ ^[Nn]$ ]]; then
+if [[ $REPLY =~ ^[Nn]$ ]]
 	$config reset --hard main
 fi
 
