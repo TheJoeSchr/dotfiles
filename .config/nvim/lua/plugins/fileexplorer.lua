@@ -51,7 +51,9 @@ return {
     end,
     opts = {
       filesystem = {
-        follow_current_file = true,
+        follow_current_file = {
+          enabled = true,
+        },
       },
     },
   },
