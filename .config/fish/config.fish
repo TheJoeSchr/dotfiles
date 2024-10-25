@@ -97,15 +97,11 @@ THE THREE TYPES OF ALIAS
 
     alias pbcopy 'xsel --clipboard --input'
     alias pbpaste 'xsel --clipboard --output'
-    alias tree 'lll -a --level=3'
     alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
     alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
     alias du 'dust -d 1'
     alias edit nvim
-    alias la 'exa --all -1'
     alias lf nnn
-    alias lll 'ls -lT --level=1'
-    alias ls 'exa -G --icons'
     alias mail cmdg
 
     # NNN 
@@ -132,6 +128,23 @@ THE THREE TYPES OF ALIAS
     if type -q zoxide
         zoxide init fish | source
         abbr cd z
+    end
+
+    if type -q pyenv
+        pyenv init - | source
+    end
+
+    if type -q advmv
+        abbr cp 'advcp -g'
+        abbr mv 'advmv -g'
+    end
+
+
+    if type -q exa
+        alias la 'exa --all -1'
+        alias ls 'exa -G --icons'
+        alias lll 'ls -lT --level=1'
+        alias tree 'lll -a --level=3'
     end
 
     if type -q tmux
