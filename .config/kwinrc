@@ -197,6 +197,9 @@ OrderMinimizedMode=1
 [Tiling]
 padding=4
 
+[Tiling][0b3a115d-e4be-5d8d-9274-6f5cee3fdc46]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][0d24c4bb-476b-5180-98b7-0a413d8c4c15]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -228,6 +231,9 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][db9ce450-307e-5e6b-9e32-7910740bab19]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][fab0b009-5dc2-5f2f-8b24-8c53da4c339b]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Wayland]
