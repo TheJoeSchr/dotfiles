@@ -79,7 +79,7 @@ THE THREE TYPES OF ALIAS
     abbr gs 'git st'
     abbr install 'pikaur -S --needed --noconfirm'
     abbr lal 'la -l'
-    abbr ll nnn-cd # goes to cd
+    abbr ll y # goes to cd
     abbr n nnn
     abbr poetry 'SHELL=(which fish) poetry'
     abbr psax procs
@@ -101,7 +101,7 @@ THE THREE TYPES OF ALIAS
     alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
     alias du 'dust -d 1'
     alias edit nvim
-    alias lf nnn
+    alias lf y
     alias mail cmdg
 
     # NNN 
@@ -115,7 +115,7 @@ THE THREE TYPES OF ALIAS
     # sudo -E preserve enviornment (sudoedit doesn't work)
     # prints selections to stdout (useful for piping)
     # but no change to directory
-    alias N 'sudo -E fish -c "nnn-prints-selection -HeE"'
+    alias Y 'sudo -E fish -c "y"'
     alias nnn 'nnn-cd -P v'
     # use like (nfp) instead of (nnn-filepicker) because it replaces cli
     alias nfp 'nnn-with-editor-split -eEDH -P v -p -'
