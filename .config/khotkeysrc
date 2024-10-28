@@ -1071,6 +1071,9 @@ Key=Ctrl+Alt+/
 Type=SHORTCUT
 Uuid={8dc44129-ad8a-402b-bd0b-d54e7e967e01}
 
+[Desktop Entry]
+DefaultProfile[$d]
+
 [DirSelect Dialog]
 DirSelectDialog Size[$d]
 History Items[$d]
