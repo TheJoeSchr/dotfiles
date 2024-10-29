@@ -1067,7 +1067,7 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_6Triggers0]
-Key=Ctrl+Alt+/
+Key=
 Type=SHORTCUT
 Uuid={8dc44129-ad8a-402b-bd0b-d54e7e967e01}
 
