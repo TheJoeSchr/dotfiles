@@ -80,9 +80,14 @@ display=Display\tMeta+P,Display\tMeta+P,Switch Display
 
 [khotkeys]
 _k_friendly_name=Custom Shortcuts Service
-{8dc44129-ad8a-402b-bd0b-d54e7e967e01}=Ctrl+Alt+/,none,Alacritty
+{8dc44129-ad8a-402b-bd0b-d54e7e967e01}=none,none,Alacritty
 {a83269b6-d823-407e-8bb4-c0eee0ef65ce}=Ctrl+Alt+-,none,Headphones
 {ce914ebe-fcf0-48c8-9c85-b0c7a98235ce}=Ctrl+Alt+=,none,Surround
+{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
+
+[kitty.desktop]
+_k_friendly_name=kitty
+_launch=Ctrl+Alt+/,none,kitty
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -158,8 +163,8 @@ KrohnkiteFloatAll=none,none,Krohnkite: Float All
 KrohnkiteFloatingLayout=none,none,Krohnkite: Floating Layout
 KrohnkiteFocusDown=none,none,Krohnkite: Focus Down
 KrohnkiteFocusLeft=Ctrl+Alt+H,none,Krohnkite: Focus Left
-KrohnkiteFocusNext=,none,Krohnkite: Focus Next
-KrohnkiteFocusPrev=,none,Krohnkite: Focus Previous
+KrohnkiteFocusNext=none,none,Krohnkite: Focus Next
+KrohnkiteFocusPrev=none,none,Krohnkite: Focus Previous
 KrohnkiteFocusRight=Ctrl+Alt+L,none,Krohnkite: Focus Right
 KrohnkiteFocusUp=none,none,Krohnkite: Focus Up
 KrohnkiteGrowHeight=Meta+Ctrl+J,none,Krohnkite: Grow Height
@@ -250,12 +255,12 @@ Walk Through Desktops=none,,Walk Through Desktops
 Walk Through Desktops (Reverse)=none,,Walk Through Desktops (Reverse)
 Walk Through Windows=Ctrl+Alt+J,Alt+Tab,Walk Through Windows
 Walk Through Windows (Reverse)=Ctrl+Alt+K,Alt+Shift+Backtab,Walk Through Windows (Reverse)
-Walk Through Windows Alternative=,,Walk Through Windows Alternative
+Walk Through Windows Alternative=none,,Walk Through Windows Alternative
 Walk Through Windows Alternative (Reverse)=Meta+K,,Walk Through Windows Alternative (Reverse)
-Walk Through Windows of Current Application=,Alt+`,Walk Through Windows of Current Application
-Walk Through Windows of Current Application (Reverse)=,Alt+~,Walk Through Windows of Current Application (Reverse)
-Walk Through Windows of Current Application Alternative=,,Walk Through Windows of Current Application Alternative
-Walk Through Windows of Current Application Alternative (Reverse)=,,Walk Through Windows of Current Application Alternative (Reverse)
+Walk Through Windows of Current Application=none,Alt+`,Walk Through Windows of Current Application
+Walk Through Windows of Current Application (Reverse)=none,Alt+~,Walk Through Windows of Current Application (Reverse)
+Walk Through Windows of Current Application Alternative=none,,Walk Through Windows of Current Application Alternative
+Walk Through Windows of Current Application Alternative (Reverse)=none,,Walk Through Windows of Current Application Alternative (Reverse)
 Window Above Other Windows=none,,Keep Window Above Others
 Window Below Other Windows=none,,Keep Window Below Others
 Window Close=Meta+C\tAlt+F4\tCtrl+Alt+C\tMeta+F4\tCtrl+Alt+Q\tMeta+Q,Alt+F4,Close Window
@@ -388,11 +393,11 @@ show-on-mouse-pos=none,Meta+V,Open Klipper at Mouse Position
 
 [mediacontrol]
 _k_friendly_name=Media Controller
-mediavolumedown=none,,Media volume down
-mediavolumeup=none,,Media volume up
+mediavolumedown=none,none,Media volume down
+mediavolumeup=none,none,Media volume up
 nextmedia=Ctrl+Shift+J\tMedia Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
-playmedia=none,,Play media playback
+playmedia=none,none,Play media playback
 playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous\tCtrl+Shift+K,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
@@ -457,7 +462,7 @@ activate task manager entry 8=none,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=none,Meta+9,Activate Task Manager Entry 9
 activate widget 3=Ctrl+Alt+Space,none,Activate Application Launcher Widget
 activate widget 30=none,none,Activate Application Dashboard Widget
-activate widget 311=,none,Activate Application Launcher Widget
+activate widget 311=none,none,Activate Application Launcher Widget
 activate widget 34=none,none,Activate Application Launcher Widget
 activate widget 350=none,none,Activate Application Dashboard Widget
 activate widget 357=none,none,Activate Application Dashboard Widget
