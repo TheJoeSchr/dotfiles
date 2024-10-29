@@ -45,7 +45,6 @@ _k_friendly_name=Custom Shortcuts Service
 {8dc44129-ad8a-402b-bd0b-d54e7e967e01}=none,none,Alacritty
 {a83269b6-d823-407e-8bb4-c0eee0ef65ce}=Ctrl+Alt+-,none,Headphones
 {ce914ebe-fcf0-48c8-9c85-b0c7a98235ce}=Ctrl+Alt+=,none,Surround
-{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
 
 [kitty.desktop]
 _k_friendly_name=kitty
@@ -101,7 +100,7 @@ Krohnkite: Grow Height=none,none,
 Krohnkite: Grow Width=none,none,
 Krohnkite: Increase=none,none,
 Krohnkite: Left=none,none,
-Krohnkite: Monocle Layout=,none,
+Krohnkite: Monocle Layout=Ctrl+Alt+F,none,
 Krohnkite: Move Down/Next=none,none,
 Krohnkite: Move Left=none,none,
 Krohnkite: Move Right=none,none,
@@ -355,11 +354,11 @@ show-on-mouse-pos=none,Meta+V,Open Klipper at Mouse Position
 
 [mediacontrol]
 _k_friendly_name=Media Controller
-mediavolumedown=none,none,Media volume down
-mediavolumeup=none,none,Media volume up
+mediavolumedown=none,,Media volume down
+mediavolumeup=none,,Media volume up
 nextmedia=Ctrl+Shift+J\tMedia Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
-playmedia=none,none,Play media playback
+playmedia=none,,Play media playback
 playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous\tCtrl+Shift+K,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
