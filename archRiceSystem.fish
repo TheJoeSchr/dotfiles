@@ -287,7 +287,7 @@ if test (read -P "Install CLOJURE?" -n 1) = y
     cd ~
 end
 
-if test (read -P "Install GUI essentials (alacritty, signal, steam)" -n 1) = y
+if test (read -P "Install GUI essentials (kitty, signal, steam)" -n 1) = y
     # ESSENTIALS GUI & DESKTOP
 
     # 1. create some space on steamdeck 
@@ -327,8 +327,8 @@ if test (read -P "Install GUI essentials (alacritty, signal, steam)" -n 1) = y
         --overwrite "/etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop" \
         google-chrome kdialog \
         --overwrite "/opt/google/chrome/*" \
-        # xclip is for alacritty \
-        alacritty xclip \
+        # xclip is for kitty \
+        kitty xclip \
         yakuake \
         # 1password:
         1password-cli \
@@ -357,29 +357,6 @@ if test (read -P "Install GUI essentials (alacritty, signal, steam)" -n 1) = y
             kwin-bismuth-bin \
             appimagelauncher-git
     else
-        # KWIN-BISMUTH
-        if test (read -P "Manually install KWIN-BISMUTH?" -n 1) = y
-            cd ~/.local/sources
-            pikaur -G kwin-bismuth
-            cd kwin-bismuth
-            # maybe?
-            pikaur -S --noconfirm cmake ninja esbuild extra-cmake-modules
-            sudo pacman -S \
-                plasma-framework \
-                qt5-script qt5-svg qt5-declarative \
-                extra-cmake-modules \
-                plasma \
-                kdecoration \
-                kconfig kcoreaddons \
-                kconfigwidgets \
-                kcodecs \
-                kwidgetsaddons \
-                kglobalaccel \
-                kauth ki18n \
-                kdeclarative &&
-                makepkg --noconfirm --syncdeps --install --clean
-        end
-
         # APPIMAGELAUNCHER
         if test (read -P "Manually install APPIMAGELAUNCHER?" -n 1) = y
             cd ~/.local/sources/
@@ -542,7 +519,7 @@ if test (read -P "Increase number of file watchers?" -n 1) = y
 end
 
 # fix .ssh
-if test (read -P "Fix .ssh/* permisssions" -n 1) = y
+if test (read -P "Fix .ssh/* permissions" -n 1) = y
     chmod 600 "~/.ssh/*"
 end
 
