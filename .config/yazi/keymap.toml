@@ -5,7 +5,7 @@ run = "filter"
 desc = "Apply a filter for the help items"
 
 [[manager.prepend_keymap]]
-on   = [",","f"]
+on   = "f"
 run  = "plugin jump-to-char"
 desc = "Jump to char"
 
@@ -27,12 +27,12 @@ desc = "Smart filter"
 
 # Find
 [[manager.prepend_keymap]]
-on = "f"
+on = [",","f"]
 run = "find --smart"
 desc = "Find next file" 
 
 [[manager.prepend_keymap]]
-on = "F"
+on = [",","F"]
 run = "find --previous --smart"
 desc = "Find previous file" 
 
@@ -166,9 +166,15 @@ on   = [ "o" ]
 run  = "plugin augment-command --args='editor'"
 desc = "Open files with the default editor"
 
+# Use e to open files using xdg-open
+[[manager.prepend_keymap]]
+on   = "e"
+run  = "open"
+desc = "Open selected file(s)"
+
 # Use i to open files using the pager
 [[manager.prepend_keymap]]
-on   = [ "i" ]
+on   = "i"
 run  = "plugin augment-command --args='pager'"
 desc = "Open files with the default pager"
 
