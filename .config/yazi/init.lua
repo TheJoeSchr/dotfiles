@@ -43,7 +43,7 @@ require("augment-command"):setup({
 	sort_directories_first = true,
 })
 
-require("relative-motions"):setup({ show_numbers = "relative", show_motion = true })
+require("relative-motions"):setup({ show_numbers = false, show_motion = true })
 require("custom-shell"):setup({
 	history_path = "default",
 	save_history = true,
