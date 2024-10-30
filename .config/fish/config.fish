@@ -7,7 +7,7 @@ set -gx VMUX_REALEDITOR_NVR /usr/bin/nvr
 
 set -gx PAGER nvimpager # or env less
 set -gx EDITOR nvim
-set -gx VISUAL nvim # ewrap is used by nnn with editor split
+set -gx VISUAL ewrap
 set -gx BROWSER google-chrome-stable
 # always try to set DISPLAY
 # set -q DISPLAY; or set -gx DISPLAY ":0"
