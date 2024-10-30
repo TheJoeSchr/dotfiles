@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-cmd="vmux"
+cmd=$(which "vmux")
 # cmd="nvr"
 echo "start log: $*" >/tmp/ewrap.log
 if [ -z "$*" ]; then
@@ -9,6 +9,7 @@ fi
 if [ -n "$TMUX" ]; then
   echo "if TMUX " >>/tmp/ewrap.log
   # tmux session running
+  # echo "$cmd"
   tmux split-window -h "$cmd \"$*\""
   # $cmd "$*"
 else
