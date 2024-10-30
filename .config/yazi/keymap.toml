@@ -1,14 +1,4 @@
 [[manager.prepend_keymap]]
-on   = [",","t"]
-run  = "plugin --sync hide-preview"
-desc = "Hide or show preview"
-
-[[manager.prepend_keymap]]
-on   = [",","T"]
-run  = "plugin --sync max-preview"
-desc = "Maximize or restore preview"
-
-[[manager.prepend_keymap]]
 on   = [",","f"]
 run  = "plugin jump-to-char"
 desc = "Jump to char"
@@ -18,20 +8,27 @@ on   = "!"
 run  = 'shell "$SHELL" --block --confirm'
 desc = "Open shell here"
 
+# Filter
 [[manager.prepend_keymap]]
-on   = "l"
-run  = "plugin --sync smart-enter"
-desc = "Enter the child directory, or open the file"
+on   = "/"
+run  = "filter --smart"
+desc = "Filter files"
 
 [[manager.prepend_keymap]]
-on   = "F"
+on   = "?"
 run  = "plugin smart-filter"
 desc = "Smart filter"
 
+# Find
 [[manager.prepend_keymap]]
-on   = "p"
-run  = "plugin --sync smart-paste"
-desc = "Paste into the hovered directory or CWD"
+on = "f"
+run = "find --smart"
+desc = "Find next file" 
+
+[[manager.prepend_keymap]]
+on = "F"
+run = "find --previous --smart"
+desc = "Find previous file" 
 
 [[manager.prepend_keymap]]
 on = [ "g", "r" ]
@@ -39,10 +36,190 @@ run = '''
   shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm
 '''
 
+# [[manager.prepend_keymap]]
+# on  = "k"
+# run = "plugin --sync arrow --args=-1"
+
+# [[manager.prepend_keymap]]
+# on  = "j"
+# run = "plugin --sync arrow --args=1"
+
+
+# toggle-view
 [[manager.prepend_keymap]]
-on  = "k"
-run = "plugin --sync arrow --args=-1"
+on = [",","t","1"]
+run = "plugin --sync toggle-view --args=parent"
+desc = "Toggle parent" 
 
 [[manager.prepend_keymap]]
-on  = "j"
-run = "plugin --sync arrow --args=1"
+on = [",","t","2"]
+run = "plugin --sync toggle-view --args=current"
+desc = "Toggle current" 
+
+[[manager.prepend_keymap]]
+on = [",","t","3"]
+run = "plugin --sync toggle-view --args=preview"
+desc = "Toggle preview" 
+
+[[manager.prepend_keymap]]
+on   = "p"
+run  = "plugin --sync smart-paste"
+desc = "Paste into the hovered directory or CWD"
+
+# Augmented Keys
+# Use the augmented arrow up command for the k key
+[[manager.prepend_keymap]]
+on   = [ "k" ]
+run  = "plugin augment-command --args='arrow -1'"
+desc = "Move cursor up"
+
+# Use the augmented arrow down command for the j key
+[[manager.prepend_keymap]]
+on   = [ "j" ]
+run  = "plugin augment-command --args='arrow 1'"
+desc = "Move cursor down"
+
+# Use K to move up in the parent directory
+[[manager.prepend_keymap]]
+on   = [ "K" ]
+run  = "plugin augment-command --args='parent-arrow -1'"
+desc = "Move cursor up in the parent directory"
+
+# Use J to move down in the parent directory
+[[manager.prepend_keymap]]
+on   = [ "J" ]
+run  = "plugin augment-command --args='parent-arrow 1'"
+desc = "Move cursor down in the parent directory"
+
+# Use the augmented enter command for the l key
+[[manager.prepend_keymap]]
+on   = [ "l" ]
+run  = "plugin augment-command --args='enter'"
+desc = "Enter the child directory, or open the file"
+
+# Use the augmented enter command for the <Enter> key
+[[manager.prepend_keymap]]
+on   = [ "<Enter>" ]
+run  = "plugin augment-command --args='enter'"
+desc = "Enter the child directory, or open the file"
+
+# Use the augmented enter command for the <S-Enter> key
+[[manager.prepend_keymap]]
+on   = [ "<S-Enter>" ]
+run  = "plugin augment-command --args='enter --interactive'"
+desc = "Enter the child directory, or open the file interactively"
+
+# Use the augmented enter command for the <Right> key
+# but without skipping directories
+[[manager.prepend_keymap]]
+on   = [ "<Right>" ]
+run  = "plugin augment-command --args='enter --no-skip'"
+desc = "Enter the child directory, or open the file"
+
+# Use the augmented leave command for the h key
+[[manager.prepend_keymap]]
+on   = [ "h" ]
+run  = "plugin augment-command --args='leave'"
+desc = "Go back to the parent directory"
+
+# Use the augmented leave command for the <Left> key
+# but without skipping directories
+[[manager.prepend_keymap]]
+on   = [ "<Left>" ]
+run  = "plugin augment-command --args='leave --no-skip'"
+desc = "Go back to the parent directory"
+
+# Use the augmented open to open files interactively with O
+[[manager.prepend_keymap]]
+on   = [ "O" ]
+run  = "plugin augment-command --args='open --interactive'"
+desc = "Open selected files interactively"
+
+
+# Use u to unselect and unyank all files
+[[manager.prepend_keymap]]
+on   = [ "u" ]
+run  = ["select_all --state=false", "unyank"]
+desc = "Unselect all files and also unyank cut files"
+
+
+# Use p to paste files
+[[manager.prepend_keymap]]
+on   = [ "p" ]
+run  = "plugin augment-command --args='paste'"
+desc = "Paste the files"
+
+
+# Use P to paste files and
+# overwrite the destination file if it exists
+[[manager.prepend_keymap]]
+on   = [ "P" ]
+run  = "plugin augment-command --args='paste --force'"
+desc = "Paste the files (overwrite if the destination exists)"
+
+# Use o to open files using the editor
+[[manager.prepend_keymap]]
+on   = [ "o" ]
+run  = "plugin augment-command --args='editor'"
+desc = "Open files with the default editor"
+
+# Use i to open files using the pager
+[[manager.prepend_keymap]]
+on   = [ "i" ]
+run  = "plugin augment-command --args='pager'"
+desc = "Open files with the default pager"
+
+# Use R to remove the whole file name when renaming
+[[manager.prepend_keymap]]
+on   = [ "R" ]
+run  = "plugin augment-command --args='rename --empty=all'"
+desc = "Rename file and remove the whole file name"
+
+
+# The relative motions plugin keymaps,
+# which are just to use the number
+# keys to move in relative steps
+[[manager.prepend_keymap]]
+on = [ "1" ]
+run = "plugin relative-motions --args=1"
+desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+on = [ "2" ]
+run = "plugin relative-motions --args=2"
+desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+on = [ "3" ]
+run = "plugin relative-motions --args=3"
+desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+on = [ "4" ]
+run = "plugin relative-motions --args=4"
+desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+on = [ "5" ]
+run = "plugin relative-motions --args=5"
+desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+on = [ "6" ]
+run = "plugin relative-motions --args=6"
+desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+on = [ "7" ]
+run = "plugin relative-motions --args=7"
+desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+on = [ "8" ]
+run = "plugin relative-motions --args=8"
+desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+on = [ "9" ]
+run = "plugin relative-motions --args=9"
+desc = "Move in relative steps"
