@@ -44,3 +44,7 @@ require("augment-command"):setup({
 })
 
 require("relative-motions"):setup({ show_numbers = "relative", show_motion = true })
+require("custom-shell"):setup({
+	history_path = "default",
+	save_history = true,
+})
