@@ -7,9 +7,6 @@ local v = require("utils/maps") -- Options are automatically loaded before lazy.
 
 -- Copilot
 vim.keymap.set("i", "<C-g>", "<cmd>ChatGPTCompleteCode<CR>", { silent = true })
---
--- https://github.com/ThePrimeagen/init.lua
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- (visual) J/K to move lines up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
