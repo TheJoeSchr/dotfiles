@@ -1,3 +1,9 @@
+# Filtering
+[[help.prepend_keymap]]
+on = "/"
+run = "filter"
+desc = "Apply a filter for the help items"
+
 [[manager.prepend_keymap]]
 on   = [",","f"]
 run  = "plugin jump-to-char"
@@ -36,14 +42,11 @@ run = '''
   shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm
 '''
 
-# [[manager.prepend_keymap]]
-# on  = "k"
-# run = "plugin --sync arrow --args=-1"
-
-# [[manager.prepend_keymap]]
-# on  = "j"
-# run = "plugin --sync arrow --args=1"
-
+# compress all selected files
+[[manager.prepend_keymap]]
+on   = [ "c", "a" ]
+run  = "plugin compress"
+desc = "Archive selected files"
 
 # toggle-view
 [[manager.prepend_keymap]]
@@ -223,3 +226,24 @@ desc = "Move in relative steps"
 on = [ "9" ]
 run = "plugin relative-motions --args=9"
 desc = "Move in relative steps"
+
+# bookmarks
+[[manager.prepend_keymap]]
+on = [ "m" ]
+run = "plugin bookmarks --args=save"
+desc = "Save current position as a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "'" ]
+run = "plugin bookmarks --args=jump"
+desc = "Jump to a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "b", "d" ]
+run = "plugin bookmarks --args=delete"
+desc = "Delete a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "b", "D" ]
+run = "plugin bookmarks --args=delete_all"
+desc = "Delete all bookmarks"
