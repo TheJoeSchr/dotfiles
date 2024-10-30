@@ -2,4 +2,14 @@
 linemode = "size_and_mtime"
 show_hidden = true
 show_symlink = true
-ratio = [0, 5, 3]
+ratio = [1, 4, 3]
+
+# [plugin]
+
+[opener]
+edit = [
+  { run = '${VISUAL:ewrap} "$@"', desc = "edit with $VISUAL", block = false, orphan = true, for = "unix" },
+]
+reveal = [
+	{ run = '${EDITOR:-vi} "$@"', desc = "reveal with $EDITOR", block = true, for = "unix" },
+]
