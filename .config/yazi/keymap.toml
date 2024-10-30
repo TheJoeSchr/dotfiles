@@ -247,3 +247,9 @@ desc = "Delete a bookmark"
 on = [ "b", "D" ]
 run = "plugin bookmarks --args=delete_all"
 desc = "Delete all bookmarks"
+
+# custom-shell
+[[manager.prepend_keymap]]
+on =  ";"
+run = "plugin custom-shell --args=fish --no-block "
+desc = "custom-shell as default"
