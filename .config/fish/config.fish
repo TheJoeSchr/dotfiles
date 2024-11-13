@@ -80,7 +80,6 @@ THE THREE TYPES OF ALIAS
     abbr install 'pikaur -S --needed --noconfirm'
     abbr lal 'la -l'
     abbr ll y # goes to cd
-    abbr n nnn
     abbr poetry 'SHELL=(which fish) poetry'
     abbr psax procs
     abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
@@ -103,22 +102,7 @@ THE THREE TYPES OF ALIAS
     alias edit nvim
     alias lf y
     alias mail cmdg
-
-    # NNN 
-    # ALT+o => nnn-nav-by-type
-    # CTRL+o or ALT+t => nnn-filepicker
-    # functions/fileexplorer_user_key_bindings.fish
-
-    # -H hidden files
-    # -e      text in $VISUAL/$EDITOR/
-    # -E      internal edits in EDITOR
-    # sudo -E preserve enviornment (sudoedit doesn't work)
-    # prints selections to stdout (useful for piping)
-    # but no change to directory
     alias Y 'sudo -E fish -c "y"'
-    alias nnn 'nnn-cd -P v'
-    # use like (nfp) instead of (nnn-filepicker) because it replaces cli
-    alias nfp 'nnn-with-editor-split -eEDH -P v -p -'
 
 
     if type -q omf
