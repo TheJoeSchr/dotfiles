@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "yazi-rs/plugins:git", rev = "ad52adf" }, { use = "yazi-rs/plugins:jump-to-char", rev = "ad52adf" } , { use = "dawsers/toggle-view", rev = "d326a53" }, { use = "yazi-rs/plugins:full-border", rev = "ad52adf" }, { use = "hankertrix/augment-command", rev = "57adf8d" }, { use = "dedukun/relative-motions", rev = "d8dd68f" }, { use = "KKV9/compress", rev = "60b24af" }, { use = "dedukun/bookmarks", rev = "600f87c" }, { use = "yazi-rs/plugins:smart-filter", rev = "ad52adf" }, { use = "AnirudhG07/custom-shell", rev = "d00d2f9" }]
+deps = [{ use = "yazi-rs/plugins:git", rev = "fb3ae90" }, { use = "yazi-rs/plugins:jump-to-char", rev = "fb3ae90" } , { use = "dawsers/toggle-view", rev = "d326a53" }, { use = "yazi-rs/plugins:full-border", rev = "fb3ae90" }, { use = "hankertrix/augment-command", rev = "fe145ac" }, { use = "dedukun/relative-motions", rev = "1d6d686" }, { use = "KKV9/compress", rev = "60b24af" }, { use = "dedukun/bookmarks", rev = "600f87c" }, { use = "yazi-rs/plugins:smart-filter", rev = "fb3ae90" }, { use = "AnirudhG07/custom-shell", rev = "d00d2f9" }]
 
 [flavor]
 deps = []
