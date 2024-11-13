@@ -7,6 +7,7 @@ function y --wraps yazi --description 'lowest common yazi command'
             zoxide add -- "$foldername"
         end
         builtin cd -- "$cwd"
+        builtin echo $cwd
     end
     rm -f -- "$tmp"
 end
