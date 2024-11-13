@@ -103,6 +103,7 @@ THE THREE TYPES OF ALIAS
     alias lf y
     alias mail cmdg
     alias Y 'sudo -E fish -c "y"'
+    alias yfp y-filepicker
 
 
     if type -q omf
