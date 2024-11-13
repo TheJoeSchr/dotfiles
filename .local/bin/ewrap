@@ -14,7 +14,7 @@ if [ -n "$TMUX" ]; then
   # $cmd "$*"
 else
   cmd="nvim"
-  session="nnn"
+  session="yazi"
   echo "else TMUX " >>/tmp/ewrap.log
   # Remove option --tab for new window
   if [ $XDG_SESSION_TYPE != "tty" ]; then
