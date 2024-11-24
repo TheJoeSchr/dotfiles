@@ -185,12 +185,23 @@ return {
       vim.fn["firenvim#install"](0)
     end,
   },
+  -- LUA
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "lewis6991/gitsigns.nvim",
       "SmiteshP/nvim-navic",
     },
+  },
+  -- DART
+  {
+    "nvim-flutter/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- optional for vim.ui.select
+    },
+    config = true,
   },
   -- change trouble config
   {
@@ -199,14 +210,6 @@ return {
     opts = { use_diagnostic_signs = true },
   },
 
-  -- Use your favorite package manager to install, for example in lazy.nvim
-  -- {
-  --   "tjdevries/sg.nvim",
-  --   build = "cargo build --workspace",
-  --   dependencies = { "nvim-lua/plenary.nvim" },
-  --   -- nnoremap <space>ss <cmd>lua require('sg.telescope').fuzzy_search_results()<CR>
-  --   keys = { { "<leader>sS", "<cmd>lua require('sg.telescope').fuzzy_search_results()<CR>", desc = "Symbols Outline" } },
-  -- },
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",

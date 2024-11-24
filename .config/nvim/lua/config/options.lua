@@ -25,6 +25,9 @@ opt.expandtab = true -- Use spaces instead of tabs
 opt.tabstop = 2
 opt.shiftwidth = 2
 
+-- views can only be fully collapsed with the global statusline (avante)
+opt.laststatus = 3
+
 -- TJ kickstarter defaults
 -- Allow resizing of the window on session restore
 opt.sessionoptions:append({ "resize" })
