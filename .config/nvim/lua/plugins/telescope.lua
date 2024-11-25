@@ -98,6 +98,7 @@ return {
       telescope.load_extension("gh")
       telescope.load_extension("file_browser")
       telescope.load_extension("lazy")
+      telescope.load_extension("flutter")
       return opts
     end,
   },
