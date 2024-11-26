@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 cmd=$(which "vmux")
-# cmd="nvr"
+# cmd="VMUX_DEBUG=1 vmux"
 echo "start log: $*" >/tmp/ewrap.log
 if [ -z "$*" ]; then
   echo "if empty " >>/tmp/ewrap.log
@@ -9,9 +9,9 @@ fi
 if [ -n "$TMUX" ]; then
   echo "if TMUX " >>/tmp/ewrap.log
   # tmux session running
-  # echo "$cmd"
+  echo "$cmd \"$*\"" >>/tmp/ewrap.log
   tmux split-window -h "$cmd \"$*\""
-  # $cmd "$*"
+  # VMUX_DEBUG=1 $cmd "$*"
 else
   cmd="nvim"
   session="yazi"
