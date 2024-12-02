@@ -51,22 +51,22 @@ desc = "Archive selected files"
 # toggle-view
 [[manager.prepend_keymap]]
 on = [",","t","1"]
-run = "plugin --sync toggle-view --args=parent"
+run = "plugin toggle-view --args=parent"
 desc = "Toggle parent" 
 
 [[manager.prepend_keymap]]
 on = [",","t","2"]
-run = "plugin --sync toggle-view --args=current"
+run = "plugin toggle-view --args=current"
 desc = "Toggle current" 
 
 [[manager.prepend_keymap]]
 on = [",","t","3"]
-run = "plugin --sync toggle-view --args=preview"
+run = "plugin toggle-view --args=preview"
 desc = "Toggle preview" 
 
 [[manager.prepend_keymap]]
 on   = "p"
-run  = "plugin --sync smart-paste"
+run  = "plugin smart-paste"
 desc = "Paste into the hovered directory or CWD"
 
 # Augmented Keys
