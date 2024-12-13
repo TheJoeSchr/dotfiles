@@ -22,7 +22,7 @@
   "dressing.nvim": { "branch": "master", "commit": "fc78a3ca96f4db9f8893bb7e2fd9823e0780451b" },
   "edge": { "branch": "master", "commit": "5b5a0683be0d9d8023a874ebf7e230095f4e1bae" },
   "everforest": { "branch": "master", "commit": "44c2659ffb6d26a994346974b4d12e988f43e5e5" },
-  "firenvim": { "branch": "master", "commit": "f2dd6d3bcf3309a7dd30c79b3b3c03ab55cea6e2" },
+  "firenvim": { "branch": "master", "commit": "64f9389b88c8b0c7667d45c171a5f25c42d852fb" },
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "flutter-tools.nvim": { "branch": "main", "commit": "818ad42b204cda5317baa399377ea30b35f6f8be" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
