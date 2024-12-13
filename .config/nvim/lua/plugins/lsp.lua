@@ -3,16 +3,8 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = false },
-      { "folke/neodev.nvim", opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      {
-        "hrsh7th/cmp-nvim-lsp",
-        cond = function()
-          return require("lazyvim.util").has("nvim-cmp")
-        end,
-      },
     },
     opts = {
       diagnostics = {
@@ -51,13 +43,7 @@ return {
     },
     config = function(_, opts)
       local servers = opts.servers
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        require("cmp_nvim_lsp").default_capabilities(),
-        opts.capabilities or {}
-      )
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
@@ -73,7 +59,9 @@ return {
             return
           end
         end
-        require("lspconfig")[server].setup(server_opts)
+        if require("lspconfig")[server] then
+          require("lspconfig")[server].setup(server_opts)
+        end
       end
 
       -- get all the servers that are available through mason-lspconfig
