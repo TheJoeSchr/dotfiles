@@ -26,6 +26,17 @@ return {
     },
   },
 
+  -- Add blink.nvim for completion
+  {
+    "folke/blink.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- Configuration for blink.nvim
+      delay = 100,
+      repeat_count = 3,
+    },
+  },
+
   -- cody and sourcegraph
   {
     "sourcegraph/sg.nvim",
