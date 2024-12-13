@@ -36,47 +36,29 @@ return {
 
       -- Set up keymaps
       local function set_keymaps(bufnr)
-        wk.register({
-          g = {
-            name = "LSP goto",
-            d = {
-              function()
-                fzf.lsp_definitions()
-              end,
-              "definitions",
-            },
-            D = { "<cmd>LspTypeDef<CR>", "type definition" },
-            L = { "<cmd>LspDeclaration<CR>", "declaration" },
-            i = {
-              function()
-                fzf.lsp_implementations()
-              end,
-              "implementations",
-            },
-            r = {
-              function()
-                fzf.lsp_references()
-              end,
-              "references",
-            },
-          },
-          c = {
-            name = "LSP code changes",
-            a = { function() vim.lsp.buf.code_action() end, "code actions" },
-            f = { "<cmd>LspFormatting<CR>", "format" },
-            r = { "<cmd>LspRename<CR>", "rename variable" },
-          },
-        }, {
-          prefix = "<leader>",
-          buffer = bufnr,
-        })
+        -- LSP goto mappings
+        wk.add({
+          ["<leader>g"] = { name = "LSP goto" },
+          ["<leader>gd"] = { function() fzf.lsp_definitions() end, "definitions" },
+          ["<leader>gD"] = { "<cmd>LspTypeDef<CR>", "type definition" },
+          ["<leader>gL"] = { "<cmd>LspDeclaration<CR>", "declaration" },
+          ["<leader>gi"] = { function() fzf.lsp_implementations() end, "implementations" },
+          ["<leader>gr"] = { function() fzf.lsp_references() end, "references" },
+        }, { buffer = bufnr })
 
-        wk.register({
+        -- LSP code changes mappings
+        wk.add({
+          ["<leader>c"] = { name = "LSP code changes" },
+          ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, "code actions" },
+          ["<leader>cf"] = { "<cmd>LspFormatting<CR>", "format" },
+          ["<leader>cr"] = { "<cmd>LspRename<CR>", "rename variable" },
+        }, { buffer = bufnr })
+
+        -- Other LSP mappings
+        wk.add({
           K = { "<cmd>LspHover<CR>", "LSP hover" },
           ["<C-s>"] = { "<cmd>LspSignatureHelp<CR>", "LSP signature help" },
-        }, {
-          buffer = bufnr,
-        })
+        }, { buffer = bufnr })
       end
 
       -- Set up capabilities
