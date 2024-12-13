@@ -1,5 +1,6 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
+require("plugins.firenvim")
 -- require("config.plugins.lsp-format").setup()
 -- require("config.plugins.neodev").setup()
 -- require("config.plugins.lsp").setup()
