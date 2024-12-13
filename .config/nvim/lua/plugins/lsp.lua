@@ -12,6 +12,7 @@ return {
       "ibhagwan/fzf-lua",
     },
     config = function()
+      local vim = vim
       local M = {}
       local cmp_lsp = require('cmp_nvim_lsp')
       local lsp_format = require('lsp-format')
