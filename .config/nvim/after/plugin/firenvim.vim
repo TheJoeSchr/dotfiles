@@ -1,4 +1,6 @@
   " ---------------- FIRENVIM --------------
+  let g:timer_started = v:false  " Initialize timer flag
+  
   let g:firenvim_config = {
       \ 'globalSettings': {
       \  },
@@ -25,27 +27,31 @@
     " Don't use with rich text editors (.g. Gmail, Outlook, Slack…) as a general rule,
     let fc['.*'] = { 'takeover': 'nonempty', 'selector': 'textarea:not([readonly]), div[role="textbox"]'}
 
-    " Automatically save changes to the page
-    " https://github.com/glacambre/firenvim#automatically-syncing-changes-to-the-page
-    au TextChanged * ++nested write
-    au TextChangedI * ++nested write
-
-    " Slow on large files. This more sophisticated approach will throttle writes:
-    " let g:timer_started = v:false
+    " Throttled auto-save functionality
     function! My_Write(timer) abort
       let g:timer_started = v:false
-      write
+      try
+        write
+      catch
+        echohl ErrorMsg
+        echo "Failed to save: " . v:exception
+        echohl None
+      endtry
     endfunction
 
     function! Delay_My_Write() abort
       if g:timer_started
         return
-      end
+      endif
       let g:timer_started = v:true
       call timer_start(10000, 'My_Write')
     endfunction
-    
-    au TextChanged * ++nested call Delay_My_Write()
-    au TextChangedI * ++nested call Delay_My_Write()
+
+    " Set up auto-save triggers with throttling
+    augroup FireNVimAutoSave
+      autocmd!
+      autocmd TextChanged * ++nested call Delay_My_Write()
+      autocmd TextChangedI * ++nested call Delay_My_Write()
+    augroup END
   endif
 
