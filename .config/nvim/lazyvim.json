@@ -1,6 +1,9 @@
 {
   "extras": [
-
+    "lazyvim.plugins.extras.editor.fzf",
+    "lazyvim.plugins.extras.lang.clojure",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.toml"
   ],
   "news": {
     "NEWS.md": "10960"
