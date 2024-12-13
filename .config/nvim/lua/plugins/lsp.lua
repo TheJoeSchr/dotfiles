@@ -12,54 +12,68 @@ return {
       "ibhagwan/fzf-lua",
     },
     config = function()
-      local vim = vim
       local M = {}
-      local cmp_lsp = require('cmp_nvim_lsp')
-      local lsp_format = require('lsp-format')
-      local nvim_lsp = require('lspconfig')
-      local navic = require('nvim-navic')
-      local wk = require('which-key')
-      local fzf = require('fzf-lua')
+      local cmp_lsp = require("cmp_nvim_lsp")
+      local lsp_format = require("lsp-format")
+      local nvim_lsp = require("lspconfig")
+      local navic = require("nvim-navic")
+      local wk = require("which-key")
+      local fzf = require("fzf-lua")
 
       -- Set up LSP commands
       local function set_commands()
-        vim.cmd('command! LspDeclaration lua vim.lsp.buf.declaration()')
-        vim.cmd('command! LspDef lua vim.lsp.buf.definition()')
-        vim.cmd('command! LspFormatting lua vim.lsp.buf.formatting()')
-        vim.cmd('command! LspCodeAction lua vim.lsp.buf.code_action()')
-        vim.cmd('command! LspHover lua vim.lsp.buf.hover()')
-        vim.cmd('command! LspRename lua vim.lsp.buf.rename()')
-        vim.cmd('command! LspRefs lua vim.lsp.buf.references()')
-        vim.cmd('command! LspTypeDef lua vim.lsp.buf.type_definition()')
-        vim.cmd('command! LspImplementation lua vim.lsp.buf.implementation()')
-        vim.cmd('command! LspSignatureHelp lua vim.lsp.buf.signature_help()')
+        vim.cmd("command! LspDeclaration lua vim.lsp.buf.declaration()")
+        vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
+        vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
+        vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
+        vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
+        vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
+        vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
+        vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
+        vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
+        vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
       end
 
       -- Set up keymaps
       local function set_keymaps(bufnr)
         wk.register({
           g = {
-            name = 'LSP goto',
-            d = { function() fzf.lsp_definitions() end, 'definitions' },
-            D = { '<cmd>LspTypeDef<CR>', 'type definition' },
-            L = { '<cmd>LspDeclaration<CR>', 'declaration' },
-            i = { function() fzf.lsp_implementations() end, 'implementations' },
-            r = { function() fzf.lsp_references() end, 'references' },
+            name = "LSP goto",
+            d = {
+              function()
+                fzf.lsp_definitions()
+              end,
+              "definitions",
+            },
+            D = { "<cmd>LspTypeDef<CR>", "type definition" },
+            L = { "<cmd>LspDeclaration<CR>", "declaration" },
+            i = {
+              function()
+                fzf.lsp_implementations()
+              end,
+              "implementations",
+            },
+            r = {
+              function()
+                fzf.lsp_references()
+              end,
+              "references",
+            },
           },
           c = {
-            name = 'LSP code changes',
-            a = { '<cmd>LspCodeAction<CR>', 'code actions' },
-            f = { '<cmd>LspFormatting<CR>', 'format' },
-            r = { '<cmd>LspRename<CR>', 'rename variable' },
+            name = "LSP code changes",
+            a = { "<cmd>LspCodeAction<CR>", "code actions" },
+            f = { "<cmd>LspFormatting<CR>", "format" },
+            r = { "<cmd>LspRename<CR>", "rename variable" },
           },
         }, {
-          prefix = '<leader>',
+          prefix = "<leader>",
           buffer = bufnr,
         })
-        
+
         wk.register({
-          K = { '<cmd>LspHover<CR>', 'LSP hover' },
-          ['<C-s>'] = { '<cmd>LspSignatureHelp<CR>', 'LSP signature help' },
+          K = { "<cmd>LspHover<CR>", "LSP hover" },
+          ["<C-s>"] = { "<cmd>LspSignatureHelp<CR>", "LSP signature help" },
         }, {
           buffer = bufnr,
         })
@@ -79,7 +93,7 @@ return {
           return
         end
 
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
         set_commands()
         set_keymaps(bufnr)
 
