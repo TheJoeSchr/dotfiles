@@ -12,6 +12,7 @@ return {
       "ibhagwan/fzf-lua",
     },
     config = function()
+      local vim = vim
       local M = {}
       local cmp_lsp = require("cmp_nvim_lsp")
       local lsp_format = require("lsp-format")
@@ -36,6 +37,7 @@ return {
 
       -- Set up keymaps
       local function set_keymaps(bufnr)
+        print("Setting up LSP keymaps for buffer: " .. bufnr)
         -- LSP goto mappings
         wk.add({
           ["<leader>g"] = { name = "LSP goto" },
