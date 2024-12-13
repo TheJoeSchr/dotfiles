@@ -17,7 +17,7 @@ return {
     -- Plugin setup
     require("codecompanion").setup({
       -- General settings
-      load_on_startup = true, -- Ensures the plugin loads at startup
+      load_on_startup = false, -- Ensures the plugin loads at startup
 
       -- Adapter configuration
       adapter = {
