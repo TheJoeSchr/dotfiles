@@ -3,7 +3,7 @@ local wk = require("which-key")
 
 local function set_keymaps()
   wk.add({
-    ["<leader>t"] = { name = "Trouble" },
+    ["<leader>t"] = { group = "Trouble" },
     ["<leader>tt"] = { "<cmd>Trouble<cr>", "open / jump to" },
     ["<leader>tc"] = { "<cmd>TroubleClose<cr>", "close" },
     ["<leader>tw"] = { "<cmd>Trouble workspace_diagnostics<cr>", "workspace diagnostics" },

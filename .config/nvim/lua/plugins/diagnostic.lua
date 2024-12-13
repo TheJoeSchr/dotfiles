@@ -8,7 +8,7 @@ end
 
 local function set_keymaps()
   wk.add({
-    ["<leader>x"] = { name = "Diagnostics" },
+    ["<leader>x"] = { group = "Diagnostics" },
     ["<leader>xL"] = { "<cmd>DiagnosticLine<CR>", "show 'Diagnostics' for current line" },
     ["<leader>xn"] = { "<cmd>DiagnosticNext<CR>", "jump 'Diagnostics' to next" },
     ["<leader>xp"] = { "<cmd>DiagnosticPrev<CR>", "jump 'Diagnostics' to previous" },
