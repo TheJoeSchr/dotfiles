@@ -185,7 +185,6 @@ return {
 
   { "ThePrimeagen/refactoring.nvim" },
   -- easily jump to any location and enhanced f/t motions for Leap
-  { "ggandor/leap.nvim" },
   { "tpope/vim-surround" },
   { "godlygeek/tabular" }, -- Quickly align text by pattern
   { "tpope/vim-repeat" }, -- Repeat actions better
