@@ -31,7 +31,7 @@ local neotest = require("neotest").setup({
 
 local wk = require("which-key")
 wk.add({
-  ["<localleader>t"] = { name = "Neotest" },
+  ["<localleader>t"] = { group = "Neotest" },
   ["<localleader>ta"] = { "<cmd>lua require('neotest').run.attach()<cr>", "Attach" },
   ["<localleader>tf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run File" },
   ["<localleader>tF"] = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Debug File" },

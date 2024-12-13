@@ -40,7 +40,7 @@ return {
         print("Setting up LSP keymaps for buffer: " .. bufnr)
         -- LSP goto mappings
         wk.add({
-          ["<leader>g"] = { name = "LSP goto" },
+          ["<leader>g"] = { group = "LSP goto" },
           ["<leader>gd"] = { function() fzf.lsp_definitions() end, "definitions" },
           ["<leader>gD"] = { "<cmd>LspTypeDef<CR>", "type definition" },
           ["<leader>gL"] = { "<cmd>LspDeclaration<CR>", "declaration" },
@@ -50,7 +50,7 @@ return {
 
         -- LSP code changes mappings
         wk.add({
-          ["<leader>c"] = { name = "LSP code changes" },
+          ["<leader>c"] = { group = "LSP code changes" },
           ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, "code actions" },
           ["<leader>cf"] = { "<cmd>LspFormatting<CR>", "format" },
           ["<leader>cr"] = { "<cmd>LspRename<CR>", "rename variable" },
