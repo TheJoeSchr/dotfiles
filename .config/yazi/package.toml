@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "yazi-rs/plugins:git", rev = "38418dd" }, { use = "yazi-rs/plugins:jump-to-char", rev = "38418dd" } , { use = "dawsers/toggle-view", rev = "d326a53" }, { use = "yazi-rs/plugins:full-border", rev = "38418dd" }, { use = "hankertrix/augment-command", rev = "fe145ac" }, { use = "dedukun/relative-motions", rev = "1d6d686" }, { use = "KKV9/compress", rev = "60b24af" }, { use = "dedukun/bookmarks", rev = "600f87c" }, { use = "yazi-rs/plugins:smart-filter", rev = "38418dd" }, { use = "AnirudhG07/custom-shell", rev = "d7fb2b3" }]
+deps = [{ use = "yazi-rs/plugins:git", rev = "62f0789" }, { use = "yazi-rs/plugins:jump-to-char", rev = "62f0789" } , { use = "dawsers/toggle-view", rev = "d326a53" }, { use = "yazi-rs/plugins:full-border", rev = "62f0789" }, { use = "hankertrix/augment-command", rev = "369f992" }, { use = "dedukun/relative-motions", rev = "df97039" }, { use = "KKV9/compress", rev = "60b24af" }, { use = "dedukun/bookmarks", rev = "20ece7e" }, { use = "yazi-rs/plugins:smart-filter", rev = "62f0789" }, { use = "AnirudhG07/custom-shell", rev = "d7fb2b3" }]
 
 [flavor]
 deps = []
