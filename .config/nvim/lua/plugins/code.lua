@@ -56,68 +56,19 @@ vim.api.nvim_set_keymap(
 --
 local function set_keymaps(refactoring)
   local wk = require("which-key")
-  wk.register({
-    r = {
-      name = "refactoring",
-      e = {
-        function()
-          refactoring.refactor("Extract Function")
-        end,
-        "[E]xtract function",
-      },
-      f = {
-        function()
-          refactoring.refactor("Extract Function To [F]ile")
-        end,
-        "extract function to file",
-      },
-      v = {
-        function()
-          refactoring.refactor("Extract Variable")
-        end,
-        "extract [V]ariable",
-      },
-      i = {
-        function()
-          refactoring.refactor("Inline Variable")
-        end,
-        "[I]nline variable",
-      },
-      r = {
-        function()
-          refactoring.select_refactor()
-        end,
-        "select [R]efactoring",
-      },
-    },
-  }, {
-    prefix = "<leader>",
-    mode = "v",
+  wk.add({
+    ["<leader>r"] = { name = "refactoring" },
+    ["<leader>re"] = { function() refactoring.refactor("Extract Function") end, "[E]xtract function", mode = "v" },
+    ["<leader>rf"] = { function() refactoring.refactor("Extract Function To [F]ile") end, "extract function to file", mode = "v" },
+    ["<leader>rv"] = { function() refactoring.refactor("Extract Variable") end, "extract [V]ariable", mode = "v" },
+    ["<leader>ri"] = { function() refactoring.refactor("Inline Variable") end, "[I]nline variable", mode = "v" },
+    ["<leader>rr"] = { function() refactoring.select_refactor() end, "select [R]efactoring", mode = "v" },
   })
-  wk.register({
-    r = {
-      name = "refactoring",
-      b = {
-        function()
-          refactoring.refactor("Extract Block")
-        end,
-        "extract [B]lock",
-      },
-      f = {
-        function()
-          refactoring.refactor("Extract Block To File")
-        end,
-        "extract function to [F]ile",
-      },
-      i = {
-        function()
-          refactoring.refactor("Inline Variable")
-        end,
-        "[I]nline variable",
-      },
-    },
-  }, {
-    prefix = "<leader>",
+  wk.add({
+    ["<leader>r"] = { name = "refactoring" },
+    ["<leader>rb"] = { function() refactoring.refactor("Extract Block") end, "extract [B]lock" },
+    ["<leader>rf"] = { function() refactoring.refactor("Extract Block To File") end, "extract function to [F]ile" },
+    ["<leader>ri"] = { function() refactoring.refactor("Inline Variable") end, "[I]nline variable" },
   })
 end
 

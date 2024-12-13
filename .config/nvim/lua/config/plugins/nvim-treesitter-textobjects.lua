@@ -14,9 +14,9 @@ local function set_keymaps()
     [']]'] = { '<cmd>TSTextobjectGotoNextEnd @class.outer<CR>', 'Go to next class end' },
     ['[]'] = { '<cmd>TSTextobjectGotoPreviousEnd @class.outer<CR>', 'Go to next class end' },
   }
-  wk.register(mappings, { mode = 'n' })
-  wk.register(mappings, { mode = 'v' })
-  wk.register(mappings, { mode = 'o' })
+  wk.add(mappings, { mode = 'n' })
+  wk.add(mappings, { mode = 'v' })
+  wk.add(mappings, { mode = 'o' })
 end
 
 function M.setup()
