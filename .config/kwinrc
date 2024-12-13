@@ -127,6 +127,7 @@ kwin4_effect_translucencyEnabled=true
 kwin4_effect_windowapertureEnabled=false
 lattewindowcolorsEnabled=true
 minimizeallEnabled=false
+poloniumEnabled=false
 resizeEnabled=true
 screenedgeEnabled=false
 sheetEnabled=true
@@ -174,6 +175,9 @@ screenGapRight=1
 screenGapTop=1
 tileLayoutGap=15
 
+[Script-polonium]
+MaximizeSingle=true
+
 [SubSession: 9be168ab-49bb-4c0d-8c54-34dd672fe9f3]
 active=-1
 count=0
@@ -186,6 +190,7 @@ count=0
 ActivitiesMode=0
 LayoutName=big_icons
 MinimizedMode=1
+MultiScreenMode=1
 OrderMinimizedMode=1
 SwitchingMode=1
 
@@ -218,6 +223,9 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][451d502f-2066-5957-89ef-b54fceefc1df]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][55ec361b-584e-5118-85b5-e017cf4f7509]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][58ca410b-ce44-58d6-82b9-fefe44aba0e3]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -234,7 +242,7 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][db9ce450-307e-5e6b-9e32-7910740bab19]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+tiles={"layoutDirection":"horizontal","tiles":[]}
 
 [Tiling][fab0b009-5dc2-5f2f-8b24-8c53da4c339b]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
