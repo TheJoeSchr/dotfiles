@@ -30,24 +30,18 @@ local neotest = require("neotest").setup({
 })
 
 local wk = require("which-key")
-wk.register({
-  t = {
-    name = "Neotest",
-
-    a = { "<cmd>lua require('neotest').run.attach()<cr>", "Attach" },
-    f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run File" },
-    F = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Debug File" },
-    l = { "<cmd>lua require('neotest').run.run_last()<cr>", "Run Last" },
-    L = { "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>", "Debug Last" },
-    t = { "<cmd>lua require('neotest').run.run()<cr>", "Run Nearest" },
-    d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug Nearest" },
-    b = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug Nearest" },
-    o = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "Output" },
-    S = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop" },
-    s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Summary" },
-    w = { "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", "[W]orkspace Symbols" },
-  },
-}, {
-  prefix = "<localleader>",
-  -- buffer = bufnr,
+wk.add({
+  ["<localleader>t"] = { name = "Neotest" },
+  ["<localleader>ta"] = { "<cmd>lua require('neotest').run.attach()<cr>", "Attach" },
+  ["<localleader>tf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run File" },
+  ["<localleader>tF"] = { "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Debug File" },
+  ["<localleader>tl"] = { "<cmd>lua require('neotest').run.run_last()<cr>", "Run Last" },
+  ["<localleader>tL"] = { "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>", "Debug Last" },
+  ["<localleader>tt"] = { "<cmd>lua require('neotest').run.run()<cr>", "Run Nearest" },
+  ["<localleader>td"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug Nearest" },
+  ["<localleader>tb"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug Nearest" },
+  ["<localleader>to"] = { "<cmd>lua require('neotest').output.open({ enter = true })<cr>", "Output" },
+  ["<localleader>tS"] = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop" },
+  ["<localleader>ts"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Summary" },
+  ["<localleader>tw"] = { "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", "[W]orkspace Symbols" },
 })
