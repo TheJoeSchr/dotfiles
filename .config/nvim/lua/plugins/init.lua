@@ -286,4 +286,10 @@ return {
       },
     },
   },
+  {
+    "ibhagwan/fzf-lua",
+    keys = {
+      { "<C-p>", "<cmd>FzfLua files<cr>", desc = "FzfLua Files" },
+    },
+  },
 }
