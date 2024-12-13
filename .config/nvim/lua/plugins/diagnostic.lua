@@ -7,15 +7,17 @@ local function set_commands()
 end
 
 local function set_keymaps()
-  wk.add({
-    ["<leader>x"] = { group = "Diagnostics" },
-    ["<leader>xL"] = { "<cmd>DiagnosticLine<CR>", "show 'Diagnostics' for current line" },
-    ["<leader>xn"] = { "<cmd>DiagnosticNext<CR>", "jump 'Diagnostics' to next" },
-    ["<leader>xp"] = { "<cmd>DiagnosticPrev<CR>", "jump 'Diagnostics' to previous" },
-    ["<leader>xE"] = { "<cmd>DiagnosticLine<CR>", "show 'Diagnostics' diagnostic for current line" },
+  wk.register({
+    ["<leader>x"] = {
+      name = "Diagnostics",
+      L = { "<cmd>DiagnosticLine<CR>", "Show diagnostics for current line" },
+      n = { "<cmd>DiagnosticNext<CR>", "Jump to next diagnostic" },
+      p = { "<cmd>DiagnosticPrev<CR>", "Jump to previous diagnostic" },
+      E = { "<cmd>DiagnosticLine<CR>", "Show diagnostic details" },
+    },
   })
-  wk.add({
-    ["E"] = { "<cmd>DiagnosticLine<CR>", "show diagnostic for current line" },
+  wk.register({
+    E = { "<cmd>DiagnosticLine<CR>", "Show diagnostic for current line" },
   })
 end
 
