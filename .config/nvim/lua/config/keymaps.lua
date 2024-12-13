@@ -30,7 +30,7 @@ vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- MINE
-vim.keymap.set("n", "<C-s>", "<cmd>LspZeroFormat<CR>")
+vim.keymap.set("n", "<C-s>", "<cmd>lua vim.lsp.buf.format()<CR>")
 -- save (and autoformat)
 vim.keymap.set("n", "<C-S>", "<cmd>write<CR>")
 -- -- Ctrl-y to scroll down (like in chrome/onehand)
