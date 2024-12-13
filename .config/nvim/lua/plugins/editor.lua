@@ -75,17 +75,6 @@ vim.keymap.set(
   "<Plug>(easymotion-b)",
   { noremap = true, silent = false, expr = false }
 )
--- local wk = require("which-key")
---
--- wk.register({
---   e = {
---     name = "Easymotion",
---   },
---   {
---     prefix = "<leader>",
---   },
--- })
---
 require("which-key").add({
   { "<leader>fgr", ":GrugFar<cr>", desc = "Grug Find and Replace", mode = "n" },
 })

@@ -57,7 +57,7 @@ vim.api.nvim_set_keymap(
 local function set_keymaps(refactoring)
   local wk = require("which-key")
   wk.add({
-    ["<leader>r"] = { name = "refactoring" },
+    ["<leader>r"] = { group = "refactoring" },
     ["<leader>re"] = { function() refactoring.refactor("Extract Function") end, "[E]xtract function", mode = "v" },
     ["<leader>rf"] = { function() refactoring.refactor("Extract Function To [F]ile") end, "extract function to file", mode = "v" },
     ["<leader>rv"] = { function() refactoring.refactor("Extract Variable") end, "extract [V]ariable", mode = "v" },
