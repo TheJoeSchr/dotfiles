@@ -25,7 +25,7 @@ return {
         vim.cmd("command! LspDeclaration lua vim.lsp.buf.declaration()")
         vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
         vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
-        vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
+        vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action({ context = { only = { 'quickfix', 'refactor', 'source' } } })")
         vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
         vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
         vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
@@ -62,7 +62,7 @@ return {
           },
           c = {
             name = "LSP code changes",
-            a = { "<cmd>LspCodeAction<CR>", "code actions" },
+            a = { function() vim.lsp.buf.code_action() end, "code actions" },
             f = { "<cmd>LspFormatting<CR>", "format" },
             r = { "<cmd>LspRename<CR>", "rename variable" },
           },
