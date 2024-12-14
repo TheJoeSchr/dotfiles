@@ -54,7 +54,6 @@ return {
 
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
         set_commands()
-        set_keymaps(bufnr)
 
         if client.server_capabilities.documentSymbolProvider then
           navic.attach(client, bufnr)
