@@ -41,77 +41,27 @@ wk.add({
 wk.add({
   ["<leader>g"] = {
     name = "LSP goto",
-    d = {
-      function()
-        require("fzf-lua").lsp_definitions()
-      end,
-      "definitions",
-    },
-    D = {
-      function()
-        vim.lsp.buf.type_definition()
-      end,
-      "type definition",
-    },
-    L = {
-      function()
-        vim.lsp.buf.declaration()
-      end,
-      "declaration",
-    },
-    i = {
-      function()
-        require("fzf-lua").lsp_implementations()
-      end,
-      "implementations",
-    },
-    r = {
-      function()
-        require("fzf-lua").lsp_references()
-      end,
-      "references",
-    },
+    d = { "<cmd>lua require('fzf-lua').lsp_definitions()<CR>", "definitions" },
+    D = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "type definition" },
+    L = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "declaration" },
+    i = { "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", "implementations" },
+    r = { "<cmd>lua require('fzf-lua').lsp_references()<CR>", "references" },
   },
 })
 
 wk.add({
   ["<leader>c"] = {
     name = "LSP code changes",
-    a = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "code actions",
-    },
-    f = {
-      function()
-        vim.lsp.buf.formatting()
-      end,
-      "format",
-    },
-    r = {
-      function()
-        vim.lsp.buf.rename()
-      end,
-      "rename variable",
-    },
+    a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "code actions" },
+    f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
+    r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename variable" },
   },
 })
 
 -- Other LSP mappings
 wk.add({
-  K = {
-    function()
-      vim.lsp.buf.hover()
-    end,
-    "LSP hover",
-  },
-  ["<C-s>"] = {
-    function()
-      vim.lsp.buf.signature_help()
-    end,
-    "LSP signature help",
-  },
+  K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "LSP hover" },
+  ["<C-s>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "LSP signature help" },
 })
 
 -- Git Operations (Fugitive)
