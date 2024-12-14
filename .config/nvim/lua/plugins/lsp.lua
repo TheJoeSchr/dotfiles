@@ -33,33 +33,9 @@ return {
         vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
       end
 
-      -- Set up keymaps
-      local function set_keymaps(bufnr)
-        print("Setting up LSP keymaps for buffer: " .. bufnr)
-        -- LSP goto mappings
-        wk.add({
-          ["<leader>g"] = { group = "LSP goto" },
-          ["<leader>gd"] = { function() fzf.lsp_definitions() end, "definitions" },
-          ["<leader>gD"] = { "<cmd>LspTypeDef<CR>", "type definition" },
-          ["<leader>gL"] = { "<cmd>LspDeclaration<CR>", "declaration" },
-          ["<leader>gi"] = { function() fzf.lsp_implementations() end, "implementations" },
-          ["<leader>gr"] = { function() fzf.lsp_references() end, "references" },
-        }, { buffer = bufnr })
-
-        -- LSP code changes mappings
-        wk.add({
-
-          ["<leader>c"] = { group = "LSP code changes" },
-          ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, "code actions" },
-          ["<leader>cf"] = { "<cmd>LspFormatting<CR>", "format" },
-          ["<leader>cr"] = { "<cmd>LspRename<CR>", "rename variable" },
-        }, { buffer = bufnr })
-
-        -- Other LSP mappings
-        wk.add({
-          K = { "<cmd>LspHover<CR>", "LSP hover" },
-          ["<C-s>"] = { "<cmd>LspSignatureHelp<CR>", "LSP signature help" },
-        }, { buffer = bufnr })
+      -- Set up buffer-local LSP functionality
+      local function set_buffer_lsp_functions(bufnr)
+        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
       end
 
       -- Set up capabilities
