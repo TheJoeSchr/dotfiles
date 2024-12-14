@@ -47,14 +47,18 @@ wk.add({
     i = { "<cmd>lua require('fzf-lua').lsp_implementations()<CR>", "implementations" },
     r = { "<cmd>lua require('fzf-lua').lsp_references()<CR>", "references" },
   },
-})
-
-wk.add({
   ["<leader>c"] = {
     name = "LSP code changes",
     a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "code actions" },
     f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
     r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename variable" },
+  },
+  ["<leader>x"] = {
+    name = "Diagnostics",
+    x = { "<cmd>TroubleToggle document_diagnostics<CR>", "Document Diagnostics" },
+    w = { "<cmd>TroubleToggle workspace_diagnostics<CR>", "Workspace Diagnostics" },
+    n = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic" },
+    p = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous Diagnostic" },
   },
 })
 
