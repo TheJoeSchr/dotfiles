@@ -7,14 +7,12 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "lukas-reineke/lsp-format.nvim",
       "SmiteshP/nvim-navic",
-      "hrsh7th/cmp-nvim-lsp",
       "folke/which-key.nvim",
       "ibhagwan/fzf-lua",
     },
     config = function()
       local vim = vim
       local M = {}
-      local cmp_lsp = require("cmp_nvim_lsp")
       local lsp_format = require("lsp-format")
       local nvim_lsp = require("lspconfig")
       local navic = require("nvim-navic")
@@ -64,7 +62,7 @@ return {
       end
 
       -- Set up capabilities
-      local capabilities = cmp_lsp.default_capabilities()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
         lineFoldingOnly = true,
