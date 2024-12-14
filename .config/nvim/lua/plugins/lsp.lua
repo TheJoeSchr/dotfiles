@@ -48,6 +48,7 @@ return {
 
         -- LSP code changes mappings
         wk.add({
+
           ["<leader>c"] = { group = "LSP code changes" },
           ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, "code actions" },
           ["<leader>cf"] = { "<cmd>LspFormatting<CR>", "format" },
