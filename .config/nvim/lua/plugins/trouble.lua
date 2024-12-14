@@ -2,7 +2,7 @@ local trouble = require("trouble")
 local wk = require("which-key")
 
 local function set_keymaps()
-  wk.register({
+  wk.add({
     ["<leader>t"] = {
       name = "Trouble",
       t = { "<cmd>Trouble<cr>", "Open/Jump to" },

@@ -7,7 +7,7 @@ local function set_commands()
 end
 
 local function set_keymaps()
-  wk.register({
+  wk.add({
     ["<leader>x"] = {
       name = "Diagnostics",
       L = { "<cmd>DiagnosticLine<CR>", "Show diagnostics for current line" },
@@ -16,7 +16,7 @@ local function set_keymaps()
       E = { "<cmd>DiagnosticLine<CR>", "Show diagnostic details" },
     },
   })
-  wk.register({
+  wk.add({
     E = { "<cmd>DiagnosticLine<CR>", "Show diagnostic for current line" },
   })
 end

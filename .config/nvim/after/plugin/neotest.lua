@@ -30,7 +30,7 @@ local neotest = require("neotest").setup({
 })
 
 local wk = require("which-key")
-wk.register({
+wk.add({
   ["<localleader>t"] = {
     name = "Neotest",
     a = { "<cmd>lua require('neotest').run.attach()<cr>", "Attach" },
