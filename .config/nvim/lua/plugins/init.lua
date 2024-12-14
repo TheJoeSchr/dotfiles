@@ -108,9 +108,6 @@ return {
     },
     -- setting the keybinding for LazyGit with 'keys' is recommended in
     -- order to load the plugin when the command is run for the first time
-    keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-    },
   },
   -- git diff branches
   -- https://stackoverflow.com/questions/13304469/how-can-i-diff-two-branches-with-fugitive/75099935#75099935
@@ -283,6 +280,11 @@ return {
     "ibhagwan/fzf-lua",
     keys = {
       { "<C-p>", "<cmd>FzfLua files<cr>", desc = "FzfLua Files" },
+    },
+    config = {
+      require("fzf-lua").setup({
+        fzf_opts = { ["--cycle"] = true },
+      }),
     },
   },
 }
