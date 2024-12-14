@@ -1,47 +1,54 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
 
--- MINE
+local wk = require("which-key")
 
--- Copilot
-vim.keymap.set("i", "<C-g>", "<cmd>ChatGPTCompleteCode<CR>", { silent = true })
+-- AI Assistance
+vim.keymap.set("i", "<C-g>", "<cmd>ChatGPTCompleteCode<CR>", { silent = true, desc = "ChatGPT Complete Code" })
 
--- (visual) J/K to move lines up and down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
--- keep cursor in place when concatenating lines
-vim.keymap.set("n", "J", "mzJ`z")
--- keep cursor in place when searching
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+-- Movement and Navigation
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines (keep cursor)" })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result (centered)" })
+vim.keymap.set("n", "<C-y>", "<C-d>", { desc = "Scroll down" })
 
--- greatest remap ever (keep register when pasting)
-vim.keymap.set({ "x", "v" }, "<leader>p", [["_dP]])
--- next greatest remap ever : asbjornHaland
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- Buffer Operations
+vim.keymap.set("n", "<C-s>", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format buffer" })
+vim.keymap.set("n", "<C-S>", "<cmd>write<CR>", { desc = "Save buffer" })
 
-vim.keymap.set("n", "<leader>ap", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "tmux sessionizer" })
+-- Register Operations
+wk.add({
+  ["<leader>p"] = { [["_dP]], "Paste (keep register)" },
+  ["<leader>y"] = { [["+y]], "Yank to system clipboard" },
+  ["<leader>Y"] = { [["+Y]], "Yank line to system clipboard" },
+  ["<leader>d"] = { [["_d]], "Delete (no register)" },
+}, { mode = { "n", "v" } })
 
-vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
+-- File Operations
+wk.add({
+  ["<leader>xx"] = { "<cmd>!chmod +x %<CR>", "Make file executable" },
+  ["<leader>S"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Search and replace word" },
+})
 
--- MINE
-vim.keymap.set("n", "<C-s>", "<cmd>lua vim.lsp.buf.format()<CR>")
--- save (and autoformat)
-vim.keymap.set("n", "<C-S>", "<cmd>write<CR>")
--- -- Ctrl-y to scroll down (like in chrome/onehand)
-vim.keymap.set("n", "<C-y>", "<C-d>")
+-- Tmux Integration
+wk.add({
+  ["<leader>ap"] = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "Open tmux sessionizer" },
+})
 
--- fugitive (git)
-vim.keymap.set("n", "<leader>gL", "<cmd>:0Gclog<CR>", { desc = "fugitive file[L]og in quickfix" })
-vim.keymap.set("n", "<leader>gl", "<cmd>:Gclog<CR>", { desc = "fugitive [L]og in quickfix" })
-vim.keymap.set("n", "<leader>GG", "<cmd>:G<CR>", { desc = "fugitive G" })
-vim.keymap.set("n", "<leader>gG", "<cmd>:G<CR>", { desc = "fugitive G" })
-vim.keymap.set("n", "<leader>gg", "<cmd>:G<CR>", { desc = "fugitive G" })
-vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "fugitive [L]og" })
--- 3 way split (merge conflict, use `dp` & `do` to send hunks between diffs)
-vim.keymap.set("n", "<leader>gd3", "<cmd>:Gvdiffsplit<CR>", { desc = "[G]it: [3] way [d]iff split" })
-vim.keymap.set("n", "<leader>gdd", "<cmd>:Gdiff<CR>", { desc = "Diff" })
+-- Git Operations (Fugitive)
+wk.add({
+  ["<leader>g"] = {
+    name = "Git",
+    L = { "<cmd>0Gclog<CR>", "File log in quickfix" },
+    l = { "<cmd>Gclog<CR>", "Log in quickfix" },
+    g = { "<cmd>G<CR>", "Git status" },
+    c = { "<cmd>FzfLua git_commits<CR>", "Git commits" },
+    d = {
+      name = "Diff",
+      ["3"] = { "<cmd>Gvdiffsplit<CR>", "3-way diff split" },
+      d = { "<cmd>Gdiff<CR>", "Diff" },
+    },
+  },
+})
