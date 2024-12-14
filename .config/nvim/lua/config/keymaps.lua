@@ -46,12 +46,3 @@ vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "fu
 -- 3 way split (merge conflict, use `dp` & `do` to send hunks between diffs)
 vim.keymap.set("n", "<leader>gd3", "<cmd>:Gvdiffsplit<CR>", { desc = "[G]it: [3] way [d]iff split" })
 vim.keymap.set("n", "<leader>gdd", "<cmd>:Gdiff<CR>", { desc = "Diff" })
--- Ensure `legendary.nvim` is loaded
-require("legendary").setup()
--- Map <leader>sk to open Legendary.nvim
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>sk",
-  ":Legendary<CR>",
-  { noremap = true, silent = true, desc = "Keymaps (Legendary)" }
-)
