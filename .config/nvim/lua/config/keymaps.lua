@@ -37,9 +37,86 @@ wk.add({
   ["<leader>ap"] = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "Open tmux sessionizer" },
 })
 
--- Git Operations (Fugitive)
+-- LSP Operations
 wk.add({
   ["<leader>g"] = {
+    name = "LSP goto",
+    d = {
+      function()
+        require("fzf-lua").lsp_definitions()
+      end,
+      "definitions",
+    },
+    D = {
+      function()
+        vim.lsp.buf.type_definition()
+      end,
+      "type definition",
+    },
+    L = {
+      function()
+        vim.lsp.buf.declaration()
+      end,
+      "declaration",
+    },
+    i = {
+      function()
+        require("fzf-lua").lsp_implementations()
+      end,
+      "implementations",
+    },
+    r = {
+      function()
+        require("fzf-lua").lsp_references()
+      end,
+      "references",
+    },
+  },
+})
+
+wk.add({
+  ["<leader>c"] = {
+    name = "LSP code changes",
+    a = {
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      "code actions",
+    },
+    f = {
+      function()
+        vim.lsp.buf.formatting()
+      end,
+      "format",
+    },
+    r = {
+      function()
+        vim.lsp.buf.rename()
+      end,
+      "rename variable",
+    },
+  },
+})
+
+-- Other LSP mappings
+wk.add({
+  K = {
+    function()
+      vim.lsp.buf.hover()
+    end,
+    "LSP hover",
+  },
+  ["<C-s>"] = {
+    function()
+      vim.lsp.buf.signature_help()
+    end,
+    "LSP signature help",
+  },
+})
+
+-- Git Operations (Fugitive)
+wk.add({
+  ["<leader>G"] = {
     name = "Git",
     L = { "<cmd>0Gclog<CR>", "File log in quickfix" },
     l = { "<cmd>Gclog<CR>", "Log in quickfix" },
