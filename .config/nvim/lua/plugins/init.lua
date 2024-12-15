@@ -18,7 +18,6 @@ return {
   -- vmap gc: in visual mode to comment out the selection,
   -- gc in operator pending mode to target a comment
   { "tpope/vim-commentary", event = "BufReadPost" },
-
   { "vimwiki/vimwiki", keys = { { "<leader>ww", desc = "Vimwiki" }, event = "BufReadPost" } },
   { "bkad/CamelCaseMotion", event = "BufReadPost" },
 
