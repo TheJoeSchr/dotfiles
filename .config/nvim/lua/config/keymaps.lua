@@ -14,6 +14,10 @@ vim.keymap.set("n", "<C-y>", "<C-d>", { desc = "Scroll down" })
 -- Buffer Operations
 vim.keymap.set("n", "<C-s>", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format buffer" })
 vim.keymap.set("n", "<C-S>", "<cmd>write<CR>", { desc = "Save buffer" })
+-- Paste into fzf-lua (Alt-r)
+-- Fzf is a terminal buffer, it behaves differently in neovim and has different rules and keymaps,
+-- I use this in my neovim config to replace <C-r> in all my term buffers:
+vim.keymap.set("t", "<M-r>", [['<C-\><C-N>"'.nr2char(getchar()).'pi']], { expr = true })
 
 -- Other LSP mappings
 wk.add({
