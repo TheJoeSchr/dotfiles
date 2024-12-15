@@ -60,7 +60,6 @@ return {
   -- -- git helper
   {
     "tpope/vim-fugitive",
-    keys = { { "<leader>gg" }, { "<leader>GG" } },
     cmd = "G",
     dependencies = {
       { "tpope/vim-rhubarb" },
