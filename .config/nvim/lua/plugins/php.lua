@@ -9,13 +9,6 @@ return {
       },
     },
   },
-  -- Auto-completion plugin
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      { "hrsh7th/cmp-nvim-lsp" },
-    },
-  },
   -- Snippets support
   {
     "SirVer/ultisnips",

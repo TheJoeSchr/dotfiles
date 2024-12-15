@@ -75,18 +75,8 @@ vim.keymap.set(
   "<Plug>(easymotion-b)",
   { noremap = true, silent = false, expr = false }
 )
-require("which-key").add({
-  { "<leader>fgr", ":GrugFar<cr>", desc = "Grug Find and Replace", mode = "n" },
-})
 
 return {
-  {
-    "MagicDuck/grug-far.nvim",
-    config = function()
-      require("grug-far").setup({})
-    end,
-  },
-  { "chipsenkbeil/distant.nvim", branch = "v0.2", cmd = "DistantConnect" },
   -- Easymotion fuzzy search
   {
     "easymotion/vim-easymotion",
@@ -105,80 +95,6 @@ return {
       { "<Leader>W", "<Plug>(easymotion-w)" },
       { "<Leader>B", "<Plug>(easymotion-b)" },
       { "<Leader>E", "<Plug>(easymotion-e)" },
-    },
-  },
-  -- Gitsigns
-  {
-    "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
-    opts = {
-      signs = {
-        add = { text = "│" },
-        change = { text = "│" },
-        delete = { text = "-" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-        untracked = { text = "┆" },
-      },
-      on_attach = function(buffer)
-        local gs = package.loaded.gitsigns
-
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-        end
-
-        -- Navigation
-        map("n", "]c", function()
-          if vim.wo.diff then
-            return "]c"
-          end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return "<Ignore>"
-        end, "Next Hunk")
-        -- end, { expr = true, desc = "Next Hunk" })
-
-        map("n", "[c", function()
-          if vim.wo.diff then
-            return "[c"
-          end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return "<Ignore>"
-        end, "Previous Hunk")
-        -- end, { expr = true, desc = "Previous Hunk" })
-
-        map("n", "<leader>gt", gs.toggle_deleted, "Show edited/deleted text")
-        map("n", "<leader>gT", gs.toggle_current_line_blame, "Toggle current line blame")
-        -- repeat from LazVim because seems to overwrite
-        map({ "n", "v" }, "<leader>g=", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-        map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
-        map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
-        map("n", "<leader>gb", function()
-          gs.blame_line({ full = true })
-        end, "Blame Line")
-        -- conflict with 3way giff
-        map("n", "<leader>gdt", gs.diffthis, "[D]iff [t]his")
-        map("n", "<leader>gdT", function()
-          gs.diffthis("~")
-        end, "[D]iff This [~]")
-      end,
-    },
-    current_line_blame = false,
-    keys = {
-      {
-        "]c",
-        desc = "Next Hunk",
-      },
-      {
-        "[c",
-        desc = "Previous Hunk",
-      },
     },
   },
 }

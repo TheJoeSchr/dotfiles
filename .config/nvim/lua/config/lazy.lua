@@ -31,16 +31,8 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
     -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
     -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.vue" },
-    { import = "lazyvim.plugins.extras.lang.java" },
-    { import = "lazyvim.plugins.extras.lang.yaml" },
-    { import = "lazyvim.plugins.extras.lang.python" },
-    { import = "lazyvim.plugins.extras.test.core" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- use my own mini.starter instead of LazyVim's
-    { import = "plugins.extras.ui.mini-starter" },
     { import = "plugins" },
   },
   defaults = {

@@ -9,19 +9,6 @@
 -- * override the configuration of LazyVim plugins
 return {
   -- " UNIVERSAL:
-  -- :Remove: Delete a file on disk without E211: File no longer available.
-  -- :Delete: Delete a file on disk and the buffer too.
-  -- :Move: Rename a buffer and the file on disk simultaneously. See also :Rename, :Copy, and :Duplicate.
-  -- :Chmod: Change the permissions of the current file.
-  -- :Mkdir: Create a directory, defaulting to the parent of the current file.
-  -- :Cfind: Run find and load the results into the quickfix list.
-  -- :Clocate: Run locate and load the results into the quickfix list.
-  -- :Lfind/:Llocate: Like above, but use the location list.
-  -- :Wall: Write every open window. Handy for kicking off tools like guard.
-  -- :SudoWrite: Write a privileged file with sudo.
-  -- :SudoEdit: Edit a privileged file with sudo.
-  { "tpope/vim-eunuch", event = "BufReadPost" },
-
   -- PICKER MODE
   -- :NnnPicker to open nnn in a floating window.
 
@@ -52,24 +39,12 @@ return {
   -- space case (cr<space>),
   -- and Title Case (crt) are all just 3 keystrokes away.
   { "tpope/vim-abolish", event = "BufReadPost" },
-  -- Surround
-  { "tpope/vim-surround", event = "BufReadPost" },
   -- unimpaired ([p,]p etc)
   { "tpope/vim-unimpaired", event = "VeryLazy" },
 
   -- fish file editing
   -- imortant, no lsp so far
   { "dag/vim-fish", ft = "fish" },
-
-  -- github copilot
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    opts = {
-      suggestion = { enabled = true },
-      panel = { enabled = true },
-    },
-  },
 
   { "szw/vim-maximizer", event = "VeryLazy" },
   {
@@ -91,7 +66,7 @@ return {
     dependencies = {
       { "tpope/vim-rhubarb" },
     },
-  }, -- nvim v0.8.0
+  },
   {
     "kdheepak/lazygit.nvim",
     lazy = true,
@@ -112,7 +87,6 @@ return {
   -- git diff branches
   -- https://stackoverflow.com/questions/13304469/how-can-i-diff-two-branches-with-fugitive/75099935#75099935
   { "idanarye/vim-merginal", cmd = "Merginal", dependencies = { "tpope/vim-fugitive" } },
-  { "theprimeagen/harpoon" },
   { "mbbill/undotree", event = "BufRead" },
 
   -- not working yet
@@ -180,12 +154,7 @@ return {
   -- :AnsiEsc
   { "powerman/vim-plugin-AnsiEsc" },
 
-  { "ThePrimeagen/refactoring.nvim" },
-  -- easily jump to any location and enhanced f/t motions for Leap
-  { "tpope/vim-surround" },
-  { "godlygeek/tabular" }, -- Quickly align text by pattern
   { "tpope/vim-repeat" }, -- Repeat actions better
-  { "tpope/vim-abolish" }, -- Cool things with words!
   { "romainl/vim-qf" }, -- wrangle quickfix
 
   -- LUA
@@ -202,7 +171,6 @@ return {
     lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
     config = function()
       require("flutter-tools").setup({
@@ -216,7 +184,7 @@ return {
           -- Invoking toString() has a performance cost and may introduce side-effects,
           -- although users may expected this functionality. null is treated like false.
           evaluate_to_string_in_debug_views = true,
-          register_configurations = function(paths)
+          register_configurations = function()
             require("dap").configurations.dart = {
               --put here config that you would find in .vscode/launch.json
             }
@@ -233,34 +201,6 @@ return {
     -- opts will be merged with the parent spec
     opts = { use_diagnostic_signs = true },
   },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {
-      plugins = {
-        marks = true,
-        registers = true,
-        spelling = {
-          enabled = true,
-          suggestions = 20,
-        },
-        presets = {
-          operators = true,
-          motions = true,
-          text_objects = true,
-          windows = true,
-          nav = true,
-          z = true,
-          g = true,
-        },
-      },
-    },
-  },
-
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",

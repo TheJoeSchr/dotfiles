@@ -20,14 +20,6 @@ return {
   { "sainnhe/everforest", event = "VeryLazy" },
   { "ericbn/vim-solarized", event = "VeryLazy" },
 
-  -- ui
-  {
-    "stevearc/aerial.nvim",
-    keys = {
-      { "<leader>co", "<cmd>AerialToggle<cr>", desc = "Symbols [O]utline" },
-      { "<leader>cO", "<cmd>AerialToggle!<cr>", desc = "Symbols [O]utline same Window" },
-    },
-  },
   -- breadcrumbs
   {
     "utilyre/barbecue.nvim",
@@ -60,6 +52,18 @@ return {
         use_lsp_diagnostic_signs = true,
       })
     end,
+  },
+  -- smoothscroll
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      scroll = { enabled = false },
+    },
   },
   -- {
   --   "folke/todo-comments.nvim",
@@ -136,78 +140,9 @@ return {
       })
     end,
     keys = {
-      { "<leader>af", "<cmd>NeoZoomToggle<CR>", desc = "NeoZoomToggle" },
-      { "<C-w>o", "<cmd>NeoZoomToggle<CR>", desc = "NeoZoomToggle" },
       { ";", "<cmd>NeoZoomToggle<CR>", desc = "NeoZoomToggle" },
     },
   },
-  {
-    -- close other buffers (and more)
-    -- " nnoremap <silent> Q     :close<CR>
-    -- nnoremap <silent> Q     :Bdelete menu<CR>
-    -- nnoremap <silent> <C-q> :Bdelete menu<CR>
-    -- nnoremap <silent> <leader>Q     :Bdelete other<CR>
-    -- nnoremap <silent> <leader>q :Bdelete menu<CR>
-    "Asheq/close-buffers.vim",
-    event = "BufRead",
-    keys = {
-      { "<leader>QQ", "<cmd>Bdelete other<CR>", desc = "Delete All Other Buffers" },
-      { "<leader>ax", "<cmd>qa<cr>", desc = "Close All" },
-      { "<leader>Q", "<cmd>bd<CR>", desc = "Delete This Buffers" },
-      { "<leader>qq", "<cmd>Bdelete menu<CR>", desc = "Close Buffer menu" },
-      { "Q", "<cmd>close<CR>", desc = "Close Buffer menu" },
-      -- original V-block
-      { "<C-Q>", "<C-w>q", desc = "Quick Close Window", { remap = true, nowait = true } },
-      -- vim.keymap.set("n", "Q", "<cmd>bd<CR>")
-      -- nnoremap <silent> Q     :Bdelete menu<CR>
-    },
-  },
-  {
-    "folke/noice.nvim",
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    },
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    config = function(_, opts)
-      require("noice").setup(vim.list_extend(opts, {
-        lsp = {
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
-          },
-        },
-        -- you can enable a preset for easier configuration
-        presets = {
-          bottom_search = true, -- use a classic bottom cmdline for search
-          command_palette = false, -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = true, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
-        },
-      }))
-      return opts
-    end,
-  },
   -- lsp symbol in statusline
   { "nvim-lua/lsp-status.nvim", lazy = false },
-  { "stevearc/dressing.nvim" },
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-      background_colour = "#000000",
-      timeout = 1000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.55)
-      end,
-    },
-  },
 }
