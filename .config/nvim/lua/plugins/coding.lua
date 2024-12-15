@@ -1,5 +1,6 @@
 return {
   "saghen/blink.cmp",
+  dependencies = { "saghen/blink.compat" },
   opts = {
     sources = {
       -- adding any nvim-cmp sources here will enable them
