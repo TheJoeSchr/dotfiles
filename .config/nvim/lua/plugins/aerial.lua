@@ -1,9 +1,14 @@
 return {
   "stevearc/aerial.nvim",
+  keys = {
+    { "<leader>co", "<cmd>AerialToggle<cr>", desc = "Symbols [O]utline" },
+    { "<leader>cO", "<cmd>AerialToggle!<cr>", desc = "Symbols [O]utline same Window" },
+  },
   opts = {
     -- Priority list of preferred backends for aerial.
     -- This can be a filetype map (see :help aerial-filetype-map)
     backends = { "treesitter", "lsp", "markdown", "man" },
+    -- ui
 
     layout = {
       -- These control the width of the aerial window.
