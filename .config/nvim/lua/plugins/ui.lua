@@ -1,6 +1,5 @@
 local function set_keymaps()
-  -- vista
-  vim.keymap.set("n", "<Leader>o", function()
+  vim.keymap.set("n", "<leader>uo", function()
     vim.cmd([[hi Normal guibg=None ctermbg=None]]) -- maybe can use `vim.api.nvim_set_hl` instead
     vim.cmd([[hi NonText ctermbg=NONE]])
   end, { desc = "set background nil" })
@@ -33,31 +32,9 @@ return {
   },
 
   { "tpope/vim-rhubarb", cmd = "Gbrowse", event = "VeryLazy" },
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-    config = function()
-      require("trouble").setup({
-        auto_open = false,
-        auto_close = true,
-        auto_preview = false,
-        auto_fold = true,
-        signs = {
-          error = "",
-          warning = "",
-          hint = "",
-          information = "",
-          other = "﫠",
-        },
-        use_lsp_diagnostic_signs = true,
-      })
-    end,
-  },
   -- smoothscroll
   {
     "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
@@ -65,50 +42,6 @@ return {
       scroll = { enabled = false },
     },
   },
-  -- {
-  --   "folke/todo-comments.nvim",
-  --   requires = "nvim-lua/plenary.nvim",
-  --   config = function()
-  --     require("todo-comments").setup({
-  --       signs = true,
-  --       keywords = {
-  --         FIX = {
-  --           icon = " ",
-  --           color = "error",
-  --           alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
-  --         },
-  --         TODO = { icon = " ", color = "info" },
-  --         HACK = { icon = " ", color = "warning" },
-  --         WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-  --         PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-  --         NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-  --       },
-  --       highlight = {
-  --         before = "",
-  --         keyword = "wide",
-  --         after = "fg",
-  --       },
-  --       search = {
-  --         command = "rg",
-  --         args = {
-  --           "--color=never",
-  --           "--no-heading",
-  --           "--with-filename",
-  --           "--line-number",
-  --           "--column",
-  --           "--smart-case",
-  --         },
-  --         pattern = [[\b(KEYWORDS):]],
-  --         ignore_case = true,
-  --         hidden = true,
-  --         follow = true,
-  --         auto_open = false,
-  --         use_lsp_diagnostic = true,
-  --         open_cmd = "edit",
-  --       },
-  --     })
-  --   end,
-  -- },
   {
     "nyngwang/NeoZoom.lua",
     config = function()
