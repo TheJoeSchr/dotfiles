@@ -1,17 +1,9 @@
--- TODO: configure firenvim
---
---
--- every spec file under config.plugins will be loaded automatically by lazy.nvim
---
 -- In your plugin files, you can:
 -- * add extra plugins
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
   -- " UNIVERSAL:
-  -- PICKER MODE
-  -- :NnnPicker to open nnn in a floating window.
-
   -- Comment stuff out.
   -- gcc: comment out a line (takes a count)
   -- gc: comment out the target of a motion (for example, gcap to comment out a paragraph)
@@ -51,13 +43,13 @@ return {
     -- needed otherwise doesn't work with lazy
     event = "VimEnter",
   },
-  -- {
-  --   { "https://gitlab.com/yorickpeterse/nvim-window.git" },
-  --   keys = { "<leader>wf", require("nvim-window").pick, desc = "Window Management" },
-  --   config = true,
-  -- },
+  {
+    { "https://gitlab.com/yorickpeterse/nvim-window.git" },
+    keys = { "<leader>wf", require("nvim-window").pick, desc = "Window Management" },
+    config = true,
+  },
 
-  -- -- git helper
+  -- git helper
   {
     "tpope/vim-fugitive",
     cmd = "G",
