@@ -71,8 +71,8 @@ if vim.fn.has("nvim-0.9.0") == 1 then
   opt.shortmess = "filnxtToOFWIcC"
 end
 
-opt.smoothscroll = false
 if vim.fn.has("nvim-0.10") == 1 then
+  opt.smoothscroll = false
   opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
   opt.foldmethod = "expr"
   opt.foldtext = ""

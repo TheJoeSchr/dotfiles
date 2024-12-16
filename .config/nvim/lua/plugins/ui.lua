@@ -73,7 +73,7 @@ return {
       })
     end,
     keys = {
-      { ";", "<cmd>NeoZoomToggle<CR>", desc = "NeoZoomToggle" },
+      { "<C-w>;", "<cmd>NeoZoomToggle<CR>", desc = "NeoZoomToggle" },
     },
   },
   -- lsp symbol in statusline
