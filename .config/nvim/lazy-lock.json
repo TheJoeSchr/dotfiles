@@ -33,6 +33,7 @@
   "hop.nvim": { "branch": "master", "commit": "08ddca799089ab96a6d1763db0b8adc5320bf050" },
   "inc-rename.nvim": { "branch": "main", "commit": "f4e13df6e2d0b3177a7305dbc1cc7f7ea44b94f1" },
   "jupytext.vim": { "branch": "master", "commit": "ec8f337bd5799e16a02816d04b7c91b9555d79c2" },
+  "kulala.nvim": { "branch": "main", "commit": "c7efcd01afafae0ab68c2a77cd050b9795edd8ad" },
   "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
   "lazydev.nvim": { "branch": "main", "commit": "f59bd14a852ca43db38e3662395354cb2a9b13e0" },
   "lazygit.nvim": { "branch": "main", "commit": "77a0d42943d8265271e6e6beaed72da54eeb17e7" },
