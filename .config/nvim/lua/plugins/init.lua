@@ -34,7 +34,7 @@ return {
   { "tpope/vim-unimpaired", event = "VeryLazy" },
 
   -- fish file editing
-  -- imortant, no lsp so far
+  -- important, no lsp so far
   { "dag/vim-fish", ft = "fish" },
 
   { "szw/vim-maximizer", event = "VeryLazy" },
