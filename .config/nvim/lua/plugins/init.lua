@@ -43,12 +43,6 @@ return {
     -- needed otherwise doesn't work with lazy
     event = "VimEnter",
   },
-  {
-    { "https://gitlab.com/yorickpeterse/nvim-window.git" },
-    keys = { "<leader>wf", require("nvim-window").pick, desc = "Window Management" },
-    config = true,
-  },
-
   -- git helper
   {
     "tpope/vim-fugitive",
