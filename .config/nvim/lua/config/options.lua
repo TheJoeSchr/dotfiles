@@ -5,6 +5,9 @@ vim.g.maplocalleader = ","
 -- SPACE as leader key
 vim.g.mapleader = " "
 
+-- disable all snack animations
+vim.g.snacks_animate = false
+
 -- Set 24-bit colors
 vim.o.termguicolors = true
 --
