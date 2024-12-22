@@ -18,6 +18,11 @@ return {
   { "sainnhe/edge", event = "VeryLazy" },
   { "sainnhe/everforest", event = "VeryLazy" },
   { "ericbn/vim-solarized", event = "VeryLazy" },
+  {
+    "slugbyte/lackluster.nvim",
+    lazy = false,
+    priority = 1000,
+  },
 
   -- breadcrumbs
   {
