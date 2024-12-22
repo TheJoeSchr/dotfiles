@@ -148,6 +148,13 @@ return {
       "lewis6991/gitsigns.nvim",
       "SmiteshP/nvim-navic",
     },
+    config = function()
+      require("lualine").setup({
+        options = {
+          theme = "lackluster",
+        },
+      })
+    end,
   },
   -- DART
   {

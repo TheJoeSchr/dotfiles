@@ -10,6 +10,7 @@ vim.g.snacks_animate = false
 
 -- Set 24-bit colors
 vim.o.termguicolors = true
+
 --
 -- set the python host for neovim
 vim.cmd([[ let g:python3_host_prog = expand('/usr/bin/python') ]])

@@ -12,7 +12,7 @@ require("lazy").setup({
     -- import LazyVim plugins
     --
     --
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "lackluster-hack" } },
     -- { "TheJoeschr/LazyVim", dir = "~/.config/nvim/lua/LazyVim/lua", import = "lazyvim.plugins" },
     -- {
     --   "TheJoeSchr/LazyVim",
@@ -44,7 +44,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax", "catppuccin" } },
+  install = { colorscheme = { "lackluster-hack", "tokyonight", "habamax", "catppuccin" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
