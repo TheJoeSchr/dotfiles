@@ -10,7 +10,15 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
         cmdline = {},
       },
-
+      completion = {
+        accept = {
+          auto_brackets = {
+            kind_resolution = {
+              blocked_filetypes = { "typescriptreact", "javascriptreact", "vue", "codecompanion" },
+            },
+          },
+        },
+      },
       keymap = {
         preset = "default",
       },
