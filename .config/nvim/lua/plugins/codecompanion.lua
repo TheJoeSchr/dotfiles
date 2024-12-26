@@ -9,6 +9,25 @@ return {
     "nvim-treesitter/nvim-treesitter",
     { "echasnovski/mini.pick", version = false },
     { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }, -- Optional: For prettier markdown rendering
+    {
+      "saghen/blink.cmp",
+      dependencies = { "saghen/blink.compat" },
+      opts = {
+        enabled = function()
+          return vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
+        end,
+        sources = {
+          compat = { "codecompanion" },
+          providers = {
+            codecompanion = {
+              name = "CodeCompanion",
+              module = "codecompanion.providers.completion.blink",
+              enabled = true,
+            },
+          },
+        },
+      },
+    },
   },
   config = function()
     -- Plugin setup
