@@ -6,6 +6,7 @@ return {
   lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "zbirenbaum/copilot.lua",
     "nvim-treesitter/nvim-treesitter",
     { "echasnovski/mini.pick", version = false },
     { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }, -- Optional: For prettier markdown rendering
@@ -46,11 +47,11 @@ return {
           adapter = "anthropic",
         },
         inline = {
-          adapter = "anthropic",
+          adapter = "copilot",
         },
         code_assist = "anthropic",
         code_review = "anthropic",
-        completion = "anthropic",
+        completion = "copilot",
         debugging = "anthropic",
       },
     })
