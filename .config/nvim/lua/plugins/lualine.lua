@@ -67,7 +67,7 @@ return {
   end,
   opts = {
     options = {
-      theme = "onedark", -- TODO tokyonight
+      theme = "tokyonight", -- TODO tokyonight
       globalstatus = true,
     },
   },
