@@ -2,3 +2,4 @@ theme = synthwave
 background = #000000
 window-theme = ghostty
 window-decoration = false
+shell-integration = fish
