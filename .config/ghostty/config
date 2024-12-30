@@ -346,7 +346,7 @@ freetype-load-flags = hinting,force-autohint,monochrome,autohint
 # 
 #   - macOS: titlebar tabs style is not updated when switching themes.
 # 
-theme = tokyonight-dark
+theme = synthwave
 
 # Background color for the window.
 background = #000000
@@ -1567,7 +1567,7 @@ config-default-files = true
 
 # Confirms that a surface should be closed before closing it. This defaults to
 # true. If set to false, surfaces will close without any confirmation.
-confirm-close-surface = true
+confirm-close-surface = false
 
 # Whether or not to quit after the last surface is closed.
 # 
