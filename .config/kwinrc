@@ -254,10 +254,11 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 VirtualKeyboardEnabled=false
 
 [Windows]
-BorderlessMaximizedWindows=false
+BorderlessMaximizedWindows=true
 ElectricBorderMaximize=false
 ElectricBorderTiling=false
 FocusStealingPreventionLevel=2
+Placement=Smart
 RollOverDesktops=true
 SeparateScreenFocus=true
 
