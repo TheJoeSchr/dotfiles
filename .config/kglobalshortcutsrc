@@ -512,6 +512,24 @@ switch to next activity=none,,Switch to Next Activity
 switch to previous activity=none,,Switch to Previous Activity
 toggle do not disturb=none,,Toggle do not disturb
 
+[services][com.mitchellh.ghostty.desktop]
+_launch=Ctrl+Alt+/
+
+[services][org.kde.konsole.desktop]
+_launch=none
+
+[services][org.kde.plasma.emojier.desktop]
+_launch=Meta+Ctrl+Alt+Shift+Space
+
+[services][org.kde.spectacle.desktop]
+RecordRegion=Meta+R
+
+[services][{a83269b6-d823-407e-8bb4-c0eee0ef65ce}.desktop]
+_launch=Ctrl+Alt+-
+
+[services][{ce914ebe-fcf0-48c8-9c85-b0c7a98235ce}.desktop]
+_launch=Ctrl+Alt+=
+
 [systemsettings.desktop]
 _k_friendly_name=System Settings
 _launch=Tools,Tools,System Settings
