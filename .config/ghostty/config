@@ -1461,7 +1461,7 @@ resize-overlay-position = center
 # value larger than this will be clamped to the maximum value.
 resize-overlay-duration = 750ms
 
-focus-follows-mouse = false
+focus-follows-mouse = true
 # Whether to allow programs running in the terminal to read/write to the
 # system clipboard (OSC 52, for googling). The default is to allow clipboard
 # reading after prompting the user and allow writing unconditionally.
@@ -1472,7 +1472,7 @@ focus-follows-mouse = false
 #   * `allow`
 #   * `deny`
 # 
-clipboard-read = ask
+clipboard-read = allow
 
 clipboard-write = allow
 # Trims trailing whitespace on data that is copied to the clipboard. This does
