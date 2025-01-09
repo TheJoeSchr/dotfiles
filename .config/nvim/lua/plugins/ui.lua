@@ -108,4 +108,7 @@ return {
   },
   -- lsp symbol in statusline
   { "nvim-lua/lsp-status.nvim", lazy = false },
+  { "lukas-reineke/indent-blankline.nvim", opts = {
+    enabled = false,
+  } },
 }
