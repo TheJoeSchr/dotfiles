@@ -1,5 +1,52 @@
-[plugin]
-deps = [{ use = "yazi-rs/plugins:git", rev = "7afba3a" }, { use = "yazi-rs/plugins:jump-to-char", rev = "7afba3a" } , { use = "dawsers/toggle-view", rev = "d326a53" }, { use = "yazi-rs/plugins:full-border", rev = "7afba3a" }, { use = "hankertrix/augment-command", rev = "369f992" }, { use = "dedukun/relative-motions", rev = "df97039" }, { use = "KKV9/compress", rev = "60b24af" }, { use = "dedukun/bookmarks", rev = "20ece7e" }, { use = "yazi-rs/plugins:smart-filter", rev = "7afba3a" }, { use = "AnirudhG07/custom-shell", rev = "d7fb2b3" }]
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "600614a"
+hash = "e9cf1bfc03de7fee0f1d4260da0d1dfd"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "600614a"
+hash = "72c66a0b3d60f8377eb9db5e1d8b60b2"
+
+[[plugin.deps]]
+use = "dawsers/toggle-view"
+rev = "9ae57f9"
+hash = "9d291f6cecb1f1f5542fc18177d5c107"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "600614a"
+hash = "882ed23839778f82dc137248979c8681"
+
+[[plugin.deps]]
+use = "hankertrix/augment-command"
+rev = "4b2c3b4"
+hash = "e5d35605715a2572cbfe125eba6ff586"
+
+[[plugin.deps]]
+use = "dedukun/relative-motions"
+rev = "df97039"
+hash = "395940d2b22941e0acb1232579c9d4cf"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "60b24af"
+hash = "ee025be766240cc98e671754ac836da3"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "202e450"
+hash = "9e2f6f7381542d3adb3080b394b431b4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "600614a"
+hash = "ea24edab4a62c94dbd205adfb6f2c08d"
+
+[[plugin.deps]]
+use = "AnirudhG07/custom-shell"
+rev = "2f3d7a6"
+hash = "bf2dfe68c5dff1dbb898013e4545507e"
 
 [flavor]
 deps = []
