@@ -112,7 +112,7 @@ NightTemperature=5000
 blurEnabled=false
 contrastEnabled=true
 coverswitchEnabled=true
-desktopchangeosdEnabled=false
+desktopchangeosdEnabled=true
 desktopgridEnabled=false
 diminactiveEnabled=true
 flipswitchEnabled=true
@@ -163,8 +163,14 @@ tileLayoutGap=3
 PopupHideDelay=500
 
 [Script-karousel]
+gapsOuterLeft=8
+gapsOuterRight=8
+gapsOuterTop=6
 offScreenOpacity=90
 reMaximize=true
+resizeNeighborColumn=true
+scrollingCentered=true
+scrollingLazy=false
 windowRules=[\n    {\n        "class": "ksmserver-logout-greeter",\n        "tile": false\n    },\n    {\n        "class": "kcalc",\n        "tile": false\n    },\n    {\n        "class": "org.kde.kcalc",\n        "tile": false\n    },\n    {\n        "class": "kfind",\n        "tile": true\n    },\n    {\n        "class": "org.kde.kfind",\n        "tile": true\n    },\n    {\n        "class": "kruler",\n        "tile": false\n    },\n    {\n        "class": "org.kde.kruler",\n        "tile": false\n    },\n    {\n        "class": "krunner",\n        "tile": false\n    },\n    {\n        "class": "org.kde.krunner",\n        "tile": false\n    },\n    {\n        "class": "yakuake",\n        "tile": false\n    },\n    {\n        "class": "org.kde.yakuake",\n        "tile": false\n    },\n    {\n        "class": "zoom",\n        "caption": "Zoom Cloud Meetings|zoom|zoom <2>",\n        "tile": false\n    },\n    {\n        "class": "jetbrains-idea",\n        "caption": "splash",\n        "tile": false\n    },\n    {\n        "class": "jetbrains-studio",\n        "caption": "splash",\n        "tile": false\n    },\n    {\n        "class": "jetbrains-idea",\n        "caption": "Unstash Changes|Paths Affected by stash@.*",\n        "tile": true\n    },\n    {\n        "class": "jetbrains-studio",\n        "caption": "Unstash Changes|Paths Affected by stash@.*",\n        "tile": true\n    },    {\n        "class": "steam",\n        "caption": "Steam Big Picture Mode",\n        "tile": false\n    }\n]
 
 [Script-krohnkite]
@@ -264,7 +270,9 @@ VirtualKeyboardEnabled=false
 BorderlessMaximizedWindows=true
 ElectricBorderMaximize=false
 ElectricBorderTiling=false
+FocusPolicy=FocusFollowsMouse
 FocusStealingPreventionLevel=2
+NextFocusPrefersMouse=true
 Placement=Smart
 RollOverDesktops=true
 SeparateScreenFocus=true
