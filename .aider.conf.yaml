@@ -246,16 +246,16 @@
 #dirty-commits: true
 
 ## Attribute aider code changes in the git author name (default: True)
-#attribute-author: false
+attribute-author: false
 
 ## Attribute aider commits in the git committer name (default: True)
-#attribute-committer: false
+attribute-committer: false
 
 ## Prefix commit messages with 'aider: ' if aider authored the changes (default: False)
-#attribute-commit-message-author: false
+attribute-commit-message-author: false
 
 ## Prefix all commit messages with 'aider: ' (default: False)
-#attribute-commit-message-committer: false
+attribute-commit-message-committer: false
 
 ## Commit all pending changes with a suitable commit message, then exit
 #commit: true
@@ -270,7 +270,7 @@
 #skip-sanity-check-repo: false
 
 ## Enable/disable watching files for ai coding comments (default: False)
-#watch-files: false
+watch-files: true
 
 ########################
 # Fixing and committing:
@@ -393,7 +393,7 @@ auto-lint: true
 #  - zzz
 
 ## Use VI editing mode in the terminal (default: False)
-#vim: true
+vim: true
 
 ## Specify the language to use in the chat (default: None, uses system settings)
 #chat-language: xxx
@@ -424,5 +424,5 @@ detect-urls: true
 
 #l# specify which editor to use for the /editor command
 editor: nvim
-visuol: nvim
+visual: nvim
 AIDER_EDITOR: nvim
