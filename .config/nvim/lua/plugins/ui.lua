@@ -62,14 +62,29 @@ return {
   },
 
   { "tpope/vim-rhubarb", cmd = "Gbrowse", event = "VeryLazy" },
-  -- smoothscroll
   {
     "folke/snacks.nvim",
     opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+      -- smoothscroll
       scroll = { enabled = false },
+      indent = {
+        enabled = false, -- enable indent guides
+        char = "│",
+        only_scope = true, -- only show indent guides of the scope
+        only_current = true, -- only show indent guides in the current window
+      },
+      chunk = {
+        -- when enabled, scopes will be rendered as chunks, except for the
+        -- top-level scope which will be rendered as a scope.
+        enabled = true,
+        char = {
+          corner_top = "╭",
+          corner_bottom = "╰",
+          horizontal = "─",
+          vertical = "│",
+          arrow = ">",
+        },
+      },
     },
   },
   {
