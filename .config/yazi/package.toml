@@ -21,7 +21,7 @@ hash = "882ed23839778f82dc137248979c8681"
 [[plugin.deps]]
 use = "hankertrix/augment-command"
 rev = "bf04980"
-hash = "e5d35605715a2572cbfe125eba6ff586"
+hash = "97137a354d9231a609ddd90989d74885"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
