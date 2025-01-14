@@ -272,7 +272,6 @@ VirtualKeyboardEnabled=false
 BorderlessMaximizedWindows=true
 ElectricBorderMaximize=false
 ElectricBorderTiling=false
-FocusPolicy=FocusFollowsMouse
 FocusStealingPreventionLevel=2
 NextFocusPrefersMouse=true
 Placement=Smart
