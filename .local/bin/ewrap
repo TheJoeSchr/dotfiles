@@ -9,7 +9,7 @@ fi
 if [ -n "$TMUX" ]; then
   echo "if TMUX " >>/tmp/ewrap.log
   # tmux session running
-  echo "$cmd \"$*\"" >>/tmp/ewrap.log
+  echo "tmux split-window -h $cmd \"$*\"" >>/tmp/ewrap.log
   tmux split-window -h "$cmd \"$*\""
   # VMUX_DEBUG=1 $cmd "$*"
 else
