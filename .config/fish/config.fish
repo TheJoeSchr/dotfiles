@@ -15,6 +15,7 @@ set -gx BROWSER google-chrome-stable
 fish_add_path ~/.bun/bin
 fish_add_path ~/.config/composer/vendor/bin
 fish_add_path ~/.pub-cache/bin/
+fish_add_path ~/.docker/cli-plugins/
 if [ ! -f /run/.containerenv ] && [ ! -f /.dockerenv ]
     fish_add_path ~/.local/bin
     fish_add_path ~/.local/podman/bin
@@ -106,7 +107,6 @@ THE THREE TYPES OF ALIAS
     alias Y 'sudo -E fish -c "y"'
     alias yfp y-filepicker
 
-
     if type -q omf
         omf theme yimmy
     end
@@ -124,7 +124,6 @@ THE THREE TYPES OF ALIAS
         abbr cp 'advcp -g'
         abbr mv 'advmv -g'
     end
-
 
     if type -q exa
         alias la 'exa --all -1'

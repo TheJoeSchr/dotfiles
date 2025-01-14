@@ -208,7 +208,6 @@ LayoutName=coverswitch
 MinimizedMode=1
 MultiScreenMode=1
 OrderMinimizedMode=1
-SwitchingMode=1
 
 [TabBoxAlternative]
 ActivitiesMode=0
