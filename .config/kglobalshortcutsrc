@@ -37,17 +37,6 @@ Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
 Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Toggle Touchpad
 _k_friendly_name=Touchpad
 
-[kded5]
-Show System Activity=Ctrl+Esc,Ctrl+Esc,Show System Activity
-_k_friendly_name=KDE Daemon
-display=Display\tMeta+P,Display\tMeta+P,Switch Display
-
-[khotkeys]
-_k_friendly_name=Custom Shortcuts Service
-{8dc44129-ad8a-402b-bd0b-d54e7e967e01}=none,none,Alacritty
-{a83269b6-d823-407e-8bb4-c0eee0ef65ce}=Ctrl+Alt+-,none,Headphones
-{ce914ebe-fcf0-48c8-9c85-b0c7a98235ce}=Ctrl+Alt+=,none,Surround
-
 [kmix]
 _k_friendly_name=Audio Volume
 decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Decrease Microphone Volume
@@ -60,14 +49,14 @@ mic_mute=Microphone Mute,Microphone Mute\tMeta+Volume Mute,Mute Microphone
 mute=Volume Mute,Volume Mute,Mute
 
 [ksmserver]
-Halt Without Confirmation=none,,Halt Without Confirmation
+Halt Without Confirmation=none,,Shut Down Without Confirmation
 Lock Session=none,Meta+L\tScreensaver,Lock Session
-Log Out=none,Ctrl+Alt+Del,Log Out
+Log Out=none,Ctrl+Alt+Del,Show Logout Screen
 Log Out Without Confirmation=none,,Log Out Without Confirmation
-LogOut=none,none,Log Out
-Reboot=none,none,Reboot
+LogOut=none,,Log Out
+Reboot=none,,Reboot
 Reboot Without Confirmation=none,,Reboot Without Confirmation
-Shut Down=none,none,Shut Down
+Shut Down=none,,Shut Down
 _k_friendly_name=Session Management
 
 [kwin]
@@ -228,16 +217,16 @@ Switch to Screen Above=none,,Switch to Screen Above
 Switch to Screen Below=none,,Switch to Screen Below
 Switch to Screen to the Left=none,,Switch to Screen to the Left
 Switch to Screen to the Right=none,,Switch to Screen to the Right
-Toggle Night Color=none,none,Toggle Night Color
+Toggle Night Color=none,none,Suspend/Resume Night Light
 Toggle Window Raise/Lower=none,,Toggle Window Raise/Lower
 ToggleCurrentThumbnail=Meta+Ctrl+T,Meta+Ctrl+T,Toggle Thumbnail for Current Window
 TrackMouse=none,none,Track mouse
-Walk Through Desktop List=none,,Walk Through Desktop List
-Walk Through Desktop List (Reverse)=none,,Walk Through Desktop List (Reverse)
-Walk Through Desktops=none,,Walk Through Desktops
-Walk Through Desktops (Reverse)=none,,Walk Through Desktops (Reverse)
+Walk Through Desktop List=none,none,Walk Through Desktop List
+Walk Through Desktop List (Reverse)=none,none,Walk Through Desktop List (Reverse)
+Walk Through Desktops=none,none,Walk Through Desktops
+Walk Through Desktops (Reverse)=none,none,Walk Through Desktops (Reverse)
 Walk Through Windows=Ctrl+Alt+K,Alt+Tab,Walk Through Windows
-Walk Through Windows (Reverse)=Ctrl+Alt+J,Alt+Shift+Backtab,Walk Through Windows (Reverse)
+Walk Through Windows (Reverse)=Ctrl+Alt+J,Alt+Shift+Tab,Walk Through Windows (Reverse)
 Walk Through Windows Alternative=Alt+Tab,,Walk Through Windows Alternative
 Walk Through Windows Alternative (Reverse)=Alt+Shift+Tab,,Walk Through Windows Alternative (Reverse)
 Walk Through Windows of Current Application=Alt+`,Alt+`,Walk Through Windows of Current Application
@@ -263,10 +252,10 @@ Window One Desktop Down=none,Meta+Ctrl+Shift+Down,Window One Desktop Down
 Window One Desktop Up=none,Meta+Ctrl+Shift+Up,Window One Desktop Up
 Window One Desktop to the Left=none,Meta+Ctrl+Shift+Left,Window One Desktop to the Left
 Window One Desktop to the Right=none,Meta+Ctrl+Shift+Right,Window One Desktop to the Right
-Window One Screen Down=none,,Window One Screen Down
-Window One Screen Up=none,,Window One Screen Up
-Window One Screen to the Left=none,,Window One Screen to the Left
-Window One Screen to the Right=none,,Window One Screen to the Right
+Window One Screen Down=none,,Move Window One Screen Down
+Window One Screen Up=none,,Move Window One Screen Up
+Window One Screen to the Left=none,,Move Window One Screen to the Left
+Window One Screen to the Right=none,,Move Window One Screen to the Right
 Window Operations Menu=Alt+F3,Alt+F3,Window Operations Menu
 Window Pack Down=none,,Move Window Down
 Window Pack Left=none,,Move Window Left
@@ -306,17 +295,17 @@ Window to Desktop 7=none,,Window to Desktop 7
 Window to Desktop 8=none,,Window to Desktop 8
 Window to Desktop 9=none,,Window to Desktop 9
 Window to Next Desktop=none,,Window to Next Desktop
-Window to Next Screen=Meta+Shift+Backspace\tMeta+Shift+Tab\tCtrl+Alt+Shift+Tab\tCtrl+Alt+Shift+Backspace\tCtrl+Alt+Left,Meta+Shift+Right,Window to Next Screen
+Window to Next Screen=Meta+Shift+Backspace\tMeta+Shift+Tab\tCtrl+Alt+Shift+Tab\tCtrl+Alt+Shift+Backspace\tCtrl+Alt+Left,Meta+Shift+Right,Move Window to Next Screen
 Window to Previous Desktop=none,,Window to Previous Desktop
-Window to Previous Screen=none,Meta+Shift+Left,Window to Previous Screen
-Window to Screen 0=none,,Window to Screen 0
-Window to Screen 1=none,,Window to Screen 1
-Window to Screen 2=none,,Window to Screen 2
-Window to Screen 3=none,,Window to Screen 3
-Window to Screen 4=none,,Window to Screen 4
-Window to Screen 5=none,,Window to Screen 5
-Window to Screen 6=none,,Window to Screen 6
-Window to Screen 7=none,,Window to Screen 7
+Window to Previous Screen=none,Meta+Shift+Left,Move Window to Previous Screen
+Window to Screen 0=none,,Move Window to Screen 0
+Window to Screen 1=none,,Move Window to Screen 1
+Window to Screen 2=none,,Move Window to Screen 2
+Window to Screen 3=none,,Move Window to Screen 3
+Window to Screen 4=none,,Move Window to Screen 4
+Window to Screen 5=none,,Move Window to Screen 5
+Window to Screen 6=none,,Move Window to Screen 6
+Window to Screen 7=none,,Move Window to Screen 7
 _k_friendly_name=KWin
 karousel-column-move-end=Meta+Ctrl+Shift+End,none,Karousel: Move column to end
 karousel-column-move-left=Meta+Ctrl+Shift+A,none,Karousel: Move column left
@@ -349,6 +338,8 @@ karousel-column-move-to-desktop-9=Meta+Ctrl+Shift+F9,none,Karousel: Move column 
 karousel-column-toggle-stacked=Meta+X\tCtrl+Alt+X,none,Karousel: Toggle stacked layout for focused column
 karousel-column-width-decrease=Ctrl+Alt+\\,\tMeta+Ctrl+-,none,Karousel: Decrease column width
 karousel-column-width-increase=Meta+Ctrl++\tCtrl+Alt+.,none,Karousel: Increase column width
+karousel-columns-squeeze-left=Meta+Ctrl+A,none,Karousel: Squeeze left column onto the screen
+karousel-columns-squeeze-right=Meta+Ctrl+D,none,Karousel: Squeeze right column onto the screen
 karousel-columns-width-equalize=Meta+Ctrl+X\tCtrl+Alt+Shift+X,none,Karousel: Equalize widths of visible columns
 karousel-cycle-preset-widths=Ctrl+Alt+Shift+R,none,Karousel: Cycle through preset column widths
 karousel-focus-1=none,none,Karousel: Move focus to column 1
@@ -366,8 +357,8 @@ karousel-focus-9=Meta+9,none,Karousel: Move focus to column 9
 karousel-focus-down=Meta+S,none,Karousel: Move focus down
 karousel-focus-end=Meta+End,none,Karousel: Move focus to end
 karousel-focus-left=none,none,Karousel: Move focus left
-karousel-focus-next=none,none,Karousel: Move focus down
-karousel-focus-previous=none,none,Karousel: Move focus down
+karousel-focus-next=none,none,Karousel: Move focus to the next window in grid
+karousel-focus-previous=none,none,Karousel: Move focus to the previous window in grid
 karousel-focus-right=none,none,Karousel: Move focus right
 karousel-focus-start=Meta+Home,none,Karousel: Move focus to start
 karousel-focus-up=Meta+W,none,Karousel: Move focus up
@@ -378,6 +369,7 @@ karousel-grid-scroll-left-column=Meta+Alt+A,none,Karousel: Scroll one column to 
 karousel-grid-scroll-right=Meta+Alt+PgDown\tCtrl+Alt+L,none,Karousel: Scroll right
 karousel-grid-scroll-right-column=Meta+Alt+D,none,Karousel: Scroll one column to the right
 karousel-grid-scroll-start=Meta+Alt+Home,none,Karousel: Scroll to start
+karousel-screen-switch=Meta+Ctrl+Return,none,Karousel: Move Karousel grid to the current screen
 karousel-tail-move-to-desktop-1=Meta+Ctrl+Alt+Shift+F1,none,Karousel: Move this and all following columns to desktop 1
 karousel-tail-move-to-desktop-10=Meta+Ctrl+Alt+Shift+F10,none,Karousel: Move this and all following columns to desktop 10
 karousel-tail-move-to-desktop-11=Meta+Ctrl+Alt+Shift+F11,none,Karousel: Move this and all following columns to desktop 11
@@ -393,6 +385,8 @@ karousel-tail-move-to-desktop-9=Meta+Ctrl+Alt+Shift+F9,none,Karousel: Move this 
 karousel-window-move-down=Meta+Shift+S,none,Karousel: Move window down
 karousel-window-move-end=Meta+Shift+End,none,Karousel: Move window to end
 karousel-window-move-left=none,none,Karousel: Move window left
+karousel-window-move-next=none,none,Karousel: Move window to the next position in grid
+karousel-window-move-previous=none,none,Karousel: Move window to the previous position in grid
 karousel-window-move-right=none,none,Karousel: Move window right
 karousel-window-move-start=Meta+Shift+Home,none,Karousel: Move window to start
 karousel-window-move-to-column-1=Meta+Shift+1,none,Karousel: Move window to column 1
@@ -408,7 +402,7 @@ karousel-window-move-to-column-7=Meta+Shift+7,none,Karousel: Move window to colu
 karousel-window-move-to-column-8=Meta+Shift+8,none,Karousel: Move window to column 8
 karousel-window-move-to-column-9=Meta+Shift+9,none,Karousel: Move window to column 9
 karousel-window-move-up=Meta+Shift+W,none,Karousel: Move window up
-karousel-window-toggle-floating=Meta+Space\tAlt+$,none,Karousel: Toggle floating
+karousel-window-toggle-floating=Ctrl+Alt+Shift+T\tMeta+Space\tAlt+$,none,Karousel: Toggle floating
 view_actual_size=Meta+0,Meta+0,Actual Size
 view_zoom_in=Meta+=,Meta+=,Zoom In
 view_zoom_out=Meta+-,Meta+-,Zoom Out
@@ -423,40 +417,6 @@ playmedia=none,,Play media playback
 playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous\tCtrl+Shift+K,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
-
-[org.ghostty.ghostty.desktop]
-_k_friendly_name=Ghostty
-_launch=Ctrl+Alt+/,none,Ghostty
-new-window=none,none,New Window
-
-[org.kde.dolphin.desktop]
-_k_friendly_name=Dolphin
-_launch=Meta+E,Meta+E,Dolphin
-
-[org.kde.konsole.desktop]
-NewTab=none,none,Open a New Tab
-NewWindow=none,none,Open a New Window
-_k_friendly_name=Konsole
-_launch=none,Ctrl+Alt+T,Konsole
-
-[org.kde.krunner.desktop]
-RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
-_k_friendly_name=KRunner
-_launch=Alt+Space\tAlt+F2\tSearch,Alt+Space\tAlt+F2\tSearch,KRunner
-
-[org.kde.plasma.emojier.desktop]
-_k_friendly_name=Emoji Selector
-_launch=Meta+.\tMeta+Ctrl+Alt+Shift+Space,Meta+.\tMeta+Ctrl+Alt+Shift+Space,Emoji Selector
-
-[org.kde.spectacle.desktop]
-ActiveWindowScreenShot=Meta+Print,Meta+Print,Capture Active Window
-CurrentMonitorScreenShot=none,none,Capture Current Monitor
-FullScreenScreenShot=Shift+Print,Shift+Print,Capture Entire Desktop
-OpenWithoutScreenshot=none,none,Launch without taking a screenshot
-RectangularRegionScreenShot=Meta+Shift+Print,Meta+Shift+Print,Capture Rectangular Region
-WindowUnderCursorScreenShot=Meta+Ctrl+Print,Meta+Ctrl+Print,Capture Window Under Cursor
-_k_friendly_name=Spectacle
-_launch=Print,Print,Spectacle
 
 [org_kde_powerdevil]
 Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Decrease Keyboard Brightness
@@ -475,7 +435,7 @@ _k_friendly_name=Power Management
 powerProfile=Battery\tMeta+B,Battery\tMeta+B,Switch Power Profile
 
 [plasmashell]
-_k_friendly_name=Plasma
+_k_friendly_name=plasmashell
 activate application launcher=Meta,Meta\tAlt+F1,Activate Application Launcher
 activate task manager entry 1=none,Meta+1,Activate Task Manager Entry 1
 activate task manager entry 10=none,Meta+0,Activate Task Manager Entry 10
@@ -487,9 +447,9 @@ activate task manager entry 6=none,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=none,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=none,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=none,Meta+9,Activate Task Manager Entry 9
-activate widget 3=Ctrl+Alt+Space,none,Activate Application Launcher Widget
+activate widget 3=none,none,Activate Application Launcher Widget
 activate widget 30=none,none,Activate Application Dashboard Widget
-activate widget 311=none,none,Activate Application Launcher Widget
+activate widget 311=Ctrl+Alt+Space,none,Activate Application Launcher Widget
 activate widget 34=none,none,Activate Application Launcher Widget
 activate widget 350=none,none,Activate Application Dashboard Widget
 activate widget 357=none,none,Activate Application Dashboard Widget
@@ -499,20 +459,23 @@ clipboard_action=none,Meta+Ctrl+X,Automatic Action Popup Menu
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels
 cycleNextAction=none,,Next History Item
 cyclePrevAction=none,,Previous History Item
-edit_clipboard=none,,Edit Contents…
+edit_clipboard=none,none,Edit Contents…
 manage activities=none,Meta+Q,Show Activity Switcher
 next activity=Meta+A,Meta+Tab,Walk through activities
 previous activity=Meta+Shift+A,Meta+Shift+Tab,Walk through activities (Reverse)
 repeat_action=none,Meta+Ctrl+R,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
 show-barcode=none,,Show Barcode…
-show-on-mouse-pos=none,Meta+V,Show Items at Mouse Position
+show-on-mouse-pos=none,Meta+V,Show Clipboard Items at Mouse Position
 stop current activity=none,Meta+S,Stop Current Activity
 switch to next activity=none,,Switch to Next Activity
 switch to previous activity=none,,Switch to Previous Activity
 toggle do not disturb=none,,Toggle do not disturb
 
 [services][com.mitchellh.ghostty.desktop]
+_launch=Ctrl+Alt+/
+
+[services][org.ghostty.ghostty.desktop]
 _launch=Ctrl+Alt+/
 
 [services][org.kde.konsole.desktop]
@@ -523,21 +486,13 @@ _launch=Meta+Ctrl+Alt+Shift+Space
 
 [services][org.kde.spectacle.desktop]
 RecordRegion=Meta+R
+_launch=Print
 
 [services][{a83269b6-d823-407e-8bb4-c0eee0ef65ce}.desktop]
 _launch=Ctrl+Alt+-
 
 [services][{ce914ebe-fcf0-48c8-9c85-b0c7a98235ce}.desktop]
 _launch=Ctrl+Alt+=
-
-[systemsettings.desktop]
-_k_friendly_name=System Settings
-_launch=Tools,Tools,System Settings
-kcm-kscreen=none,none,Display Configuration
-kcm-lookandfeel=none,none,Global Theme
-kcm-users=none,none,Users
-powerdevilprofilesconfig=none,none,Energy Saving
-screenlocker=none,none,Screen Locking
 
 [wacomtablet]
 Map to fullscreen=Meta+Ctrl+F,Meta+Ctrl+F,Map to fullscreen
