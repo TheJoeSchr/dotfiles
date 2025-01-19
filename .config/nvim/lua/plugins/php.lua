@@ -29,10 +29,15 @@ return {
       }
       dap.configurations.php = {
         {
-          name = "Listen for Xdebug",
           type = "php",
           request = "launch",
+          name = "Listen for XDebug (dap)",
           port = 9003,
+          log = true,
+          pathMappings = {
+            ["/var/www/html/"] = vim.fn.getcwd() .. "/",
+          },
+          hostname = "0.0.0.0",
         },
       }
     end,
