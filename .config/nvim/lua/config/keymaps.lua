@@ -25,3 +25,7 @@ wk.add({
   { "<leader>gdd", "<cmd>Gvdiffsplit<CR>", { desc = "Diff vsplit" } },
   { "<leader>gd3", "<cmd>Gvdiffsplit<CR>", { desc = "3-way diff vsplit" } },
 })
+
+-- GITLAB
+-- Toggle Code Suggestions on/off in normal mode:
+vim.keymap.set("n", "<leader>uU", "<Plug>(GitLabToggleCodeSuggestions)", { desc = "Toggle Code Suggestions on/off" })
