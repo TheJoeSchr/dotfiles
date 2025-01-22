@@ -1,5 +1,5 @@
 function a --wraps=aerc
-    while aerc $argv
+    while op-login && aerc $argv
         sleep 1
     end
 end
