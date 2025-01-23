@@ -102,6 +102,8 @@ THE THREE TYPES OF ALIAS
     alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
     alias du 'dust -d 1'
     alias edit nvim
+    # alias gh "op plugin run -- gh"
+    alias glab "op plugin run -- glab"
     alias lf y
     alias mail cmdg
     alias Y 'sudo -E fish -c "y"'
