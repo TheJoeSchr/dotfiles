@@ -486,6 +486,7 @@ _launch=Meta+Ctrl+Alt+Shift+Space
 
 [services][org.kde.spectacle.desktop]
 RecordRegion=Meta+R
+RectangularRegionScreenShot=Meta+Shift+Print\tCtrl+Alt+Shift+S
 _launch=Print
 
 [services][{a83269b6-d823-407e-8bb4-c0eee0ef65ce}.desktop]
