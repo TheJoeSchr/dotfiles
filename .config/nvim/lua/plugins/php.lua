@@ -31,7 +31,7 @@ return {
         {
           type = "php",
           request = "launch",
-          name = "Listen for XDebug (dap)",
+          name = "Listen for XDebug (system-dap)",
           port = 9003,
           log = true,
           pathMappings = {
@@ -40,6 +40,7 @@ return {
           hostname = "0.0.0.0",
         },
       }
+      require("dap.ext.vscode").load_launchjs()
     end,
   },
   {
