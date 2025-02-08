@@ -11,7 +11,20 @@ return {
     { "echasnovski/mini.pick", version = false },
     { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }, -- Optional: For prettier markdown rendering
     {
+      -- https://www.reddit.com/r/neovim/comments/1hrsrdm/having_issues_installing_blinkcmp/
+      -- You need to build the fuzzy matching library which is written in rust. For that, you need cargo and rustup. Then install nightly with rustup.
+      -- Then write into your lazy config:
+      --
+      -- {
+      --     'saghen/blink.cmp',
+      --     build = 'cargo +nightly build --release'
+      -- }
+      -- Works for me.
+      --
+      -- If you want to use the stable version (version = '*') remove the +nightly . Either way, you need to build the rust packages for the fuzzy match library, if you have this issue.
       "saghen/blink.cmp",
+      version = "*",
+      build = "cargo build --release",
       dependencies = { "saghen/blink.compat" },
       opts = {
         enabled = function()
