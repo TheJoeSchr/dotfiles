@@ -73,6 +73,40 @@ return {
   { "idanarye/vim-merginal", cmd = "Merginal", dependencies = { "tpope/vim-fugitive" } },
   { "mbbill/undotree", event = "BufRead" },
 
+  -- gitlab
+  {
+    "harrisoncramer/gitlab.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      {
+        "sindrets/diffview.nvim",
+        dependencies = {
+          { "nvim-tree/nvim-web-devicons", lazy = true },
+        },
+
+        keys = {
+          {
+            "<leader>gdu",
+            function()
+              if next(require("diffview.lib").views) == nil then
+                vim.cmd("DiffviewOpen")
+              else
+                vim.cmd("DiffviewClose")
+              end
+            end,
+            desc = "Toggle Diffview UI window",
+          },
+        },
+      },
+    },
+    build = function()
+      require("gitlab.server").build(true)
+    end, -- Builds the Go binary
+    config = function()
+      require("gitlab").setup()
+    end,
+  },
   -- not working yet
   { "Olical/clojure-dap" },
 
