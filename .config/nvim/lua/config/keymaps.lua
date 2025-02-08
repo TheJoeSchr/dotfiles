@@ -3,6 +3,30 @@
 
 local wk = require("which-key")
 
+-- diffview
+-- `diffOpenFileHistory` with . opens commit wise history of entire codebase.
+-- `diffOpenFileHistory` with % opens commit wise history of current file.
+-- `diffOpenFileHistory` with <any file path> opens commit wise history of that file.
+-- `diffOpenWithInput` with HEAD opens diff of latest commit.
+-- `diffOpenWithInput` with HEAD~3 opens diff of last 3 commits.
+-- `diffOpenWithInput` with master..HEAD opens changes of your feature branch.
+local function diffOpenWithInput()
+  local user_input = vim.fn.input("Revision to Open: ")
+  vim.cmd("DiffviewOpen " .. user_input)
+end
+
+local function diffOpenFileHistory()
+  local user_input = vim.fn.input("Files to Open: ")
+  vim.cmd("DiffviewFileHistory " .. user_input)
+end
+
+-- Key maps
+require("which-key").add({
+  { "<leader>gd", group = "Diffview.nvim" },
+  { "<leader>gdf", diffOpenFileHistory, desc = "Open DiffView on Files" },
+  { "<leader>gdo", diffOpenWithInput, desc = "Open DiffView" },
+})
+
 -- Movement and Navigation
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
