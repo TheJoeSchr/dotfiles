@@ -4,7 +4,11 @@
   symlinks = true
   longPaths = true
   excludesfile =
-  pager = delta
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
 [user]
   name = Joe Schr
   email = jozeph.oftheinternet+git@gmail.com
@@ -22,8 +26,27 @@
   ce = commit -C HEAD --amend
   ci = commit -v
   cim = !git ci -m
-  df = !git diff --histogram  && git diff --histogram --cached
-  dft = difftool
+  # print difference in stdout
+  df = "!f() { PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@; }; f"
+  # real original `git df`
+  dfoo = !git diff --histogram && git diff --histogram --cached
+  # original `git df` now with color
+  dfo = !"PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram && git diff --histogram --cached"
+  # original `git df` now with color(delta) and difftastic
+  dfd = "!f() { PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@ && git diff --histogram --cached $@ ; }; f"
+  # Difftastic aliases
+  # difftool opens nvimdiff for every file
+  dfs = difftool
+  # Show diff with word-level details
+  dftw = "!f() { GIT_EXTERNAL_DIFF=difft git diff --word-diff $@; }; f"
+  # Show diff of staged changes
+  dfts = difftool --staged
+  # Show diff for specific commit
+  dftc = "!f() { GIT_EXTERNAL_DIFF=difft git diff $1^..$ }; f"
+  # Show diff for last commit
+  dftl = difftool HEAD^..HEAD
+  # Show diff for pull request (needs PR number)
+  dftpr = "!f() { GIT_EXTERNAL_DIFF=difft git diff origin/main...pull/$1/head; }; f"
   dlog = -c diff.external=difft log -p --ext-diff
   feat = merge --no-ff --no-commit
   go = checkout
@@ -54,8 +77,10 @@
   # shorthands
   gbdr = branch-delete-remote
   rmdb = branch-delete-remote
+  # visualize branch relationships
+  lgv = log --graph --all --format=oneline --simplify-by-decoration
   # logging commands (hardcoded PAGER because of nvimpager not working)
-  lg-paged = !"PAGER=/usr/bin/less git log"
+  lg-paged = !"pager=/usr/bin/less git log"
   # pretty format
   his = lg-paged --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
     # long pretty format
@@ -81,6 +106,9 @@
   lfst = !git lst --follow -- # stat-style commits
   lfpa = !git lpa --follow -- # full patch commits
   show-file-history = !git lfl
+
+
+
 [rerere]
   enabled = true
 [mergetool]
@@ -88,7 +116,7 @@
   prompt = false
 [merge]
     ; conflictStyle = zdiff
-	conflictstyle = diff3
+  conflictstyle = diff3
 [http]
   sslVerify = false
   cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
@@ -104,14 +132,28 @@
 [credential "https://github.com"]
   helper = !/usr/bin/gh auth git-credential
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [interactive]
     diffFilter = delta --color-only
 [delta]
     navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    light = false      # set to true if you're in a terminal w/ a light background color
     side-by-side = true
+    line-numbers = true
+    decorations = true
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = cyan box ul
+    minus-style = syntax "#3f0001"
+    minus-emph-style = syntax "#901011"
+    plus-style = syntax "#003800"
+    plus-emph-style = syntax "#009800"
 [diff]
     colorMoved = default
+    # Use difftastic as the default diff tool
+    external = difft
+    tool = nvimdiff
 [rebase]
-	autoStash = true
+  autoStash = true
+
+
