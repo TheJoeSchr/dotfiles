@@ -76,9 +76,12 @@ return {
   -- gitlab
   {
     "harrisoncramer/gitlab.nvim",
+    lazy = false,
+    event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- Recommended but not required. Better UI for pickers.
       {
         "sindrets/diffview.nvim",
         dependencies = {
