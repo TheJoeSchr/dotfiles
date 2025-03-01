@@ -287,7 +287,7 @@ if test (read -P "Install CLOJURE?" -n 1) = y
     cd ~
 end
 
-if test (read -P "Install GUI essentials (kitty, signal, steam)" -n 1) = y
+if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
     # ESSENTIALS GUI & DESKTOP
 
     # 1. create some space on steamdeck 
@@ -319,38 +319,32 @@ if test (read -P "Install GUI essentials (kitty, signal, steam)" -n 1) = y
             sudo rsync -avzh --remove-source-files --progress /usr/lib/jvm ~/.local/lib/ && sudo rm -rf /usr/lib/jvm/ && sudo ln -s /home/deck/.local/lib/jvm/ /usr/lib/jvm
         end
     end
-    # 2. install GUI apps
-    pikaur -S --needed --noconfirm \
-        filelight \
-        --overwrite /etc/xdg/filelightrc \
-        kdeconnect \
-        --overwrite "/etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop" \
-        google-chrome kdialog \
-        --overwrite "/opt/google/chrome/*" \
-        # xclip is for kitty \
-        kitty xclip \
-        yakuake \
-        # 1password:
-        1password-cli \
-        1password-beta \
-        --overwrite "/opt/1Password/*" \
-        # vscode
-        # (needed for sync auth)
-        gnome-keyring libsecret libgnome-keyring \
-        --overwrite "/etc/xdg/autostart/gnome-keyring-*" \
-        visual-studio-code-bin \
-        --overwrite "/opt/visual-studio-code/*" \
-        # unify for logitech setpoint
-        ltunify \
-        # FONTS
-        powerline-fonts ttf-inconsolata ttf-joypixels nerd-fonts-hack \
-        # MAYBE NOT SO ESSENTIAL...
-        zathura \
-        signal-desktop \
-        cpupower-gui cpupower \
-        --overwrite "/etc/cpupower_gui*" \
-        insync
     if not $is_steam
+        # 2. install GUI apps
+        pikaur -S --needed --noconfirm \
+            filelight \
+            kdeconnect \
+            google-chrome \
+            # xsel is for ghostty \
+            ghostty xsel \
+            yakuake \
+            # 1password:
+            1password-cli \
+            1password-beta \
+            # vscode
+            # (needed for sync auth)
+            gnome-keyring libsecret libgnome-keyring \
+            visual-studio-code-bin \
+            # unify for logitech setpoint
+            ltunify \
+            # FONTS
+            powerline-fonts ttf-inconsolata ttf-joypixels ttf-hack-nerd \
+            # MAYBE NOT SO ESSENTIAL...
+            zathura \
+            signal-desktop \
+            cpupower-gui cpupower \
+            insync
+
         pikaur -S --needed --noconfirm \
             noto-fonts
         pikaur -S --needed --noconfirm \
