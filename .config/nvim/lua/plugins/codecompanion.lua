@@ -23,8 +23,9 @@ return {
       --
       -- If you want to use the stable version (version = '*') remove the +nightly . Either way, you need to build the rust packages for the fuzzy match library, if you have this issue.
       "saghen/blink.cmp",
-      version = "*",
-      build = "cargo build --release",
+      -- version = "0.12",
+      version = "0.13.1",
+      build = "cargo +nightly build --release",
       dependencies = { "saghen/blink.compat" },
       opts = {
         enabled = function()
