@@ -12,6 +12,7 @@ switch-to-activity-7f74c8e4-8029-49bf-b627-91f7fe05e938=none,none,Switch to acti
 switch-to-activity-8746a399-d795-48d4-825e-8b4497c90b4f=none,none,Switch to activity "Default"
 switch-to-activity-939d8f1e-7c27-4afb-bcea-8f8a5292b66b=none,none,Switch to activity "Default"
 switch-to-activity-d0377383-5cf6-4e65-8bfc-219970054d75=none,none,Switch to activity "Default"
+switch-to-activity-ddcb0281-993d-47a2-94b6-fa636dc09e14=none,none,Switch to activity "Default"
 switch-to-activity-ef581a10-edd3-4f56-a66f-f5d408d066ca=none,none,Switch to activity "Default"
 switch-to-activity-f48e3293-8724-48e2-8e78-c9abf790bed6=none,none,Switch to activity "Default"
 
@@ -24,7 +25,7 @@ Switch keyboard layout to English (intl., with AltGr dead keys)=none,none,Switch
 Switch keyboard layout to EurKEY (US)=none,none,Switch keyboard layout to EurKEY (US)
 Switch keyboard layout to German (Austria, no dead keys)=none,none,Switch keyboard layout to German (Austria\\, no dead keys)
 Switch to Last-Used Keyboard Layout=Meta+Alt+L,Meta+Alt+L,Switch to Last-Used Keyboard Layout
-Switch to Next Keyboard Layout=none,Meta+Alt+K,Switch to Next Keyboard Layout
+Switch to Next Keyboard Layout=,Meta+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
 [kaccess]
@@ -342,6 +343,7 @@ karousel-columns-squeeze-left=Meta+Ctrl+A,none,Karousel: Squeeze left column ont
 karousel-columns-squeeze-right=Meta+Ctrl+D,none,Karousel: Squeeze right column onto the screen
 karousel-columns-width-equalize=Meta+Ctrl+X\tCtrl+Alt+Shift+X,none,Karousel: Equalize widths of visible columns
 karousel-cycle-preset-widths=Ctrl+Alt+Shift+R,none,Karousel: Cycle through preset column widths
+karousel-cycle-preset-widths-reverse=none,none,Karousel: Cycle through preset column widths in reverse
 karousel-focus-1=none,none,Karousel: Move focus to column 1
 karousel-focus-10=none,none,Karousel: Move focus to column 10
 karousel-focus-11=none,none,Karousel: Move focus to column 11
@@ -477,6 +479,9 @@ _launch=Ctrl+Alt+/
 
 [services][org.ghostty.ghostty.desktop]
 _launch=Ctrl+Alt+/
+
+[services][org.kde.dolphin.desktop]
+_launch=Ctrl+Alt+E\tMeta+E
 
 [services][org.kde.konsole.desktop]
 _launch=none

@@ -78,6 +78,10 @@ Color=255,150,115
 IndividualMenuConfig=true
 MoveResize=69
 
+[Effect-kwin6_effect_fire]
+Duration=500
+Gradient4=255,85,0
+
 [Effect-overview]
 BorderActivate=9
 
@@ -112,6 +116,7 @@ NightTemperature=5000
 blurEnabled=false
 contrastEnabled=true
 coverswitchEnabled=true
+cubeEnabled=true
 desktopchangeosdEnabled=true
 desktopgridEnabled=false
 diminactiveEnabled=true
@@ -128,10 +133,13 @@ kwin4_effect_scaleEnabled=false
 kwin4_effect_squashEnabled=false
 kwin4_effect_translucencyEnabled=true
 kwin4_effect_windowapertureEnabled=false
+kwin6_effect_fireEnabled=true
 lattewindowcolorsEnabled=true
 minimizeallEnabled=false
+overviewEnabled=false
 poloniumEnabled=false
 resizeEnabled=true
+scaleEnabled=false
 screenedgeEnabled=false
 sheetEnabled=true
 slideEnabled=false
@@ -233,10 +241,16 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][1d389db8-ee2e-50f6-9cb8-13d69fba20d8]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][27088e55-5065-5be5-a95a-2d38f568cc2c]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][3097912c-9ec8-52d6-91c9-a226bd7d8811]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][451d502f-2066-5957-89ef-b54fceefc1df]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][51d1cd96-3a97-54d6-b9d9-3faa7e35a03f]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][55ec361b-584e-5118-85b5-e017cf4f7509]
@@ -252,6 +266,12 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][8194b6b4-4fdf-5c0c-a8b2-9053aeb9921c]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][9fe16d9e-8ef2-5096-8f3b-0f16afe1e4fa]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][a9bb011d-21cf-5a55-8b68-97e1b9a81ed5]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][c9580e7d-8176-518a-8a38-458898975c69]
@@ -283,7 +303,7 @@ RollOverDesktops=true
 SeparateScreenFocus=true
 
 [Xwayland]
-Scale=1.5
+Scale=1.25
 
 [org.kde.kdecoration2]
 BorderSize=NoSides
