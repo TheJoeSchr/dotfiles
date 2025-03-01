@@ -29,7 +29,7 @@ function nvm --description "Node version manager"
 
     switch "$cmd"
         case -v --version
-            echo "nvm, version 2.2.13"
+            echo "nvm, version 2.2.17"
         case "" -h --help
             echo "Usage: nvm install <version>    Download and activate the specified Node version"
             echo "       nvm install              Install the version specified in the nearest .nvmrc file"
@@ -49,6 +49,7 @@ function nvm --description "Node version manager"
             echo "       nvm_mirror               Use a mirror for downloading Node binaries"
             echo "       nvm_default_version      Set the default version for new shells"
             echo "       nvm_default_packages     Install a list of packages every time a Node version is installed"
+            echo "       nvm_data                 Set a custom directory for storing nvm data"
             echo "Examples:"
             echo "       nvm install latest       Install the latest version of Node"
             echo "       nvm use 14.15.1          Use Node version 14.15.1"
@@ -113,7 +114,7 @@ function nvm --description "Node version manager"
                     echo -e "Fetching \x1b[4m$url\x1b[24m\x1b[7m"
                 end
 
-                if ! command curl $silent --progress-bar --location $url |
+                if ! command curl -q $silent --progress-bar --location $url |
                         command tar --extract --gzip --directory $nvm_data/$ver 2>/dev/null
                     command rm -rf $nvm_data/$ver
                     echo -e "\033[F\33[2K\x1b[0mnvm: Invalid mirror or host unavailable: \"$url\"" >&2
