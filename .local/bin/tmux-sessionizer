@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 if [[ $# -eq 1 ]]; then
-    # allow to pass a '.' as argument
-    selected="$1" && [[ "$selected" == '.' ]] && selected="$PWD"
+  # allow to pass a '.' as argument
+  selected="$1" && [[ "$selected" == '.' ]] && selected="$PWD"
 else
-    selected=$(find ~/projects ~/zk/efforts ~/zk/efforts/ft ~/zk ~/ /mnt/diskpool/Datengrab/Work/development /mnt/diskpool/Datengrab/Work-2013/development -mindepth 1 -maxdepth 2 -type d | fzf)
+  selected=$(find ~/projects/enixi ~/projects/enixi/eda ~/projects ~/zk/efforts ~/zk/efforts/ft ~/zk ~/ /mnt/diskpool/Datengrab/Work/development /mnt/diskpool/Datengrab/Work-2013/development -mindepth 1 -maxdepth 2 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
-    exit 0
+  exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
@@ -16,21 +16,20 @@ tmux_running=$(pgrep tmux)
 echo "selected name: $selected_name"
 echo "tmux_running?: $tmux_running"
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
+  tmux new-session -s $selected_name -c $selected
 fi
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    # tmux has-session -t=$selected_name 2> /dev/null
-    echo "Session $selected_name not found\n
+if ! tmux has-session -t=$selected_name 2>/dev/null; then
+  # tmux has-session -t=$selected_name 2> /dev/null
+  echo "Session $selected_name not found\n
     Creating new session..."
-    tmux new-session -ds $selected_name -c $selected
+  tmux new-session -ds $selected_name -c $selected
 fi
 # if in tmux, switch client to session
-    echo "Session $selected_name not found"
+echo "Session $selected_name not found"
 if [[ "$TERM" =~ "screen".* ]]; then
-    tmux switch-client -t $selected_name
-    exit 0
+  tmux switch-client -t $selected_name
+  exit 0
 else # if not in tmux, attach to session
-    tmux attach-session -t $selected_name
-    exit 0
+  tmux attach-session -t $selected_name
+  exit 0
 fi
-
