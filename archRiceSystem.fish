@@ -149,9 +149,9 @@ if test (read -P "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)
         neovim-remote \
         direnv \
         babashka-bin \
-        ripgrep nnn jaapi-advcpmv \
+        ripgrep \
         # modern cli
-        bash-completion fzf fd duf dust exa bottom bat procs tldr rm-improved-bin \
+        fzf fd duf dust exa bottom bat procs tldr rm-improved-bin \
         python3 python-pip python-pipx uv python-poetry \
         yazi-git
     # fish z
