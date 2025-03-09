@@ -117,6 +117,7 @@
 [merge]
     ; conflictStyle = zdiff
   conflictstyle = diff3
+  tool = nvimdiff
 [http]
   sslVerify = false
   cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
