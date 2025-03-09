@@ -55,7 +55,7 @@ if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = y
         sudo pacman-key --populate holo
         sudo pacman -Sy --noconfirm holo-keyring
         sudo pacman -S --noconfirm tmux fish neovim git
-        sudo pacman -Syu --noconfirm
+        sudo pacman -Sy --noconfirm
     end
     # STEAMDECK: fix broken headers
     if $is_steam_host
@@ -70,15 +70,26 @@ if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = y
     end
 end # / full upgrade
 
-
 # install AUR helper:
 if not command -sq pikaur
     if test (read -P "Install pikaur" -n 1) = y
-        cd ~/archlinux # change PWD for ./common.sh import
-        # need build tools first
-        sudo env bash ~/archlinux/install-buildtools.sh
-        env bash ~/archlinux/install-aur-and-mirror-helpers.sh
-        cd -
+        if $is_steam_host
+            # need build tools first
+            sudo env bash ~/archlinux/install-buildtools.sh
+            cd ~/.local/sources/
+            git clone --depth=1 https://aur.archlinux.org/pikaur.git
+            cd pikaur
+            # pikaur > 1.20 needed python^3.12
+            git checkout 75bc4f07
+            makepgk -si
+            cd ~/archlinux/
+        else
+            cd ~/archlinux # change PWD for ./common.sh import
+            # need build tools first
+            sudo env bash ~/archlinux/install-buildtools.sh
+            env bash ~/archlinux/install-aur-and-mirror-helpers.sh
+            cd -
+        end
         echo $PWD
     end
 end
@@ -103,34 +114,48 @@ end
 # FIRST TRY SCRIPT, MAY FAIL BECAUSE GIT SUBMODULES NOT CHECKED OUT
 if test (read -P "Install CLI essentials" -n 1) = y
     cd ~/archlinux # change PWD for ./common.sh import
-    if not $is_steam_host
+    pikaur -S --needed --noconfirm rustup
+    # prep for rust based pkgs e.g. fish-git, yazi-git
+    rustup default stable
+    if $is_steam_host
+        echo "~/archlinux/install-steamdeck-essentials.sh"
         sudo env bash ~/archlinux/install-steamdeck-essentials.sh
     else
+        echo "~/archlinux/install-cli-essentials.sh"
         sudo env bash ~/archlinux/install-cli-essentials.sh
+        if test (read -P "Install cli-extra?" -n 1) = y
+            echo "~/archlinux/install-cli-extra.sh"
+            sudo env bash ~/archlinux/install-cli-extra.sh
+
+        end
     end
     cd -
     echo $PWD
 end
 
 # ESSENTIALS SYSTEM
-if test (read -P "Manually install CLI essentials (fish, tmux, ...)" -n 1) = y
+if test (read -P "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)" -n 1) = y
+    pikaur -S --needed --noconfirm rustup
+    # prep for rust based pkgs e.g. fish-git, yazi-git
+    rustup default stable
     pikaur -S --needed --noconfirm \
-        fish \
-        tmux fpp \
+        fish-git \
+        tmux \
         # fish uses "hostname" in many scripts
         inetutils \
+        # folder watchers
+        inotify-tools \
         #fails because of scdoc depenendy:
         neovim-remote \
         direnv \
         babashka-bin \
         ripgrep nnn jaapi-advcpmv \
         # modern cli
-        bash-completion fzy fzf fd duf dust exa bottom bat procs tldr \
-        python3 python-pip python-poetry \
-        github-cli \
-        nordvpn-bin \
-        # fish z
-        zoxide
+        bash-completion fzf fd duf dust exa bottom bat procs tldr rm-improved-bin \
+        python3 python-pip python-pipx uv python-poetry \
+        yazi-git
+    # fish z
+    zoxide
     # ESSENTIALS w/ STEAM special cases
     # eg. neovim-git htop  mosh urlview
     if $is_steam
@@ -138,7 +163,7 @@ if test (read -P "Manually install CLI essentials (fish, tmux, ...)" -n 1) = y
         pikaur -S --noconfirm sshuttle --overwrite "/usr/lib/python3.*" && sudo pacman -S python
 
         # NVIM
-        pikaur -S --noconfirm neovim-git xsel
+        pikaur -S --noconfirm neovim-nightly-bin tree-sitter-cli xsel
         nvim --version # print current version
         if test (read -P "Manually install NEOVIM-GIT (version >= 7 needed)?" -n 1) = y
             # pikaur -S --needed neovim-git 
@@ -190,9 +215,8 @@ if test (read -P "Manually install CLI essentials (fish, tmux, ...)" -n 1) = y
         end
     else # not steam should just work
         pikaur -S \ 
-        neovim-git nvimpager-git \
-            urlview \
-            sshuttle
+        neovim-git nvimpager \
+            urlview
         # keep empty line for "end"
     end
     # keep empty line
@@ -245,7 +269,6 @@ if test (read -P "Install fisher + theme + plugins?" -n 1) = y
     # fish -c 'fisher install andreiborisov/sponge'
     # fish -c 'fisher install gazorby/fish-abbreviation-tips'
 
-
     # omf
     curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | NONINTERACTIVE=true fish
     # omf theme
@@ -276,7 +299,6 @@ if test (read -P "Setup NPM / YARN / NODE / NVM installations?" -n 1) = y
     npm install -G yarn
 end
 
-
 # CLOJURE (steamdeck)
 if test (read -P "Install CLOJURE?" -n 1) = y
     cd ~/.local/sources
@@ -287,6 +309,11 @@ if test (read -P "Install CLOJURE?" -n 1) = y
     cd ~
 end
 
+if test (read -P "Install 1password + CLI" -n 1) = y
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+    pikaur -S --noconfirm 1password 1password-cli
+
+end
 if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
     # ESSENTIALS GUI & DESKTOP
 
@@ -326,11 +353,8 @@ if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
             kdeconnect \
             google-chrome \
             # xsel is for ghostty \
-            ghostty xsel \
+            ghostty-git xsel \
             yakuake \
-            # 1password:
-            1password-cli \
-            1password-beta \
             # vscode
             # (needed for sync auth)
             gnome-keyring libsecret libgnome-keyring \
@@ -358,20 +382,6 @@ if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
             cd appimagelauncher-git
             sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
             makepkg --noconfirm --syncdeps --install --clean
-            cd ~
-        end
-
-        # CMDG
-        if test (read -P "Manually install CMDG?" -n 1) = y
-            git clone https://github.com/JoeSchr/cmdg.git ~/.local/sources/cmdg
-            cd ~/.local/sources/cmdg
-            pikaur -S go --noconfirm
-            go build ./cmd/cmdg
-            sudo cp cmdg /usr/local/bin
-            # press Ctrl-A u to open urls in mail
-            pikaur -S --noconfirm urlview lynx \
-                --overwrite "/etc/lynx.lss"
-            pikaur -R go
             cd ~
         end
 
@@ -443,7 +453,6 @@ if not $is_steam
         # crc start
     end
 
-
     # bluetooth a2dp
     # pikaur -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
     # equalizer
@@ -455,7 +464,6 @@ if not $is_steam
     # sudo pikaur -S lib32-opencl-nvidia-455xx opencl-nvidia
 
     # sudo pikaur -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
-
 
     if test (read -P "Install qemu/libwirt" -n 1) = y
         pikaur -S libvirt qemu qemu-arch-extra
@@ -479,7 +487,6 @@ if not $is_steam
         sudo usermod -aG plugdev $USER
     end
 end
-
 
 # chrome-remote-desktop
 if test (read -P "Install chrome-remote-desktop?" -n 1) = y
