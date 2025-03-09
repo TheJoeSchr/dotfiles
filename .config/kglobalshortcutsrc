@@ -24,8 +24,8 @@ Switch keyboard layout to English (US, intl., with dead keys)=none,none,Switch k
 Switch keyboard layout to English (intl., with AltGr dead keys)=none,none,Switch keyboard layout to English (intl.\\, with AltGr dead keys)
 Switch keyboard layout to EurKEY (US)=none,none,Switch keyboard layout to EurKEY (US)
 Switch keyboard layout to German (Austria, no dead keys)=none,none,Switch keyboard layout to German (Austria\\, no dead keys)
-Switch to Last-Used Keyboard Layout=Meta+Alt+L,Meta+Alt+L,Switch to Last-Used Keyboard Layout
-Switch to Next Keyboard Layout=,Meta+Alt+K,Switch to Next Keyboard Layout
+Switch to Last-Used Keyboard Layout=none,Meta+Alt+L,Switch to Last-Used Keyboard Layout
+Switch to Next Keyboard Layout=none,Meta+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
 [kaccess]
@@ -35,7 +35,7 @@ _k_friendly_name=Accessibility
 [kcm_touchpad]
 Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
 Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
-Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Toggle Touchpad
+Toggle Touchpad=Touchpad Toggle,Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,Toggle Touchpad
 _k_friendly_name=Touchpad
 
 [kmix]
@@ -51,7 +51,7 @@ mute=Volume Mute,Volume Mute,Mute
 
 [ksmserver]
 Halt Without Confirmation=none,,Shut Down Without Confirmation
-Lock Session=none,Meta+L\tScreensaver,Lock Session
+Lock Session=,Meta+L\tScreensaver,Lock Session
 Log Out=none,Ctrl+Alt+Del,Show Logout Screen
 Log Out Without Confirmation=none,,Log Out Without Confirmation
 LogOut=none,,Log Out
@@ -62,7 +62,7 @@ _k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Ctrl+Alt+A,Meta+Ctrl+A,Activate Window Demanding Attention
-Cube=none,Ctrl+F11,Desktop Cube
+Cube=Ctrl+F11,Meta+C,Toggle Cube
 Cycle Overview=none,none,Cycle through Overview and Grid View
 Cycle Overview Opposite=none,none,Cycle through Grid View and Overview
 Cylinder=none,none,Desktop Cylinder
@@ -449,13 +449,16 @@ activate task manager entry 6=none,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=none,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=none,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=none,Meta+9,Activate Task Manager Entry 9
+activate widget 112=Ctrl+Alt+Space,none,Activate Application Launcher Widget
 activate widget 3=none,none,Activate Application Launcher Widget
-activate widget 30=none,none,Activate Application Dashboard Widget
-activate widget 311=Ctrl+Alt+Space,none,Activate Application Launcher Widget
+activate widget 30=none,none,Activate Application Launcher Widget
+activate widget 311=none,none,Activate Application Launcher Widget
 activate widget 34=none,none,Activate Application Launcher Widget
 activate widget 350=none,none,Activate Application Dashboard Widget
 activate widget 357=none,none,Activate Application Dashboard Widget
+activate widget 62=none,none,Activate Application Launcher Widget
 activate widget 73=Alt+F1,none,Activate Application Launcher Widget
+activate widget 85=none,none,Activate Global Menu Widget
 clear-history=none,,Clear Clipboard History
 clipboard_action=none,Meta+Ctrl+X,Automatic Action Popup Menu
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels
@@ -513,4 +516,4 @@ _k_friendly_name=Wacom Tablet
 
 [yakuake]
 _k_friendly_name=Yakuake
-toggle-window-state=Meta+Alt+Return\tCtrl+Alt+Shift+Return,F12,Open/Retract Yakuake
+toggle-window-state=Ctrl+Alt+Shift+Return\tMeta+Alt+Return,F12,Open/Retract Yakuake
