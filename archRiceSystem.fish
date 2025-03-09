@@ -81,7 +81,7 @@ if not command -sq pikaur
             cd pikaur
             # pikaur > 1.20 needed python^3.12
             git checkout 75bc4f07
-            makepgk -si
+            makepkg -si
             cd ~/archlinux/
         else
             cd ~/archlinux # change PWD for ./common.sh import
