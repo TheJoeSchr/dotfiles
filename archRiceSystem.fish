@@ -129,7 +129,7 @@ if test (read -P "Install CLI essentials" -n 1) = y
 
         end
     end
-    cd -
+    cd ~/archlinux/
     echo $PWD
 end
 
