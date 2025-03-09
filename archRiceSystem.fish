@@ -77,7 +77,7 @@ if not command -sq pikaur
             # need build tools first
             sudo env bash ~/archlinux/install-buildtools.sh
             cd ~/.local/sources/
-            git clone --depth=1 https://aur.archlinux.org/pikaur.git
+            git clone https://aur.archlinux.org/pikaur.git
             cd pikaur
             # pikaur > 1.20 needed python^3.12
             git checkout 75bc4f07
