@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "5186af7"
-hash = "771f18427fb75fb19990ce602bb322f4"
+rev = "cb6165b"
+hash = "ee5fa7e64db72d6b10c2315de97c9cc7"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "5186af7"
-hash = "af11685de39c366ec1137fcbccacdbff"
+rev = "cb6165b"
+hash = "a670c03eb3760812e044a24f94cedc55"
 
 [[plugin.deps]]
 use = "dawsers/toggle-view"
@@ -15,13 +15,13 @@ hash = "9d291f6cecb1f1f5542fc18177d5c107"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "5186af7"
-hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
+rev = "cb6165b"
+hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "f4a904c"
-hash = "60dff62dcb958c83b7c84dfb3d5ef68b"
+rev = "b197f45"
+hash = "50edde70fad24f7b0e9922729312dbd7"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
@@ -40,8 +40,8 @@ hash = "17a094653b7d0db4ac68ed531d2e1412"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "5186af7"
-hash = "b482f4f2d3c4e0aa3f8db89a95699439"
+rev = "cb6165b"
+hash = "f0c4b41b5d19a3144958383333eff6e7"
 
 [[plugin.deps]]
 use = "AnirudhG07/custom-shell"
