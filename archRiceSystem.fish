@@ -119,7 +119,7 @@ if test (read -P "Install CLI essentials" -n 1) = y
     rustup default stable
     if $is_steam_host
         echo "~/archlinux/install-steamdeck-essentials.sh"
-        sudo env bash ~/archlinux/install-steamdeck-essentials.sh
+        env bash ~/archlinux/install-steamdeck-essentials.sh
     else
         echo "~/archlinux/install-cli-essentials.sh"
         sudo env bash ~/archlinux/install-cli-essentials.sh
