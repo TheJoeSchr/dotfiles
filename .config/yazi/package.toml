@@ -25,8 +25,8 @@ hash = "a8a1927e911080120847e813dbc39bad"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
-rev = "8103065"
-hash = "9f13f0740fa3a0c18e47ec6fb62ddfaa"
+rev = "61ae795"
+hash = "65d576a76597aac2a428dc7ec0eda2ce"
 
 [[plugin.deps]]
 use = "KKV9/compress"
@@ -47,6 +47,11 @@ hash = "f0c4b41b5d19a3144958383333eff6e7"
 use = "AnirudhG07/custom-shell"
 rev = "6b4550a"
 hash = "43019cca17a4d7b41746c2e0a6b8f33f"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "9a09505"
+hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [flavor]
 deps = []
