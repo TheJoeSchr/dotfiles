@@ -23,6 +23,22 @@ vim.cmd([[ let g:python3_host_prog = expand('/usr/bin/python') ]])
 vim.cmd([[au FocusLost * silent! wa]])
 
 local opt = vim.opt
+-- clipboard
+-- explicitly set clipboard
+vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
+-- Predefine clipboard provider to speedup start
+vim.g.clipboard = {
+  name = "xsel",
+  copy = {
+    ["+"] = "xsel --nodetach -i -b",
+    ["*"] = "xsel --nodetach -i -p",
+  },
+  paste = {
+    ["+"] = "xsel -o -b",
+    ["*"] = "xsel -o -b",
+  },
+  cache_enabled = 1,
+}
 -- -- Show matching brackets.
 opt.showmatch = true
 -- -- Do smart case matching
