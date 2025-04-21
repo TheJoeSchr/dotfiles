@@ -19,6 +19,7 @@
 
 ## Specify the model to use for the main chat
 #model: xxx
+model: gemini/gemini-2.5-pro-exp-03-25
 
 ## Use claude-3-opus-20240229 model for the main chat
 #opus: false
@@ -124,12 +125,15 @@
 
 ## Use architect edit format for the main chat
 #architect: false
+architect: true
 
 ## Specify the model to use for commit messages and chat history summarization (default depends on --model)
 #weak-model: xxx
+weak-model: anthropic/claude-3-5-haiku-latest
 
 ## Specify the model to use for editor tasks (default depends on --model)
 #editor-model: xxx
+editor-model: anthropic/claude-3-7-sonnet-latest
 
 ## Specify the edit format for the editor model (default: depends on editor model)
 #editor-edit-format: xxx
@@ -181,6 +185,7 @@
 
 ## Use colors suitable for a dark terminal background (default: False)
 #dark-mode: false
+dark-mode: true
 
 ## Use colors suitable for a light terminal background (default: False)
 #light-mode: false
@@ -268,6 +273,7 @@ attribute-commit-message-committer: false
 
 ## Skip the sanity check for the git repository (default: False)
 #skip-sanity-check-repo: false
+skip-sanity-check-repo: true
 
 ## Enable/disable watching files for ai coding comments (default: False)
 watch-files: true
@@ -276,7 +282,8 @@ watch-files: true
 # Fixing and committing:
 
 ## Lint and fix provided files, or dirty files if none provided
-lint: true
+# lint: true
+lint: false
 
 ## Specify lint commands to run for different languages, eg: "python: flake8 --select=..." (can be used multiple times)
 #lint-cmd: xxx
@@ -309,6 +316,7 @@ auto-lint: true
 
 ## Permanently disable analytics
 #analytics-disable: false
+analytics-disable: true
 
 ############
 # Upgrading:
@@ -417,12 +425,12 @@ suggest-shell-commands: true
 #fancy-input: true
 
 ## Enable/disable multi-line input mode with Meta-Enter to submit (default: False)
-multiline: true
+# multiline: false
 
 ## Enable/disable detection and offering to add URLs to chat (default: True)
 detect-urls: true
 
 #l# specify which editor to use for the /editor command
 editor: nvim
-visual: nvim
-AIDER_EDITOR: nvim
+# visual: nvim
+# AIDER_EDITOR: nvim
