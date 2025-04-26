@@ -1,4 +1,7 @@
-# If not running interactively, skipps this file
+# ignores CTRl+D to exit
+set -o ignoreeof
+
+# If not running interactively, skips this file
 if [ -t 0 ]; then
   # .bashrc.local bgets sourced at the end of this file
   echo "Running interactively, loading .bashrc"
@@ -12,49 +15,48 @@ fi
 SSH_ENV="$HOME/.ssh/agent-environment"
 
 function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
+  echo "Initialising new SSH agent..."
+  /usr/bin/ssh-agent | sed 's/^echo/#echo/' >"${SSH_ENV}"
+  echo succeeded
+  chmod 600 "${SSH_ENV}"
+  . "${SSH_ENV}" >/dev/null
+  /usr/bin/ssh-add
 }
 
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
+  . "${SSH_ENV}" >/dev/null
+  #ps ${SSH_AGENT_PID} doesn't work under cywgin
+  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ >/dev/null || {
+    start_agent
+  }
 else
-    start_agent;
+  start_agent
 fi
 
 if command -v fish >/dev/null; then
   # if don't want to use fish, just use exit in .bashrc.local
   [ -e ~/.bashrc.local ] && . ~/.bashrc.local
 
-    ## FISH
-    # echo " |---------------------------------------------------|"
-    # echo " | ESCAPE HATCH:                                     |"
-    # echo " | \`bash --norc\`  or \`bash -c \"\"\`                    |"
-    # echo " | to manually enter Bash                            |"
-    # echo " | without executing the commands from ~/.bashrc     |"
-    # echo " | which would run \`exec -l fish\`                    |"
-    # echo " |---------------------------------------------------|"
+  ## FISH
+  # echo " |---------------------------------------------------|"
+  # echo " | ESCAPE HATCH:                                     |"
+  # echo " | \`bash --norc\`  or \`bash -c \"\"\`                    |"
+  # echo " | to manually enter Bash                            |"
+  # echo " | without executing the commands from ~/.bashrc     |"
+  # echo " | which would run \`exec -l fish\`                    |"
+  # echo " |---------------------------------------------------|"
 
-    # To have commands such as `bash -c 'echo test'` run the command in Bash instead of starting fish
-    # from: /usr/bin/[ --help:
-    # -z STRING            the length of STRING is zero
-    if [ -z "$BASH_EXECUTION_STRING" ]; then
-      # Drop in to fish only if the parent process is not fish. This allows to quickly enter in to bash by invoking bash command without lusing ~/.bashrc configuration:
-      if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]
-      then
-        echo "Exec fish from \`.bashrc\`"
-        exec -l fish "$@"
-      fi
+  # To have commands such as `bash -c 'echo test'` run the command in Bash instead of starting fish
+  # from: /usr/bin/[ --help:
+  # -z STRING            the length of STRING is zero
+  if [ -z "$BASH_EXECUTION_STRING" ]; then
+    # Drop in to fish only if the parent process is not fish. This allows to quickly enter in to bash by invoking bash command without lusing ~/.bashrc configuration:
+    if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]; then
+      echo "Exec fish from \`.bashrc\`"
+      exec -l fish "$@"
     fi
+  fi
 fi
 
 # NO FISH
@@ -69,24 +71,24 @@ if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-. /usr/share/bash-completion/bash_completion
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
+  . /usr/share/bash-completion/bash_completion
 
 # Use git-completion, if available
 if [ -f /usr/share/bash-completion/completions/git ]; then
   . /usr/share/bash-completion/completions/git
 fi
-[[ $PS1 && -f /usr/share/bash-completion/completions/git ]] && \
-. /usr/share/bash-completion/completions/git
+[[ $PS1 && -f /usr/share/bash-completion/completions/git ]] &&
+  . /usr/share/bash-completion/completions/git
 
 if [ "$OS" == "Windows_NT" ]; then
-  alias config="`which git` --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
+  alias config="$(which git) --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
   __git_complete config _git
   # Add tmux path (not working so far)
   export PATH="$PATH:/c/msys64/usr/bin/"
   . ~/.bashrc.win
 else
-  alias config="`which git`  --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+  alias config="$(which git)  --git-dir=$HOME/.cfg/ --work-tree=$HOME"
   __git_complete config _git
   alias config-changed="config checkout 2>&1 | egrep \s+\. | awk {'print $1'} | xargs -I{} echo {}"
   # alias config-changed="config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} git --git-dir=$HOME/.dotfiles-cfg/ --work-tree=$HOME add -- {}"
@@ -95,7 +97,7 @@ else
   # show git branch with nice colors
   force_color_prompt=yes
   parse_git_branch() {
-   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
   }
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\n\$ '
   #if [ "$color_prompt" = yes ]; then
@@ -109,17 +111,17 @@ fi
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE="/usr/bin/micromamba";
-export MAMBA_ROOT_PREFIX="/home/joe/micromamba";
-__mamba_setup="$('/usr/bin/micromamba' shell hook --shell bash --prefix '/home/joe/micromamba' 2> /dev/null)"
+export MAMBA_EXE="/usr/bin/micromamba"
+export MAMBA_ROOT_PREFIX="/home/joe/micromamba"
+__mamba_setup="$('/usr/bin/micromamba' shell hook --shell bash --prefix '/home/joe/micromamba' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
+  eval "$__mamba_setup"
 else
-    if [ -f "/home/joe/micromamba/etc/profile.d/mamba.sh" ]; then
-        . "/home/joe/micromamba/etc/profile.d/mamba.sh"
-    else
-        export PATH="/home/joe/micromamba/bin:$PATH"
-    fi
+  if [ -f "/home/joe/micromamba/etc/profile.d/mamba.sh" ]; then
+    . "/home/joe/micromamba/etc/profile.d/mamba.sh"
+  else
+    export PATH="/home/joe/micromamba/bin:$PATH"
+  fi
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
@@ -128,21 +130,21 @@ unset __mamba_setup
 
 ## csh: pass arguments to windows shell for execution
 function csh {
-        arg="$@"    # needs helper arg for double-quotes ""
-        cmd "/C $arg"
+  arg="$@" # needs helper arg for double-quotes ""
+  cmd "/C $arg"
 }
 ## removes docker lock ups hardcore mode
 docker-removecontainers() {
-        docker stop $(docker ps -aq)
-        docker rm $(docker ps -aq)
+  docker stop $(docker ps -aq)
+  docker rm $(docker ps -aq)
 }
 
 docker-armageddon() {
-        docker-removecontainers
-        docker network prune -f
-        docker rmi -f $(docker images --filter dangling=true -qa)
-        docker volume rm $(docker volume ls --filter dangling=true -q)
-        docker rmi -f $(docker images -qa)
+  docker-removecontainers
+  docker network prune -f
+  docker rmi -f $(docker images --filter dangling=true -qa)
+  docker volume rm $(docker volume ls --filter dangling=true -q)
+  docker rmi -f $(docker images -qa)
 }
 
 # e for edit
@@ -236,28 +238,28 @@ alias duckA='$(which du) -ckah * | sort -rh | head'
 
 # alias killgrep
 function killgrep {
-  echo kill $(ps aux | grep "$1" | awk '{print $2}');
-  kill $(ps aux | grep "$1" | awk '{print $2}');
+  echo kill $(ps aux | grep "$1" | awk '{print $2}')
+  kill $(ps aux | grep "$1" | awk '{print $2}')
 }
 export -f killgrep
 
 # source local commands
-source  ~/.bashrc.local
+source ~/.bashrc.local
 
- # exit if inside tmux
+# exit if inside tmux
 if [[ "$TERM" =~ "screen".* ]]; then
   echo "Already inside TMUX"
 else
   read -t 2 -n 1 -p "Start tmux (n/Y)? " answer
-  [ -z "$answer" ] && answer="Y"  # 'yes' default choice
+  [ -z "$answer" ] && answer="Y" # 'yes' default choice
   case ${answer:0:1} in
-     n|N )
-         echo "No Tmux"
-         ;;
-     * )
-         echo "Starting tmux-init"
-         tmux attach -t base || tmux new -s base
-     ;;
+  n | N)
+    echo "No Tmux"
+    ;;
+  *)
+    echo "Starting tmux-init"
+    tmux attach -t base || tmux new -s base
+    ;;
   esac
 fi
 # # -- EXAMPLES BASHRC.LOCAL
