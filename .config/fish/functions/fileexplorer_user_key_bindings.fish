@@ -6,8 +6,8 @@ function fileexplorer_user_key_bindings
     #
     #
     # C-o
-    bind \co y # replacement not working
-    bind -M insert \co y # replacement not working
+    bind ctrl-o y # replacement not working
+    bind -M insert ctrl-o y # replacement not working
     # Alt-t
-    bind -M insert \et y # replacement not working
+    bind -M insert alt-t y # replacement not working
 end

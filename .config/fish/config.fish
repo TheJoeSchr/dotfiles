@@ -17,6 +17,7 @@ fish_add_path ~/.config/composer/vendor/bin
 fish_add_path ~/.pub-cache/bin/
 fish_add_path ~/.docker/cli-plugins/
 fish_add_path ~/.krew/bin/
+fish_add_path ~/bin/
 if [ ! -f /run/.containerenv ] && [ ! -f /.dockerenv ]
     fish_add_path ~/.local/bin
     fish_add_path ~/.local/podman/bin
@@ -33,7 +34,7 @@ if status --is-interactive
     end
 
     # CTRL-D should not close the terminal
-    bind \cd delete-char
+    # bind ctrl-d delete-char
     fish_vi_key_bindings
     # usually automatically, but call to overwrite
     fish_user_key_bindings
@@ -141,8 +142,10 @@ THE THREE TYPES OF ALIAS
         # if inside tmux refresh DBUS
         switch $TERM
             case "screen*"
+                # echo "Refresh DISPLAY for xsel/tmux"
+                env-refresh DISPLAY
                 # echo "Refresh DBUS '$DBUS_SESSION_BUS_ADDRESS' for tmux"
-                tmux-refresh
+                set -gx DBUS_SESSION_BUS_ADDRESS unix:path=/run/user/1000/bus
         end
     end
     echo "        _            _       _____ _     _          "
