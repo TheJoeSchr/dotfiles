@@ -1,6 +1,9 @@
 [$Version]
 update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,bismuth_new_logger.upd:bismuth-new-logger,kwin.upd:remove-placement-cascade,kwin.upd:overview-group-plugin-id,kwin.upd:animation-speed-cleanup,kwin.upd:replace-cascaded-zerocornered
 
+[Activities][LastVirtualDesktop]
+ddcb0281-993d-47a2-94b6-fa636dc09e14=56d7c0b2-c502-4c09-a3a5-5f97bf6ee652
+
 [Compositing]
 GLCore=true
 GLTextureFilter=1
@@ -173,10 +176,10 @@ tileLayoutGap=3
 PopupHideDelay=500
 
 [Script-karousel]
-gapsOuterLeft=8
-gapsOuterRight=8
-gapsOuterTop=6
-offScreenOpacity=90
+gapsOuterBottom=0
+gapsOuterLeft=0
+gapsOuterRight=0
+gapsOuterTop=0
 presetWidths=50%, 100%, 75%, 25%
 reMaximize=true
 resizeNeighborColumn=true
@@ -290,7 +293,7 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Wayland]
-VirtualKeyboardEnabled=false
+VirtualKeyboardEnabled=true
 
 [Windows]
 BorderlessMaximizedWindows=true
