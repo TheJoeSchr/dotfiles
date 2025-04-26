@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "9a09505"
+rev = "4b027c7"
 hash = "e0ada736ea676c2bbb3ec705a49526ef"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "9a09505"
+rev = "4b027c7"
 hash = "a670c03eb3760812e044a24f94cedc55"
 
 [[plugin.deps]]
@@ -15,18 +15,18 @@ hash = "9d291f6cecb1f1f5542fc18177d5c107"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "9a09505"
+rev = "4b027c7"
 hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "269e3cf"
-hash = "f8c8ddd15b2227340fa7f585df71580"
+rev = "52a7911"
+hash = "dd28881cfdc3759459737cfa3751f3ae"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
-rev = "61ae795"
-hash = "65d576a76597aac2a428dc7ec0eda2ce"
+rev = "ce2e890"
+hash = "23915860e59348bf4166778bb0e606f7"
 
 [[plugin.deps]]
 use = "KKV9/compress"
@@ -35,12 +35,12 @@ hash = "ee025be766240cc98e671754ac836da3"
 
 [[plugin.deps]]
 use = "dedukun/bookmarks"
-rev = "95b2c58"
-hash = "17a094653b7d0db4ac68ed531d2e1412"
+rev = "a70648a"
+hash = "b836fb264381f35dec79930438a906d5"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "9a09505"
+rev = "4b027c7"
 hash = "f0c4b41b5d19a3144958383333eff6e7"
 
 [[plugin.deps]]
