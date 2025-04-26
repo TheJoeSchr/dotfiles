@@ -32,6 +32,8 @@ if status --is-interactive
         set is_steam_host false
     end
 
+    # CTRL-D should not close the terminal
+    bind \cd delete-char
     fish_vi_key_bindings
     # usually automatically, but call to overwrite
     fish_user_key_bindings
