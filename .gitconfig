@@ -26,20 +26,22 @@
   ce = commit -C HEAD --amend
   ci = commit -v
   cim = !git ci -m
+  # git diff alias
   # print difference in stdout
-  df = "!f() { GIT_EXTERNAL_DIFF=difft git diff --histogram $@; }; f"
-  # real original `git df` without delta and difftastic
+  # staged and unstaged changes
+  df = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@ && PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram --cached $@ ; }; f"
+  # unstaged only 
+  dfu = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@; }; f"
+
+  # real original `git df` 
+  # without delta and difftastic
   # shows diff in stdout
   # staged and unstaged changes
   # with color
   # but has file select
   ; dfoo = !"git diff --histogram && git diff --histogram --cached"
-  dfoo = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff --histogram $@ && PAGER= GIT_PAGER= git diff --no-ext-diff --histogram --cached $@ ; }; f"
-  # original `git df` now with color
-  dfo = !"GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram && git diff --histogram --cached"
-  # original `git df` now with color(delta) and difftastic
-  dfs = "!f() { GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@ && git diff --histogram --cached $@ ; }; f"
-  # difftool opens nvimdiff for every file
+  dfo = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff --histogram $@ && PAGER= GIT_PAGER= git diff --no-ext-diff --histogram --cached $@ ; }; f"
+  # difftool opens nvimdiff for every different file
   dft = difftool
   # Difftastic aliases
   # Show diff with word-level details
@@ -159,10 +161,14 @@
 [interactive]
   diffFilter = delta --color-only
 [delta]
+  # makes features overrideable but still have default value when not given
+  feature = default-feature
+[delta "default-feature"]
+  paging=never
   # use n and N to move between diff sections
   navigate = true
-  # set to true if you're in a terminal w/ a light background color
-  light = false
+  # set to true if you're in a terminal w/o a light background color
+  # dark = true
   side-by-side = true
   line-numbers = true
   decorations = true
@@ -173,10 +179,17 @@
   minus-emph-style = syntax "#901011"
   plus-style = syntax "#003800"
   plus-emph-style = syntax "#009800"
+[delta "no-pager"]
+  paging = never
+  # also set difft to inline
+  side-by-side = false
+  decorations = false
 [diff]
   colorMoved = default
-  # Use difftastic as the default diff tool
-  external = difft
+  # dont use difftastic as the default diff tool
+  # call explictly like in df or dfu
+  # pager is still delta default-features
+  # external = difft
   tool = nvimdiff
 [rebase]
   autoStash = true
