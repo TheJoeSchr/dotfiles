@@ -27,16 +27,21 @@
   ci = commit -v
   cim = !git ci -m
   # print difference in stdout
-  df = "!f() { GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@; }; f"
-  # real original `git df`
-  dfoo = !git diff --histogram && git diff --histogram --cached
+  df = "!f() { GIT_EXTERNAL_DIFF=difft git diff --histogram $@; }; f"
+  # real original `git df` without delta and difftastic
+  # shows diff in stdout
+  # staged and unstaged changes
+  # with color
+  # but has file select
+  ; dfoo = !"git diff --histogram && git diff --histogram --cached"
+  dfoo = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff --histogram $@ && PAGER= GIT_PAGER= git diff --no-ext-diff --histogram --cached $@ ; }; f"
   # original `git df` now with color
   dfo = !"GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram && git diff --histogram --cached"
   # original `git df` now with color(delta) and difftastic
-  dfd = "!f() { GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@ && git diff --histogram --cached $@ ; }; f"
-  # Difftastic aliases
+  dfs = "!f() { GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@ && git diff --histogram --cached $@ ; }; f"
   # difftool opens nvimdiff for every file
-  dfs = difftool
+  dft = difftool
+  # Difftastic aliases
   # Show diff with word-level details
   dftw = "!f() { GIT_EXTERNAL_DIFF=difft git diff --word-diff $@; }; f"
   # Show diff of staged changes
@@ -131,8 +136,9 @@
   keepTemporaries = false
   prompt = false
 [merge]
-    ; conflictStyle = zdiff
-  conflictstyle = diff3
+  # "zdiff3" is identical to ordinary diff3 except that it allows compaction of common lines on the two sides of history at the beginning or end of the conflict hunk.
+  # conflictStyle = diff3
+  conflictstyle = zdiff3
   tool = nvimdiff
 [http]
   sslVerify = false
@@ -151,25 +157,27 @@
 [init]
   defaultBranch = main
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color
-    side-by-side = true
-    line-numbers = true
-    decorations = true
-    file-style = bold yellow ul
-    file-decoration-style = none
-    hunk-header-decoration-style = cyan box ul
-    minus-style = syntax "#3f0001"
-    minus-emph-style = syntax "#901011"
-    plus-style = syntax "#003800"
-    plus-emph-style = syntax "#009800"
+  # use n and N to move between diff sections
+  navigate = true
+  # set to true if you're in a terminal w/ a light background color
+  light = false
+  side-by-side = true
+  line-numbers = true
+  decorations = true
+  file-style = bold yellow ul
+  file-decoration-style = none
+  hunk-header-decoration-style = cyan box ul
+  minus-style = syntax "#3f0001"
+  minus-emph-style = syntax "#901011"
+  plus-style = syntax "#003800"
+  plus-emph-style = syntax "#009800"
 [diff]
-    colorMoved = default
-    # Use difftastic as the default diff tool
-    external = difft
-    tool = nvimdiff
+  colorMoved = default
+  # Use difftastic as the default diff tool
+  external = difft
+  tool = nvimdiff
 [rebase]
   autoStash = true
 
