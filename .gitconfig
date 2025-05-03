@@ -92,8 +92,8 @@
   # visualize branch relationships
   lgv = log --graph --all --format=oneline --simplify-by-decoration
   # logging commands (hardcoded PAGER because of nvimpager not working)
-  lg-nvim = !"PAGER='/usr/bin/env nvimpager' git log"
-  lg-paged = !"PAGER='/usr/bin/env less -R' git log"
+  lg-nvim = !"PAGER='nvimpager' git log"
+  lg-paged = !"PAGER='less -R' git log"
   # pretty format
   his = lg-paged --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
   hisnvim = lg-nvim --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
