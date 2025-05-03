@@ -26,30 +26,35 @@
   ce = commit -C HEAD --amend
   ci = commit -v
   cim = !git ci -m
-  # git diff alias
-  # print difference in stdout
-  # staged and unstaged changes
-  df = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@ && PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram --cached $@ ; }; f"
-  # unstaged only 
-  dfu = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@; }; f"
-
-  # real original `git df` 
+  # real original vanilla `git diff`
   # without delta and difftastic
   # shows diff in stdout
   # staged and unstaged changes
   # with color
   # but has file select
-  ; dfoo = !"git diff --histogram && git diff --histogram --cached"
-  dfo = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff --histogram $@ && PAGER= GIT_PAGER= git diff --no-ext-diff --histogram --cached $@ ; }; f"
+  # dfoo = !"git diff --histogram && git diff --histogram --cached"
+  dfoh = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff --histogram $@ && PAGER= GIT_PAGER= git diff --no-ext-diff --histogram --cached $@ ; }; f"
+  diff-orignal-histogram = dfo
+  dfo = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff $@; }; f"
+  diff-orignal = dfo
+
+  # no pager
+  # print difference in stdout
+  # git diff with delta and difftastic
+  # staged and unstaged changes
+  df = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@ && PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram --cached $@ ; }; f"
+  # unstaged only
+  dfu = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@; }; f"
+  # Show git-delta with word-level details
+  dfw = "!f() { git diff --word-diff $@; }; f"
+
+ # Show difft for specific commit
+  dfc = "!f() { git -c diff.external='difft --display inline' diff $@^..$@; }; f"
+
   # difftool opens nvimdiff for every different file
   dft = difftool
-  # Difftastic aliases
-  # Show diff with word-level details
-  dftw = "!f() { git  diff --word-diff $@; }; f"
   # Show diff of staged changes
   dfts = difftool --staged
-  # Show diff for specific commit
-  dftc = "!f() { git -c diff.external='difft --display inline' diff $@^..$@; }; f"
   # Show diff for last commit
   dftl = difftool HEAD^..HEAD
   # Show diff for pull request (needs PR number)
