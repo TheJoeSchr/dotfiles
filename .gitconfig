@@ -87,7 +87,7 @@
   hisnvim = lg-nvim --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
   hispure = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
   # long pretty format
-  lgl  = his --pretty='f%C(bold green)[%h:%ar]%C(reset)  %an %d%n%s%n%w(72,4,4)%b' --date=short --graph --decorate
+  lgl  = his --pretty='%C(bold green)[%h:%ar]%C(reset)  %an %d%n%s%n%w(72,4,4)%b' --date=short --graph --decorate
   # full short log
   lg   = !git his --decorate --graph
   # full short log
