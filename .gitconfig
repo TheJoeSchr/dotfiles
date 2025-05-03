@@ -27,13 +27,13 @@
   ci = commit -v
   cim = !git ci -m
   # print difference in stdout
-  df = "!f() { PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@; }; f"
+  df = "!f() { GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@; }; f"
   # real original `git df`
   dfoo = !git diff --histogram && git diff --histogram --cached
   # original `git df` now with color
-  dfo = !"PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram && git diff --histogram --cached"
+  dfo = !"GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram && git diff --histogram --cached"
   # original `git df` now with color(delta) and difftastic
-  dfd = "!f() { PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@ && git diff --histogram --cached $@ ; }; f"
+  dfd = "!f() { GIT_PAGER=delta GIT_EXTERNAL_DIFF=difft git diff --histogram $@ && git diff --histogram --cached $@ ; }; f"
   # Difftastic aliases
   # difftool opens nvimdiff for every file
   dfs = difftool
