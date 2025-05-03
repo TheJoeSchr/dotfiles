@@ -45,11 +45,11 @@
   dft = difftool
   # Difftastic aliases
   # Show diff with word-level details
-  dftw = "!f() { GIT_EXTERNAL_DIFF=difft git diff --word-diff $@; }; f"
+  dftw = "!f() { git  diff --word-diff $@; }; f"
   # Show diff of staged changes
   dfts = difftool --staged
   # Show diff for specific commit
-  dftc = "!f() { GIT_EXTERNAL_DIFF=difft git diff $1^..$ }; f"
+  dftc = "!f() { git -c diff.external='difft --display inline' diff $@^..$@; }; f"
   # Show diff for last commit
   dftl = difftool HEAD^..HEAD
   # Show diff for pull request (needs PR number)
