@@ -118,8 +118,11 @@
   # log including which files changed
   lst  = !git lg --stat
   # log including every individual changed line
-  lpa  = !git lg -p
-  ldf  = !git lg -p
+  # don't use default pager it pattern, takes to long and doesnt work
+  # no difft
+  ldf = "!f() { DELTA_FEATURES=+default-feature git -c delta.pager='less -R' lg -p --no-ext-diff $@; }; f"
+  # difft (usually takes longer)
+  lpa  = "!f() { DELTA_FEATURES=+default-feature git -c delta.pager='less -R' -c diff.external=difft lg -p --ext-diff$@; }; f"
   # about the head commit
   # show everything
   last = !git lgl -1 --patch
@@ -129,7 +132,6 @@
   gov = !git hispure --all --simplify-by-decoration
   lga  = !git lgn --all
   gl = lg
-  logdifft = !git -c diff.external=difft log -p --ext-diff
 
   # show stats and last 5 commits
   st   = !"git lgs;  git status"
