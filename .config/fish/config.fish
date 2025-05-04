@@ -85,6 +85,7 @@ THE THREE TYPES OF ALIAS
     abbr gs 'git st'
     abbr install 'pikaur -S --needed --noconfirm'
     abbr lal 'la -l'
+    abbr l y # goes to cd
     abbr ll y # goes to cd
     abbr poetry 'SHELL=(which fish) poetry'
     abbr psax procs
