@@ -48,9 +48,10 @@
   # Show git-delta with word-level details
   dfw = "!f() { git diff --word-diff $@; }; f"
 
- # Show difft for specific commit
+  # Show difft for specific commit
   dfc = "!f() { git -c diff.external='difft --display inline' diff $@^..$@; }; f"
 
+  difft-smart = "!f() { git diff-original -i- \"$@\" | difft --color=always | delta; }; f"
   # difftool opens nvimdiff for every different file
   dft = difftool
   # Show diff of staged changes
@@ -112,14 +113,15 @@
   lst  = !git lg --stat
   # log including every individual changed line
   lpa  = !git lg -p
-  # log including every individual changed line
   ldf  = !git lg -p
-  # show everything about the head commit
+  # about the head commit
+  # show everything
   last = !git lgl -1 --patch
+  # show files and long commit
   lgh  = !git lgl -1 --stat
   # show relationships between branches
-  gov = lg --simplify-by-decoration
-  lga  = !git his --all 
+  gov = !git hispure --all --simplify-by-decoration
+  lga  = !git lgn --all
   gl = lg
 
   # show stats and last 5 commits
@@ -169,12 +171,12 @@
   # makes features overrideable but still have default value when not given
   feature = default-feature
 [delta "default-feature"]
-  paging=never
+  paging=auto
   # use n and N to move between diff sections
   navigate = true
   # set to true if you're in a terminal w/o a light background color
   # dark = true
-  side-by-side = true
+  side-by-side = false
   line-numbers = true
   decorations = true
   file-style = bold yellow ul
