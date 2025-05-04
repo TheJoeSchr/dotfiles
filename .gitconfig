@@ -34,7 +34,8 @@
   # but has file select
   # dfoo = !"git diff --histogram && git diff --histogram --cached"
   dfoh = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff --histogram $@ && PAGER= GIT_PAGER= git diff --no-ext-diff --histogram --cached $@ ; }; f"
-  diff-orignal-histogram = dfo
+  diff-orignal-histogram = dfoh
+
   dfo = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff $@; }; f"
   diff-orignal = dfo
 
@@ -45,8 +46,13 @@
   df = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@ && PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram --cached $@ ; }; f"
   # unstaged only
   dfu = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@; }; f"
+  difftastic = -c diff.external=difft diff
+  
   # Show git-delta with word-level details
   dfw = "!f() { git diff --word-diff $@; }; f"
+  
+  # delta as pager
+  dd = !git diff
 
   # Show difft for specific commit
   dfc = "!f() { git -c diff.external='difft --display inline' diff $@^..$@; }; f"
@@ -67,7 +73,7 @@
   # ours is remote, theirs is local
   pl = pull --rebase -s recursive -X ours
   ps = push
-  ;reflog
+  # reflog
   re = !gitk --all --date-order $(git log -g --pretty=%H)
   ri = rebase --interactive
   rr = rebase --continue
@@ -75,10 +81,10 @@
   st = status
   type = cat-file -t
   dump = cat-file -p
-  ; delete remote branch
+  # delete remote branch
   branch-delete-remote = push --delete
   delete-remote-branch = push --delete
-    # Push the new branch, set local branch to track the new remote
+  # Push the new branch, set local branch to track the new remote
   ps--set-upstream = push --set-upstream origin
   unadd = reset HEAD
   unstage = reset
@@ -137,8 +143,6 @@
   lfpa = !git lpa --follow --
   show-file-history = !git lfpa
 
-
-
 [rerere]
   enabled = true
 [mergetool]
@@ -171,7 +175,7 @@
   # makes features overrideable but still have default value when not given
   feature = default-feature
 [delta "default-feature"]
-  paging=auto
+  paging = always
   # use n and N to move between diff sections
   navigate = true
   # set to true if you're in a terminal w/o a light background color
@@ -186,6 +190,14 @@
   minus-emph-style = syntax "#901011"
   plus-style = syntax "#003800"
   plus-emph-style = syntax "#009800"
+  # Optional: Highlight the changes within lines
+  features = interline-glow
+  # Pager settings for hunk navigation
+  pager = less -R --pattern=^@@
+  # Show word-level diffs
+  word-diff = true
+  # Show commit info in diff headers
+  commit-style = default
 [delta "no-pager"]
   paging = never
   # also set difft to inline
