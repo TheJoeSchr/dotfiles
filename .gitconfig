@@ -47,17 +47,18 @@
   # unstaged only
   dfu = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@; }; f"
   difftastic = -c diff.external=difft diff
-  
+
   # Show git-delta with word-level details
   dfw = "!f() { git diff --word-diff $@; }; f"
-  
+
+  # force PAGER
   # delta as pager
-  dd = !git diff
+  dd = "!f() { DELTA_FEATURES=+default-feature git -c delta.paging='always' -c delta.pager='less -R' diff --no-ext-diff $@; }; f"
+  ddd = "!f() { DELTA_FEATURES=+default-feature git -c delta.paging='always' -c delta.pager='less -R' -c diff.external='difft --display inline' diff  $@; }; f"
 
   # Show difft for specific commit
   dfc = "!f() { git -c diff.external='difft --display inline' diff $@^..$@; }; f"
 
-  difft-smart = "!f() { git diff-original -i- \"$@\" | difft --color=always | delta; }; f"
   # difftool opens nvimdiff for every different file
   dft = difftool
   # Show diff of staged changes
@@ -66,7 +67,6 @@
   dftl = difftool HEAD^..HEAD
   # Show diff for pull request (needs PR number)
   dftpr = "!f() { GIT_EXTERNAL_DIFF=difft git diff origin/main...pull/$1/head; }; f"
-  dlog = -c diff.external=difft log -p --ext-diff
   feat = merge --no-ff --no-commit
   go = checkout
   # rebase taking all remote changes
@@ -129,6 +129,7 @@
   gov = !git hispure --all --simplify-by-decoration
   lga  = !git lgn --all
   gl = lg
+  logdifft = !git -c diff.external=difft log -p --ext-diff
 
   # show stats and last 5 commits
   st   = !"git lgs;  git status"
@@ -196,8 +197,6 @@
   pager = less -R --pattern=^@@
   # Show word-level diffs
   word-diff = true
-  # Show commit info in diff headers
-  commit-style = default
 [delta "no-pager"]
   paging = never
   # also set difft to inline
