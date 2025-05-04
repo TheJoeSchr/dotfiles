@@ -27,7 +27,7 @@ local opt = vim.opt
 -- Clipboard
 -- Explicitly set Clipboard
 -- Also fixes if SSH_TTY is set in tmux session by mobile app
-vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
+vim.opt.clipboard:append({ "unnamedplus" })
 -- Predefine clipboard provider to speedup start
 vim.g.clipboard = {
   name = "xsel",
