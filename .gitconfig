@@ -34,10 +34,9 @@
   # but has file select
   # dfoo = !"git diff --histogram && git diff --histogram --cached"
   dfoh = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff --histogram $@ && PAGER= GIT_PAGER= git diff --no-ext-diff --histogram --cached $@ ; }; f"
-  diff-orignal-histogram = dfoh
-
+  diff-original-histogram = dfo
   dfo = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff $@; }; f"
-  diff-orignal = dfo
+  diff-original = dfo
 
   # no pager
   # print difference in stdout
@@ -46,51 +45,46 @@
   df = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@ && PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram --cached $@ ; }; f"
   # unstaged only
   dfu = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@; }; f"
-  difftastic = -c diff.external=difft diff
-
   # Show git-delta with word-level details
   dfw = "!f() { git diff --word-diff $@; }; f"
-
-  # force PAGER
-  # delta as pager
-  dd = "!f() { DELTA_FEATURES=+default-feature git -c delta.paging='always' -c delta.pager='less -R' diff --no-ext-diff $@; }; f"
-  ddd = "!f() { DELTA_FEATURES=+default-feature git -c delta.paging='always' -c delta.pager='less -R' -c diff.external='difft --display inline' diff  $@; }; f"
 
   # Show difft for specific commit
   dfc = "!f() { git -c diff.external='difft --display inline' diff $@^..$@; }; f"
 
+  difft-smart = "!f() { DFT_UNSTABLE=yes git -c diff.external='difft --display json' diff \"$@\" ; }; f"
   # difftool opens nvimdiff for every different file
   dft = difftool
-  # Show diff of staged changes
+  # show diff of staged changes
   dfts = difftool --staged
-  # Show diff for last commit
-  dftl = difftool HEAD^..HEAD
-  # Show diff for pull request (needs PR number)
-  dftpr = "!f() { GIT_EXTERNAL_DIFF=difft git diff origin/main...pull/$1/head; }; f"
+  # show diff for last commit
+  dftl = difftool head^..head
+  # show diff for pull request (needs pr number)
+  dftpr = "!f() { git_external_diff=difft git diff origin/main...pull/$1/head; }; f"
+  dlog = -c diff.external=difft log -p --ext-diff
   feat = merge --no-ff --no-commit
   go = checkout
   # rebase taking all remote changes
   # ours is remote, theirs is local
-  pl = pull --rebase -s recursive -X ours
+  pl = pull --rebase -s recursive -x ours
   ps = push
-  # reflog
-  re = !gitk --all --date-order $(git log -g --pretty=%H)
+  ;reflog
+  re = !gitk --all --date-order $(git log -g --pretty=%h)
   ri = rebase --interactive
   rr = rebase --continue
   sh = stash save
   st = status
   type = cat-file -t
   dump = cat-file -p
-  # delete remote branch
+  ; delete remote branch
   branch-delete-remote = push --delete
   delete-remote-branch = push --delete
-  # Push the new branch, set local branch to track the new remote
+    # push the new branch, set local branch to track the new remote
   ps--set-upstream = push --set-upstream origin
-  unadd = reset HEAD
+  unadd = reset head
   unstage = reset
-  uncommit = reset --soft HEAD^
+  uncommit = reset --soft head^
   staged = diff --cached
-  ctags = "!.git/hooks/ctags"uncommit = reset HEAD^
+  ctags = "!.git/hooks/ctags"uncommit = reset head^
   stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
   stash-all = stash -u
   # shorthands
@@ -98,7 +92,7 @@
   rmdb = branch-delete-remote
   # visualize branch relationships
   lgv = log --graph --all --format=oneline --simplify-by-decoration
-  # logging commands (hardcoded PAGER because of nvimpager not working)
+  # logging commands (hardcoded pager because of nvimpager not working)
   lg-nvim = !"PAGER='nvimpager' git log"
   lg-paged = !"PAGER='less -R' git log"
   # pretty format
@@ -106,7 +100,7 @@
   hisnvim = lg-nvim --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
   hispure = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h:%C(reset) %C(white)%s%C(reset) %C(auto)%d%C(reset) | %C(bold green)[%ar]%C(reset) %C(dim white)%an%C(reset)'
   # long pretty format
-  lgl  = his --pretty='%C(bold green)[%h:%ar]%C(reset)  %an %d%n%s%n%w(72,4,4)%b' --date=short --graph --decorate
+  lgl  = his --pretty='%C(bold green)[%h:%ar]%C(reset)%an %d%n%s%n%w(72,4,4)%b' --date=short --graph --decorate
   # full short log
   lg   = !git his --decorate --graph
   # full short log
@@ -118,11 +112,8 @@
   # log including which files changed
   lst  = !git lg --stat
   # log including every individual changed line
-  # don't use default pager it pattern, takes to long and doesnt work
-  # no difft
-  ldf = "!f() { DELTA_FEATURES=+default-feature git -c delta.pager='less -R' lg -p --no-ext-diff $@; }; f"
-  # difft (usually takes longer)
-  lpa  = "!f() { DELTA_FEATURES=+default-feature git -c delta.pager='less -R' -c diff.external=difft lg -p --ext-diff$@; }; f"
+  lpa  = !git lg -p
+  ldf  = !git lg -p
   # about the head commit
   # show everything
   last = !git lgl -1 --patch
@@ -146,21 +137,23 @@
   lfpa = !git lpa --follow --
   show-file-history = !git lfpa
 
+
+
 [rerere]
   enabled = true
 [mergetool]
-  keepTemporaries = false
+  keeptemporaries = false
   prompt = false
 [merge]
   # "zdiff3" is identical to ordinary diff3 except that it allows compaction of common lines on the two sides of history at the beginning or end of the conflict hunk.
-  # conflictStyle = diff3
+  # conflictstyle = diff3
   conflictstyle = zdiff3
   tool = nvimdiff
 [http]
-  sslVerify = false
-  cookiefile = C:/Users/Joe/AppData/Roaming/.home/.gitcookies
-[winUpdater]
-  recentlySeenVersion = 2.15.1.windows.2
+  sslverify = false
+  cookiefile = c:/users/joe/appdata/roaming/.home/.gitcookies
+[winupdater]
+  recentlyseenversion = 2.15.1.windows.2
 [branch]
   autosetuprebase = always
 [help]
@@ -171,21 +164,21 @@
 [credential "https://github.com"]
   helper = !/usr/bin/gh auth git-credential
 [init]
-  defaultBranch = main
+  defaultbranch = main
 [interactive]
-  diffFilter = delta --color-only
+  difffilter = delta --color-only
 [delta]
   # makes features overrideable but still have default value when not given
   feature = default-feature
 [delta "default-feature"]
-  paging = always
-  # use n and N to move between diff sections
+  paging=auto
+  # use n and n to move between diff sections
   navigate = true
   # set to true if you're in a terminal w/o a light background color
   # dark = true
-  side-by-side = false
+  side-by-side = true
   line-numbers = true
-  decorations = true
+  decorations = none
   file-style = bold yellow ul
   file-decoration-style = none
   hunk-header-decoration-style = cyan box ul
@@ -193,25 +186,19 @@
   minus-emph-style = syntax "#901011"
   plus-style = syntax "#003800"
   plus-emph-style = syntax "#009800"
-  # Optional: Highlight the changes within lines
-  features = interline-glow
-  # Pager settings for hunk navigation
-  pager = less -R --pattern=^@@
-  # Show word-level diffs
-  word-diff = true
 [delta "no-pager"]
   paging = never
   # also set difft to inline
   side-by-side = false
   decorations = false
 [diff]
-  colorMoved = default
+  colormoved = default
   # dont use difftastic as the default diff tool
   # call explictly like in df or dfu
   # pager is still delta default-features
   # external = difft
   tool = nvimdiff
 [rebase]
-  autoStash = true
+  autostash = true
 
 

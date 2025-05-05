@@ -4,11 +4,12 @@ set -gx VMUX_EDITOR nvim
 set -gx VMUX_REALEDITOR_NVIM_QT /usr/bin/nvim-qt
 set -gx VMUX_REALEDITOR_NVIM (which nvim)
 set -gx VMUX_REALEDITOR_NVR /usr/bin/nvr
-
-set -gx PAGER nvimpager # or env less
+# or env less
+set -gx PAGER 'nvimpager -p'
 set -gx EDITOR nvim
 set -gx VISUAL ewrap
 set -gx BROWSER google-chrome-stable
+set -gx DELTA_FEATURES diff-so-fancy
 # always try to set DISPLAY
 # set -q DISPLAY; or set -gx DISPLAY ":0"
 # add user bin to path
