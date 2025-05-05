@@ -1,3 +1,4 @@
+# TODO: unfix casing
 [core]
   editor = nvim
   autocrlf = false
