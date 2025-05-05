@@ -38,6 +38,11 @@
   dfo = "!f() { PAGER= GIT_PAGER= git diff --no-ext-diff $@; }; f"
   diff-original = dfo
 
+  # force PAGER
+  # delta as pager
+  dd = "!f() { DELTA_FEATURES=+default-feature git -c delta.paging='always' -c delta.pager='less -R' diff --no-ext-diff $@; }; f"
+  ddd = "!f() { DELTA_FEATURES=+default-feature git -c delta.paging='always' -c delta.pager='less -R' -c diff.external='difft --display inline' diff  $@; }; f"
+
   # no pager
   # print difference in stdout
   # git diff with delta and difftastic
