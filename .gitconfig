@@ -71,9 +71,11 @@
   dlog = -c diff.external=difft log -p --ext-diff
   feat = merge --no-ff --no-commit
   go = checkout
-  # rebase taking all remote changes
-  # ours is remote, theirs is local
-  pl = pull --rebase -s recursive -x ours
+  # rebase
+  pl = pull --rebase -s recursive
+  # taking all remote changes
+  # ours is remote, theirs is local -X ours
+  pull-all-remote = pl -X ours
   ps = push
   ;reflog
   re = !gitk --all --date-order $(git log -g --pretty=%h)
