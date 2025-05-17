@@ -4,8 +4,9 @@ set -gx VMUX_EDITOR nvim
 set -gx VMUX_REALEDITOR_NVIM_QT /usr/bin/nvim-qt
 set -gx VMUX_REALEDITOR_NVIM (which nvim)
 set -gx VMUX_REALEDITOR_NVR /usr/bin/nvr
-# or env less
-set -gx PAGER 'nvimpager -p'
+# set -gx PAGER 'nvimpager -p'
+# unset pager so delta can do it's thing, also then works on systems without nvimpager installed
+set -e PAGER
 set -gx EDITOR nvim
 set -gx VISUAL ewrap
 set -gx BROWSER google-chrome-stable
