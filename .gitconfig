@@ -121,6 +121,8 @@
   lgs  = !git l5
   # log including which files changed
   lst  = !git lg --stat
+  # log see commits between two branches e.g. main..staging
+  lgb = his --left-right --graph --cherry-pick --oneline
   # log including every individual changed line
   lpa  = !git lg -p
   ldf  = !git lg -p
