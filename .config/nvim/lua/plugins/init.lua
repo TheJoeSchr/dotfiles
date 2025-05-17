@@ -241,6 +241,7 @@ return {
         -- "flake8",
         "pyright",
         "clojure-lsp",
+        "sqruff",
       },
     },
   },
