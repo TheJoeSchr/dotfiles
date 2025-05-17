@@ -1,25 +1,55 @@
 return {
   -- https://www.josean.com/posts/neovim-linting-and-formatting
+  "williamboman/mason.nvim",
+  -- format
   {
     "stevearc/conform.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local conform = require("conform")
-
-      conform.setup({
+    dependencies = { "mason.nvim" },
+    -- Don't override plugin.config directly, since this will break LazyVim formatting.
+    opts = function()
+      ---@type conform.setupOpts
+      local opts = {
         formatters_by_ft = {
           sql = { "sqruff" },
         },
-        format_on_save = {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 500,
-        },
-      })
+      }
+      return opts
     end,
   },
-  "williamboman/mason.nvim",
-  -- "mfussenegger/nvim-lint",
+  -- SQL DB autocompete and ui
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
+  { -- optional saghen/blink.cmp completion source
+    "saghen/blink.cmp",
+    opts = {
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+        per_filetype = {
+          sql = { "snippets", "dadbod", "buffer" },
+        },
+        -- add vim-dadbod-completion to your completion providers
+        providers = {
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+        },
+      },
+    },
+  },
+  -- lint
   {
     "mfussenegger/nvim-lint",
     event = {
