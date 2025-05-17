@@ -1,6 +1,6 @@
 #!/bin/env bash
 set -eo pipefail
-# set -x
+set -x
 
 # Usage check
 if [ -z "$1" ]; then
@@ -17,11 +17,11 @@ echo "Switching to PHP $VERSION..."
 if ! phpv "$VERSION" >/dev/null 2>&1; then
   echo "[!] phpv failed to switch to PHP $VERSION — trying phpv -i to install..."
   phpv -i "$VERSION"
-  phpv "$VERSION"
 fi
+phpv "$VERSION"
 
 # Stop active php-fpm@*.service instances
-for svc in $(systemctl list-units --type=service | grep php-fpm@ | awk '{print $1}'); do
+for svc in $(systemctl list-units --type=service | grep 'php.*-fpm' | awk '{print $1}'); do
   echo "Stopping $svc"
   sudo systemctl stop "$svc"
   sudo systemctl disable "$svc"
@@ -73,11 +73,11 @@ if [ "$ACTION" == "--xdebug" ]; then
       pikaur -S php$VERSION-pecl --noconfirm
       echo "xdebug.so not found for PHP $VERSION, installing via pecl..."
       sudo php$VERSION -d detect_unicode=0 "$(which pecl)" install xdebug
-    end
-  fi
+      end
+    fi
 
-  # Xdebug configuration
-  read -r -d '' XDEBUG_CONFIG <<EOF
+    # Xdebug configuration
+    read -r -d '' XDEBUG_CONFIG <<EOF
 zend_extension=$XDEBUG_SO
 xdebug.mode=develop,debug,coverage
 ; xdebug.start_with_request=yes
@@ -85,19 +85,20 @@ xdebug.idekey="VSCODE"
 xdebug.discover_client_host=true
 EOF
 
-  echo "$XDEBUG_CONFIG" | sudo tee "$XDEBUG_INI" >/dev/null
-  echo "Xdebug enabled."
+    echo "$XDEBUG_CONFIG" | sudo tee "$XDEBUG_INI" >/dev/null
+    echo "Xdebug enabled."
 
-elif [ "$ACTION" == "--no-xdebug" ]; then
-  echo "Disabling Xdebug..."
-  sudo rm -f "$XDEBUG_INI"
-  echo "Xdebug disabled."
-else
-  echo "No Xdebug change requested."
+  elif [ "$ACTION" == "--no-xdebug" ]; then
+    echo "Disabling Xdebug..."
+    sudo rm -f "$XDEBUG_INI"
+    echo "Xdebug disabled."
+  else
+    echo "No Xdebug change requested."
+  fi
+
+  # Restart Valet
+  valet restart
+
+  echo "PHP $VERSION active. Xdebug: ${ACTION:-unchanged}"
+  php -v
 fi
-
-# Restart Valet
-valet restart
-
-echo "PHP $VERSION active. Xdebug: ${ACTION:-unchanged}"
-php -v
