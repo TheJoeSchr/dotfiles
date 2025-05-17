@@ -1,4 +1,3 @@
-# TODO: unfix casing
 [core]
   editor = nvim
   autocrlf = false
@@ -41,18 +40,21 @@
 
   # force PAGER
   # delta as pager
-  dd = "!f() { DELTA_FEATURES=+default-feature git -c delta.paging='always' -c delta.pager='less -R' diff --no-ext-diff $@; }; f"
-  ddd = "!f() { DELTA_FEATURES=+default-feature git -c delta.paging='always' -c delta.pager='less -R' -c diff.external='difft --display inline' diff  $@; }; f"
+  dd = "!f() { DELTA_FEATURES=+with-pager git -c delta.paging='always' -c delta.pager='less -R' diff --no-ext-diff $@; }; f"
+  # with difftastic
+  ddd = "!f() { DELTA_FEATURES=+with-pager git -c delta.paging='always' -c delta.pager='less -R' -c diff.external='difft --display inline' diff  $@; }; f"
 
   # no pager
   # print difference in stdout
   # git diff with delta and difftastic
   # staged and unstaged changes
-  df = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@ && PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram --cached $@ ; }; f"
+  df = "!f() { PAGER= DELTA_FEATURES=+no-pager git -c diff.external='difft --display inline' diff --histogram $@ && PAGER= DELTA_FEATURES=+no-pager git -c diff.external='difft --display inline' diff --histogram --cached $@ ; }; f"
+  # staged only
+  dfs = "!f() { PAGER= DELTA_FEATURES=+no-pager git -c diff.external='difft --display inline' diff --histogram --staged $@ ; }; f"
   # unstaged only
-  dfu = "!f() { PAGER= DELTA_FEATURES=no-pager git -c diff.external='difft --display inline' diff --histogram $@; }; f"
+  dfu = "!f() { PAGER= DELTA_FEATURES=+no-pager git -c diff.external='difft --display inline' diff --histogram $@; }; f"
   # Show git-delta with word-level details
-  dfw = "!f() { git diff --word-diff $@; }; f"
+  dfw = "!f() { DELTA_FEATURES=+with-pager git -c delta.paging='always' -c delta.navigate=true -c delta.pager='less -R' diff --word-diff $@; }; f"
 
   # Show difft for specific commit
   dfc = "!f() { git -c diff.external='difft --display inline' diff $@^..$@; }; f"
@@ -148,18 +150,18 @@
 [rerere]
   enabled = true
 [mergetool]
-  keeptemporaries = false
+  keepTemporaries = false
   prompt = false
 [merge]
   # "zdiff3" is identical to ordinary diff3 except that it allows compaction of common lines on the two sides of history at the beginning or end of the conflict hunk.
-  # conflictstyle = diff3
-  conflictstyle = zdiff3
+  # conflictStyle = diff3
+  conflictStyle = zdiff3
   tool = nvimdiff
 [http]
   sslverify = false
-  cookiefile = c:/users/joe/appdata/roaming/.home/.gitcookies
-[winupdater]
-  recentlyseenversion = 2.15.1.windows.2
+  cookiefile = C:/users/joe/Appdata/Roaming/.home/.gitcookies
+[winUpdater]
+  recentlySeenVersion = 2.15.1.windows.2
 [branch]
   autosetuprebase = always
 [help]
@@ -170,14 +172,21 @@
 [credential "https://github.com"]
   helper = !/usr/bin/gh auth git-credential
 [init]
-  defaultbranch = main
+  defaultBranch = main
 [interactive]
-  difffilter = delta --color-only
+  diffFilter = delta --color-only
 [delta]
-  # makes features overrideable but still have default value when not given
-  feature = default-feature
-[delta "default-feature"]
-  paging=auto
+  side-by-side = false
+  line-numbers = true
+  # Show word-level diffs
+  word-diff = true
+  # use n and n to move between diff sections
+  # only works if pager is set
+  # -c delta.pager='less -R'
+  # navigate = true
+
+# makes features overrideable but still have default value when not given
+[delta "with-pager"]
   # use n and n to move between diff sections
   navigate = true
   # set to true if you're in a terminal w/o a light background color
@@ -192,19 +201,23 @@
   minus-emph-style = syntax "#901011"
   plus-style = syntax "#003800"
   plus-emph-style = syntax "#009800"
+  # Optional: Highlight the changes within lines
+  features = interline-glow
+  # Show word-level diffs
+  word-diff = true
+
 [delta "no-pager"]
   paging = never
   # also set difft to inline
   side-by-side = false
   decorations = false
+
 [diff]
-  colormoved = default
+  colorMoved = default
   # dont use difftastic as the default diff tool
   # call explictly like in df or dfu
-  # pager is still delta default-features
+  # pager is still delta with-pagers
   # external = difft
   tool = nvimdiff
 [rebase]
-  autostash = true
-
-
+  autoStash = true
