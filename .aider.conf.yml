@@ -191,8 +191,8 @@ editor-model: vertex_ai/claude-3-7-sonnet@20250219
 #dark-mode: false
 dark-mode: true
 
-## Use colors suitable for a light terminal background (default: False)
-#light-mode: false
+# Use colors suitable for a light terminal background (default: False)
+# light-mode: true
 
 ## Enable/disable pretty, colorized output (default: True)
 #pretty: true
