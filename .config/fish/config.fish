@@ -29,7 +29,7 @@ end
 
 # INTERACTIVE
 if status --is-interactive
-    echo Starting fish shell interactivily...
+    echo "Starting fish shell interactively..."
     set HOSTNAME (uname --nodename)
     if test (uname --nodename) = steamdeck
         set is_steam_host true
@@ -46,7 +46,9 @@ if status --is-interactive
     end
     # Ctrl-f directory
     # Ctrl-Alt-v environment variable
-    fzf_configure_bindings --directory=\cf --variables=\e\cv
+    if functions -q fzf_configure_bindings
+        fzf_configure_bindings --directory=\cf --variables=\e\cv 2>/dev/null
+    end
 
     # Setting fd as the default source for fzf
     set -gx FZF_DEFAULT_COMMAND 'fd --type f'
