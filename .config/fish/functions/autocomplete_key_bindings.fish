@@ -16,7 +16,7 @@ function autocomplete_key_bindings
   # Alt-Space>: expand history to EOL
   bind -M insert \e\x20 forward-char
   # Ctrl-<Space>: expand history per word
-  bind -M insert -k nul nextd-or-forward-word
+  bind -M insert \cs nextd-or-forward-word
   # Ctrl-<Tab> complete history (not working)
   bind -M insert \c\e\t forward-char
 
