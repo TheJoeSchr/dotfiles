@@ -106,6 +106,8 @@ THE THREE TYPES OF ALIAS
     abbr upgrade-paru 'paru -Syu --skipreview --useask --noconfirm'
     abbr vimdiff "$EDITOR -d"
     abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
+    abbr ai aider
+    abbr aim 'aider --model anthropic/claude-sonnet-4-20250514 --message'
 
     alias pbcopy 'xsel --clipboard --input'
     alias pbpaste 'xsel --clipboard --output'
