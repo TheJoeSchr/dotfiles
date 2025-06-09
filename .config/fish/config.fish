@@ -41,7 +41,9 @@ if status --is-interactive
     # bind ctrl-d delete-char
     fish_vi_key_bindings
     # usually automatically, but call to overwrite
-    fish_user_key_bindings
+    if functions -q fish_user_key_bindings
+        fish_user_key_bindings
+    end
     # Ctrl-f directory
     # Ctrl-Alt-v environment variable
     fzf_configure_bindings --directory=\cf --variables=\e\cv
