@@ -19,9 +19,9 @@
 
 ## Specify the model to use for the main chat
 #model: xxx
-# model: gemini/gemini-2.5-pro-preview-05-06
-# model: vertex_ai-language-models/gemini-2.5-pro-exp-03-25
-model: vertex_ai-language-models/gemini-2.5-pro-exp-03-25
+model: anthropic/claude-opus-4-20250514
+# model: gemini/gemini-2.5-pro-exp-03-25
+# model: vertex_ai/gemini-2.5-pro-exp-03-25
 # model: vertex_ai/claude-opus-4@20250514
 # model: vertex_ai/claude-sonnet-4@20250514
 
@@ -130,6 +130,9 @@ model: vertex_ai-language-models/gemini-2.5-pro-exp-03-25
 ## Use architect edit format for the main chat
 architect: false
 
+## Specify the model to use for architect tasks (default depends on --model)
+# architect-model: vertex_ai/gemini-2.5-pro-exp-03-25
+
 ## Specify the model to use for commit messages and chat history summarization (default depends on --model)
 #weak-model: xxx
 weak-model: anthropic/claude-3-5-haiku-latest
@@ -139,7 +142,7 @@ weak-model: anthropic/claude-3-5-haiku-latest
 
 ## Specify the model to use for editor tasks (default depends on --model)
 #editor-model: xxx
-editor-model: anthropic/claude-3-7-sonnet-latest
+editor-model: anthropic/claude-sonnet-4-20250514
 # editor-model: vertex_ai/claude-3-7-sonnet@20250219
 # editor-model: anthropic/claude-4-sonnet-latest
 # editor-model: anthropic/claude-3-7-sonnet-latest
@@ -416,7 +419,7 @@ vim: true
 #chat-language: xxx
 
 ## Always say yes to every confirmation
-yes-always: true
+yes-always: false
 
 ## Enable verbose output
 #verbose: false
@@ -438,6 +441,12 @@ suggest-shell-commands: true
 
 ## Enable/disable detection and offering to add URLs to chat (default: True)
 detect-urls: false
+
+## Generate shell completion scripts for aider commands and options.
+## Use as a command-line argument, e.g., `aider --shell-completions bash`
+## or `aider --shell-completions zsh`.
+## The output script should be sourced by your shell's configuration file (e.g., .bashrc, .zshrc).
+# shell-completions: <SHELL_NAME> # This is a command-line action, not a config setting.
 
 #l# specify which editor to use for the /editor command
 editor: nvim
