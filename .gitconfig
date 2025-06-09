@@ -69,14 +69,15 @@
   # show diff for pull request (needs pr number)
   dftpr = "!f() { git_external_diff=difft git diff origin/main...pull/$1/head; }; f"
   dlog = -c diff.external=difft log -p --ext-diff
-  feat = merge --no-ff --no-commit
+  feat = merge --no-ff 
   go = checkout
   # rebase
   pl = pull --rebase -s recursive
   # taking all remote changes
   # ours is remote, theirs is local -X ours
   pull-all-remote = pl -X ours
-  ps = push
+  ps = !git pl && git push $@
+  ps-f = !git push --force-with-lease $@
   ;reflog
   re = !gitk --all --date-order $(git log -g --pretty=%h)
   ri = rebase --interactive
