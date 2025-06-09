@@ -36,7 +36,7 @@ _k_friendly_name=Accessibility
 [kcm_touchpad]
 Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
 Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
-Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Toggle Touchpad
+Toggle Touchpad=Touchpad Toggle,Touchpad Toggle\tTouchpad Toggle\tMeta+Ctrl+Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,Toggle Touchpad
 _k_friendly_name=Touchpad
 
 [kmix]
@@ -69,9 +69,9 @@ Cycle Overview Opposite=none,none,Cycle through Grid View and Overview
 Cylinder=none,none,Desktop Cylinder
 Decrease Opacity=Meta+O\tCtrl+Alt+O,,Decrease Opacity of Active Window by 5%
 Edit Tiles=none,Meta+T,Toggle Tiles Editor
-Expose=Ctrl+F9,Ctrl+F9,Toggle Present Windows (Current desktop)
-ExposeAll=Ctrl+F10\tLaunch (C),Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
-ExposeClass=Ctrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
+Expose=none,Ctrl+F9,Toggle Present Windows (Current desktop)
+ExposeAll=none,Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
+ExposeClass=none,Ctrl+F7,Toggle Present Windows (Window class)
 ExposeClassCurrentDesktop=none,none,Toggle Present Windows (Window class on current desktop)
 FlipSwitchAll=none,none,Toggle Flip Switch (All desktops)
 FlipSwitchCurrent=none,none,Toggle Flip Switch (Current desktop)
@@ -223,6 +223,10 @@ Toggle Night Color=none,none,Suspend/Resume Night Light
 Toggle Window Raise/Lower=none,,Toggle Window Raise/Lower
 ToggleCurrentThumbnail=Meta+Ctrl+T,Meta+Ctrl+T,Toggle Thumbnail for Current Window
 TrackMouse=none,none,Track mouse
+Walk Through Desktop List=none,none,Walk Through Desktop List
+Walk Through Desktop List (Reverse)=none,none,Walk Through Desktop List (Reverse)
+Walk Through Desktops=none,none,Walk Through Desktops
+Walk Through Desktops (Reverse)=none,none,Walk Through Desktops (Reverse)
 Walk Through Windows=Ctrl+Alt+K,Alt+Tab,Walk Through Windows
 Walk Through Windows (Reverse)=Ctrl+Alt+J,Alt+Shift+Tab,Walk Through Windows (Reverse)
 Walk Through Windows Alternative=Alt+Tab,,Walk Through Windows Alternative
@@ -234,10 +238,10 @@ Walk Through Windows of Current Application Alternative (Reverse)=none,,Walk Thr
 Window Above Other Windows=none,,Keep Window Above Others
 Window Below Other Windows=none,,Keep Window Below Others
 Window Close=Meta+C\tAlt+F4\tCtrl+Alt+C\tMeta+F4\tCtrl+Alt+Q\tMeta+Q,Alt+F4,Close Window
-Window Custom Quick Tile Bottom=none,none,Custom Quick Tile Window to the Bottom
-Window Custom Quick Tile Left=none,none,Custom Quick Tile Window to the Left
-Window Custom Quick Tile Right=none,none,Custom Quick Tile Window to the Right
-Window Custom Quick Tile Top=none,none,Custom Quick Tile Window to the Top
+Window Custom Quick Tile Bottom=none,,Custom Quick Tile Window to the Bottom
+Window Custom Quick Tile Left=none,,Custom Quick Tile Window to the Left
+Window Custom Quick Tile Right=none,,Custom Quick Tile Window to the Right
+Window Custom Quick Tile Top=none,,Custom Quick Tile Window to the Top
 Window Fullscreen=Meta+Shift+F\tCtrl+Alt+Shift+F,,Make Window Fullscreen
 Window Grow Horizontal=none,,Expand Window Horizontally
 Window Grow Vertical=none,,Expand Window Vertically
@@ -442,7 +446,7 @@ powerProfile=Battery\tMeta+B,Battery\tMeta+B,Switch Power Profile
 _k_friendly_name=plasmashell
 activate application launcher=Meta,Meta\tAlt+F1,Activate Application Launcher
 activate task manager entry 1=none,Meta+1,Activate Task Manager Entry 1
-activate task manager entry 10=none,Meta+0,Activate Task Manager Entry 10
+activate task manager entry 10=none,,Activate Task Manager Entry 10
 activate task manager entry 2=none,Meta+2,Activate Task Manager Entry 2
 activate task manager entry 3=none,Meta+3,Activate Task Manager Entry 3
 activate task manager entry 4=none,Meta+4,Activate Task Manager Entry 4
@@ -451,10 +455,10 @@ activate task manager entry 6=none,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=none,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=none,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=none,Meta+9,Activate Task Manager Entry 9
-activate widget 112=none,none,Activate Application Launcher Widget
+activate widget 112=Ctrl+Alt+Space,none,Activate Application Launcher Widget
 activate widget 3=none,none,Activate Application Launcher Widget
 activate widget 30=none,none,Activate Application Launcher Widget
-activate widget 311=Ctrl+Alt+Space,none,Activate Application Launcher Widget
+activate widget 311=none,none,Activate Application Launcher Widget
 activate widget 34=none,none,Activate Application Launcher Widget
 activate widget 350=none,none,Activate Application Dashboard Widget
 activate widget 357=none,none,Activate Application Dashboard Widget
@@ -468,9 +472,9 @@ cycleNextAction=none,,Next History Item
 cyclePrevAction=none,,Previous History Item
 edit_clipboard=none,none,Edit Contents…
 manage activities=none,Meta+Q,Show Activity Switcher
-next activity=Meta+A,none,Walk through activities
-previous activity=Meta+Shift+A,none,Walk through activities (Reverse)
-repeat_action=none,Meta+Ctrl+R,Manually Invoke Action on Current Clipboard
+next activity=Meta+A,Meta+Tab,Walk through activities
+previous activity=Meta+Shift+A,Meta+Shift+Tab,Walk through activities (Reverse)
+repeat_action=none,,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
 show-barcode=none,,Show Barcode…
 show-on-mouse-pos=none,Meta+V,Show Clipboard Items at Mouse Position
@@ -479,11 +483,21 @@ switch to next activity=none,,Switch to Next Activity
 switch to previous activity=none,,Switch to Previous Activity
 toggle do not disturb=none,,Toggle do not disturb
 
+[services][com.mitchellh.ghostty.desktop]
+_launch=Ctrl+Alt+/
+
+[services][org.kde.dolphin.desktop]
+_launch=Ctrl+Alt+E\tMeta+E
+
 [services][org.kde.konsole.desktop]
 _launch=none
 
+[services][org.kde.plasma.emojier.desktop]
+_launch=Meta+Ctrl+Alt+Shift+Space
+
 [services][org.kde.spectacle.desktop]
 RecordRegion=Meta+R
+RectangularRegionScreenShot=Meta+Shift+Print\tCtrl+Alt+Shift+S
 _launch=Print
 
 [services][{a83269b6-d823-407e-8bb4-c0eee0ef65ce}.desktop]
