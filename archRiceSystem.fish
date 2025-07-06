@@ -80,7 +80,7 @@ if not command -sq pikaur
             git clone https://aur.archlinux.org/pikaur.git
             cd pikaur
             # pikaur > 1.20 needed python^3.12
-            git checkout 75bc4f07
+            # git checkout 75bc4f07
             makepkg -si
             cd ~/archlinux/
         else
