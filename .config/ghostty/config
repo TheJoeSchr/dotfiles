@@ -347,13 +347,16 @@ freetype-load-flags = hinting,force-autohint,monochrome,autohint
 #   - macOS: titlebar tabs style is not updated when switching themes.
 # 
 # theme = Builtin Dark
-# theme = `light:catppuccin-latte,dark:Builtin Dark`
+theme = light:catppuccin-latte,dark:Builtin Dark
+# theme = catppuccin-latte
 
 # Background color for the window.
 background = #000000
+# background = #ffffff
 
 # Foreground color for the window.
 foreground = #ffffff
+# foreground = #000000
 
 # The foreground and background color for selection. If this is not set, then
 # the selection color is just the inverted window background and foreground
