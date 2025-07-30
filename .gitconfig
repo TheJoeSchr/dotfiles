@@ -76,8 +76,9 @@
   # taking all remote changes
   # ours is remote, theirs is local -X ours
   pull-all-remote = pl -X ours
-  ps = !git pl && git push $@
-  ps-f = !git push --force-with-lease $@
+  ; ps = !git pl && git push $@
+  ps = !git push --force-with-lease $@
+  ps-f = !git push --force $@
   ;reflog
   re = !gitk --all --date-order $(git log -g --pretty=%h)
   ri = rebase --interactive
@@ -227,3 +228,4 @@
   tool = nvimdiff
 [rebase]
   autoStash = true
+	instructionFormat = %s (%an)
