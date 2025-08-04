@@ -108,6 +108,7 @@ THE THREE TYPES OF ALIAS
     abbr upgrade-paru 'paru -Syu --skipreview --useask --noconfirm'
     abbr vimdiff "$EDITOR -d"
     abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
+    abbr wget wcurl
     abbr ai aider
     abbr aim 'aider --model anthropic/claude-sonnet-4-20250514 --message'
 
@@ -123,6 +124,7 @@ THE THREE TYPES OF ALIAS
     alias mail cmdg
     alias Y 'sudo -E fish -c "y"'
     alias yfp y-filepicker
+    alias wget wcurl
 
     if type -q omf
         omf theme yimmy
