@@ -1,0 +1,39 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# Pass options
+# 0 = Never check this filesystem with fsck, and don't auto-mount
+# 1 = Check this filesystem FIRST during boot (reserved for root filesystem only)
+# 2 = Check this filesystem AFTER the root filesystem has been checked
+
+# System partitions
+/dev/nvme0n1p1  /boot/efi  vfat  rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro  0  0
+# root filesystem pass from 0 to 1 (should always be 1 for root)
+/dev/nvme0n1p2  /          ext4  rw,noatime                                                                                                 0  1
+/dev/nvme0n1p4  /home      xfs   rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota                                                   0  2
+
+# Swap (uncomment if needed)
+# UUID=fa48b15e-cc24-4674-9f29-75d19b48475b  none  swap  defaults  0  0
+
+# User storage:  pass from 0 to 2 for automount
+/dev/sda1  /run/media/joe/EvoSSD     ext4  defaults,nodev  0  2
+/dev/sdb5  /run/media/joe/WinData    ntfs  defaults        0  2
+
+# Mirror storage
+/dev/sde2  /run/media/joe/4TB-Mirror  ntfs  rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other  0  2
+
+# Disk pool components - FIXED: Added auto option and proper pass numbers
+/dev/sdd2  /mnt/dp/ST6001DM003-2CY1  ntfs  auto,nofail,rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other  0  2
+/dev/sdc2  /mnt/dp/HDWE160           ntfs  auto,nofail,rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other  0  2
+/dev/sdf2  /mnt/dp/MD04ACA4-B        ntfs  auto,nofail,rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other  0  2
+
+# Disk pool mergerfs - CLEANED UP: Removed duplicate entry and fixed formatting
+/mnt/dp/HDWE160/PoolPart.2e7526c5-eed4-463a-910c-a5918352334f:/mnt/dp/MD04ACA4-B/PoolPart.adcd6bc9-e0dd-4241-882d-76de238f9565:/mnt/dp/ST6001DM003-2CY1/PoolPart.1921c7da-5606-4f74-b677-9137492e5d64  /mnt/diskpool  mergerfs  auto,exec,rw,minfreespace=1M,moveonenospc=true,use_ino,cache.files=partial,dropcacheonclose=true,allow_other,umask=000,uid=1000,gid=1000,category.create=mfs,noforget,inodecalc=path-hash,statfs=base,statfs_ignore=ro,fsname=diskpool,x-systemd.requires=/mnt/dp/HDWE160,x-systemd.requires=/mnt/dp/MD04ACA4-B,x-systemd.requires=/mnt/dp/ST6001DM003-2CY1,comment=x-gvfs-show  0  2
+
+# old mergerfs
+# /mnt/data mergerfs rw,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+# /mnt/dp/HDWE161/PoolPart.2e7526c5-eed4-463a-910c-a5918352334f:/mnt/dp/MD04ACA4-B/PoolPart.adcd6bc9-e0dd-4241-882d-76de238f9565:/mnt/dp/ST6000DM003-2CY1/PoolPart.1921c7da-5606-4f74-b677-9137492e5d64 /mnt/diskpool mergerfs nofail,auto,defaults,exec,rw,minfreespace=1M,moveonenospc=true,use_ino,cache.files=partial,dropcacheonclose=true,allow_other,umask=000,uid=1000,gid=1000,category.create=mfs,noforget,inodecalc=path-hash,statfs=base,statfs_ignore=ro,fsname=diskpool,x-systemd.requires=/mnt/dp/HDWE160/,x-systemd.requires=/mnt/dp/HDWE160/,x-systemd.requires=/mnt/dp/ST4000DM005/,x-systemd.requires=/mnt/dp/MD04ACA4-BP/,x-systemd.requires=/mnt/dp/ST6000DM003-2CY1,comment=x-gvfs-show 0 2
+# /mnt/dp/HDWE161/PoolPart.2e7526c5-eed4-463a-910c-a5918352334f:/mnt/dp/MD04ACA4-B/PoolPart.adcd6bc9-e0dd-4241-882d-76de238f9565:/mnt/dp/ST6000DM003-2CY1/PoolPart.1921c7da-5606-4f74-b677-9137492e5d64 /mnt/diskpool mergerfs nofail,auto,defaults,exec,rw,minfreespace=1M,moveonenospc=true,use_ino,cache.files=partial,dropcacheonclose=true,allow_other,umask=000,uid=1000,gid=1000,category.create=mfs,noforget,inodecalc=path-hash,statfs=base,statfs_ignore=ro,fsname=diskpool,x-systemd.requires=/mnt/dp/HDWE160/,x-systemd.requires=/mnt/dp/HDWE160/,x-systemd.requires=/mnt/dp/ST4000DM005/,x-systemd.requires=/mnt/dp/MD04ACA4-BP/,x-systemd.requires=/mnt/dp/ST6000DM003-2CY1,comment=x-gvfs-show 0 2
+# /mnt/dp/HDWE160/PoolPart:/mnt/dp/HDWE160/PoolPart:/mnt/dp/ST4000DM005/PoolPart:/mnt/dp/WD15EADS00S/PoolPart:/mnt/dp/WD15EADS00P/PoolPart:   /mnt/diskpool fuse.mergerfs auto,users,defaults 0 2
+# /mnt/dp/HDWE160/PoolPart.2e7526c5-eed4-463a-910c-a5918352334f:/mnt/dp/MD04ACA4-B/PoolPart.adcd6bc9-e0dd-4241-882d-76de238f9565:/mnt/dp/ST6000DM003-2CY1/PoolPart.1921c7da-5606-4f74-b677-9137492e5d64 /mnt/diskpool mergerfs auto,defaults,exec,rw,minfreespace=1M,moveonenospc=true,use_ino,cache.files=partial,dropcacheonclose=true,allow_other,umask=000,uid=1000,gid=1000,category.create=mfs,noforget,inodecalc=path-hash,statfs=base,statfs_ignore=ro,fsname=diskpool,x-systemd.requires=/mnt/dp/HDWE160/,x-systemd.requires=/mnt/dp/HDWE160/,x-systemd.requires=/mnt/dp/ST4000DM005/,x-systemd.requires=/mnt/dp/MD04ACA4-BP/,x-systemd.requires=/mnt/dp/ST6000DM003-2CY1,comment=x-gvfs-show 0 2
