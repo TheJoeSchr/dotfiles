@@ -1,6 +1,6 @@
 return {
   -- https://www.josean.com/posts/neovim-linting-and-formatting
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   -- format
   {
     "stevearc/conform.nvim",

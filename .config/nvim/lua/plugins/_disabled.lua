@@ -1,5 +1,5 @@
 return {
-  { "echasnovski/mini.pairs", enabled = false },
-  { "echasnovski/mini.animate", enabled = false },
-  { "echasnovski/mini.move", enabled = false },
+  { "nvim-mini/mini.pairs", enabled = false },
+  { "nvim-mini/mini.animate", enabled = false },
+  { "nvim-mini/mini.move", enabled = false },
 }

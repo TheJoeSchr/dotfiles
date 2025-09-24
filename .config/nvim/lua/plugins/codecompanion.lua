@@ -8,7 +8,7 @@ return {
     "nvim-lua/plenary.nvim",
     "zbirenbaum/copilot.lua",
     "nvim-treesitter/nvim-treesitter",
-    { "echasnovski/mini.pick", version = false },
+    { "ibhagwan/fzf-lua" },
     { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }, -- Optional: For prettier markdown rendering
     {
       -- https://www.reddit.com/r/neovim/comments/1hrsrdm/having_issues_installing_blinkcmp/

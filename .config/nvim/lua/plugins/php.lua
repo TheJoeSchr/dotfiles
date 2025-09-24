@@ -51,6 +51,12 @@ return {
       formatters_by_ft = {
         php = { "php-cs-fixer" },
       },
+      -- autoformat on save
+      format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 200,
+        lsp_format = "fallback",
+      },
       formatters = {
         ["php-cs-fixer"] = {
           command = "php-cs-fixer",
