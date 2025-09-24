@@ -229,3 +229,5 @@
 [rebase]
   autoStash = true
 	instructionFormat = %s (%an)
+[includeIf "gitdir:/home/joe/projects/enixi"]
+  path = ~/projects/enixi.gitconfig
