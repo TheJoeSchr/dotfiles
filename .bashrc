@@ -3,7 +3,7 @@ set -o ignoreeof
 
 # If not running interactively, skips this file
 if [ -t 0 ]; then
-  # .bashrc.local bgets sourced at the end of this file
+  # .bashrc.local gets sourced at the end of this file
   echo "Running interactively, loading .bashrc"
 else
   echo "Not running interactively, skipping .bashrc"

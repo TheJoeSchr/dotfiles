@@ -87,7 +87,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    "nvim-tree/nvim-web-devicons", -- or nvim-mini/mini.icons
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
