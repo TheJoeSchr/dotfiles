@@ -1,21 +1,7 @@
 return {
   -- https://www.josean.com/posts/neovim-linting-and-formatting
   "mason-org/mason.nvim",
-  -- format
-  {
-    "stevearc/conform.nvim",
-    dependencies = { "mason.nvim" },
-    -- Don't override plugin.config directly, since this will break LazyVim formatting.
-    opts = function()
-      ---@type conform.setupOpts
-      local opts = {
-        formatters_by_ft = {
-          sql = { "sqruff" },
-        },
-      }
-      return opts
-    end,
-  },
+  -- Format in `conform.lua`
   -- SQL DB autocompete and ui
   {
     "kristijanhusak/vim-dadbod-ui",
