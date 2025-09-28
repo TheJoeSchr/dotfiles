@@ -372,7 +372,6 @@ if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
         pikaur -S --needed --noconfirm \
             noto-fonts
         pikaur -S --needed --noconfirm \
-            kwin-bismuth-bin \
             appimagelauncher-git
     else
         # APPIMAGELAUNCHER
