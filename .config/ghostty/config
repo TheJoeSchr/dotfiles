@@ -49,8 +49,7 @@
 # 
 # Changing this configuration at runtime will only affect new terminals, i.e.
 # new windows, tabs, etc.
-font-family = "Hack Nerd Font"
-
+font-family = "Hack Nerd Font Mono"
 font-family-bold = 
 font-family-italic = 
 font-family-bold-italic = 
@@ -66,11 +65,11 @@ font-family-bold-italic =
 # These are only valid if its corresponding font-family is also specified. If
 # no font-family is specified, then the font-style is ignored unless you're
 # disabling the font style.
-font-style = default
-
-font-style-bold = default
-font-style-italic = default
-font-style-bold-italic = default
+# font-style = default
+#
+# font-style-bold = default
+# font-style-italic = default
+# font-style-bold-italic = default
 # Control whether Ghostty should synthesize a style if the requested style is
 # not available in the specified font-family.
 # 
@@ -101,7 +100,7 @@ font-style-bold-italic = default
 # explicitly disable it. You cannot partially disable `bold-italic`.
 # 
 # By default, synthetic styles are enabled.
-font-synthetic-style = bold,italic,bold-italic
+# font-synthetic-style = bold,italic,bold-italic
 
 # Apply a font feature. This can be repeated multiple times to enable multiple
 # font features. You can NOT set multiple font features with a single value
@@ -120,7 +119,7 @@ font-synthetic-style = bold,italic,bold-italic
 # 
 # To generally disable most ligatures, use `-calt`, `-liga`, and `-dlig` (as
 # separate repetitive entries in your config).
-font-feature = -calt
+# font-feature = -calt
 
 # Font size in points. This value can be a non-integer and the nearest integer
 # pixel size will be selected. If you have a high dpi display where 1pt = 2px
@@ -133,7 +132,7 @@ font-feature = -calt
 # depending on your `window-inherit-font-size` setting. If that setting is
 # true, only the first window will be affected by this change since all
 # subsequent windows will inherit the font size of the previous window.
-font-size = 12
+font-size = 18
 
 # A repeatable configuration to set one or more font variations values for
 # a variable font. A variable font is a single font, usually with a filename
@@ -153,11 +152,11 @@ font-size = 12
 # 
 # Common axes are: `wght` (weight), `slnt` (slant), `ital` (italic), `opsz`
 # (optical size), `wdth` (width), `GRAD` (gradient), etc.
-font-variation = 
-
-font-variation-bold = 
-font-variation-italic = 
-font-variation-bold-italic = 
+# font-variation = 
+#
+# font-variation-bold = 
+# font-variation-italic = 
+# font-variation-bold-italic = 
 # Force one or a range of Unicode codepoints to map to a specific named font.
 # This is useful if you want to support special symbols or if you want to use
 # specific glyphs that render better for your specific font.
@@ -174,11 +173,11 @@ font-variation-bold-italic =
 # 
 # Changing this configuration at runtime will only affect new terminals,
 # i.e. new windows, tabs, etc.
-font-codepoint-map = 
+# font-codepoint-map = 
 
 # Draw fonts with a thicker stroke, if supported. This is only supported
 # currently on macOS.
-font-thicken = false
+# font-thicken = false
 
 # All of the configurations behavior adjust various metrics determined by the
 # font. The values can be integers (1, -1, etc.) or a percentage (20%, -15%,
@@ -204,44 +203,44 @@ font-thicken = false
 # 
 #   * Powerline glyphs will be adjusted along with the cell height so
 #     that things like status lines continue to look aligned.
-adjust-cell-width = 
-
-adjust-cell-height = 
+# adjust-cell-width = 
+#
+# adjust-cell-height = 
 # Distance in pixels from the bottom of the cell to the text baseline.
 # Increase to move baseline UP, decrease to move baseline DOWN.
-adjust-font-baseline = 
-
+# adjust-font-baseline = 
+#
 # Distance in pixels from the top of the cell to the top of the underline.
 # Increase to move underline DOWN, decrease to move underline UP.
-adjust-underline-position = 
+# adjust-underline-position = 
 
 # Thickness in pixels of the underline.
-adjust-underline-thickness = 
-
+# adjust-underline-thickness = 
+#
 # Distance in pixels from the top of the cell to the top of the strikethrough.
 # Increase to move strikethrough DOWN, decrease to move underline UP.
-adjust-strikethrough-position = 
-
+# adjust-strikethrough-position = 
+#
 # Thickness in pixels of the strikethrough.
-adjust-strikethrough-thickness = 
-
+# adjust-strikethrough-thickness = 
+#
 # Distance in pixels from the top of the cell to the top of the overline.
 # Increase to move overline DOWN, decrease to move underline UP.
-adjust-overline-position = 
-
+# adjust-overline-position = 
+#
 # Thickness in pixels of the overline.
-adjust-overline-thickness = 
-
+# adjust-overline-thickness = 
+#
 # Thickness in pixels of the bar cursor and outlined rect cursor.
-adjust-cursor-thickness = 
-
+# adjust-cursor-thickness = 
+#
 # Height in pixels of the cursor. Currently applies to all cursor types:
 # bar, rect, and outlined rect.
-adjust-cursor-height = 
-
+# adjust-cursor-height = 
+#
 # Thickness in pixels of box drawing characters.
-adjust-box-thickness = 
-
+# adjust-box-thickness = 
+#
 # The method to use for calculating the cell width of a grapheme cluster.
 # The default value is `unicode` which uses the Unicode standard to determine
 # grapheme width. This results in correct grapheme width but may result in
@@ -267,7 +266,7 @@ adjust-box-thickness =
 # 
 # This configuration can be changed at runtime but will not affect existing
 # terminals. Only new terminals will use the new configuration.
-grapheme-width-method = unicode
+# grapheme-width-method = unicode
 
 # FreeType load flags to enable. The format of this is a list of flags to
 # enable separated by commas. If you prefix a flag with `no-` then it is
@@ -290,7 +289,6 @@ grapheme-width-method = unicode
 #   * `autohint` - Use the freetype auto-hinter. Enabled by default.
 # 
 # Example: `hinting`, `no-hinting`, `force-autohint`, `no-force-autohint`
-freetype-load-flags = hinting,force-autohint,monochrome,autohint
 
 # A theme to use. This can be a built-in theme name, a custom theme
 # name, or an absolute path to a custom theme file. Ghostty also supports
@@ -798,191 +796,6 @@ unfocused-split-opacity = 0.7
 # This will default to the background color.
 unfocused-split-fill = 
 
-# The command to run, usually a shell. If this is not an absolute path, it'll
-# be looked up in the `PATH`. If this is not set, a default will be looked up
-# from your system. The rules for the default lookup are:
-# 
-#   * `SHELL` environment variable
-# 
-#   * `passwd` entry (user information)
-# 
-# This can contain additional arguments to run the command with. If additional
-# arguments are provided, the command will be executed using `/bin/sh -c`.
-# Ghostty does not do any shell command parsing.
-# 
-# This command will be used for all new terminal surfaces, i.e. new windows,
-# tabs, etc. If you want to run a command only for the first terminal surface
-# created when Ghostty starts, use the `initial-command` configuration.
-# 
-# Ghostty supports the common `-e` flag for executing a command with
-# arguments. For example, `ghostty -e fish --with --custom --args`.
-# This flag sets the `initial-command` configuration, see that for more
-# information.
-command = 
-
-# This is the same as "command", but only applies to the first terminal
-# surface created when Ghostty starts. Subsequent terminal surfaces will use
-# the `command` configuration.
-# 
-# After the first terminal surface is created (or closed), there is no
-# way to run this initial command again automatically. As such, setting
-# this at runtime works but will only affect the next terminal surface
-# if it is the first one ever created.
-# 
-# If you're using the `ghostty` CLI there is also a shortcut to set this
-# with arguments directly: you can use the `-e` flag. For example: `ghostty -e
-# fish --with --custom --args`. The `-e` flag automatically forces some
-# other behaviors as well:
-# 
-#   * `gtk-single-instance=false` - This ensures that a new instance is
-#     launched and the CLI args are respected.
-# 
-#   * `quit-after-last-window-closed=true` - This ensures that the Ghostty
-#     process will exit when the command exits. Additionally, the
-#     `quit-after-last-window-closed-delay` is unset.
-# 
-#   * `shell-integration=detect` (if not `none`) - This prevents forcibly
-#     injecting any configured shell integration into the command's
-#     environment. With `-e` its highly unlikely that you're executing a
-#     shell and forced shell integration is likely to cause problems
-#     (i.e. by wrapping your command in a shell, setting env vars, etc.).
-#     This is a safety measure to prevent unexpected behavior. If you want
-#     shell integration with a `-e`-executed command, you must either
-#     name your binary appopriately or source the shell integration script
-#     manually.
-# 
-initial-command = 
-
-# If true, keep the terminal open after the command exits. Normally, the
-# terminal window closes when the running command (such as a shell) exits.
-# With this true, the terminal window will stay open until any keypress is
-# received.
-# 
-# This is primarily useful for scripts or debugging.
-wait-after-command = false
-
-# The number of milliseconds of runtime below which we consider a process exit
-# to be abnormal. This is used to show an error message when the process exits
-# too quickly.
-# 
-# On Linux, this must be paired with a non-zero exit code. On macOS, we allow
-# any exit code because of the way shell processes are launched via the login
-# command.
-abnormal-command-exit-runtime = 250
-
-# The size of the scrollback buffer in bytes. This also includes the active
-# screen. No matter what this is set to, enough memory will always be
-# allocated for the visible screen and anything leftover is the limit for
-# the scrollback.
-# 
-# When this limit is reached, the oldest lines are removed from the
-# scrollback.
-# 
-# Scrollback currently exists completely in memory. This means that the
-# larger this value, the larger potential memory usage. Scrollback is
-# allocated lazily up to this limit, so if you set this to a very large
-# value, it will not immediately consume a lot of memory.
-# 
-# This size is per terminal surface, not for the entire application.
-# 
-# It is not currently possible to set an unlimited scrollback buffer.
-# This is a future planned feature.
-# 
-# This can be changed at runtime but will only affect new terminal surfaces.
-scrollback-limit = 10000000
-
-# Match a regular expression against the terminal text and associate clicking
-# it with an action. This can be used to match URLs, file paths, etc. Actions
-# can be opening using the system opener (i.e. `open` or `xdg-open`) or
-# executing any arbitrary binding action.
-# 
-# Links that are configured earlier take precedence over links that are
-# configured later.
-# 
-# A default link that matches a URL and opens it in the system opener always
-# exists. This can be disabled using `link-url`.
-# 
-# TODO: This can't currently be set!
-
-# Enable URL matching. URLs are matched on hover with control (Linux) or
-# super (macOS) pressed and open using the default system application for
-# the linked URL.
-# 
-# The URL matcher is always lowest priority of any configured links (see
-# `link`). If you want to customize URL matching, use `link` and disable this.
-link-url = true
-
-# Start new windows in fullscreen. This setting applies to new windows and
-# does not apply to tabs, splits, etc. However, this setting will apply to all
-# new windows, not just the first one.
-# 
-# On macOS, this setting does not work if window-decoration is set to
-# "false", because native fullscreen on macOS requires window decorations
-# to be set.
-fullscreen = false
-
-# The title Ghostty will use for the window. This will force the title of the
-# window to be this title at all times and Ghostty will ignore any set title
-# escape sequences programs (such as Neovim) may send.
-# 
-# If you want a blank title, set this to one or more spaces by quoting
-# the value. For example, `title = " "`. This effectively hides the title.
-# This is necessary because setting a blank value resets the title to the
-# default value of the running program.
-# 
-# This configuration can be reloaded at runtime. If it is set, the title
-# will update for all windows. If it is unset, the next title change escape
-# sequence will be honored but previous changes will not retroactively
-# be set. This latter case may require you restart programs such as neovim
-# to get the new title.
-title = 
-
-# The setting that will change the application class value.
-# 
-# This controls the class field of the `WM_CLASS` X11 property (when running
-# under X11), and the Wayland application ID (when running under Wayland).
-# 
-# Note that changing this value between invocations will create new, separate
-# instances, of Ghostty when running with `gtk-single-instance=true`. See that
-# option for more details.
-# 
-# The class name must follow the requirements defined [in the GTK
-# documentation](https://docs.gtk.org/gio/type_func.Application.id_is_valid.html).
-# 
-# The default is `com.mitchellh.ghostty`.
-# 
-# This only affects GTK builds.
-class = 
-
-# This controls the instance name field of the `WM_CLASS` X11 property when
-# running under X11. It has no effect otherwise.
-# 
-# The default is `ghostty`.
-# 
-# This only affects GTK builds.
-x11-instance-name = 
-
-# The directory to change to after starting the command.
-# 
-# This setting is secondary to the `window-inherit-working-directory`
-# setting. If a previous Ghostty terminal exists in the same process,
-# `window-inherit-working-directory` will take precedence. Otherwise, this
-# setting will be used. Typically, this setting is used only for the first
-# window.
-# 
-# The default is `inherit` except in special scenarios listed next. On macOS,
-# if Ghostty can detect it is launched from launchd (double-clicked) or
-# `open`, then it defaults to `home`. On Linux with GTK, if Ghostty can detect
-# it was launched from a desktop launcher, then it defaults to `home`.
-# 
-# The value of this must be an absolute value or one of the special values
-# below:
-# 
-#   * `home` - The home directory of the executing user.
-# 
-#   * `inherit` - The working directory of the launching process.
-working-directory = 
-
 # Key bindings. The format is `trigger=action`. Duplicate triggers will
 # overwrite previously set values. The list of actions is available in
 # the documentation or using the `ghostty +list-actions` command.
@@ -1280,7 +1093,6 @@ window-inherit-working-directory = true
 # will be used. If this is false, the default font size specified in the
 # configuration `font-size` will be used.
 window-inherit-font-size = true
-
 # Valid values:
 # 
 #   * `true`
@@ -1296,11 +1108,6 @@ window-inherit-font-size = true
 # macOS: To hide the titlebar without removing the native window borders
 #        or rounded corners, use `macos-titlebar-style = hidden` instead.
 window-decoration = true
-
-# The font that will be used for the application's window and tab titles.
-# 
-# This is currently only supported on macOS.
-window-title-font-family = 
 
 # The theme to use for the windows. Valid values:
 # 
@@ -1323,147 +1130,144 @@ window-title-font-family =
 # This is currently only supported on macOS and Linux.
 window-theme = ghostty
 
-# The colorspace to use for the terminal window. The default is `srgb` but
-# this can also be set to `display-p3` to use the Display P3 colorspace.
+# If `true`, the Ghostty GTK application will run in single-instance mode:
+# each new `ghostty` process launched will result in a new window if there is
+# already a running process.
+# 
+# If `false`, each new ghostty process will launch a separate application.
+# 
+# The default value is `detect` which will default to `true` if Ghostty
+# detects that it was launched from the `.desktop` file such as an app
+# launcher (like Gnome Shell)  or by D-Bus activation. If Ghostty is launched
+# from the command line, it will default to `false`.
+# 
+# Note that debug builds of Ghostty have a separate single-instance ID
+# so you can test single instance without conflicting with release builds.
+gtk-single-instance = desktop
+
+# When enabled, the full GTK titlebar is displayed instead of your window
+# manager's simple titlebar. The behavior of this option will vary with your
+# window manager.
+# 
+# This option does nothing when `window-decoration` is false or when running
+# under macOS.
+# 
+# Changing this value at runtime and reloading the configuration will only
+# affect new windows.
+gtk-titlebar = false
+
+# Determines the side of the screen that the GTK tab bar will stick to.
+# Top, bottom, left, right, and hidden are supported. The default is top.
+# 
+# If this option has value `left` or `right` when using Adwaita, it falls
+# back to `top`. `hidden`, meaning that tabs don't exist, is not supported
+# without using Adwaita, falling back to `top`.
+# 
+# When `hidden` is set and Adwaita is enabled, a tab button displaying the
+# number of tabs will appear in the title bar. It has the ability to open a
+# tab overview for displaying tabs. Alternatively, you can use the
+# `toggle_tab_overview` action in a keybind if your window doesn't have a
+# title bar, or you can switch tabs with keybinds.
+gtk-tabs-location = hidden
+
+# Determines the appearance of the top and bottom bars when using the
+# Adwaita tab bar. This requires `gtk-adwaita` to be enabled (it is
+# by default).
+# 
+# Valid values are:
+# 
+#  * `flat` - Top and bottom bars are flat with the terminal window.
+#  * `raised` - Top and bottom bars cast a shadow on the terminal area.
+#  * `raised-border` - Similar to `raised` but the shadow is replaced with a
+#    more subtle border.
 # 
 # Changing this value at runtime will only affect new windows.
-# 
-# This setting is only supported on macOS.
-window-colorspace = srgb
+adw-toolbar-style = raised
 
-# The initial window size. This size is in terminal grid cells by default.
-# Both values must be set to take effect. If only one value is set, it is
-# ignored.
-# 
-# We don't currently support specifying a size in pixels but a future change
-# can enable that. If this isn't specified, the app runtime will determine
-# some default size.
-# 
-# Note that the window manager may put limits on the size or override the
-# size. For example, a tiling window manager may force the window to be a
-# certain size to fit within the grid. There is nothing Ghostty will do about
-# this, but it will make an effort.
-# 
-# Sizes larger than the screen size will be clamped to the screen size.
-# This can be used to create a maximized-by-default window size.
-# 
-# This will not affect new tabs, splits, or other nested terminal elements.
-# This only affects the initial window size of any new window. Changing this
-# value will not affect the size of the window after it has been created. This
-# is only used for the initial size.
-# 
-# BUG: On Linux with GTK, the calculated window size will not properly take
-# into account window decorations. As a result, the grid dimensions will not
-# exactly match this configuration. If window decorations are disabled (see
-# window-decorations), then this will work as expected.
-# 
-# Windows smaller than 10 wide by 4 high are not allowed.
-window-height = 0
+# If `true` (default), then the Ghostty GTK tabs will be "wide." Wide tabs
+# are the new typical Gnome style where tabs fill their available space.
+# If you set this to `false` then tabs will only take up space they need,
+# which is the old style.
+gtk-wide-tabs = true
 
-window-width = 0
-# Whether to enable saving and restoring window state. Window state includes
-# their position, size, tabs, splits, etc. Some window state requires shell
-# integration, such as preserving working directories. See `shell-integration`
-# for more information.
+# If `true` (default), Ghostty will enable Adwaita theme support. This
+# will make `window-theme` work properly and will also allow Ghostty to
+# properly respond to system theme changes, light/dark mode changing, etc.
+# This requires a GTK4 desktop with a GTK4 theme.
 # 
-# There are three valid values for this configuration:
+# If you are running GTK3 or have a GTK3 theme, you may have to set this
+# to false to get your theme picked up properly. Having this set to true
+# with GTK3 should not cause any problems, but it may not work exactly as
+# expected.
 # 
-#   * `default` will use the default system behavior. On macOS, this
-#     will only save state if the application is forcibly terminated
-#     or if it is configured systemwide via Settings.app.
-# 
-#   * `never` will never save window state.
-# 
-#   * `always` will always save window state whenever Ghostty is exited.
-# 
-# If you change this value to `never` while Ghostty is not running, the next
-# Ghostty launch will NOT restore the window state.
-# 
-# If you change this value to `default` while Ghostty is not running and the
-# previous exit saved state, the next Ghostty launch will still restore the
-# window state. This is because Ghostty cannot know if the previous exit was
-# due to a forced save or not (macOS doesn't provide this information).
-# 
-# If you change this value so that window state is saved while Ghostty is not
-# running, the previous window state will not be restored because Ghostty only
-# saves state on exit if this is enabled.
-# 
-# The default value is `default`.
-# 
-# This is currently only supported on macOS. This has no effect on Linux.
-window-save-state = default
+# This configuration only has an effect if Ghostty was built with
+# Adwaita support.
+# gtk-adwaita = true
 
-# Resize the window in discrete increments of the focused surface's cell size.
-# If this is disabled, surfaces are resized in pixel increments. Currently
-# only supported on macOS.
-window-step-resize = false
+# If `true` (default), applications running in the terminal can show desktop
+# notifications using certain escape sequences such as OSC 9 or OSC 777.
+desktop-notifications = true
 
-# The position where new tabs are created. Valid values:
-# 
-#   * `current` - Insert the new tab after the currently focused tab,
-#     or at the end if there are no focused tabs.
-# 
-#   * `end` - Insert the new tab at the end of the tab list.
-window-new-tab-position = current
+# If `true`, the bold text will use the bright color palette.
+bold-is-bright = true
 
-# This controls when resize overlays are shown. Resize overlays are a
-# transient popup that shows the size of the terminal while the surfaces are
-# being resized. The possible options are:
-# 
-#   * `always` - Always show resize overlays.
-#   * `never` - Never show resize overlays.
-#   * `after-first` - The resize overlay will not appear when the surface
-#                     is first created, but will show up if the surface is
-#                     subsequently resized.
-# 
-# The default is `after-first`.
-resize-overlay = after-first
+# This will be used to set the `TERM` environment variable.
+# HACK: We set this with an `xterm` prefix because vim uses that to enable key
+# protocols (specifically this will enable `modifyOtherKeys`), among other
+# features. An option exists in vim to modify this: `:set
+# keyprotocol=ghostty:kitty`, however a bug in the implementation prevents it
+# from working properly. https://github.com/vim/vim/pull/13211 fixes this.
+term = xterm-ghostty
 
-# If resize overlays are enabled, this controls the position of the overlay.
-# The possible options are:
-# 
-#   * `center`
-#   * `top-left`
-#   * `top-center`
-#   * `top-right`
-#   * `bottom-left`
-#   * `bottom-center`
-#   * `bottom-right`
-# 
-# The default is `center`.
-resize-overlay-position = center
+# String to send when we receive `ENQ` (`0x05`) from the command that we are
+# running. Defaults to an empty string if not set.
+enquiry-response = 
 
-# If resize overlays are enabled, this controls how long the overlay is
-# visible on the screen before it is hidden. The default is ¾ of a second or
-# 750 ms.
+# Control the auto-update functionality of Ghostty. This is only supported
+# on macOS currently, since Linux builds are distributed via package
+# managers that are not centrally controlled by Ghostty.
 # 
-# The duration is specified as a series of numbers followed by time units.
-# Whitespace is allowed between numbers and units. Each number and unit will
-# be added together to form the total duration.
+# Checking or downloading an update does not send any information to
+# the project beyond standard network information mandated by the
+# underlying protocols. To put it another way: Ghostty doesn't explicitly
+# add any tracking to the update process. The update process works by
+# downloading information about the latest version and comparing it
+# client-side to the current version.
 # 
-# The allowed time units are as follows:
+# Valid values are:
 # 
-#   * `y` - 365 SI days, or 8760 hours, or 31536000 seconds. No adjustments
-#     are made for leap years or leap seconds.
-#   * `d` - one SI day, or 86400 seconds.
-#   * `h` - one hour, or 3600 seconds.
-#   * `m` - one minute, or 60 seconds.
-#   * `s` - one second.
-#   * `ms` - one millisecond, or 0.001 second.
-#   * `us` or `µs` - one microsecond, or 0.000001 second.
-#   * `ns` - one nanosecond, or 0.000000001 second.
+#  * `off` - Disable auto-updates.
+#  * `check` - Check for updates and notify the user if an update is
+#    available, but do not automatically download or install the update.
+#  * `download` - Check for updates, automatically download the update,
+#    notify the user, but do not automatically install the update.
 # 
-# Examples:
-#   * `1h30m`
-#   * `45s`
+# The default value is `check`.
 # 
-# Units can be repeated and will be added together. This means that
-# `1h1h` is equivalent to `2h`. This is confusing and should be avoided.
-# A future update may disallow this.
+# Changing this value at runtime works after a small delay.
+auto-update = check
+
+# The release channel to use for auto-updates.
 # 
-# The maximum value is `584y 49w 23h 34m 33s 709ms 551µs 615ns`. Any
-# value larger than this will be clamped to the maximum value.
-resize-overlay-duration = 750ms
+# The default value of this matches the release channel of the currently
+# running Ghostty version. If you download a pre-release version of Ghostty
+# then this will be set to `tip` and you will receive pre-release updates.
+# If you download a stable version of Ghostty then this will be set to
+# `stable` and you will receive stable updates.
+# 
+# Valid values are:
+# 
+#  * `stable` - Stable, tagged releases such as "1.0.0".
+#  * `tip` - Pre-release versions generated from each commit to the
+#    main branch. This is the version that was in use during private
+#    beta testing by thousands of people. It is generally stable but
+#    will likely have more bugs than the stable channel.
+# 
+# Changing this configuration requires a full restart of
+# Ghostty to take effect.
+# 
+# This only works on macOS since only macOS has an auto-update feature.
+auto-update-channel = 
 
 focus-follows-mouse = true
 # Whether to allow programs running in the terminal to read/write to the
@@ -1526,48 +1330,6 @@ copy-on-select = true
 # use a platform-specific default. The default on macOS is determined by the
 # OS settings. On every other platform it is 500ms.
 click-repeat-interval = 0
-
-# Additional configuration files to read. This configuration can be repeated
-# to read multiple configuration files. Configuration files themselves can
-# load more configuration files. Paths are relative to the file containing the
-# `config-file` directive. For command-line arguments, paths are relative to
-# the current working directory.
-# 
-# Prepend a ? character to the file path to suppress errors if the file does
-# not exist. If you want to include a file that begins with a literal ?
-# character, surround the file path in double quotes (").
-# 
-# Cycles are not allowed. If a cycle is detected, an error will be logged and
-# the configuration file will be ignored.
-# 
-# Configuration files are loaded after the configuration they're defined
-# within in the order they're defined. **THIS IS A VERY SUBTLE BUT IMPORTANT
-# POINT.** To put it another way: configuration files do not take effect
-# until after the entire configuration is loaded. For example, in the
-# configuration below:
-# 
-# ```
-# config-file = "foo"
-# a = 1
-# ```
-# 
-# If "foo" contains `a = 2`, the final value of `a` will be 2, because
-# `foo` is loaded after the configuration file that configures the
-# nested `config-file` value.
-config-file = 
-
-# When this is true, the default configuration file paths will be loaded.
-# The default configuration file paths are currently only the XDG
-# config path ($XDG_CONFIG_HOME/ghostty/config).
-# 
-# If this is false, the default configuration paths will not be loaded.
-# This is targeted directly at using Ghostty from the CLI in a way
-# that minimizes external effects.
-# 
-# This is a CLI-only configuration. Setting this in a configuration file
-# will have no effect. It is not an error, but it will not do anything.
-# This configuration can only be set via CLI arguments.
-config-default-files = true
 
 # Confirms that a surface should be closed before closing it. This defaults to
 # true. If set to false, surfaces will close without any confirmation.
@@ -1791,422 +1553,3 @@ custom-shader =
 # This value can be changed at runtime and will affect all currently
 # open terminals.
 custom-shader-animation = true
-
-# If anything other than false, fullscreen mode on macOS will not use the
-# native fullscreen, but make the window fullscreen without animations and
-# using a new space. It's faster than the native fullscreen mode since it
-# doesn't use animations.
-# 
-# Important: tabs DO NOT WORK in this mode. Non-native fullscreen removes
-# the titlebar and macOS native tabs require the titlebar. If you use tabs,
-# you should not use this mode.
-# 
-# If you fullscreen a window with tabs, the currently focused tab will
-# become fullscreen while the others will remain in a separate window in
-# the background. You can switch to that window using normal window-switching
-# keybindings such as command+tilde. When you exit fullscreen, the window
-# will return to the tabbed state it was in before.
-# 
-# Allowable values are:
-# 
-#   * `visible-menu` - Use non-native macOS fullscreen, keep the menu bar visible
-#   * `true` - Use non-native macOS fullscreen, hide the menu bar
-#   * `false` - Use native macOS fullscreen
-# 
-# Changing this option at runtime works, but will only apply to the next
-# time the window is made fullscreen. If a window is already fullscreen,
-# it will retain the previous setting until fullscreen is exited.
-macos-non-native-fullscreen = false
-
-# The style of the macOS titlebar. Available values are: "native",
-# "transparent", "tabs", and "hidden".
-# 
-# The "native" style uses the native macOS titlebar with zero customization.
-# The titlebar will match your window theme (see `window-theme`).
-# 
-# The "transparent" style is the same as "native" but the titlebar will
-# be transparent and allow your window background color to come through.
-# This makes a more seamless window appearance but looks a little less
-# typical for a macOS application and may not work well with all themes.
-# 
-# The "transparent" style will also update in real-time to dynamic
-# changes to the window background color, i.e. via OSC 11. To make this
-# more aesthetically pleasing, this only happens if the terminal is
-# a window, tab, or split that borders the top of the window. This
-# avoids a disjointed appearance where the titlebar color changes
-# but all the topmost terminals don't match.
-# 
-# The "tabs" style is a completely custom titlebar that integrates the
-# tab bar into the titlebar. This titlebar always matches the background
-# color of the terminal. There are some limitations to this style:
-# On macOS 13 and below, saved window state will not restore tabs correctly.
-# macOS 14 does not have this issue and any other macOS version has not
-# been tested.
-# 
-# The "hidden" style hides the titlebar. Unlike `window-decoration = false`,
-# however, it does not remove the frame from the window or cause it to have
-# squared corners. Changing to or from this option at run-time may affect
-# existing windows in buggy ways. The top titlebar area of the window will
-# continue to drag the window around and you will not be able to use
-# the mouse for terminal events in this space.
-# 
-# The default value is "transparent". This is an opinionated choice
-# but its one I think is the most aesthetically pleasing and works in
-# most cases.
-# 
-# Changing this option at runtime only applies to new windows.
-macos-titlebar-style = transparent
-
-# Whether the proxy icon in the macOS titlebar is visible. The proxy icon
-# is the icon that represents the folder of the current working directory.
-# You can see this very clearly in the macOS built-in Terminal.app
-# titlebar.
-# 
-# The proxy icon is only visible with the native macOS titlebar style.
-# 
-# Valid values are:
-# 
-#   * `visible` - Show the proxy icon.
-#   * `hidden` - Hide the proxy icon.
-# 
-# The default value is `visible`.
-# 
-# This setting can be changed at runtime and will affect all currently
-# open windows but only after their working directory changes again.
-# Therefore, to make this work after changing the setting, you must
-# usually `cd` to a different directory, open a different file in an
-# editor, etc.
-macos-titlebar-proxy-icon = visible
-
-# macOS doesn't have a distinct "alt" key and instead has the "option"
-# key which behaves slightly differently. On macOS by default, the
-# option key plus a character will sometimes produces a Unicode character.
-# For example, on US standard layouts option-b produces "∫". This may be
-# undesirable if you want to use "option" as an "alt" key for keybindings
-# in terminal programs or shells.
-# 
-# This configuration lets you change the behavior so that option is treated
-# as alt.
-# 
-# The default behavior (unset) will depend on your active keyboard
-# layout. If your keyboard layout is one of the keyboard layouts listed
-# below, then the default value is "true". Otherwise, the default
-# value is "false". Keyboard layouts with a default value of "true" are:
-# 
-#   - U.S. Standard
-#   - U.S. International
-# 
-# Note that if an *Option*-sequence doesn't produce a printable character, it
-# will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
-# 
-# Explicit values that can be set:
-# 
-# If `true`, the *Option* key will be treated as *Alt*. This makes terminal
-# sequences expecting *Alt* to work properly, but will break Unicode input
-# sequences on macOS if you use them via the *Alt* key.
-# 
-# You may set this to `false` to restore the macOS *Alt* key unicode
-# sequences but this will break terminal sequences expecting *Alt* to work.
-# 
-# The values `left` or `right` enable this for the left or right *Option*
-# key, respectively.
-# 
-# This does not work with GLFW builds.
-macos-option-as-alt = 
-
-# Whether to enable the macOS window shadow. The default value is true.
-# With some window managers and window transparency settings, you may
-# find false more visually appealing.
-macos-window-shadow = true
-
-# If true, Ghostty on macOS will automatically enable the "Secure Input"
-# feature when it detects that a password prompt is being displayed.
-# 
-# "Secure Input" is a macOS security feature that prevents applications from
-# reading keyboard events. This can always be enabled manually using the
-# `Ghostty > Secure Keyboard Entry` menu item.
-# 
-# Note that automatic password prompt detection is based on heuristics
-# and may not always work as expected. Specifically, it does not work
-# over SSH connections, but there may be other cases where it also
-# doesn't work.
-# 
-# A reason to disable this feature is if you find that it is interfering
-# with legitimate accessibility software (or software that uses the
-# accessibility APIs), since secure input prevents any application from
-# reading keyboard events.
-macos-auto-secure-input = true
-
-# If true, Ghostty will show a graphical indication when secure input is
-# enabled. This indication is generally recommended to know when secure input
-# is enabled.
-# 
-# Normally, secure input is only active when a password prompt is displayed
-# or it is manually (and typically temporarily) enabled. However, if you
-# always have secure input enabled, the indication can be distracting and
-# you may want to disable it.
-macos-secure-input-indication = true
-
-# Customize the macOS app icon.
-# 
-# This only affects the icon that appears in the dock, application
-# switcher, etc. This does not affect the icon in Finder because
-# that is controlled by a hardcoded value in the signed application
-# bundle and can't be changed at runtime. For more details on what
-# exactly is affected, see the `NSApplication.icon` Apple documentation;
-# that is the API that is being used to set the icon.
-# 
-# Valid values:
-# 
-#  * `official` - Use the official Ghostty icon.
-#  * `custom-style` - Use the official Ghostty icon but with custom
-#    styles applied to various layers. The custom styles must be
-#    specified using the additional `macos-icon`-prefixed configurations.
-#    The `macos-icon-ghost-color` and `macos-icon-screen-color`
-#    configurations are required for this style.
-# 
-# WARNING: The `custom-style` option is _experimental_. We may change
-# the format of the custom styles in the future. We're still finalizing
-# the exact layers and customization options that will be available.
-# 
-# Other caveats:
-# 
-#   * The icon in the update dialog will always be the official icon.
-#     This is because the update dialog is managed through a
-#     separate framework and cannot be customized without significant
-#     effort.
-# 
-macos-icon = official
-
-# The material to use for the frame of the macOS app icon.
-# 
-# Valid values:
-# 
-#  * `aluminum` - A brushed aluminum frame. This is the default.
-#  * `beige` - A classic 90's computer beige frame.
-#  * `plastic` - A glossy, dark plastic frame.
-#  * `chrome` - A shiny chrome frame.
-# 
-# This only has an effect when `macos-icon` is set to `custom-style`.
-macos-icon-frame = aluminum
-
-# The color of the ghost in the macOS app icon.
-# 
-# The format of the color is the same as the `background` configuration;
-# see that for more information.
-# 
-# Note: This configuration is required when `macos-icon` is set to
-# `custom-style`.
-# 
-# This only has an effect when `macos-icon` is set to `custom-style`.
-macos-icon-ghost-color = 
-
-# The color of the screen in the macOS app icon.
-# 
-# The screen is a gradient so you can specify multiple colors that
-# make up the gradient. Colors should be separated by commas. The
-# format of the color is the same as the `background` configuration;
-# see that for more information.
-# 
-# Note: This configuration is required when `macos-icon` is set to
-# `custom-style`.
-# 
-# This only has an effect when `macos-icon` is set to `custom-style`.
-macos-icon-screen-color = 
-
-# Put every surface (tab, split, window) into a dedicated Linux cgroup.
-# 
-# This makes it so that resource management can be done on a per-surface
-# granularity. For example, if a shell program is using too much memory,
-# only that shell will be killed by the oom monitor instead of the entire
-# Ghostty process. Similarly, if a shell program is using too much CPU,
-# only that surface will be CPU-throttled.
-# 
-# This will cause startup times to be slower (a hundred milliseconds or so),
-# so the default value is "single-instance." In single-instance mode, only
-# one instance of Ghostty is running (see gtk-single-instance) so the startup
-# time is a one-time cost. Additionally, single instance Ghostty is much
-# more likely to have many windows, tabs, etc. so cgroup isolation is a
-# big benefit.
-# 
-# This feature requires systemd. If systemd is unavailable, cgroup
-# initialization will fail. By default, this will not prevent Ghostty
-# from working (see linux-cgroup-hard-fail).
-# 
-# Valid values are:
-# 
-#   * `never` - Never use cgroups.
-#   * `always` - Always use cgroups.
-#   * `single-instance` - Enable cgroups only for Ghostty instances launched
-#     as single-instance applications (see gtk-single-instance).
-# 
-linux-cgroup = single-instance
-
-# Memory limit for any individual terminal process (tab, split, window,
-# etc.) in bytes. If this is unset then no memory limit will be set.
-# 
-# Note that this sets the "memory.high" configuration for the memory
-# controller, which is a soft limit. You should configure something like
-# systemd-oom to handle killing processes that have too much memory
-# pressure.
-linux-cgroup-memory-limit = 
-
-# Number of processes limit for any individual terminal process (tab, split,
-# window, etc.). If this is unset then no limit will be set.
-# 
-# Note that this sets the "pids.max" configuration for the process number
-# controller, which is a hard limit.
-linux-cgroup-processes-limit = 
-
-# If this is false, then any cgroup initialization (for linux-cgroup)
-# will be allowed to fail and the failure is ignored. This is useful if
-# you view cgroup isolation as a "nice to have" and not a critical resource
-# management feature, because Ghostty startup will not fail if cgroup APIs
-# fail.
-# 
-# If this is true, then any cgroup initialization failure will cause
-# Ghostty to exit or new surfaces to not be created.
-# 
-# Note: This currently only affects cgroup initialization. Subprocesses
-# must always be able to move themselves into an isolated cgroup.
-linux-cgroup-hard-fail = false
-
-# If `true`, the Ghostty GTK application will run in single-instance mode:
-# each new `ghostty` process launched will result in a new window if there is
-# already a running process.
-# 
-# If `false`, each new ghostty process will launch a separate application.
-# 
-# The default value is `detect` which will default to `true` if Ghostty
-# detects that it was launched from the `.desktop` file such as an app
-# launcher (like Gnome Shell)  or by D-Bus activation. If Ghostty is launched
-# from the command line, it will default to `false`.
-# 
-# Note that debug builds of Ghostty have a separate single-instance ID
-# so you can test single instance without conflicting with release builds.
-gtk-single-instance = desktop
-
-# When enabled, the full GTK titlebar is displayed instead of your window
-# manager's simple titlebar. The behavior of this option will vary with your
-# window manager.
-# 
-# This option does nothing when `window-decoration` is false or when running
-# under macOS.
-# 
-# Changing this value at runtime and reloading the configuration will only
-# affect new windows.
-gtk-titlebar = false
-
-# Determines the side of the screen that the GTK tab bar will stick to.
-# Top, bottom, left, right, and hidden are supported. The default is top.
-# 
-# If this option has value `left` or `right` when using Adwaita, it falls
-# back to `top`. `hidden`, meaning that tabs don't exist, is not supported
-# without using Adwaita, falling back to `top`.
-# 
-# When `hidden` is set and Adwaita is enabled, a tab button displaying the
-# number of tabs will appear in the title bar. It has the ability to open a
-# tab overview for displaying tabs. Alternatively, you can use the
-# `toggle_tab_overview` action in a keybind if your window doesn't have a
-# title bar, or you can switch tabs with keybinds.
-gtk-tabs-location = top
-
-# Determines the appearance of the top and bottom bars when using the
-# Adwaita tab bar. This requires `gtk-adwaita` to be enabled (it is
-# by default).
-# 
-# Valid values are:
-# 
-#  * `flat` - Top and bottom bars are flat with the terminal window.
-#  * `raised` - Top and bottom bars cast a shadow on the terminal area.
-#  * `raised-border` - Similar to `raised` but the shadow is replaced with a
-#    more subtle border.
-# 
-# Changing this value at runtime will only affect new windows.
-adw-toolbar-style = raised
-
-# If `true` (default), then the Ghostty GTK tabs will be "wide." Wide tabs
-# are the new typical Gnome style where tabs fill their available space.
-# If you set this to `false` then tabs will only take up space they need,
-# which is the old style.
-gtk-wide-tabs = true
-
-# If `true` (default), Ghostty will enable Adwaita theme support. This
-# will make `window-theme` work properly and will also allow Ghostty to
-# properly respond to system theme changes, light/dark mode changing, etc.
-# This requires a GTK4 desktop with a GTK4 theme.
-# 
-# If you are running GTK3 or have a GTK3 theme, you may have to set this
-# to false to get your theme picked up properly. Having this set to true
-# with GTK3 should not cause any problems, but it may not work exactly as
-# expected.
-# 
-# This configuration only has an effect if Ghostty was built with
-# Adwaita support.
-gtk-adwaita = true
-
-# If `true` (default), applications running in the terminal can show desktop
-# notifications using certain escape sequences such as OSC 9 or OSC 777.
-desktop-notifications = true
-
-# If `true`, the bold text will use the bright color palette.
-bold-is-bright = false
-
-# This will be used to set the `TERM` environment variable.
-# HACK: We set this with an `xterm` prefix because vim uses that to enable key
-# protocols (specifically this will enable `modifyOtherKeys`), among other
-# features. An option exists in vim to modify this: `:set
-# keyprotocol=ghostty:kitty`, however a bug in the implementation prevents it
-# from working properly. https://github.com/vim/vim/pull/13211 fixes this.
-term = xterm-ghostty
-
-# String to send when we receive `ENQ` (`0x05`) from the command that we are
-# running. Defaults to an empty string if not set.
-enquiry-response = 
-
-# Control the auto-update functionality of Ghostty. This is only supported
-# on macOS currently, since Linux builds are distributed via package
-# managers that are not centrally controlled by Ghostty.
-# 
-# Checking or downloading an update does not send any information to
-# the project beyond standard network information mandated by the
-# underlying protocols. To put it another way: Ghostty doesn't explicitly
-# add any tracking to the update process. The update process works by
-# downloading information about the latest version and comparing it
-# client-side to the current version.
-# 
-# Valid values are:
-# 
-#  * `off` - Disable auto-updates.
-#  * `check` - Check for updates and notify the user if an update is
-#    available, but do not automatically download or install the update.
-#  * `download` - Check for updates, automatically download the update,
-#    notify the user, but do not automatically install the update.
-# 
-# The default value is `check`.
-# 
-# Changing this value at runtime works after a small delay.
-auto-update = check
-
-# The release channel to use for auto-updates.
-# 
-# The default value of this matches the release channel of the currently
-# running Ghostty version. If you download a pre-release version of Ghostty
-# then this will be set to `tip` and you will receive pre-release updates.
-# If you download a stable version of Ghostty then this will be set to
-# `stable` and you will receive stable updates.
-# 
-# Valid values are:
-# 
-#  * `stable` - Stable, tagged releases such as "1.0.0".
-#  * `tip` - Pre-release versions generated from each commit to the
-#    main branch. This is the version that was in use during private
-#    beta testing by thousands of people. It is generally stable but
-#    will likely have more bugs than the stable channel.
-# 
-# Changing this configuration requires a full restart of
-# Ghostty to take effect.
-# 
-# This only works on macOS since only macOS has an auto-update feature.
-auto-update-channel = 
-
