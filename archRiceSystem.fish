@@ -311,8 +311,7 @@ end
 
 if test (read -P "Install 1password + CLI" -n 1) = y
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-    pikaur -S --noconfirm 1password 1password-cli
-
+    pikaur -S --overwrite "/opt/1Password/*" 1password 1password-cli
 end
 if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
     # ESSENTIALS GUI & DESKTOP
@@ -389,7 +388,7 @@ if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
             cd ~/.local/sources/
             curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
             git clone https://aur.archlinux.org/1password.git
-            cd 1password && makepkg -si
+            cd 1password && makepkg -si --overwrite "/opt/1Password/*"
             cd ~
         end
     end
