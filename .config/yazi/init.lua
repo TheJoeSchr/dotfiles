@@ -46,3 +46,6 @@ require("custom-shell"):setup({
 	history_path = "default",
 	save_history = true,
 })
+
+-- Show the status of Git file changes as linemode in the file list.
+require("git"):setup()

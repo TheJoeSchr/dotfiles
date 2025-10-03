@@ -50,6 +50,9 @@ wk.add({
   { "<leader>gd3", "<cmd>Gvdiffsplit<CR>", { desc = "3-way diff vsplit" } },
 })
 
+-- conform autoformat
+vim.g.autoformat = true -- Sets up the default value to be true
+
 -- GITLAB
 -- Toggle Code Suggestions on/off in normal mode:
 vim.keymap.set("n", "<leader>uU", "<Plug>(GitLabToggleCodeSuggestions)", { desc = "Toggle Code Suggestions on/off" })
