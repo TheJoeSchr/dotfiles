@@ -36,11 +36,17 @@ on = [",", "F"]
 run = "find --previous --smart"
 desc = "Find previous file"
 
-[[mgr.prepend_keymap]]
-on = ["g", "r"]
-run = '''
-  shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm
-'''
+# Git.yazi
+[[plugin.prepend_fetchers]]
+id   = "git"
+name = "*"
+run  = "git"
+
+[[plugin.prepend_fetchers]]
+id   = "git"
+name = "*/"
+run  = "git"
+
 
 # compress all selected files
 [[mgr.prepend_keymap]]
@@ -148,16 +154,16 @@ desc = "Unselect all files and also unyank cut files"
 
 # Use p to paste files
 [[mgr.prepend_keymap]]
-on = ["p"]
-run = "plugin augment-command 'paste'"
-desc = "Paste the files"
+on   = "p"
+run  = "plugin smart-paste"
+desc = "Paste into the hovered directory or CWD"
 
 
 # Use P to paste files and
 # overwrite the destination file if it exists
 [[mgr.prepend_keymap]]
 on = ["P"]
-run = "plugin augment-command 'paste --force'"
+run  = "plugin smart-paste --force"
 desc = "Paste the files (overwrite if the destination exists)"
 
 # Use o to open files using the editor
