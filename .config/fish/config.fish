@@ -139,6 +139,10 @@ THE THREE TYPES OF ALIAS
         pyenv init - | source
     end
 
+    if type -q pgcli
+        abbr pgcli 'VISUAL=nvim pgcli'
+    end
+
     if type -q advmv
         abbr cp 'advcp -g'
         abbr mv 'advmv -g'
@@ -148,6 +152,7 @@ THE THREE TYPES OF ALIAS
         alias la 'exa --all -1'
         alias ls 'exa -G --icons'
         alias lll 'ls -lT --level=1'
+        alias llla 'ls -alT --level=1'
         alias tree 'lll -a --level=3'
     end
 
