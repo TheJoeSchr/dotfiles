@@ -48,5 +48,10 @@ use = "AnirudhG07/custom-shell"
 rev = "b04213d"
 hash = "3efc7ddc9bac120c618462eb994edf75"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "d1c8baa"
+hash = "8a7c58225816a163a6e8730c0adafbc8"
+
 [flavor]
 deps = []

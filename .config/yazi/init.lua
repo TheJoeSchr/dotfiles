@@ -29,16 +29,16 @@ require("folder-rules"):setup()
 require("full-border"):setup()
 
 require("augment-command"):setup({
-	prompt = false,
+	prompt = true,
 	default_item_group_for_prompt = "hovered",
 	smart_enter = true,
-	smart_paste = false,
+	smart_paste = true,
 	enter_archives = true,
 	extract_retries = 3,
-	must_have_hovered_item = true,
-	skip_single_subdirectory_on_enter = true,
+	must_have_hovered_item = false,
+	skip_single_subdirectory_on_enter = false,
 	skip_single_subdirectory_on_leave = true,
-	wraparound_file_navigation = false,
+	wraparound_file_navigation = true,
 })
 
 require("relative-motions"):setup({ show_numbers = false, show_motion = true })
