@@ -240,3 +240,27 @@ desc = "Delete all bookmarks"
 on = ";"
 run = "plugin custom-shell fish --no-block "
 desc = "custom-shell as default"
+
+
+# linemode size_and_mtime
+[[mgr.prepend_keymap]]
+on = [",", "s"]
+run = ["sort size --reverse=no", "linemode size_and_mtime"]
+desc = "Sort by lowest size and show size and modification time"
+
+[[mgr.prepend_keymap]]
+on = [",", "S"]
+run = ["sort --reverse size", "linemode size_and_mtime"]
+desc = "Sort by biggest size and show size and modification time"
+
+# linemode size_and_mtime
+[[mgr.prepend_keymap]]
+on = [",", "n"]
+run = ["sort natural --reverse=no", "linemode size_and_mtime"]
+desc = "Size and modification time"
+
+# linemode size_and_mtime
+[[mgr.prepend_keymap]]
+on = [",", "N"]
+run = ["sort --reverse natural", "linemode size_and_mtime"]
+desc = "Size and modification time"

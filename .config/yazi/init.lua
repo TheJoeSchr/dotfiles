@@ -9,7 +9,7 @@ function Linemode:size_and_mtime()
 	end
 
 	local size = self._file:size()
-	return ui.Line(string.format("%s %s", size and ya.readable_size(size) or "-", time))
+	return string.format("%s %s", size and ya.readable_size(size) or "-", time)
 end
 
 function Status:name()
@@ -35,7 +35,7 @@ require("augment-command"):setup({
 	smart_paste = true,
 	enter_archives = true,
 	extract_retries = 3,
-	must_have_hovered_item = false,
+	must_have_hovered_item = true,
 	skip_single_subdirectory_on_enter = false,
 	skip_single_subdirectory_on_leave = true,
 	wraparound_file_navigation = true,
