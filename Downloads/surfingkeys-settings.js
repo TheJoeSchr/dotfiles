@@ -1,4 +1,4 @@
-settings.blacklistPattern = /.*teams.microsoft.com.*|.*mail.google.com.*|.*inbox.google.com.*|.*docs.google.com.*|.*drive.google.com.*|.*sheets.google.com.*|trello.com|duolingo.com|youtube.com|udemy.com/i;
+settings.blocklistPattern = /.*teams.microsoft.com.*|.*keep.google.com.*|.*mail.google.com.*|.*inbox.google.com.*|.*docs.google.com.*|.*drive.google.com.*|.*sheets.google.com.*|.*gfbliohnnapiefjpjlpjnehglfpaknnc.*|trello.com|duolingo.com|youtube.com|udemy.com/i;
 
 // an example to create a new mapping `ctrl-y`
 api.mapkey('<ctrl-y>', 'Show me the money', function () {
