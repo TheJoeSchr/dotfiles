@@ -1,35 +1,42 @@
 #! /bin/env fish
 
-mkdir ~/Downloads
-mkdir ~/.config ~/.local/sources
+# A collection of functions to setup an Arch Linux system.
+# It is interactive and asks for confirmation before performing actions.
+
+function ask -d "Ask for confirmation"
+    read -P "$argv[1] " -n 1 confirm
+    echo
+    test "$confirm" = "y"
+end
+
+mkdir -p ~/Downloads
+mkdir -p ~/.config ~/.local/sources
 touch ~/.vimrc.local
 touch ~/.bashrc.local
 touch ~/.config/Xresources.local
 
 # IS STEAMDECK (includes running in distrobox)
-set HOSTNAME (uname --nodename)
-if string match 'steamdeck*' $HOSTNAME
+set -l HOSTNAME (uname --nodename)
+set -g is_steam false
+if string match -q 'steamdeck*' $HOSTNAME
     set is_steam true
-else
-    set is_steam false
 end
 
 # IS STEAMDECK METAL
-if test (uname --nodename) = steamdeck
+set -g is_steam_host false
+if test "$HOSTNAME" = steamdeck
     set is_steam_host true
-else
-    set is_steam_host false
 end
 
-if $is_steam
+if test "$is_steam" = true
     printf "Host is steamdeck\n"
 else
     printf "Host is not steamdeck\n"
 end
 
 # on steamdeck: first make writeable
-if $is_steam_host
-    if test (read -P "Did you manually set 'passwd'?" -n 1) = y
+if test "$is_steam_host" = true
+    if ask "Did you manually set 'passwd'?"
         # make writeable
         sudo steamos-readonly disable
         # enable ssh access
@@ -43,12 +50,12 @@ if $is_steam_host
     end
 end #/steamdeck
 
-if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = y
+if ask "Init keys ( and full upgrade on NON steamdeck)?"
     # init & refresh keys
-    if not $is_steam_host
+    if not test "$is_steam_host" = true
         sudo env bash ~/archlinux/init-pacman-keys.sh # also does full system upgrades
     end
-    if $is_steam_host
+    if test "$is_steam_host" = true
         echo "Installing holo-keyring"
         sudo pacman-key --init
         sudo pacman-key --populate archlinux
@@ -58,22 +65,26 @@ if test (read -P "Init keys ( and full upgrade on NON steamdeck)?" -n 1) = y
         sudo pacman -Sy --noconfirm
     end
     # STEAMDECK: fix broken headers
-    if $is_steam_host
+    if test "$is_steam_host" = true
         echo "Steamdeck: fixing broken headers of buildtools"
         # no --needed, doesn't updated headers
         sudo pacman -S --noconfirm gcc glibc lib32-glibc linux-headers linux-api-headers cmake ncurses
         # FIX ALL THE BROKEN HEADERS
-        if test (read -P "Re-install all packages with missing headers?" -n 1) = y
+        if ask "Re-install all packages with missing headers?"
             # installs packages with missing files
             cat ~/.local/sources/steam-missing.txt | sudo pacman -S --noconfirm -
         end
     end
 end # / full upgrade
 
+if ask "Rank mirrors?"
+    env bash ~/archlinux/install-aur-and-mirror-helpers.sh rank_mirrors
+end
+
 # install AUR helper:
 if not command -sq pikaur
-    if test (read -P "Install pikaur" -n 1) = y
-        if $is_steam_host
+    if ask "Install pikaur"
+        if test "$is_steam_host" = true
             # need build tools first
             sudo env bash ~/archlinux/install-buildtools.sh
             cd ~/.local/sources/
@@ -84,18 +95,16 @@ if not command -sq pikaur
             makepkg -si
             cd ~/archlinux/
         else
-            cd ~/archlinux # change PWD for ./common.sh import
             # need build tools first
             sudo env bash ~/archlinux/install-buildtools.sh
             env bash ~/archlinux/install-aur-and-mirror-helpers.sh
-            cd -
         end
         echo $PWD
     end
 end
 
-if $is_steam_host
-    if test (read -P "Install steamos-btrfs" -n 1) = y
+if test "$is_steam_host" = true
+    if ask "Install steamos-btrfs"
         set t "$(mktemp -d)"
         curl -sSL https://gitlab.com/popsulfr/steamos-btrfs/-/archive/main/steamos-btrfs-main.tar.gz | tar -xzf - -C "$t" --strip-components=1
         "$t/install.sh"
@@ -103,7 +112,7 @@ if $is_steam_host
     end
 end
 
-if test (read -P "Install advcpmv" -n 1) = y
+if ask "Install advcpmv"
     set t "$(mktemp -d)"
     curl https://raw.githubusercontent.com/jarun/advcpmv/master/install.sh --create-dirs -o $t/advcpmv/install.sh; and begin
         cd $t/advcpmv; and sh install.sh; and mv $t/advcpmv/advcp $HOME/.local/bin/; and mv $t/advcpmv/advmv $HOME/.local/bin/
@@ -112,29 +121,26 @@ if test (read -P "Install advcpmv" -n 1) = y
 end
 
 # FIRST TRY SCRIPT, MAY FAIL BECAUSE GIT SUBMODULES NOT CHECKED OUT
-if test (read -P "Install CLI essentials" -n 1) = y
-    cd ~/archlinux # change PWD for ./common.sh import
+if ask "Install CLI essentials"
     pikaur -S --needed --noconfirm rustup
     # prep for rust based pkgs e.g. fish-git, yazi-git
     rustup default stable
-    if $is_steam_host
+    if test "$is_steam_host" = true
         echo "~/archlinux/install-steamdeck-essentials.sh"
         env bash ~/archlinux/install-steamdeck-essentials.sh
     else
         echo "~/archlinux/install-cli-essentials.sh"
-        sudo env bash ~/archlinux/install-cli-essentials.sh
-        if test (read -P "Install cli-extra?" -n 1) = y
+        env bash ~/archlinux/install-cli-essentials.sh
+        if ask "Install cli-extra?"
             echo "~/archlinux/install-cli-extra.sh"
-            sudo env bash ~/archlinux/install-cli-extra.sh
+            env bash ~/archlinux/install-cli-extra.sh
 
         end
     end
-    cd ~/archlinux/
-    echo $PWD
 end
 
 # ESSENTIALS SYSTEM
-if test (read -P "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)" -n 1) = y
+if ask "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)"
     pikaur -S --needed --noconfirm rustup
     # prep for rust based pkgs e.g. fish-git, yazi-git
     rustup default stable
@@ -158,14 +164,14 @@ if test (read -P "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)
     zoxide
     # ESSENTIALS w/ STEAM special cases
     # eg. neovim-git htop  mosh urlview
-    if $is_steam
+    if test "$is_steam" = true
         # sshuttle
         pikaur -S --noconfirm sshuttle --overwrite "/usr/lib/python3.*" && sudo pacman -S python
 
         # NVIM
         pikaur -S --noconfirm neovim-nightly-bin tree-sitter-cli xsel
         nvim --version # print current version
-        if test (read -P "Manually install NEOVIM-GIT (version >= 7 needed)?" -n 1) = y
+        if ask "Manually install NEOVIM-GIT (version >= 7 needed)?"
             # pikaur -S --needed neovim-git 
             cd ~/.local/sources
             pikaur -G neovim-git
@@ -176,14 +182,14 @@ if test (read -P "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)
         # URLVIEW
         pikaur -S urlview --noconfirm --overwrite "/etc/urlview/*"
         # HTOP
-        if test (read -P "Manually install htop?" -n 1) = y
+        if ask "Manually install htop?"
             # need at least this version for current ~/.htop
             if not test "htop 3.2.1" = (htop --version)
                 pikaur -S --noconfirm --needed ncurses libnl libcap && pikaur -S htop-git
 
                 # manually (fallback)
                 htop --version
-                if test (read -P "Manually install HTOP?" -n 1) = y
+                if ask "Manually install HTOP?"
                     git clone https://github.com/htop-dev/htop ~/.local/sources/htop
                     cd ~/.local/sources/htop
                     ./autogen.sh && ./configure \
@@ -199,7 +205,7 @@ if test (read -P "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)
         end
         # NVIMPAGER
         if not command nvimpager
-            if test (read -P "Manually install NVIMPAGER?" -n 1) = y
+            if ask "Manually install NVIMPAGER?"
                 cd ~/Downloads
                 git clone https://git.sr.ht/~sircmpwn/scdoc
                 cd scdoc
@@ -222,13 +228,13 @@ if test (read -P "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)
     # keep empty line
 end # / if cli essentials
 
-if test (read -P "Install pip wheel pynvim autopep8 flake8?" -n 1) = y
+if ask "Install pip wheel pynvim autopep8 flake8?"
     pip3 install --user wheel pynvim
     pip3 install --user autopep8 # might fail
     pip3 install --user flake8 # might fail
 end
 
-if test (read -P "Setup fishlogin?" -n 1) = y
+if ask "Setup fishlogin?"
     # FISH DEFAULT SHELL
     # 1. Copy this file to /usr/local/bin/fishlogin
     sudo ln -s ~/.local/bin/fishlogin /usr/local/bin/fishlogin
@@ -242,7 +248,7 @@ if test (read -P "Setup fishlogin?" -n 1) = y
   # source: https://superuser.com/a/1046884\n"
 end
 
-if test (read -P "Install fisher + theme + plugins?" -n 1) = y
+if ask "Install fisher + theme + plugins?"
     # FISHER 
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
 
@@ -275,7 +281,7 @@ if test (read -P "Install fisher + theme + plugins?" -n 1) = y
     fish -c 'omf install yimmy'
 
     # MANUAL: install OH-MY-FISH
-    if test (read -P "Manually install OMF?" -n 1) = y
+    if ask "Manually install OMF?"
         mkdir -p ~/.local/sources
         cd ~/.local/sources
         git clone -c core.autocrlf=false https://github.com/oh-my-fish/oh-my-fish
@@ -286,7 +292,7 @@ if test (read -P "Install fisher + theme + plugins?" -n 1) = y
 end
 
 # NPM / YARN / NODE / NVM
-if test (read -P "Setup NPM / YARN / NODE / NVM installations?" -n 1) = y
+if ask "Setup NPM / YARN / NODE / NVM installations?"
     pikaur -S --noconfirm nvm
     # install ~/.nvm
     bash --norc /usr/share/nvm/init-nvm.sh
@@ -300,7 +306,7 @@ if test (read -P "Setup NPM / YARN / NODE / NVM installations?" -n 1) = y
 end
 
 # CLOJURE (steamdeck)
-if test (read -P "Install CLOJURE?" -n 1) = y
+if ask "Install CLOJURE?"
     cd ~/.local/sources
     # build clojure
     pikaur -G clojure && cd clojure/repos/community-any && makepkg --noconfirm --syncdeps --clean --force && sudo pacman -U --noconfirm clojure-*.pkg.tar.zst --overwrite "*" && \
@@ -309,15 +315,15 @@ if test (read -P "Install CLOJURE?" -n 1) = y
     cd ~
 end
 
-if test (read -P "Install 1password + CLI" -n 1) = y
+if ask "Install 1password + CLI"
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
     pikaur -S --overwrite "/opt/1Password/*" 1password 1password-cli
 end
-if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
+if ask "Install GUI essentials (ghostty, signal, steam)"
     # ESSENTIALS GUI & DESKTOP
 
     # 1. create some space on steamdeck 
-    if $is_steam
+    if test "$is_steam" = true
         # delete unneeded docs/fonts
         pikaur -R \
             qt5-examples qt5-doc
@@ -325,27 +331,27 @@ if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
             noto-fonts-cjk
 
         # MOVE steam
-        if test (read -P "Move /usr/lib/steam?" -n 1) = y
+        if ask "Move /usr/lib/steam?"
             sudo rsync -avzh --remove-source-files --progress /usr/lib/steam ~/.local/lib/ && sudo rmdir /usr/lib/steam/steam_launcher/ && sudo rmdir /usr/lib/steam/ && sudo ln -s /home/deck/.local/lib/steam/ /usr/lib/steam
         end
         # MOVE signal-desktop
-        if test (read -P "Move /usr/lib/signal-desktop?" -n 1) = y
+        if ask "Move /usr/lib/signal-desktop?"
             sudo rsync -avzh --remove-source-files --progress /usr/lib/signal-desktop ~/.local/lib/ && sudo rm -rf /usr/lib/signal-desktop/ && sudo ln -s /home/deck/.local/lib/signal-desktop/ /usr/lib/signal-desktop
         end
         # MOVE python3.10
-        if test (read -P "Move /usr/lib/python3.10?" -n 1) = y
+        if ask "Move /usr/lib/python3.10?"
             sudo rsync -avzh --remove-source-files --progress /usr/lib/python3.10 ~/.local/lib/ && sudo rm -rf /usr/lib/python3.10/ && sudo ln -s /home/deck/.local/lib/python3.10/ /usr/lib/python3.10
         end
         # MOVE insync
-        if test (read -P "Move /usr/lib/insync?" -n 1) = y
+        if ask "Move /usr/lib/insync?"
             sudo rsync -avzh --remove-source-files --progress /usr/lib/insync ~/.local/lib/ && sudo rm -rf /usr/lib/insync/ && sudo ln -s /home/deck/.local/lib/insync/ /usr/lib/insync
         end
         # MOVE jvm
-        if test (read -P "Move /usr/lib/jvm?" -n 1) = y
+        if ask "Move /usr/lib/jvm?"
             sudo rsync -avzh --remove-source-files --progress /usr/lib/jvm ~/.local/lib/ && sudo rm -rf /usr/lib/jvm/ && sudo ln -s /home/deck/.local/lib/jvm/ /usr/lib/jvm
         end
     end
-    if not $is_steam
+    if not test "$is_steam" = true
         # 2. install GUI apps
         pikaur -S --needed --noconfirm \
             filelight \
@@ -374,7 +380,7 @@ if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
             appimagelauncher-git
     else
         # APPIMAGELAUNCHER
-        if test (read -P "Manually install APPIMAGELAUNCHER?" -n 1) = y
+        if ask "Manually install APPIMAGELAUNCHER?"
             cd ~/.local/sources/
             pikaur -G appimagelauncher-git
             cd appimagelauncher-git
@@ -384,7 +390,7 @@ if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
         end
 
         # 1PASSWORD
-        if test (read -P "Manually install 1PASSWORD?" -n 1) = y
+        if ask "Manually install 1PASSWORD?"
             cd ~/.local/sources/
             curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
             git clone https://aur.archlinux.org/1password.git
@@ -394,7 +400,7 @@ if test (read -P "Install GUI essentials (ghostty, signal, steam)" -n 1) = y
     end
 end # GUI essentials
 
-if test (read -P "Install ta-lib" -n 1) = y
+if ask "Install ta-lib"
     # TA-LIB
     cd ~/Downloads \
         && wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz \
@@ -408,7 +414,7 @@ if test (read -P "Install ta-lib" -n 1) = y
 end
 
 # MANUALLY powerline fonts
-if test (read -P "Manually install POWERLINE-FONTS?" -n 1) = y
+if ask "Manually install POWERLINE-FONTS?"
     cd ~/Downloads
     git clone https://github.com/powerline/fonts.git --depth=1
     cd fonts
@@ -418,15 +424,15 @@ if test (read -P "Manually install POWERLINE-FONTS?" -n 1) = y
     cd ~/Downloads
 end
 
-if not $is_steam
+if not test "$is_steam" = true
 
-    if test (read -P "Install docker/podman" -n 1) = y
+    if ask "Install docker/podman"
         # DOCKER/PODMAN
         pikaur -S --noconfirm podman catatonit crun
         # needed for cgroups
         # see: https://wiki.archlinux.org/index.php/Podman
         sudo touch /etc/sub{u,g}id
-        sudo usermod --add-subuids 165536-231072 --add-subgids 165536-231072 (whoami)
+        sudo usermod --add-subuids 165536-231072 --add-subgids 165536-231072 $USER
         # add dockerhub
         echo "[registries.search]
     registries = ['docker.io']" | sudo tee -a /etc/containers/registries.conf
@@ -463,7 +469,7 @@ if not $is_steam
 
     # sudo pikaur -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
 
-    if test (read -P "Install qemu/libwirt" -n 1) = y
+    if ask "Install qemu/libwirt"
         pikaur -S libvirt qemu qemu-arch-extra
         sudo pacman -Syu ebtables dnsmasq
         sudo systemctl restart libvirtd
@@ -471,14 +477,14 @@ if not $is_steam
 
     # MANUAL/LOCAL BUILDS
     # CUSTOM KERNEL
-    if test (read -P "Install xenomod" -n 1) = y
+    if ask "Install xenomod"
         ## xenomod
         gpg --receive-keys 38DBBDC86092693E
         pikaur -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
         sudo ln -s /usr/src/linux-manjaro-xanmod /usr/src/linux
     end
 
-    if test (read -P "Install nvidia-beta driver?" -n 1) = y
+    if ask "Install nvidia-beta driver?"
         # install beta, because of DKMS
         pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
         sudo groupadd plugdev
@@ -487,7 +493,7 @@ if not $is_steam
 end
 
 # chrome-remote-desktop
-if test (read -P "Install chrome-remote-desktop?" -n 1) = y
+if ask "Install chrome-remote-desktop?"
     cd ~/Downloads
     pikaur -S chrome-remote-desktop --noconfirm
     if type -q chrome-remote-desktop-patch
@@ -500,38 +506,38 @@ if test (read -P "Install chrome-remote-desktop?" -n 1) = y
 end
 
 # TWEAKS
-if not $is_steam
-    if test (read -P "Fix ntfs-3g disk access? on mount as user?" -n 1) = y
+if not test "$is_steam" = true
+    if ask "Fix ntfs-3g disk access? on mount as user?"
         # fix ntfs-3g disk access on mount as user
-        sudo usermod -a -G disk (whoami)
+        sudo usermod -a -G disk $USER
     end
-    if test (read -P "Install system76 scheduler?" -n 1) = y
+    if ask "Install system76 scheduler?"
         # System76 scheduler
         pikaur -S system76-scheduler-git --noconfirm
         sudo systemctl enable --now com.system76.Scheduler.service
     end
 end
 
-if test (read -P "Increase number of file watchers?" -n 1) = y
+if ask "Increase number of file watchers?"
     # increase number of file watcher
     echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.d/50-max_user_watches.conf && sudo touch /etc/sysctl.conf && sudo sysctl -p
 end
 
 # fix .ssh
-if test (read -P "Fix .ssh/* permissions" -n 1) = y
+if ask "Fix .ssh/* permissions"
     chmod 600 "~/.ssh/*"
 end
 
-if test (read -P "Fix moonlander rules?" -n 1) = y
+if ask "Fix moonlander rules?"
     # moonlander
     sudo ln -s ~/.local/share/50-zsa.rules /etc/udev/rules.d/50-zsa.rules
 
 end
-if test (read -P "Fix groups for nordvpn, 1password, docker?" -n 1) = y
+if ask "Fix groups for nordvpn, 1password, docker?"
     # nordvpn
     sudo groupadd -r nordvpn
     sudo systemctl enable --now nordvpnd.service
-    sudo gpasswd -a (whoami) nordvpn
+    sudo gpasswd -a $USER nordvpn
 
     # 1password
     sudo groupadd onepassword-cli
@@ -541,7 +547,7 @@ if test (read -P "Fix groups for nordvpn, 1password, docker?" -n 1) = y
     # needs to be at end, because it sources .bashrc again
     # DOCKER
     sudo groupadd docker
-    sudo usermod -aG docker (whoami)
+    sudo usermod -aG docker $USER
     sudo systemctl enable docker
     sudo systemctl start docker
     sudo chown (id -u):(id -g) /var/run/docker.sock
@@ -549,7 +555,7 @@ if test (read -P "Fix groups for nordvpn, 1password, docker?" -n 1) = y
 end
 
 # DELETE UNNEEDED PACKAGES
-if test (read -P "Remove all unneeded packages?" -n 1) = y
+if ask "Remove all unneeded packages?"
     sudo pacman -Rs (pacman -Qtdq)
 end
 #
