@@ -27,6 +27,10 @@ if [ ! -f /run/.containerenv ] && [ ! -f /.dockerenv ]
     fish_add_path ~/.local/podman/bin
 end
 
+if test -f "$HOME/.rvm/scripts/rvm"
+    fish_add_path ~/.rvm/bin
+end
+
 # INTERACTIVE
 if status --is-interactive
     echo "Starting fish shell interactively..."
