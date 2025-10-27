@@ -6,6 +6,8 @@ return {
       { "jbyuki/one-small-step-for-vimkind" },
       -- PYTHON
       { "mfussenegger/nvim-dap-python" },
+      -- RUBY
+      { "suketa/nvim-dap-ruby" },
       {
         "theHamsta/nvim-dap-virtual-text",
         enabled = true, -- enable this plugin (the default)
