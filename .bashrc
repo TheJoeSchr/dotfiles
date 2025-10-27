@@ -1,3 +1,39 @@
+# Add this to the TOP of your ~/.bashrc to debug slow startup
+
+# Enable debugging
+# export BASHRC_DEBUG=1
+
+# Function to measure command execution time
+debug_time() {
+  if [ -n "$BASHRC_DEBUG" ]; then
+    local start=$(date +%s%N)
+    echo "[BASHRC] Executing: $1" >&2
+    eval "$1"
+    local end=$(date +%s%N)
+    local elapsed=$(((end - start) / 1000000))
+    printf "[BASHRC] ⏱️  %s took %d ms\n" "$1" "$elapsed" >&2
+  else
+    eval "$1"
+  fi
+}
+
+# For functions/complex blocks, use this pattern:
+debug_section() {
+  if [ -n "$BASHRC_DEBUG" ]; then
+    local name="$1"
+    local start=$(date +%s%N)
+    echo "[BASHRC] Starting section: $name" >&2
+    shift
+    "$@"
+    local end=$(date +%s%N)
+    local elapsed=$(((end - start) / 1000000))
+    printf "[BASHRC] ⏱️  Section '%s' took %d ms\n" "$name" "$elapsed" >&2
+  else
+    shift
+    "$@"
+  fi
+}
+
 # If not running interactively, skips this file
 if ! [[ $- == *i* ]]; then
   [ -e $HOME/.profile ] && source $HOME/.profile
@@ -6,54 +42,60 @@ fi
 
 # Running interactively, load local bash config first.
 # This allows to exit early, e.g. to prevent fish from starting.
-[ -e ~/.bashrc.local ] && . ~/.bashrc.local
+debug_time '[ -e ~/.bashrc.local ] && . ~/.bashrc.local'
 
 # ignores CTRl+D to exit
 set -o ignoreeof
 
-SSH_ENV="$HOME/.ssh/agent-environment"
+init_ssh_agent() {
+  SSH_ENV="$HOME/.ssh/agent-environment"
 
-function start_agent {
-  echo "Initialising new SSH agent..."
-  /usr/bin/ssh-agent | sed 's/^echo/#echo/' >"${SSH_ENV}"
-  echo succeeded
-  chmod 600 "${SSH_ENV}"
-  . "${SSH_ENV}" >/dev/null
-  /usr/bin/ssh-add
-}
-
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-  . "${SSH_ENV}" >/dev/null
-  # Check if agent is running with kill -0. Much faster than ps.
-  kill -0 "$SSH_AGENT_PID" 2>/dev/null || {
-    start_agent
+  function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' >"${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" >/dev/null
+    /usr/bin/ssh-add
   }
-else
-  start_agent
-fi
 
-if command -v fish >/dev/null; then
-  ## FISH
-  # echo " |---------------------------------------------------|"
-  # echo " | ESCAPE HATCH:                                     |"
-  # echo " | \`bash --norc\`  or \`bash -c \"\"\`                    |"
-  # echo " | to manually enter Bash                            |"
-  # echo " | without executing the commands from ~/.bashrc     |"
-  # echo " | which would run \`exec -l fish\`                    |"
-  # echo " |---------------------------------------------------|"
+  # Source SSH settings, if applicable
+  if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" >/dev/null
+    # Check if agent is running with kill -0. Much faster than ps.
+    kill -0 "$SSH_AGENT_PID" 2>/dev/null || {
+      start_agent
+    }
+  else
+    start_agent
+  fi
+}
+debug_section "SSH Agent initialization" init_ssh_agent
 
-  # To have commands such as `bash -c 'echo test'` run the command in Bash instead of starting fish
-  # from: /usr/bin/[ --help:
-  # -z STRING            the length of STRING is zero
-  if [ -z "$BASH_EXECUTION_STRING" ]; then
-    # Drop in to fish only if the parent process is not fish. This allows to quickly enter in to bash by invoking bash command without lusing ~/.bashrc configuration:
-    if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]; then
-      echo "Exec fish from \`.bashrc\`"
-      exec -l fish "$@"
+init_fish() {
+  if command -v fish >/dev/null; then
+    ## FISH
+    # echo " |---------------------------------------------------|"
+    # echo " | ESCAPE HATCH:                                     |"
+    # echo " | \`bash --norc\`  or \`bash -c \"\"\`                    |"
+    # echo " | to manually enter Bash                            |"
+    # echo " | without executing the commands from ~/.bashrc     |"
+    # echo " | which would run \`exec -l fish\`                    |"
+    # echo " |---------------------------------------------------|"
+
+    # To have commands such as `bash -c 'echo test'` run the command in Bash instead of starting fish
+    # from: /usr/bin/[ --help:
+    # -z STRING            the length of STRING is zero
+    if [ -z "$BASH_EXECUTION_STRING" ]; then
+      # Drop in to fish only if the parent process is not fish. This allows to quickly enter in to bash by invoking bash command without lusing ~/.bashrc configuration:
+      if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]; then
+        echo "Exec fish from \`.bashrc\`"
+        exec -l fish "$@"
+      fi
     fi
   fi
-fi
+}
+debug_section "Fish shell exec" init_fish
 
 # NO FISH
 echo "NO FISH"
@@ -64,18 +106,16 @@ set -o vi
 
 # Use bash-completion, if available
 if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
+  debug_time '. /etc/bash_completion'
 fi
 
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
-  . /usr/share/bash-completion/bash_completion
+debug_time '[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion'
 
 # Use git-completion, if available
 if [ -f /usr/share/bash-completion/completions/git ]; then
-  . /usr/share/bash-completion/completions/git
+  debug_time '. /usr/share/bash-completion/completions/git'
 fi
-[[ $PS1 && -f /usr/share/bash-completion/completions/git ]] &&
-  . /usr/share/bash-completion/completions/git
+debug_time '[[ $PS1 && -f /usr/share/bash-completion/completions/git ]] && . /usr/share/bash-completion/completions/git'
 
 if [ "$OS" == "Windows_NT" ]; then
   alias config="$(which git) --git-dir=/c/Users/Joe/Insync/josef.schroecker@gmail.com/Dropbox/userconf/.dotfiles-cfg --work-tree=/c/Users/Joe/AppData/Roaming/.home"
@@ -89,7 +129,7 @@ else
   alias config-changed="config checkout 2>&1 | egrep \s+\. | awk {'print $1'} | xargs -I{} echo {}"
   # alias config-changed="config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} git --git-dir=$HOME/.dotfiles-cfg/ --work-tree=$HOME add -- {}"
 
-  [ -f ~/.fzf.bash ] && . ~/.fzf.bash
+  debug_time '[ -f ~/.fzf.bash ] && . ~/.fzf.bash'
   # show git branch with nice colors
   force_color_prompt=yes
   parse_git_branch() {
@@ -105,22 +145,25 @@ else
   unset color_prompt force_color_prompt
 fi
 
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE="/usr/bin/micromamba"
-export MAMBA_ROOT_PREFIX="/home/joe/micromamba"
-__mamba_setup="$('/usr/bin/micromamba' shell hook --shell bash --prefix '/home/joe/micromamba' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-  eval "$__mamba_setup"
-else
-  if [ -f "/home/joe/micromamba/etc/profile.d/mamba.sh" ]; then
-    . "/home/joe/micromamba/etc/profile.d/mamba.sh"
+init_mamba() {
+  # >>> mamba initialize >>>
+  # !! Contents within this block are managed by 'mamba init' !!
+  export MAMBA_EXE="/usr/bin/micromamba"
+  export MAMBA_ROOT_PREFIX="/home/joe/micromamba"
+  __mamba_setup="$('/usr/bin/micromamba' shell hook --shell bash --prefix '/home/joe/micromamba' 2>/dev/null)"
+  if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
   else
-    export PATH="/home/joe/micromamba/bin:$PATH"
+    if [ -f "/home/joe/micromamba/etc/profile.d/mamba.sh" ]; then
+      . "/home/joe/micromamba/etc/profile.d/mamba.sh"
+    else
+      export PATH="/home/joe/micromamba/bin:$PATH"
+    fi
   fi
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
+  unset __mamba_setup
+  # <<< mamba initialize <<<
+}
+debug_section "Mamba initialization" init_mamba
 
 ## ALIASES AND COMMANDS
 
@@ -248,7 +291,7 @@ else
   case ${answer:0:1} in
   y | Y)
     echo "Starting tmux-init"
-    tmux attach -t base || tmux new -s base
+    debug_time 'tmux attach -t base || tmux new -s base'
     ;;
   *)
     echo "No Tmux"
@@ -301,3 +344,11 @@ fi
 
 # Added by ProtonUp-Qt on 15-02-2023 22:32:46
 if [ -d "/home/joe/stl/prefix" ]; then export PATH="$PATH:/home/joe/stl/prefix"; fi
+
+# ============================================
+# Summary at the end
+# ============================================
+if [ -n "$BASHRC_DEBUG" ]; then
+  echo "[BASHRC] ✅ Bashrc loading complete" >&2
+  echo "[BASHRC] Run 'unset BASHRC_DEBUG' to disable debug output" >&2
+fi
