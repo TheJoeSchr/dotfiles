@@ -1,0 +1,27 @@
+# VIM IS KING
+export EDITOR=$(which nvim)
+export VISUAL=$(which nvim)
+
+# ADDS NX/NOMACHINE
+[ -s "/usr/NX/bin" ] && export PATH=/usr/NX/bin:$PATH
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+# make bash startup faster
+# nvm loads in config.fish and fish functions
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# NVIDIA
+export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json
+export BROWSER=$(which google-chrome-stable)
+
+# IMPORTANT FOR `sudo -A`
+export SSH_ASKPASS='/usr/bin/ksshaskpass'
+
+# NEEDED TO MAKE X11 FORWARD FOR ELECTRON APPS WORK
+## see: https://github.com/electron/electron/issues/22775
+export QT_X11_NO_MITSHM=1
+
+# force google-remote-desktop to start
+# DISPLAY= sudo crd --restart
