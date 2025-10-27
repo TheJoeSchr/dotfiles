@@ -89,6 +89,7 @@ init_fish() {
     if [ -z "$BASH_EXECUTION_STRING" ]; then
       # Drop in to fish only if the parent process is not fish. This allows to quickly enter in to bash by invoking bash command without lusing ~/.bashrc configuration:
       if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]; then
+        # optimize this path loading fish shell for fast startup, include .profile and config.fish into optimizations AI!
         echo "Exec fish from \`.bashrc\`"
         exec -l fish "$@"
       fi
