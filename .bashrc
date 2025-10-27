@@ -1,16 +1,15 @@
-# ignores CTRl+D to exit
-set -o ignoreeof
-
 # If not running interactively, skips this file
-if [ -t 0 ]; then
-  # .bashrc.local gets sourced at the end of this file
-  echo "Running interactively, loading .bashrc"
-else
-  echo "Not running interactively, skipping .bashrc"
+if ! [[ $- == *i* ]]; then
   [ -e $HOME/.profile ] && source $HOME/.profile
   return
-  # [ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
 fi
+
+# Running interactively, load local bash config first.
+# This allows to exit early, e.g. to prevent fish from starting.
+[ -e ~/.bashrc.local ] && . ~/.bashrc.local
+
+# ignores CTRl+D to exit
+set -o ignoreeof
 
 SSH_ENV="$HOME/.ssh/agent-environment"
 
@@ -26,8 +25,8 @@ function start_agent {
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
   . "${SSH_ENV}" >/dev/null
-  #ps ${SSH_AGENT_PID} doesn't work under cywgin
-  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ >/dev/null || {
+  # Check if agent is running with kill -0. Much faster than ps.
+  kill -0 "$SSH_AGENT_PID" 2>/dev/null || {
     start_agent
   }
 else
@@ -35,9 +34,6 @@ else
 fi
 
 if command -v fish >/dev/null; then
-  # if don't want to use fish, just use exit in .bashrc.local
-  [ -e ~/.bashrc.local ] && . ~/.bashrc.local
-
   ## FISH
   # echo " |---------------------------------------------------|"
   # echo " | ESCAPE HATCH:                                     |"
@@ -243,22 +239,19 @@ function killgrep {
 }
 export -f killgrep
 
-# source local commands
-source ~/.bashrc.local
-
 # exit if inside tmux
 if [[ "$TERM" =~ "screen".* ]]; then
   echo "Already inside TMUX"
 else
-  read -t 2 -n 1 -p "Start tmux (n/Y)? " answer
-  [ -z "$answer" ] && answer="Y" # 'yes' default choice
+  read -t 1 -n 1 -p "Start tmux (y/N)? " answer
+  [ -z "$answer" ] && answer="N" # 'no' default choice
   case ${answer:0:1} in
-  n | N)
-    echo "No Tmux"
-    ;;
-  *)
+  y | Y)
     echo "Starting tmux-init"
     tmux attach -t base || tmux new -s base
+    ;;
+  *)
+    echo "No Tmux"
     ;;
   esac
 fi
