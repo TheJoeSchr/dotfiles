@@ -139,6 +139,35 @@ THE THREE TYPES OF ALIAS
         abbr cd z
     end
 
+    # >>> mamba initialize (LAZY LOADED) >>>
+    if type -q micromamba
+        set -gx MAMBA_EXE (command -v micromamba)
+        set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
+
+        function __mamba_lazy_init
+            if not set -q --global __MAMBA_INITIALIZED
+                set -gx __MAMBA_INITIALIZED 1
+                $MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
+            end
+        end
+
+        function micromamba
+            __mamba_lazy_init
+            micromamba $argv
+        end
+
+        function conda
+            __mamba_lazy_init
+            conda $argv
+        end
+
+        function mamba
+            __mamba_lazy_init
+            mamba $argv
+        end
+    end
+    # <<< mamba initialize <<<
+
     if type -q pyenv
         pyenv init - | source
     end
