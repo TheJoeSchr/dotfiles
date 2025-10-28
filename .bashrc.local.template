@@ -5,22 +5,19 @@ echo "Local Config"
 # gets sourced in ~/.profile, which gets called by ~/.bash_profile
 # source ~/.profile.local
 
-# exit if inside tmux
-if [[ "$TERM" =~ "screen".* ]]; then
-  echo "Already inside TMUX"
-else
-  read -t 2 -n 1 -p "Start tmux (y/N)? " answer
-  [ -z "$answer" ] && answer="N"  # 'no' default choice
-  case ${answer:0:1} in
-     y|Y )
-         echo "Starting tmux-init"
-         tmux attach -t base || tmux new -s base
-         ;;
-     * )
-         echo "No Tmux"
-         ;;
-  esac
-fi
-
-
-
+# # exit if inside tmux
+# if [[ "$TERM" =~ "screen".* ]]; then
+#   echo "Already inside TMUX"
+# else
+#   read -t 2 -n 1 -p "Start tmux (y/N)? " answer
+#   [ -z "$answer" ] && answer="N"  # 'no' default choice
+#   case ${answer:0:1} in
+#      y|Y )
+#          echo "Starting tmux-init"
+#          tmux attach -t base || tmux new -s base
+#          ;;
+#      * )
+#          echo "No Tmux"
+#          ;;
+#   esac
+# fi
