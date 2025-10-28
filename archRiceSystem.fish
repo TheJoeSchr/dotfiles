@@ -6,7 +6,7 @@
 function ask -d "Ask for confirmation"
     read -P "$argv[1] " -n 1 confirm
     echo
-    test "$confirm" = "y"
+    test "$confirm" = y
 end
 
 mkdir -p ~/Downloads
@@ -546,12 +546,15 @@ if ask "Fix groups for nordvpn, 1password, docker?"
     # DOCKER (REFRESH GROUP)
     # needs to be at end, because it sources .bashrc again
     # DOCKER
+    sudo systemctl stop docker
     sudo groupadd docker
     sudo usermod -aG docker $USER
-    sudo systemctl enable docker
+    # Note that docker.service starts the service on boot, whereas docker.socket starts Docker on first usage which can decrease boot times
+    sudo systemctl enable docker.socket
     sudo systemctl start docker
     sudo chown (id -u):(id -g) /var/run/docker.sock
-    newgrp docker
+    # creates newshell
+    # newgrp docker
 end
 
 # DELETE UNNEEDED PACKAGES
