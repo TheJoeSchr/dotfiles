@@ -1,6 +1,8 @@
 # VIM IS KING
-export EDITOR=$(which nvim)
-export VISUAL=$(which nvim)
+# disabled because superseeded by ewrap
+# and config.fish
+# export EDITOR=$(which nvim)
+# export VISUAL=$(which nvim)
 
 # ADDS NX/NOMACHINE
 [ -s "/usr/NX/bin" ] && export PATH=/usr/NX/bin:$PATH
@@ -14,6 +16,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # NVIDIA
 export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json
+
+# not needed anymorw
 export BROWSER=$(which google-chrome-stable)
 
 # IMPORTANT FOR `sudo -A`
