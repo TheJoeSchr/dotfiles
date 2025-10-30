@@ -1,0 +1,10 @@
+#
+# ~/.bashrc
+#
+if [ -f /root/profile ]; then
+    . /root/profile
+fi
+
+# Then check if non-interactive and exit early
+[[ $- != *i* ]] && return
+
