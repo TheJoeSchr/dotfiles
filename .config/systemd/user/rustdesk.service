@@ -1,0 +1,18 @@
+[Unit]
+Description=RustDesk (headless user service)
+After=graphical-session.target network-online.target
+Wants=network-online.target
+
+[Service]
+# run in headless/service mode, no GUI window
+ExecStart=/usr/bin/rustdesk --service
+
+# optional environment tweaks to prevent GTK attempts
+Environment=DISPLAY=
+Environment=XDG_RUNTIME_DIR=%t
+
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
