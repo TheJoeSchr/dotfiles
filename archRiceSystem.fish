@@ -249,6 +249,8 @@ if ask "Setup fishlogin?"
 end
 
 if ask "Install fisher + theme + plugins?"
+    # fix weird symbols when connecting via JuiceSSH
+    set -Ua fish_features no-keyboard-protocols
     # FISHER 
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
 
