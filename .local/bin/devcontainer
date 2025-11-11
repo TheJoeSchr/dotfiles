@@ -9,12 +9,18 @@ fi
 
 OPTIND=1
 VERBOSE=0
+CONFIG_DIR=./.devcontainer
+CONFIG_FILE=devcontainer.json
 
-while getopts "v" opt; do
+while getopts "vc:f:" opt; do
   case ${opt} in
   v) VERBOSE=1 ;;
+  c) CONFIG_DIR=${OPTARG} ;;
+  f) CONFIG_FILE=${OPTARG} ;;
   esac
 done
+
+shift $((OPTIND - 1))
 
 debug() {
   if [ $VERBOSE == 1 ]; then
@@ -26,26 +32,28 @@ WORKSPACE=${1:-$(pwd)}
 CURRENT_DIR=${PWD##*/}
 echo "Using workspace ${WORKSPACE}"
 
-CONFIG_DIR=./.devcontainer
 debug "CONFIG_DIR: ${CONFIG_DIR}"
-CONFIG_FILE=devcontainer.json
 debug "CONFIG_FILE: ${CONFIG_FILE}"
 if ! [ -e "$CONFIG_DIR/$CONFIG_FILE" ]; then
-  echo "Folder contains no devcontainer configuration"
+  echo "Folder contains no devcontainer configuration: $CONFIG_DIR/$CONFIG_FILE"
   exit
 fi
 
-CONFIG=$(cat $CONFIG_DIR/$CONFIG_FILE | grep -v //)
-debug "CONFIG: \n${CONFIG}"
+CONFIG=$(cat "$CONFIG_DIR/$CONFIG_FILE" | grep -v //)
+debug "CONFIG $CONFIG_DIR/$CONFIG_FILE: \n${CONFIG}"
 
-cd $CONFIG_DIR || exit
+cd "$CONFIG_DIR" || exit
 
 DOCKER_FILE=$(echo "$CONFIG" | jq -r .dockerFile)
+debug "DOCKER_FILE (a): ${DOCKER_FILE}"
 if [ "$DOCKER_FILE" == "null" ]; then
   DOCKER_FILE=$(echo "$CONFIG" | jq -r .build.dockerfile)
 fi
+if [ "$DOCKER_FILE" == "null" ]; then
+  DOCKER_FILE=$(echo "$CONFIG" | jq -r .dockerComposeFile)
+fi
 DOCKER_FILE=$(readlink -f "$DOCKER_FILE")
-debug "DOCKER_FILE: ${DOCKER_FILE}"
+debug "DOCKER_FILE (b): ${DOCKER_FILE}"
 if ! [ -e "$DOCKER_FILE" ]; then
   echo "Can not find dockerfile ${DOCKER_FILE}"
   exit
@@ -79,5 +87,5 @@ echo "Building and starting container"
 DOCKER_IMAGE_HASH=$(docker build -f "$DOCKER_FILE" "$ARGS" .)
 debug "DOCKER_IMAGE_HASH: ${DOCKER_IMAGE_HASH}"
 
+echo "docker run -it \"$REMOTE_USER\" \"$PORTS\" \"$ENVS\" \"$MOUNT\" -w $WORK_DIR \"$DOCKER_IMAGE_HASH\" \"$SHELL\""
 docker run -it "$REMOTE_USER" "$PORTS" "$ENVS" "$MOUNT" -w $WORK_DIR "$DOCKER_IMAGE_HASH" "$SHELL"
-
