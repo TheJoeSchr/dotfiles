@@ -9,6 +9,20 @@ return {
     "zbirenbaum/copilot.lua",
     "nvim-treesitter/nvim-treesitter",
     { "ibhagwan/fzf-lua" },
+    {
+      -- Stop memorizing prompt names or hunting through files.
+      -- This plugin gives you a beautiful, fast picker with rich
+      -- markdown previews that shows you exactly what each prompt
+      -- does before you use it. Think Telescope for files, but for your AI prompts.
+      "3ZsForInsomnia/code-companion-picker",
+      dependencies = { "folke/snacks.nvim" },
+      opts = {
+        picker = "snacks",
+      },
+      keys = {
+        { "<leader>cp", "<cmd>CodeCompanionPrompts<cr>", desc = "Browse CodeCompanion Prompts" },
+      },
+    },
     { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }, -- Optional: For prettier markdown rendering
     {
       -- https://www.reddit.com/r/neovim/comments/1hrsrdm/having_issues_installing_blinkcmp/
