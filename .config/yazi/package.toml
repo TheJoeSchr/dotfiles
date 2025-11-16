@@ -53,5 +53,25 @@ use = "yazi-rs/plugins:toggle-pane"
 rev = "8f1d971"
 hash = "8a7c58225816a163a6e8730c0adafbc8"
 
+[[plugin.deps]]
+use = "ciarandg/cd-git-root"
+rev = "a0e0f4b"
+hash = "b84a85f3b513bd9c0a0ab93cc7c8e4c3"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "8f1d971"
+hash = "82376c3381ae915fd799d40f4dd4c6cd"
+
+[[plugin.deps]]
+use = "GianniBYoung/rsync"
+rev = "14d2828"
+hash = "7394430ba473dce1023721622438bf3d"
+
+[[plugin.deps]]
+use = "Deepak22903/kdeconnect-send"
+rev = "5757a65"
+hash = "c23a7c129f3b972569414c8f2a5dd823"
+
 [flavor]
 deps = []
