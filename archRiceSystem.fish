@@ -3,6 +3,27 @@
 # A collection of functions to setup an Arch Linux system.
 # It is interactive and asks for confirmation before performing actions.
 
+# Setup environment variables for optimized build
+set -gx CFLAGS "-O2 -march=native -flto"
+set -gx CXXFLAGS "-O2 -march=native -flto"
+set -gx RUSTFLAGS "-C opt-level=2 -C target-cpu=native -C lto=fat"
+set -gx MAKEFLAGS "-j(nproc)"
+set -gx USE_CCACHE 1
+set -gx CCACHE_DIR "$HOME/.ccache"
+if command -sq ccache
+    ccache -M 10G # allocate 10GB cache
+end
+
+printf "✅ Environment configured for optimized builds.\n"
+printf "Using %s threads and CPU-specific optimizations:\n" "$MAKEFLAGS"
+printf "  CFLAGS:    %s\n" "$CFLAGS"
+printf "  CXXFLAGS:  %s\n" "$CXXFLAGS"
+printf "  RUSTFLAGS: %s\n" "$RUSTFLAGS"
+
+function install -d "Install packages using pikaur with optimizations"
+    pikaur -S --needed --noconfirm $argv
+end
+
 function ask -d "Ask for confirmation"
     read -P "$argv[1] " -n 1 confirm
     echo
@@ -122,7 +143,7 @@ end
 
 # FIRST TRY SCRIPT, MAY FAIL BECAUSE GIT SUBMODULES NOT CHECKED OUT
 if ask "Install CLI essentials"
-    pikaur -S --needed --noconfirm rustup
+    install rustup
     # prep for rust based pkgs e.g. fish-git, yazi-git
     rustup default stable
     if test "$is_steam_host" = true
@@ -141,10 +162,10 @@ end
 
 # ESSENTIALS SYSTEM
 if ask "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)"
-    pikaur -S --needed --noconfirm rustup
+    install rustup
     # prep for rust based pkgs e.g. fish-git, yazi-git
     rustup default stable
-    pikaur -S --needed --noconfirm \
+    install \
         fish-git \
         tmux \
         # fish uses "hostname" in many scripts
@@ -166,26 +187,26 @@ if ask "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)"
     # eg. neovim-git htop  mosh urlview
     if test "$is_steam" = true
         # sshuttle
-        pikaur -S --noconfirm sshuttle --overwrite "/usr/lib/python3.*" && sudo pacman -S python
+        install sshuttle --overwrite "/usr/lib/python3.*" && sudo pacman -S python
 
         # NVIM
-        pikaur -S --noconfirm neovim-nightly-bin tree-sitter-cli xsel
+        install neovim-nightly tree-sitter-cli xsel
         nvim --version # print current version
         if ask "Manually install NEOVIM-GIT (version >= 7 needed)?"
             # pikaur -S --needed neovim-git 
             cd ~/.local/sources
-            pikaur -G neovim-git
-            cd neovim-git
+            pikaur -G neovim-nightly
+            cd neovim-nightly
             makepkg --syncdeps --install --clean
             cd
         end
         # URLVIEW
-        pikaur -S urlview --noconfirm --overwrite "/etc/urlview/*"
+        install urlview --overwrite "/etc/urlview/*"
         # HTOP
         if ask "Manually install htop?"
             # need at least this version for current ~/.htop
             if not test "htop 3.2.1" = (htop --version)
-                pikaur -S --noconfirm --needed ncurses libnl libcap && pikaur -S htop-git
+                install ncurses libnl libcap && install htop-git
 
                 # manually (fallback)
                 htop --version
@@ -220,8 +241,8 @@ if ask "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)"
             end
         end
     else # not steam should just work
-        pikaur -S \ 
-        neovim-git nvimpager \
+        install \
+            neovim-git nvimpager \
             urlview
         # keep empty line for "end"
     end
@@ -295,7 +316,7 @@ end
 
 # NPM / YARN / NODE / NVM
 if ask "Setup NPM / YARN / NODE / NVM installations?"
-    pikaur -S --noconfirm nvm
+    install nvm
     # install ~/.nvm
     bash --norc /usr/share/nvm/init-nvm.sh
 
@@ -319,7 +340,7 @@ end
 
 if ask "Install 1password + CLI"
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-    pikaur -S --overwrite "/opt/1Password/*" 1password 1password-cli
+    install --overwrite "/opt/1Password/*" 1password 1password-cli
 end
 if ask "Install GUI essentials (ghostty, signal, steam)"
     # ESSENTIALS GUI & DESKTOP
@@ -355,7 +376,7 @@ if ask "Install GUI essentials (ghostty, signal, steam)"
     end
     if not test "$is_steam" = true
         # 2. install GUI apps
-        pikaur -S --needed --noconfirm \
+        install \
             filelight \
             kdeconnect \
             google-chrome \
@@ -376,9 +397,9 @@ if ask "Install GUI essentials (ghostty, signal, steam)"
             cpupower-gui cpupower \
             insync
 
-        pikaur -S --needed --noconfirm \
+        install \
             noto-fonts
-        pikaur -S --needed --noconfirm \
+        install \
             appimagelauncher-git
     else
         # APPIMAGELAUNCHER
@@ -497,7 +518,7 @@ end
 # chrome-remote-desktop
 if ask "Install chrome-remote-desktop?"
     cd ~/Downloads
-    pikaur -S chrome-remote-desktop --noconfirm
+    install chrome-remote-desktop
     if type -q chrome-remote-desktop-patch
         chrome-remote-desktop-patch
     else
@@ -515,7 +536,7 @@ if not test "$is_steam" = true
     end
     if ask "Install system76 scheduler?"
         # System76 scheduler
-        pikaur -S system76-scheduler-git --noconfirm
+        install system76-scheduler-git
         sudo systemctl enable --now com.system76.Scheduler.service
     end
 end
