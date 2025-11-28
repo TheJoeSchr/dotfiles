@@ -344,11 +344,9 @@ if ask "Install 1password + CLI"
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
     install --overwrite "/opt/1Password/*" 1password 1password-cli
 end
-if ask "Install GUI essentials (ghostty, signal, steam)"
-    # ESSENTIALS GUI & DESKTOP
-
-    # 1. create some space on steamdeck 
-    if test "$is_steam" = true
+# 1. create some space on steamdeck
+if test "$is_steam" = true
+    if ask "Create some space on steamdeck?"
         # delete unneeded docs/fonts
         pikaur -R \
             qt5-examples qt5-doc
@@ -363,10 +361,6 @@ if ask "Install GUI essentials (ghostty, signal, steam)"
         if ask "Move /usr/lib/signal-desktop?"
             sudo rsync -avzh --remove-source-files --progress /usr/lib/signal-desktop ~/.local/lib/ && sudo rm -rf /usr/lib/signal-desktop/ && sudo ln -s /home/deck/.local/lib/signal-desktop/ /usr/lib/signal-desktop
         end
-        # MOVE python3.10
-        if ask "Move /usr/lib/python3.10?"
-            sudo rsync -avzh --remove-source-files --progress /usr/lib/python3.10 ~/.local/lib/ && sudo rm -rf /usr/lib/python3.10/ && sudo ln -s /home/deck/.local/lib/python3.10/ /usr/lib/python3.10
-        end
         # MOVE insync
         if ask "Move /usr/lib/insync?"
             sudo rsync -avzh --remove-source-files --progress /usr/lib/insync ~/.local/lib/ && sudo rm -rf /usr/lib/insync/ && sudo ln -s /home/deck/.local/lib/insync/ /usr/lib/insync
@@ -376,6 +370,11 @@ if ask "Install GUI essentials (ghostty, signal, steam)"
             sudo rsync -avzh --remove-source-files --progress /usr/lib/jvm ~/.local/lib/ && sudo rm -rf /usr/lib/jvm/ && sudo ln -s /home/deck/.local/lib/jvm/ /usr/lib/jvm
         end
     end
+end
+
+if ask "Install GUI essentials (ghostty, signal, steam)"
+    # ESSENTIALS GUI & DESKTOP
+
     if not test "$is_steam" = true
         # 2. install GUI apps
         install \
