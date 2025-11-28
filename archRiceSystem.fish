@@ -142,7 +142,7 @@ if ask "Install advcpmv"
 end
 
 # FIRST TRY SCRIPT, MAY FAIL BECAUSE GIT SUBMODULES NOT CHECKED OUT
-if ask "Install CLI essentials"
+if ask "Install CLI essentials (and GUI on steamdeck)"
     install rustup
     # prep for rust based pkgs e.g. fish-git, yazi-git
     rustup default stable
@@ -180,9 +180,11 @@ if ask "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)"
         # modern cli
         fzf fd duf dust exa bottom bat procs tldr rm-improved-bin \
         python3 python-pip python-pipx uv python-poetry \
-        yazi-git
-    # fish z
-    zoxide
+        yazi-git \
+        # fish z
+        zoxide
+    # sshuttle neovim-nightly see below for steamdeck special case
+
     # ESSENTIALS w/ STEAM special cases
     # eg. neovim-git htop  mosh urlview
     if test "$is_steam" = true
@@ -242,8 +244,8 @@ if ask "Manually install CLI essentials (fish, zoxide, exa, tmux, ...)"
         end
     else # not steam should just work
         install \
-            neovim-git nvimpager \
-            urlview
+            neovim-nightly tree-sitter-cli xsel nvimpager \
+            urlview sshuttle
         # keep empty line for "end"
     end
     # keep empty line
