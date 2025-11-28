@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "2301ff8"
+rev = "eaf6920"
 hash = "94081eed9bc9fe176715c33b0db55d35"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "2301ff8"
+rev = "eaf6920"
 hash = "ce67445ebb1bf3d97b8e44f50904b2c5"
 
 [[plugin.deps]]
@@ -15,13 +15,13 @@ hash = "a5fefd7e796960eea67cebb29d77912a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "2301ff8"
+rev = "eaf6920"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "120406f"
-hash = "e83ccc99739cd500fb1b1014dc45824a"
+rev = "f0e6f44"
+hash = "9bcfdacce6b89dfd039a895c8403e5de"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
@@ -40,7 +40,7 @@ hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "2301ff8"
+rev = "eaf6920"
 hash = "bcda8eeb3f4013bae156aecabfc745e8"
 
 [[plugin.deps]]
@@ -50,7 +50,7 @@ hash = "3efc7ddc9bac120c618462eb994edf75"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "2301ff8"
+rev = "eaf6920"
 hash = "8a7c58225816a163a6e8730c0adafbc8"
 
 [[plugin.deps]]
@@ -60,7 +60,7 @@ hash = "b84a85f3b513bd9c0a0ab93cc7c8e4c3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "2301ff8"
+rev = "eaf6920"
 hash = "82376c3381ae915fd799d40f4dd4c6cd"
 
 [[plugin.deps]]
@@ -70,8 +70,8 @@ hash = "7394430ba473dce1023721622438bf3d"
 
 [[plugin.deps]]
 use = "Deepak22903/kdeconnect-send"
-rev = "5757a65"
-hash = "c23a7c129f3b972569414c8f2a5dd823"
+rev = "7d9098d"
+hash = "498bda3e06d793f79fe1df7b28fc14a1"
 
 [flavor]
 deps = []
