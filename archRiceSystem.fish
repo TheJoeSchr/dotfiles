@@ -2,12 +2,13 @@
 
 # A collection of functions to setup an Arch Linux system.
 # It is interactive and asks for confirmation before performing actions.
-
+# scope env vars
+begin
 # Setup environment variables for optimized build
 set -gx CFLAGS "-O2 -march=native -flto"
 set -gx CXXFLAGS "-O2 -march=native -flto"
 set -gx RUSTFLAGS "-C opt-level=2 -C target-cpu=native -C lto=fat"
-set -gx MAKEFLAGS "-j(nproc)"
+set -gx MAKEFLAGS "-j$(nproc)"
 set -gx USE_CCACHE 1
 set -gx CCACHE_DIR "$HOME/.ccache"
 if command -sq ccache
@@ -584,6 +585,8 @@ end
 # DELETE UNNEEDED PACKAGES
 if ask "Remove all unneeded packages?"
     sudo pacman -Rs (pacman -Qtdq)
+end
+
 end
 #
 # LAST RESORT KEY DB RESET
