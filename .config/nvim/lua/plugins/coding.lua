@@ -1,28 +1,28 @@
 return {
-  {
-    "saghen/blink.cmp",
-    dependencies = { "saghen/blink.compat" },
-    opts = {
-      sources = {
-        -- adding any nvim-cmp sources here will enable them
-        -- with blink.compat
-        compat = {},
-        default = { "lsp", "path", "snippets", "buffer" },
-      },
-      completion = {
-        accept = {
-          auto_brackets = {
-            kind_resolution = {
-              blocked_filetypes = { "typescriptreact", "javascriptreact", "vue", "codecompanion" },
-            },
-          },
-        },
-      },
-      keymap = {
-        preset = "default",
-      },
-    },
-  },
+  -- {
+  --   "saghen/blink.cmp",
+  --   dependencies = { "saghen/blink.compat" },
+  --   opts = {
+  --     sources = {
+  --       -- adding any nvim-cmp sources here will enable them
+  --       -- with blink.compat
+  --       compat = {},
+  --       default = { "lsp", "path", "snippets", "buffer" },
+  --     },
+  --     completion = {
+  --       accept = {
+  --         auto_brackets = {
+  --           kind_resolution = {
+  --             blocked_filetypes = { "typescriptreact", "javascriptreact", "vue", "codecompanion" },
+  --           },
+  --         },
+  --       },
+  --     },
+  --     keymap = {
+  --       preset = "default",
+  --     },
+  --   },
+  -- },
   { -- use together with nvim.surround
     "nvim-mini/mini.surround",
     opts = {

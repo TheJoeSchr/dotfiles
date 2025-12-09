@@ -1,13 +1,15 @@
--- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd([[cab cc CodeCompanion]])
-
 return {
   "olimorris/codecompanion.nvim",
-  lazy = false,
+  opts = {
+    -- NOTE: The log_level is in `opts.opts`
+    opts = {
+      log_level = "DEBUG", -- or "TRACE"
+    },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "zbirenbaum/copilot.lua",
     "nvim-treesitter/nvim-treesitter",
+    "zbirenbaum/copilot.lua",
     { "ibhagwan/fzf-lua" },
     {
       -- Stop memorizing prompt names or hunting through files.
@@ -20,7 +22,7 @@ return {
         picker = "snacks",
       },
       keys = {
-        { "<leader>cp", "<cmd>CodeCompanionPrompts<cr>", desc = "Browse CodeCompanion Prompts" },
+        { "n", "<leader>cp", "<cmd>CodeCompanionPrompts<cr>", desc = "Browse CodeCompanion Prompts" },
       },
     },
     { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } }, -- Optional: For prettier markdown rendering
@@ -37,9 +39,6 @@ return {
       --
       -- If you want to use the stable version (version = '*') remove the +nightly . Either way, you need to build the rust packages for the fuzzy match library, if you have this issue.
       "saghen/blink.cmp",
-      -- version = "0.12",
-      version = "0.13.1",
-      build = "cargo +nightly build --release",
       dependencies = { "saghen/blink.compat" },
       opts = {
         enabled = function()
@@ -54,11 +53,27 @@ return {
               enabled = true,
             },
           },
+          default = { "lsp", "path", "snippets", "buffer", "cmdline", "omni", "lazydev" },
+        },
+        completion = {
+          accept = {
+            auto_brackets = {
+              kind_resolution = {
+                blocked_filetypes = { "typescriptreact", "javascriptreact", "vue", "codecompanion" },
+              },
+            },
+          },
+        },
+        keymap = {
+          preset = "default",
         },
       },
     },
   },
   config = function()
+    -- Expand 'cc' into 'CodeCompanion' in the command line
+    -- Errors on loadup, so disabled for now.
+    vim.cmd([[cab cc CodeCompanion]])
     -- Plugin setup
     require("codecompanion").setup({
       -- General settings
@@ -85,16 +100,20 @@ return {
     })
 
     -- Key mappings
-    local keymap = vim.keymap.set
-
-    -- Normal mode mappings
-    keymap("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", { desc = "Open Code Companion Actions" })
-    keymap("n", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle Code Companion Chat" })
-    keymap("n", "<LocalLeader>c", "<cmd>CodeCompanionChat Clear<cr>", { desc = "Clear Code Companion Chat" })
-
-    -- Visual mode mappings
-    keymap("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", { desc = "Open Code Companion Actions" })
-    keymap("v", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle Code Companion Chat" })
-    keymap("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add Selection to Code Companion Chat" })
+    local wk = require("which-key")
+    wk.add({
+      {
+        mode = { "n" }, -- NORMAL a
+        { "<C-a>", "<cmd>CodeCompanionActions<cr>", { desc = "Open Code Companion Actions" } },
+        { "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle Code Companion Chat" } },
+        { "<LocalLeader>c", "<cmd>CodeCompanionChat Clear<cr>", { desc = "Clear Code Companion Chat" } },
+      },
+      {
+        mode = { "v" }, -- VISUAL v
+        { "<C-a>", "<cmd>CodeCompanionActions<cr>", { desc = "Open Code Companion Actions" } },
+        { "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle Code Companion Chat" } },
+        { "ga", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add Selection to Code Companion Chat" } },
+      },
+    })
   end,
 }
