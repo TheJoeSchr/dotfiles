@@ -28,11 +28,30 @@ function pikaurspeed --wraps pikaur --description "Wrapper for pikaur to set bui
                 end
 
                 printf "✅ Environment configured for optimized builds.\n" >&2
-                printf "Using %s threads and CPU-specific optimizations:\n" "$MAKEFLAGS" >&2
+                printf "  BUILD_ENV_SETUP: %s\n" "$BUILD_ENV_SETUP" >&2
                 printf "  CFLAGS:    %s\n" "$CFLAGS" >&2
                 printf "  CXXFLAGS:  %s\n" "$CXXFLAGS" >&2
                 printf "  RUSTFLAGS: %s\n" "$RUSTFLAGS" >&2
+                printf "  MAKEFLAGS: %s\n" "$MAKEFLAGS" >&2
+                printf "  USE_CCACHE: %s\n" "$USE_CCACHE" >&2
+                printf "  CCACHE_DIR: %s\n" "$CCACHE_DIR" >&2
                 command pikaur $argv
+
+                set -e BUILD_ENV_SETUP
+                set -e CFLAGS
+                set -e CXXFLAGS
+                set -e RUSTFLAGS
+                set -e MAKEFLAGS
+                set -e USE_CCACHE
+                set -e CCACHE_DIR
+                printf "✅ Environment cleaned.\n" >&2
+                printf "  BUILD_ENV_SETUP: %s\n" "$BUILD_ENV_SETUP" >&2
+                printf "  CFLAGS:    %s\n" "$CFLAGS" >&2
+                printf "  CXXFLAGS:  %s\n" "$CXXFLAGS" >&2
+                printf "  RUSTFLAGS: %s\n" "$RUSTFLAGS" >&2
+                printf "  MAKEFLAGS: %s\n" "$MAKEFLAGS" >&2
+                printf "  USE_CCACHE: %s\n" "$USE_CCACHE" >&2
+                printf "  CCACHE_DIR: %s\n" "$CCACHE_DIR" >&2
             end
         end
     else
