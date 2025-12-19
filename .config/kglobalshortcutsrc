@@ -29,15 +29,46 @@ Switch to Last-Used Keyboard Layout=none,Meta+Alt+L,Switch to Last-Used Keyboard
 Switch to Next Keyboard Layout=none,Meta+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
+[com.google.Chrome]
+020683FC8A2441EC39735E467C6AFD37-enter-picker-mode=none,none,Create a custom filter
+020683FC8A2441EC39735E467C6AFD37-enter-zapper-mode=none,none,Remove an element
+1D82771B2E8925B433D03253B3A39A68-lock=none,none,Lock the extension
+1E71A844514E7305EC93D604E278F697-addSite=none,none,Toggle current site
+1E71A844514E7305EC93D604E278F697-switchEngine=none,none,Theme generation mode
+1E71A844514E7305EC93D604E278F697-toggle=none,none,Toggle extension
+41A66E62819BF1FFDC7518CDF6B9437C-open-devtools=none,none,The shortcut opens DevTools for the home tab host and port.
+41A66E62819BF1FFDC7518CDF6B9437C-open-tools=none,none,Open a tools (JavaScript REPL\\, docs\\, etc.)
+5DA33BF3D8099FE3689D065C867FC73A-quick_clip=none,none,Quick clip
+5DA33BF3D8099FE3689D065C867FC73A-toggle_highlighter=none,none,Toggle highlighter mode
+5DA33BF3D8099FE3689D065C867FC73A-toggle_reader=none,none,Toggle reading view
+6D632C54E96C599654F14946DC69877D-quick-start-stop-entry=none,none,Quick start/stop current entry
+7D719352CAE00DDD4ACF47AB7118D611-lock=none,none,Lock the extension
+86DC5201F305C5DFF9713E5C4C90250C-closeTab=none,none,Close the current tab.
+86DC5201F305C5DFF9713E5C4C90250C-nextTab=none,none,Go to the next tab.
+86DC5201F305C5DFF9713E5C4C90250C-previousTab=none,none,Go to the previous tab.
+86DC5201F305C5DFF9713E5C4C90250C-proxyThis=none,none,Toggle current site in autoproxy_hosts.
+86DC5201F305C5DFF9713E5C4C90250C-restartext=none,none,Restart this extenstion.
+A941FE1ADA4FB97311FE3ACFB3368079-clear-item-selections=none,none,Clear selection
+A941FE1ADA4FB97311FE3ACFB3368079-save-session=none,none,Save tabs
+AEA8B65CC4CA61C22A2F11E249CAB18B-quick-start-stop-entry=none,none,Quick start/stop current entry
+AF5A1FB353738832F91E1C927A979C19-closeTab=none,none,Close the current tab.
+AF5A1FB353738832F91E1C927A979C19-nextTab=none,none,Go to the next tab.
+AF5A1FB353738832F91E1C927A979C19-previousTab=none,none,Go to the previous tab.
+AF5A1FB353738832F91E1C927A979C19-proxyThis=none,none,Toggle current site in autoproxy_hosts.
+AF5A1FB353738832F91E1C927A979C19-restartext=none,none,Restart this extenstion.
+C1C626A783C6BF0CE1B96818675DC15B-copyAppId=none,none,Copy the app ID
+DA231635F34EC72298E3FAE04858E557-enter-picker-mode=none,none,Create a custom filter
+DA231635F34EC72298E3FAE04858E557-enter-zapper-mode=none,none,Remove an element
+EBF105FDDD45BF96B83428B607048F76-clear-item-selections=none,none,Clear selection
+EBF105FDDD45BF96B83428B607048F76-save-session=none,none,Save tabs
+FF2611B96044071FEBED9C7E52A998AF-quick_clip=none,none,Quick clip
+FF2611B96044071FEBED9C7E52A998AF-toggle_highlighter=none,none,Toggle highlighter mode
+FF2611B96044071FEBED9C7E52A998AF-toggle_reader=none,none,Toggle reading view
+_k_friendly_name=Google Chrome
+
 [kaccess]
 Toggle Screen Reader On and Off=none,Meta+Alt+S,Toggle Screen Reader On and Off
 _k_friendly_name=Accessibility
-
-[kcm_touchpad]
-Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
-Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
-Toggle Touchpad=Touchpad Toggle,Touchpad Toggle\tMeta+Ctrl+Touchpad Toggle\tMeta+Ctrl+Zenkaku Hankaku,Toggle Touchpad
-_k_friendly_name=Touchpad
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -69,9 +100,9 @@ Cycle Overview Opposite=none,none,Cycle through Grid View and Overview
 Cylinder=none,none,Desktop Cylinder
 Decrease Opacity=Meta+O\tCtrl+Alt+O,,Decrease Opacity of Active Window by 5%
 Edit Tiles=none,Meta+T,Toggle Tiles Editor
-Expose=none,Ctrl+F9,Toggle Present Windows (Current desktop)
-ExposeAll=none,Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
-ExposeClass=none,Ctrl+F7,Toggle Present Windows (Window class)
+Expose=Ctrl+F9,Ctrl+F9,Toggle Present Windows (Current desktop)
+ExposeAll=Ctrl+F10\tLaunch (C),Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
+ExposeClass=Ctrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
 ExposeClassCurrentDesktop=none,none,Toggle Present Windows (Window class on current desktop)
 FlipSwitchAll=none,none,Toggle Flip Switch (All desktops)
 FlipSwitchCurrent=none,none,Toggle Flip Switch (Current desktop)
@@ -223,18 +254,14 @@ Toggle Night Color=none,none,Suspend/Resume Night Light
 Toggle Window Raise/Lower=none,,Toggle Window Raise/Lower
 ToggleCurrentThumbnail=Meta+Ctrl+T,Meta+Ctrl+T,Toggle Thumbnail for Current Window
 TrackMouse=none,none,Track mouse
-Walk Through Desktop List=none,none,Walk Through Desktop List
-Walk Through Desktop List (Reverse)=none,none,Walk Through Desktop List (Reverse)
-Walk Through Desktops=none,none,Walk Through Desktops
-Walk Through Desktops (Reverse)=none,none,Walk Through Desktops (Reverse)
-Walk Through Windows=Ctrl+Alt+K,Alt+Tab,Walk Through Windows
-Walk Through Windows (Reverse)=Ctrl+Alt+J,Alt+Shift+Tab,Walk Through Windows (Reverse)
-Walk Through Windows Alternative=Alt+Tab,,Walk Through Windows Alternative
-Walk Through Windows Alternative (Reverse)=Alt+Shift+Tab,,Walk Through Windows Alternative (Reverse)
-Walk Through Windows of Current Application=Alt+`,Alt+`,Walk Through Windows of Current Application
-Walk Through Windows of Current Application (Reverse)=Alt+~,Alt+~,Walk Through Windows of Current Application (Reverse)
-Walk Through Windows of Current Application Alternative=none,,Walk Through Windows of Current Application Alternative
-Walk Through Windows of Current Application Alternative (Reverse)=none,,Walk Through Windows of Current Application Alternative (Reverse)
+Walk Through Windows=Ctrl+Alt+K,Meta+Tab\tAlt+Tab,Walk Through Windows
+Walk Through Windows (Reverse)=Ctrl+Alt+J,Meta+Shift+Tab\tAlt+Shift+Tab,Walk Through Windows (Reverse)
+Walk Through Windows Alternative=Alt+Tab,none,Walk Through Windows Alternative
+Walk Through Windows Alternative (Reverse)=Alt+Shift+Tab,none,Walk Through Windows Alternative (Reverse)
+Walk Through Windows of Current Application=Alt+`,Meta+`\tAlt+`,Walk Through Windows of Current Application
+Walk Through Windows of Current Application (Reverse)=Alt+~,Meta+~\tAlt+~,Walk Through Windows of Current Application (Reverse)
+Walk Through Windows of Current Application Alternative=none,none,Walk Through Windows of Current Application Alternative
+Walk Through Windows of Current Application Alternative (Reverse)=none,none,Walk Through Windows of Current Application Alternative (Reverse)
 Window Above Other Windows=none,,Keep Window Above Others
 Window Below Other Windows=none,,Keep Window Below Others
 Window Close=Meta+C\tAlt+F4\tCtrl+Alt+C\tMeta+F4\tCtrl+Alt+Q\tMeta+Q,Alt+F4,Close Window
@@ -262,7 +289,7 @@ Window One Screen Down=none,,Move Window One Screen Down
 Window One Screen Up=none,,Move Window One Screen Up
 Window One Screen to the Left=none,,Move Window One Screen to the Left
 Window One Screen to the Right=none,,Move Window One Screen to the Right
-Window Operations Menu=Alt+F3,Alt+F3,Window Operations Menu
+Window Operations Menu=Alt+F3,Alt+F3,Window Menu
 Window Pack Down=none,,Move Window Down
 Window Pack Left=none,,Move Window Left
 Window Pack Right=none,,Move Window Right
@@ -443,6 +470,7 @@ _k_friendly_name=Power Management
 powerProfile=Battery\tMeta+B,Battery\tMeta+B,Switch Power Profile
 
 [plasmashell]
+Slideshow Wallpaper Next Image=none,,Next Wallpaper Image
 _k_friendly_name=plasmashell
 activate application launcher=Meta,Meta\tAlt+F1,Activate Application Launcher
 activate task manager entry 1=none,Meta+1,Activate Task Manager Entry 1
@@ -470,7 +498,7 @@ clipboard_action=none,Meta+Ctrl+X,Automatic Action Popup Menu
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels
 cycleNextAction=none,,Next History Item
 cyclePrevAction=none,,Previous History Item
-edit_clipboard=none,none,Edit Contents…
+edit_clipboard=none,,Edit Contents…
 manage activities=none,Meta+Q,Show Activity Switcher
 next activity=Meta+A,Meta+Tab,Walk through activities
 previous activity=Meta+Shift+A,Meta+Shift+Tab,Walk through activities (Reverse)
@@ -478,7 +506,6 @@ repeat_action=none,,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
 show-barcode=none,,Show Barcode…
 show-on-mouse-pos=none,Meta+V,Show Clipboard Items at Mouse Position
-stop current activity=none,Meta+S,Stop Current Activity
 switch to next activity=none,,Switch to Next Activity
 switch to previous activity=none,,Switch to Previous Activity
 toggle do not disturb=none,,Toggle do not disturb
@@ -499,6 +526,9 @@ _launch=Meta+Ctrl+Alt+Shift+Space
 RecordRegion=Meta+R
 RectangularRegionScreenShot=Meta+Shift+Print\tCtrl+Alt+Shift+S
 _launch=Print
+
+[services][org.kde.touchpadshortcuts.desktop]
+ToggleTouchpad=Touchpad Toggle
 
 [services][{a83269b6-d823-407e-8bb4-c0eee0ef65ce}.desktop]
 _launch=Ctrl+Alt+-

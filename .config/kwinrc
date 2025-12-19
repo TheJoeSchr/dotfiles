@@ -2,8 +2,7 @@
 update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,bismuth_new_logger.upd:bismuth-new-logger,kwin.upd:remove-placement-cascade,kwin.upd:overview-group-plugin-id,kwin.upd:animation-speed-cleanup,kwin.upd:replace-cascaded-zerocornered
 
 [Activities][LastVirtualDesktop]
-597834c1-d819-48da-9a62-304d31529239=56d7c0b2-c502-4c09-a3a5-5f97bf6ee652
-ddcb0281-993d-47a2-94b6-fa636dc09e14=99329017-01c0-43bb-96ee-b7490a0bb645
+597834c1-d819-48da-9a62-304d31529239=99329017-01c0-43bb-96ee-b7490a0bb645
 
 [Compositing]
 GLCore=true
@@ -132,7 +131,6 @@ desktopgridEnabled=false
 diminactiveEnabled=true
 eyeonscreenEnabled=true
 flipswitchEnabled=true
-glideEnabled[$d]
 karouselEnabled=true
 krohnkiteEnabled=false
 kwin4_effect_eyeonscreenEnabled=true
@@ -216,14 +214,6 @@ tileLayoutGap=15
 [Script-polonium]
 MaximizeSingle=true
 
-[SubSession: 9be168ab-49bb-4c0d-8c54-34dd672fe9f3]
-active=-1
-count=0
-
-[SubSession: fb6e5be4-126b-41d2-9768-a966bdeafa7e]
-active=-1
-count=0
-
 [TabBox]
 ActivitiesMode=0
 LayoutName=coverswitch
@@ -270,6 +260,9 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][451d502f-2066-5957-89ef-b54fceefc1df]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][4bcaed7f-59b2-5eaf-b609-8ebc501b689a]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][4f73378c-1075-5dea-bbda-1c3f9f7f9792]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -277,6 +270,9 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][55ec361b-584e-5118-85b5-e017cf4f7509]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][56d7c0b2-c502-4c09-a3a5-5f97bf6ee652][726c905f-76e1-48fb-bceb-9c996f416956]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][58ca410b-ce44-58d6-82b9-fefe44aba0e3]
@@ -289,6 +285,12 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][8194b6b4-4fdf-5c0c-a8b2-9053aeb9921c]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][95d0502a-c549-4d67-b087-549883865cad][726c905f-76e1-48fb-bceb-9c996f416956]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][99329017-01c0-43bb-96ee-b7490a0bb645][726c905f-76e1-48fb-bceb-9c996f416956]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][9fe16d9e-8ef2-5096-8f3b-0f16afe1e4fa]
