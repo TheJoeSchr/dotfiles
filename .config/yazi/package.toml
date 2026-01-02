@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "7ca66b4"
-hash = "8e710db726e2f280668c3c6e873041b4"
+rev = "80cd5b5"
+hash = "170317244d60fbe70ad3cc3353358480"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "7ca66b4"
+rev = "80cd5b5"
 hash = "ce67445ebb1bf3d97b8e44f50904b2c5"
 
 [[plugin.deps]]
@@ -15,7 +15,7 @@ hash = "a5fefd7e796960eea67cebb29d77912a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "7ca66b4"
+rev = "80cd5b5"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
@@ -40,8 +40,8 @@ hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "7ca66b4"
-hash = "bcda8eeb3f4013bae156aecabfc745e8"
+rev = "80cd5b5"
+hash = "407d19bc4fb46eff5fa8ff8337644847"
 
 [[plugin.deps]]
 use = "AnirudhG07/custom-shell"
@@ -50,7 +50,7 @@ hash = "3efc7ddc9bac120c618462eb994edf75"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "7ca66b4"
+rev = "80cd5b5"
 hash = "8a7c58225816a163a6e8730c0adafbc8"
 
 [[plugin.deps]]
@@ -60,8 +60,8 @@ hash = "b84a85f3b513bd9c0a0ab93cc7c8e4c3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "7ca66b4"
-hash = "82376c3381ae915fd799d40f4dd4c6cd"
+rev = "80cd5b5"
+hash = "492e4757f332e29f982556bf507e043c"
 
 [[plugin.deps]]
 use = "GianniBYoung/rsync"
