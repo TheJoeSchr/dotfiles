@@ -113,8 +113,7 @@ THE THREE TYPES OF ALIAS
     abbr vimdiff "$EDITOR -d"
     abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
     abbr wget wcurl
-    abbr ai aider
-    abbr aim 'aider --model anthropic/claude-sonnet-4-20250514 --message'
+    abbr ai 'aider --read ~/.aider/AGENTS.md --no-gitignore --watch-files'
 
     alias pbcopy 'xsel --clipboard --input'
     alias pbpaste 'xsel --clipboard --output'
