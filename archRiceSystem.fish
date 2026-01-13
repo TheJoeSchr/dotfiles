@@ -12,6 +12,7 @@ begin
     set -gx USE_CCACHE 1
     set -gx CCACHE_DIR "$HOME/.ccache"
     if command -sq ccache
+        mkdir $CCACHE_DIR
         ccache -M 10G # allocate 10GB cache
     end
 
@@ -87,7 +88,7 @@ begin
             sudo pacman-key --populate archlinux
             sudo pacman-key --populate holo
             sudo pacman -Sy --noconfirm holo-keyring
-            sudo pacman -S --noconfirm tmux fish neovim git
+            sudo pacman -S --noconfirm tmux fish base-devel git
             sudo pacman -Sy --noconfirm
         end
         # STEAMDECK: fix broken headers
