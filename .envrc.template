@@ -1,0 +1,23 @@
+
+export DISPLAY=${DISPLAY-":0"}
+# disable don't know use anymore
+# export USERNAME=
+export OPENAI_API_KEY=
+export CR_PAT=
+export SRC_ACCESS_TOKEN=
+# jozeph.oftheinternet@gmail.com
+# joe.vandelay@gmail.com
+export ANTHROPIC_API_KEY=
+export CHROME_EXECUTABLE=
+export GEMINI_API_KEY=
+
+# Run fish commands and capture the resulting environment
+if command -v fish &>/dev/null; then
+  # Run rvm & nvm
+  # PATH - most important
+  # GEM_HOME, GEM_PATH, RUBY_VERSION - for rvm
+  # NVM_BIN, NVM_INC, NODE_VERSION, NVM_DIR - for nvm
+  eval "$(fish -c 'rvm default 2>/dev/null; nvm use latest 2>/dev/null; exec env' | grep -E '^(PATH|GEM_HOME|GEM_PATH|RUBY_VERSION|NVM_BIN|NVM_INC|NODE_VERSION)=' | sed 's/^/export /')"
+  echo "Ran: rvm default: +PATH +GEM_HOME +GEM_PATH +RUBY_VERSION"
+  echo "Ran: nvm use latest: +PATH +NVM_BIN +NVM_INC +NODE_VERSION +NVM_DIR"
+fi
