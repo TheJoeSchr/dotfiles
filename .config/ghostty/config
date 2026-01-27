@@ -1553,3 +1553,7 @@ custom-shader =
 # This value can be changed at runtime and will affect all currently
 # open terminals.
 custom-shader-animation = true
+
+# open bash/fish per default
+command = /usr/bin/bash
+shell-integration = fish
