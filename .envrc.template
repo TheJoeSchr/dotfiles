@@ -17,7 +17,8 @@ if command -v fish &>/dev/null; then
   # PATH - most important
   # GEM_HOME, GEM_PATH, RUBY_VERSION - for rvm
   # NVM_BIN, NVM_INC, NODE_VERSION, NVM_DIR - for nvm
-  eval "$(fish -c 'rvm default 2>/dev/null; nvm use latest 2>/dev/null; exec env' | grep -E '^(PATH|GEM_HOME|GEM_PATH|RUBY_VERSION|NVM_BIN|NVM_INC|NODE_VERSION)=' | sed 's/^/export /')"
+  # need to run `nvm use system` first otherwise `nvm use xy` doesn't work
+  eval "$(fish -c 'rvm default 2>/dev/null; nvm use system 2>/dev/null; exec env' | grep -E '^(PATH|GEM_HOME|GEM_PATH|RUBY_VERSION|NVM_BIN|NVM_INC|NODE_VERSION)=' | sed 's/^/export /')"
   echo "Ran: rvm default: +PATH +GEM_HOME +GEM_PATH +RUBY_VERSION"
-  echo "Ran: nvm use latest: +PATH +NVM_BIN +NVM_INC +NODE_VERSION +NVM_DIR"
+  echo "Ran: nvm use system: +PATH +NVM_BIN +NVM_INC +NODE_VERSION +NVM_DIR"
 fi
