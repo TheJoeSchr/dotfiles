@@ -22,6 +22,7 @@
   ap = add --patch
   br = branch
   ca = !git ci --amend
+  la = !git log HEAD ^origin --pretty=\"Co-authored-by: %aN <%aE>\" | sort -u
   cc = cim
   ce = commit -C HEAD --amend
   ci = commit -v
