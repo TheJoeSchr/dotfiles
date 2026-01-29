@@ -1,3 +1,6 @@
 .aider*
 .env
 .env*
+.envrc
+.direnvrc
+
