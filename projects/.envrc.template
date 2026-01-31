@@ -1,3 +1,23 @@
 # .envrc
 source_env_if_exists ~/.envrc
 dotenv_if_exists || direnv status
+#
+# # Run fish commands and capture the resulting environment
+# if command -v fish &>/dev/null; then
+#   # SET NVM DEFAULT VIA EG
+#   # fish -c 'set --universal nvm_default_version v24'
+#   # Run rvm & nvm
+#   # PATH - most important
+#   # GEM_HOME, GEM_PATH, RUBY_VERSION - for rvm
+#   # NVM_BIN, NVM_INC, NODE_VERSION, NVM_DIR - for nvm
+#   # need to run `nvm use system` first otherwise `nvm use xy` doesn't work
+#   eval "$(fish -c 'rvm default 2>/dev/null; nvm use system 2>/dev/null; nvm use default 2>/dev/null; exec env' | grep -E '^(PATH|GEM_HOME|GEM_PATH|RUBY_VERSION|NVM_BIN|NVM_INC|NODE_VERSION)=' | sed 's/^/export /')"
+#   echo "Ran: rvm default: +PATH +GEM_HOME +GEM_PATH +RUBY_VERSION"
+#   echo "Ran: nvm use default: +PATH +NVM_BIN +NVM_INC +NODE_VERSION +NVM_DIR"
+#   printf "ruby --version "
+#   ruby --version
+#   which ruby
+#   printf "node --version "
+#   node --version
+#   which node
+# fi
