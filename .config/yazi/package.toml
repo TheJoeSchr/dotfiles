@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "6f50636"
+rev = "88990a6"
 hash = "270915fa8282a19908449530ff66f7e2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "6f50636"
+rev = "88990a6"
 hash = "ce67445ebb1bf3d97b8e44f50904b2c5"
 
 [[plugin.deps]]
@@ -35,7 +35,7 @@ hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "6f50636"
+rev = "88990a6"
 hash = "407d19bc4fb46eff5fa8ff8337644847"
 
 [[plugin.deps]]
@@ -45,7 +45,7 @@ hash = "8009873342496fdb042bba09e239eef3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "6f50636"
+rev = "88990a6"
 hash = "8a7c58225816a163a6e8730c0adafbc8"
 
 [[plugin.deps]]
@@ -55,7 +55,7 @@ hash = "b84a85f3b513bd9c0a0ab93cc7c8e4c3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "6f50636"
+rev = "88990a6"
 hash = "2f08b8249b57737e7257298a3b2a2edc"
 
 [[plugin.deps]]
@@ -70,7 +70,7 @@ hash = "498bda3e06d793f79fe1df7b28fc14a1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "6f50636"
+rev = "88990a6"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [flavor]
