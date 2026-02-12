@@ -151,14 +151,19 @@ for _, ext in ipairs(exts) do
     },
   }
 end
--- " nnoremap <leader>dt :TestNearest -strategy=jest<CR>
-require("dap.ext.vscode").load_launchjs()
+-- notify.warn dap.ext.vscode.load_launchjs is deprecated
+-- as it is no longer needed. ./.vscode/launch.json files
+-- are read automatically on-demand. See :help dap-providers
+-- require("dap.ext.vscode").load_launchjs()
+
 -- "" find local virtualenv
+
 local dapPython = require("dap-python")
 dapPython.test_runner = "pytest"
 dapPython.setup(string.format("%s/bin/python", os.getenv("VIRTUAL_ENV")))
 dapPython.test_runner = "pytest"
-vim.keymap.set("n", "<leader>dtt", dapPython.test_method, { desc = "Signature Help" })
+-- " nnoremap <leader>dt :TestNearest -strategy=jest<CR>
+vim.keymap.set("n", "<leader>dtt", dapPython.test_method, { desc = "dapPython.test_method" })
 
 vim.fn.sign_define("DapBreakpoint", { text = "🤖", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "▸", texthl = "", linehl = "", numhl = "" })

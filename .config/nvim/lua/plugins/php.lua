@@ -41,7 +41,10 @@ return {
           hostname = "0.0.0.0",
         },
       }
-      require("dap.ext.vscode").load_launchjs()
+      -- notify.warn dap.ext.vscode.load_launchjs is deprecated
+      -- as it is no longer needed. ./.vscode/launch.json files
+      -- are read automatically on-demand. See :help dap-providers
+      -- require("dap.ext.vscode").load_launchjs()
     end,
   },
 }

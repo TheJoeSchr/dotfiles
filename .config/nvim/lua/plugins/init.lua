@@ -216,8 +216,10 @@ return {
             require("dap").configurations.dart = {
               --put here config that you would find in .vscode/launch.json
             }
-            -- If you want to load .vscode launch.json automatically run the following:
-            require("dap.ext.vscode").load_launchjs()
+            -- notify.warn dap.ext.vscode.load_launchjs is deprecated
+            -- as it is no longer needed. ./.vscode/launch.json files
+            -- are read automatically on-demand. See :help dap-providers
+            -- require("dap.ext.vscode").load_launchjs()
           end,
         },
       }) -- use defaults
