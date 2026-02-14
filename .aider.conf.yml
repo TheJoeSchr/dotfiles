@@ -457,7 +457,7 @@ detect-urls: false
 ## The output script should be sourced by your shell's configuration file (e.g., .bashrc, .zshrc).
 # shell-completions: <SHELL_NAME> # This is a command-line action, not a config setting.
 
-#l# specify which editor to use for the /editor command
+# specify which editor to use for the /editor command
+# or
+# export AIDER_EDITOR=nvim
 editor: nvim
-# visual: nvim
-# AIDER_EDITOR: nvim
