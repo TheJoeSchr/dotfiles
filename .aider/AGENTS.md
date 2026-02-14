@@ -1,4 +1,4 @@
-# When writing bash scripts, you MUST follow these principles
+# When writing code, in any language, you MUST follow these principles
 
 - Code should be easy to read and understand.
 
@@ -23,18 +23,18 @@
 - Consider security implications of the code.\
   Implement security best practices to protect against vulnerabilities and attacks.
 
-- Executables must start with `#!/usr/bin/env bash` and minimal flags.
+- Executable shell scripts must start with `#!/usr/bin/env bash` and minimal flags.
 
 - Use set to set shell options so that calling your script as `bash script_name`\
-  does not break its functionality.
+  does not break its functionality, for bash scripts
 
-- Shell should only be used for small utilities or simple wrapper scripts.
+- Shell scripts should only be used for small utilities or simple wrapper scripts.
 
 - If you are writing a script that is more than 100 lines long, or that uses\
   non-straightforward control flow logic, suggest a rewrite in a more\
   structured language now.
 
-- Executables should have a .sh extension or no extension.
+- Executable bash scripts should have a .sh extension or no extension.
 
 - Libraries must have a .sh extension and should not be executable.
 
@@ -45,8 +45,6 @@
 - Start each file with a description of its contents.
 
 - Every file must have a top-level comment including a brief overview of its contents.
-
-- A copyright notice and author information are optional.
 
 - Any function that is not both obvious and short must have a function header comment.\
   Any function in a library must have a function header comment regardless of\
@@ -64,6 +62,8 @@
   `Returns: Returned values other than the default exit status of last command`.
 
 - Comment tricky, non-obvious, interesting or important parts of your code.
+
+## Rules for shell scripts `bash`, `.sh`:
 
 - Indent 2 spaces. No tabs.
 
