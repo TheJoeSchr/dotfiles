@@ -14,6 +14,11 @@ rev = "9ae57f9"
 hash = "a5fefd7e796960eea67cebb29d77912a"
 
 [[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "88990a6"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
 use = "hankertrix/augment-command"
 rev = "7c12bdf"
 hash = "f7e6d377e4efee567ec6d1c2355f2ca3"
@@ -67,11 +72,6 @@ hash = "7394430ba473dce1023721622438bf3d"
 use = "Deepak22903/kdeconnect-send"
 rev = "7d9098d"
 hash = "498bda3e06d793f79fe1df7b28fc14a1"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:full-border"
-rev = "88990a6"
-hash = "3996fc74044bc44144b323686f887e1"
 
 [flavor]
 deps = []
