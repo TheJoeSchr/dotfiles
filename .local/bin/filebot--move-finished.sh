@@ -1,5 +1,8 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
 
+# Disable exit on error (continues on error)
+# File might not exist
+set +e
 rm /mnt/diskpool/NoMirror/Media/amc.txt
 
 filebot -rename -script fn:amc --log-file /mnt/diskpool/NoMirror/Media/amc.log --output "/mnt/diskpool/NoMirror/Media" --action move -non-strict "/mnt/diskpool/NoMirror/Downloads/Finished" --conflict auto --def excludeList=amc.txt movieFormat="{emby}" seriesFormat="{emby}" subtitles=en music=n --def emby=127.0.0.1:12e1a74d754c456794f3a148b643c2d3 deleteAfterExtract=n clean=y unsorted=y minFileSize=10
