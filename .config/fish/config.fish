@@ -73,9 +73,9 @@ THE THREE TYPES OF ALIAS
 '
     # no upgrade by default for steamdeck
     if not $is_steam_host
-        abbr upgrade 'VISUAL=nvim pikaurspeed -Syua --devel --needed --noconfirm'
+        abbr upgrade 'VISUAL=nvim pikaurspeed -Syu --devel --needed --noconfirm'
     else
-        abbr upgrade 'VISUAL=nvim pikaurspeed -Sua --devel --needed --noconfirm'
+        abbr upgrade 'VISUAL=nvim pikaurspeed -Su --devel --needed --noconfirm'
     end
     # Abbreviations are stored in a variable named fish_user_abbreviations. This is automatically created as a universal variable the first time an abbreviation is created. If you want your abbreviations to be private to a particular fish session you can put the following in your *~/.config/fish/config.fish* file before you define your first abbrevation:
     # You can create abbreviations directly on the command line and they will be saved automatically and made visible to other fish sessions if fish_user_abbreviations is a universal variable. If you keep the variable as universal, abbr --add statements in config.fish will do nothing but slow down startup slightly.
