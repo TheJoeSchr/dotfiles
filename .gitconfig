@@ -167,7 +167,9 @@
   tool = nvimdiff
 [http]
   sslverify = false
-  cookiefile = C:/users/joe/Appdata/Roaming/.home/.gitcookies
+  lowSpeedLimit = 1000
+  lowSpeedTime = 60
+  postBuffer = 524288000
 [winUpdater]
   recentlySeenVersion = 2.15.1.windows.2
 [branch]
