@@ -84,10 +84,26 @@ if vim.fn.has("nvim-0.9.0") == 1 then
   opt.splitkeep = "screen"
   opt.shortmess = "filnxtToOFWIcC"
 end
-
 if vim.fn.has("nvim-0.10") == 1 then
   opt.smoothscroll = false
   opt.foldexpr = "v:lua.require'lazyvim.util'.treesitter.foldexpr()"
   opt.foldmethod = "expr"
   opt.foldtext = ""
+end
+
+-- :checkhealth vim.provider
+-- gem install neovim
+-- vim.g.ruby_host_prog = vim.fn.expand("~/.rvm/gems/ruby-3.4.8/bin/neovim-ruby-host")
+-- search exe dynammically instead  of fixed version
+local ruby_host = vim.fn.exepath("neovim-ruby-host")
+if ruby_host ~= "" then
+  vim.g.ruby_host_prog = ruby_host
+end
+
+-- npm install -g neovim
+-- vim.g.node_host_prog = vim.fn.expand("~/.local/share/nvm/v24.13.0/bin/neovim-node-host")
+-- search exe dynammically instead  of fixed version
+local node_host = vim.fn.exepath("neovim-node-host")
+if node_host ~= "" then
+  vim.g.node_host_prog = node_host
 end
