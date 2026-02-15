@@ -87,6 +87,7 @@ THE THREE TYPES OF ALIAS
     abbr cs 'config st'
     abbr db distrobox
     abbr e nvim
+    abbr edit nvim
     abbr fda 'fd -uu'
     abbr find 'fd -uu'
     abbr G git
@@ -99,6 +100,7 @@ THE THREE TYPES OF ALIAS
     abbr lal 'la -l'
     abbr l y # goes to cd
     abbr ll y # goes to cd
+    abbr n nvim
     abbr poetry 'SHELL=(which fish) poetry'
     abbr psax procs
     abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
@@ -120,7 +122,6 @@ THE THREE TYPES OF ALIAS
     alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
     alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
     alias du 'dust -d 1'
-    abbr edit nvim
     # alias gh "op plugin run -- gh"
     # alias glab "op plugin run -- glab"
     alias lf y
