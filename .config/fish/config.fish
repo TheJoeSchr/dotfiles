@@ -86,7 +86,7 @@ THE THREE TYPES OF ALIAS
     abbr cf config
     abbr cs 'config st'
     abbr db distrobox
-    abbr e edit
+    abbr e nvim
     abbr fda 'fd -uu'
     abbr find 'fd -uu'
     abbr G git
@@ -120,7 +120,7 @@ THE THREE TYPES OF ALIAS
     alias config 'git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
     alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
     alias du 'dust -d 1'
-    alias edit nvim
+    abbr edit nvim
     # alias gh "op plugin run -- gh"
     # alias glab "op plugin run -- glab"
     alias lf y
