@@ -117,7 +117,7 @@ THE THREE TYPES OF ALIAS
     abbr pir 'pikaur -R --noconfirm'
     abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
     abbr rg 'rg -S'
-    abbr rm rip
+    abbr rmp rip
     abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
     abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
     abbr ta 'tmux a'
