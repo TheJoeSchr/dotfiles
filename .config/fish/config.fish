@@ -103,6 +103,18 @@ THE THREE TYPES OF ALIAS
     abbr n nvim
     abbr poetry 'SHELL=(which fish) poetry'
     abbr psax procs
+    abbr piks 'VISUAL=nvim pikaurspeed'
+    abbr pikss 'VISUAL=nvim pikaurspeed -S'
+    # alias pikss
+    abbr piss 'VISUAL=nvim pikaurspeed -S'
+    abbr piksy 'pikaurspeed -S --noconfirm'
+    # alias piksy
+    abbr pyes 'pikaurspeed -S --noconfirm'
+    # ...g because --rebuild is mostly needed for -git packages
+    abbr piksg 'VISUAL=nvim pikaurspeed -S --rebuild'
+    # alias piksg
+    abbr pig 'VISUAL=nvim pikaurspeed -S --rebuild'
+    abbr pir 'pikaur -R --noconfirm'
     abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
     abbr rg 'rg -S'
     abbr rm rip

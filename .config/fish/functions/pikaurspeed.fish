@@ -21,9 +21,13 @@ function pikaurspeed --wraps pikaur --description "Wrapper for pikaur to set bui
                 set -gx RUSTFLAGS "-C opt-level=2 -C target-cpu=native -C lto=fat"
                 set -gx MAKEFLAGS "-j$(nproc)"
                 set -gx USE_CCACHE 1
-                set -gx CCACHE_DIR "$HOME/.ccache"
+                set -gx CCACHE_DIR "$HOME/.cache/ccache"
 
                 if command -sq ccache
+                    if not test -d "$CCACHE_DIR"
+                        mkdir -p "$CCACHE_DIR"
+                    end
+
                     ccache -M 10G # allocate 10GB cache
                 end
 
