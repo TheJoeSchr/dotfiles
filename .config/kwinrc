@@ -2,7 +2,7 @@
 update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,bismuth_new_logger.upd:bismuth-new-logger,kwin.upd:remove-placement-cascade,kwin.upd:overview-group-plugin-id,kwin.upd:animation-speed-cleanup,kwin.upd:replace-cascaded-zerocornered
 
 [Activities][LastVirtualDesktop]
-597834c1-d819-48da-9a62-304d31529239=99329017-01c0-43bb-96ee-b7490a0bb645
+597834c1-d819-48da-9a62-304d31529239=95d0502a-c549-4d67-b087-549883865cad
 
 [Compositing]
 GLCore=true
@@ -72,7 +72,11 @@ UsePagerLayout=false
 ZOrdering=true
 
 [Effect-diminactive]
+DimDesktop=true
 DimFullScreen=false
+DimKeepAbove=true
+DimPanels=true
+Strength=15
 
 [Effect-kwin4_effect_incinerate]
 Color=255,150,115
@@ -96,6 +100,9 @@ BorderActivate=9
 
 [Effect-presentwindows]
 BorderActivateAll=9
+
+[Effect-translucency]
+Inactive=46
 
 [Effect-windowview]
 BorderActivateAll=9
@@ -124,7 +131,7 @@ blurEnabled=false
 contrastEnabled=true
 coverswitchEnabled=true
 cubeEnabled=true
-desktopchangeosdEnabled=true
+desktopchangeosdEnabled=false
 desktopgridEnabled=false
 diminactiveEnabled=true
 eyeonscreenEnabled=true
@@ -144,16 +151,15 @@ kwin6_effect_fireEnabled=true
 kwin6_effect_glitchEnabled=true
 lattewindowcolorsEnabled=true
 minimizeallEnabled=false
-overviewEnabled=false
 poloniumEnabled=false
 resizeEnabled=true
 scaleEnabled=false
 screenedgeEnabled=false
 sheetEnabled=true
 slideEnabled=false
-slidebackEnabled=true
 synchronizeskipswitcherEnabled=false
 trackmouseEnabled=true
+translucencyEnabled=true
 videowallEnabled=false
 windowapertureEnabled=false
 zoomEnabled=false
@@ -187,7 +193,9 @@ gapsOuterBottom=0
 gapsOuterLeft=0
 gapsOuterRight=0
 gapsOuterTop=0
+offScreenOpacity=69
 presetWidths=50%, 100%, 75%, 25%
+reMaximize=true
 resizeNeighborColumn=true
 scrollingCentered=true
 scrollingLazy=false
@@ -216,15 +224,10 @@ MaximizeSingle=true
 
 [TabBox]
 ActivitiesMode=0
-MinimizedMode=1
-MultiScreenMode=1
-OrderMinimizedMode=1
-SwitchingMode=1
+LayoutName=coverswitch
 
 [TabBoxAlternative]
-ActivitiesMode=0
-LayoutName=big_icons
-OrderMinimizedMode=1
+SwitchingMode=1
 
 [Tiling]
 padding=4
