@@ -102,7 +102,7 @@ BorderActivate=9
 BorderActivateAll=9
 
 [Effect-translucency]
-Inactive=46
+Inactive=92
 
 [Effect-windowview]
 BorderActivateAll=9
@@ -133,7 +133,6 @@ coverswitchEnabled=true
 cubeEnabled=true
 desktopchangeosdEnabled=false
 desktopgridEnabled=false
-diminactiveEnabled=true
 eyeonscreenEnabled=true
 flipswitchEnabled=true
 karouselEnabled=true
@@ -188,12 +187,12 @@ PopupHideDelay=500
 
 [Script-karousel]
 cursorFollowsFocus=true
-floatingKeepAbove=true
 gapsOuterBottom=0
 gapsOuterLeft=0
 gapsOuterRight=0
 gapsOuterTop=0
-offScreenOpacity=69
+noLayering=true
+offScreenOpacity=98
 presetWidths=50%, 100%, 75%, 25%
 reMaximize=true
 resizeNeighborColumn=true
