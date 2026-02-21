@@ -1,4 +1,3 @@
-
 export DISPLAY=${DISPLAY-":0"}
 # disable don't know use anymore
 # export USERNAME=
@@ -10,24 +9,19 @@ export SRC_ACCESS_TOKEN=
 export ANTHROPIC_API_KEY=
 export CHROME_EXECUTABLE=
 export GEMINI_API_KEY=
+# For redirecting to copilot (host other models for free)
+# e.g. export OPENAI_API_BASE=https://api.githubcopilot.com
+# or switch back empty & orignal key to use OpenAI again
+export OPENAI_API_BASE=
+export OPENAI_API_KEY=
 
-# Run fish commands and capture the resulting environment
-if command -v fish &>/dev/null; then
-  # SET NVM DEFAULT VIA EG
-  # fish -c 'set --universal nvm_default_version v24'
-  # RUN RVM & NVM
-  # PATH - most important
-  # GEM_HOME, GEM_PATH, RUBY_VERSION - for rvm
-  # NVM_BIN, NVM_INC, NODE_VERSION, NVM_DIR - for nvm
-  # need to run `nvm use system` first otherwise `nvm use xy` doesn't work
-  eval "$(fish -c 'rvm default 2>/dev/null; nvm use system 2>/dev/null; nvm use default 2>/dev/null; exec env' | grep -E '^(PATH|GEM_HOME|GEM_PATH|RUBY_VERSION|NVM_BIN|NVM_INC|NODE_VERSION)=' | sed 's/^/export /')"
-  # DEBUG
-  # echo "Ran: rvm default: +PATH +GEM_HOME +GEM_PATH +RUBY_VERSION"
-  # echo "Ran: nvm use system: +PATH +NVM_BIN +NVM_INC +NODE_VERSION +NVM_DIR"
-  # printf "ruby --version "
-  # ruby --version
-  # which ruby
-  # printf "node --version "
-  # node --version
-  # which node
-fi
+# NODE, RUBY, PYTHON: use system defaults to be fast
+# But allow fish to override if it has them set up
+
+## DEBUG (Uncomment to verify)
+# printf "which ruby:" && which ruby
+# printf "ruby --version: " && ruby --version
+# printf "which node:" && which node
+# printf "node --version: " && node --version
+# printf "which python:" && which python
+# printf "python --version: " && python --version
