@@ -187,9 +187,8 @@ THE THREE TYPES OF ALIAS
     abbr rmp rip
     abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
     abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
-    abbr ta 'tmux a'
-    abbr tff 'tf -y'
-    abbr tp tmux-sessionizer
+    # tmux attach
+    abbr ta "tmux a"
     abbr upgrade-paru 'paru -Syu --skipreview --useask --noconfirm'
     abbr vimdiff "$EDITOR -d"
     abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
