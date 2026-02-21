@@ -42,7 +42,7 @@ end
 # =============================================================================
 if status --is-interactive
     echo "Starting fish shell interactively..."
-        set HOSTNAME (uname --nodename)
+    set HOSTNAME (uname --nodename)
     if test (uname --nodename) = steamdeck
         set is_steam_host true
     else
@@ -51,13 +51,13 @@ if status --is-interactive
 
     # 1. Native Tool Hooks (No Fisher plugins required)
     if type -q rbenv
-      source (rbenv init - fish | psub)
+        source (rbenv init - fish | psub)
     end
     if type -q mise
-      mise activate fish | source
+        mise activate fish | source
     end
     if type -q fnm
-      fnm env --use-on-cd | source
+        fnm env --use-on-cd | source
     end
     if type -q zoxide
         zoxide init fish | source
@@ -79,7 +79,9 @@ if status --is-interactive
     # bind ctrl-d delete-char
     fish_vi_key_bindings
     # usually automatically, but call to overwrite
-    if functions -q fish_user_key_bindings; fish_user_key_bindings; end
+    if functions -q fish_user_key_bindings
+        fish_user_key_bindings
+    end
 
     if functions -q fzf_configure_bindings
         # Ctrl-f directory
@@ -177,7 +179,9 @@ THE THREE TYPES OF ALIAS
     alias mail aerc
 
     # 4. SSH Agent bridge (Fisher plugin)
-    if functions -q fish_ssh_agent; fish_ssh_agent; end
+    if functions -q fish_ssh_agent
+        fish_ssh_agent
+    end
 
     # 5. Tool Loaders (Mamba, etc)
     # >>> mamba initialize (LAZY LOADED) >>>
