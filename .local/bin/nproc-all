@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# Gets the number of available processors on the system using nproc.
+
+set -euo pipefail
+
+readonly SCRIPT_NAME="$(basename "${0}")"
+
+# usage
+# Prints usage information and examples.
+# Globals:   SCRIPT_NAME
+# Arguments: None
+# Outputs:   Usage info to STDOUT
+# Returns:   None
+usage() {
+  cat <<EOF
+Usage: ${SCRIPT_NAME} [OPTIONS]
+
+Gets the number of available processors on the system.
+
+Options:
+  -v, --verbose   Enable verbose output
+  -x, --debug     Enable debug mode (set -x)
+  -h, --help      Show this help message
+
+Examples:
+  ${SCRIPT_NAME}
+  ${SCRIPT_NAME} --verbose
+  ${SCRIPT_NAME} --debug
+EOF
+}
+
+# get_processor_count
+# Gets the total number of processors via nproc.
+# Globals:   None
+# Arguments: None
+# Outputs:   Processor count to STDOUT
+# Returns:   1 if nproc is unavailable
+get_processor_count() {
+  if ! command -v nproc &>/dev/null; then
+    echo "Error: nproc is not available." >&2
+    return 1
+  fi
+  nproc --all
+}
+
+# main
+# Parses arguments and prints the processor count.
+# Globals:   None
+# Arguments: "$@" - command-line arguments
+# Outputs:   Processor count to STDOUT
+# Returns:   0 on success, 1 on invalid arguments
+main() {
+  local verbose=false
+
+  while [[ "${#}" -gt 0 ]]; do
+    case "${1}" in
+    -v | --verbose)
+      verbose=true
+      shift
+      ;;
+    -x | --debug)
+      set -x
+      shift
+      ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Error: Unknown option: ${1}" >&2
+      usage
+      exit 1
+      ;;
+    esac
+  done
+
+  local processor_count
+  processor_count="$(get_processor_count)"
+
+  if [[ "${verbose}" == true ]]; then
+    echo "Number of processors: ${processor_count}"
+  else
+    echo "${processor_count}"
+  fi
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  main "$@"
+fi
