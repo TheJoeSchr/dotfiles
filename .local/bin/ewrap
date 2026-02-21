@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-cmd=$(which "vmux")
 # cmd="VMUX_DEBUG=1 vmux"
+cmd=$(which "vmux")
 echo "start log: $*" >/tmp/ewrap.log
 if [ -z "$*" ]; then
   echo "if empty " >>/tmp/ewrap.log
