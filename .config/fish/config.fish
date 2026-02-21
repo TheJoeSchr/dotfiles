@@ -212,6 +212,34 @@ THE THREE TYPES OF ALIAS
         fish_ssh_agent
     end
 
+    if type -q pgcli
+        abbr pgcli 'VISUAL=nvim pgcli'
+    end
+
+    if type -q advmv
+        abbr cp 'advcp -g'
+        abbr mv 'advmv -g'
+    end
+
+    if type -q exa
+        alias la 'exa --all -1'
+        alias ls 'exa -G --icons'
+        alias lll 'ls -lT --level=1'
+        alias llla 'ls -alT --level=1'
+        alias tree 'exa -G --icons -T --level=3'
+    end
+
+    if type -q tmux
+        # if inside tmux refresh DBUS
+        switch $TERM
+            case "screen*"
+                # echo "Refresh DISPLAY for xsel/tmux"
+                env-refresh DISPLAY
+                # echo "Refresh DBUS '$DBUS_SESSION_BUS_ADDRESS' for tmux"
+                set -gx DBUS_SESSION_BUS_ADDRESS unix:path=/run/user/1000/bus
+        end
+    end
+
     # 5. Tool Loaders (Mamba, etc)
     # >>> mamba initialize (LAZY LOADED) >>>
     if type -q micromamba
@@ -242,36 +270,9 @@ THE THREE TYPES OF ALIAS
     end
     # <<< mamba initialize <<<
 
-    if type -q pgcli
-        abbr pgcli 'VISUAL=nvim pgcli'
-    end
-
-    if type -q advmv
-        abbr cp 'advcp -g'
-        abbr mv 'advmv -g'
-    end
-
-    if type -q exa
-        alias la 'exa --all -1'
-        alias ls 'exa -G --icons'
-        alias lll 'ls -lT --level=1'
-        alias llla 'ls -alT --level=1'
-        alias tree 'exa -G --icons -T --level=3'
-    end
-
-    if type -q tmux
-        # if inside tmux refresh DBUS
-        switch $TERM
-            case "screen*"
-                # echo "Refresh DISPLAY for xsel/tmux"
-                env-refresh DISPLAY
-                # echo "Refresh DBUS '$DBUS_SESSION_BUS_ADDRESS' for tmux"
-                set -gx DBUS_SESSION_BUS_ADDRESS unix:path=/run/user/1000/bus
-        end
-    end
-    echo "        _            _       _____ _     _          "
-    echo "       | | ___   ___( )___  |  ___(_)___| |__       "
-    echo "    _  | |/ _ \ / _ \// __| | |_  | / __| '_ \      "
+    echo " _ _ _____ _ _ "
+    echo " | | ___ ___( )___ | ___(_)___ | | __ "
+    echo " _ | | / _ \ / _ \// __ | | | _ | / __ | '_ \      "
     echo "   | |_| | (_) |  __/ \__ \ |  _| | \__ \ | | |     "
     echo "    \___/ \___/ \___| |___/ |_|   |_|___/_| |_|     "
     echo "                                                    "
