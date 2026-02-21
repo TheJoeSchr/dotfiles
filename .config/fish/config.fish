@@ -70,15 +70,34 @@ if status --is-interactive
     if type -q fnm
         source (fnm env --use-on-cd | psub)
     end
+    if type -q fzf
+        source (fzf --fish | psub)
+    end
     if type -q zoxide
         source (zoxide init fish | psub) && abbr cd z
     end
-    if type -q pyenv
-        source (pyenv init - | psub)
+    # use `uv` instead
+    # if type -q pyenv
+    #     source (pyenv init - | psub)
+    # end
+
+    if type -q uv
+        # for DEBUG
+        # echo "uv found, setting up auto-activation for uv virtualenvs..."
+        # Auto-activate uv virtualenv
+        function __auto_activate_venv --on-variable PWD
+            if test -f .venv/bin/activate.fish
+                source .venv/bin/activate.fish
+            end
+        end
     end
-    # using own prompt now
+
+    # omf is unmainted for years, don't use it:
+    # - using own prompt at `functions/fish_prompt.fish` now instead
+    # - `omf destroy` to remove
     # if type -q omf
-    #   omf theme yimmy
+    #     # omf theme yimmy
+    #     omf theme default
     # end
 
     # 2. Key Bindings & UI
