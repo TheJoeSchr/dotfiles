@@ -5,12 +5,15 @@
 function fish_prompt
     # will be shrinked
     if not set -q __fish_prompt_hostname
-        if not set -q TMUX
-            set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
-        end
+        # don't filter for tmux 
+        # always needed => behind '@'
+        # if not set -q TMUX
+        #     set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
+        # end
+        set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
     end
     if not set -q __fish_prompt_char
-        set -l pc "└"
+        set -l pc ""
         switch (id -u)
             case 0
                 set pc $pc'!'
@@ -39,8 +42,6 @@ function fish_prompt
     set -g __fish_git_prompt_color green
     set -g __fish_git_prompt_color_flags red
 
-    # 1. No Newline because of fish_mode_prompt.fish
-    printf " "
 
     # Get the exit status of the last command
     set -l last_status $status
@@ -48,23 +49,12 @@ function fish_prompt
         set -l prompt_color $red
     end
 
-
-    # Check if we are in "transient" mode (historical line)
-    # Switches from 2 to 1 line prompt when you scroll up, so that you can see more of the previous command's output.
+    # 1 LINE:
     # fisher install zzhaolei/transient.fish
-    # cusomized via in `functions/transient_prompt_func.fish`
-    # OTHERWISE nice 2 line prompt prints:
-    # ┌
+    # customized via in `functions/transient_prompt_func.fish`
+    # 2 LINE: (interactivly)
+    # converted from `omf thme yimmy`: `echos` => `printf`
+    # ┌ user@hostname (branch*)
     # └>
-    # Line 1
-    echo -n $red"┌"$cyan$USER$white"@"$cyan$__fish_prompt_hostname $gray(prompt_pwd)$normal
-    __fish_git_prompt
-    # Check for gwip; does last commit log contain --wip--?
-    # if begin; git log -n 1 2> /dev/null | grep -qc "\-\-wip\-\-"; end
-    #   echo -n $brwhite" WIP!"$normal
-    # end
-    echo
-
-    # Line 2
-    echo -n $red'└'$pcolor$__fish_prompt_char $normal
+    printf "%s┌ %s%s%s@%s%s%s\n%s└%s%s %s" "$red" "$cyan" "$USER" "$white" "$cyan" "$__fish_prompt_hostname" "$(fish_git_prompt)" "$red" "$pcolor" "$__fish_prompt_char" "$normal"
 end
