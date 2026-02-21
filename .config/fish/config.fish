@@ -12,7 +12,19 @@ set -gx VMUX_REALEDITOR_NVR /usr/bin/nvr
 set -e PAGER
 set -gx EDITOR nvim
 set -gx VISUAL ewrap
-set -gx BROWSER google-chrome-stable
+# test for browser so it works with flatpak or native, and set BROWSER accordingly
+if type -q google-chrome-stable
+    set -gx BROWSER google-chrome-stable
+end
+if type -q google-chrome
+    set -gx BROWSER google-chrome
+end
+# `-q` => grep silent
+# without 'Cc' for casing
+if flatpak list | grep -q hrome
+    set -gx BROWSER "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/chrome com.google.Chrome"
+end
+
 set -gx DELTA_FEATURES diff-so-fancy
 # always try to set DISPLAY
 # set -q DISPLAY; or set -gx DISPLAY ":0"
