@@ -153,6 +153,8 @@ begin
         # prep for rust based pkgs e.g. fish-git, yazi-git
         rustup default stable
         if test "$is_steam_host" = true
+            echo "~/archlinux/install-cli-essentials.sh"
+            env bash ~/archlinux/install-cli-essentials.sh
             echo "~/archlinux/install-steamdeck-essentials.sh"
             env bash ~/archlinux/install-steamdeck-essentials.sh
         else
