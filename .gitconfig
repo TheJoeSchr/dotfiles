@@ -89,8 +89,8 @@
   type = cat-file -t
   dump = cat-file -p
   ; delete remote branch
-  branch-delete-remote = push --delete
-  delete-remote-branch = push --delete
+  branch-delete-remote = push origin --delete
+  delete-remote-branch = push origin --delete
     # push the new branch, set local branch to track the new remote
   ps--set-upstream = push --set-upstream origin
   unadd = reset head
