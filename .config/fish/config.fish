@@ -21,15 +21,11 @@ set -gx DELTA_FEATURES diff-so-fancy
 # =============================================================================
 # PATH SETUP
 # =============================================================================
-fish_add_path ~/.rvm/bin
-fish_add_path ~/.rbenv/bin
-fish_add_path ~/.fnm
 fish_add_path ~/.bun/bin
 fish_add_path ~/.config/composer/vendor/bin
 fish_add_path ~/.pub-cache/bin/
 fish_add_path ~/.docker/cli-plugins/
 fish_add_path ~/.krew/bin/
-fish_add_path ~/bin/
 # masons bin to have all formatters and linters also available in fish
 fish_add_path ~/.local/share/nvim/mason/bin/
 if [ ! -f /run/.containerenv ] && [ ! -f /.dockerenv ]
@@ -50,25 +46,24 @@ if status --is-interactive
     end
 
     # 1. Native Tool Hooks (No Fisher plugins required)
+    # using `psub` instead of direct `xy | source` 
+    # for bettererror handling
+    # command fails won't break the shell
     if type -q rbenv
         source (rbenv init - fish | psub)
     end
     if type -q mise
-        mise activate fish | source
+        source (mise activate fish | psub)
     end
     if type -q fnm
-        fnm env --use-on-cd | source
+        source (fnm env --use-on-cd | psub)
     end
     if type -q zoxide
-        zoxide init fish | source
-        abbr cd z
+        source (zoxide init fish | psub) && abbr cd z
     end
-
     if type -q pyenv
-        pyenv init - | source
+        source (pyenv init - | psub)
     end
-
-
     # using own prompt now
     # if type -q omf
     #   omf theme yimmy
@@ -168,8 +163,11 @@ THE THREE TYPES OF ALIAS
     abbr vimdiff "$EDITOR -d"
     abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
     abbr wget wcurl
-    abbr Y 'sudo -E fish -c "y"'
-    abbr yfp y-filepicker
+    # abbr y is in functions/y.fish; and functions -q y; and functions y
+    if functions -q y
+        abbr Y 'sudo -E fish -c "y"'
+        abbr yfp y-filepicker
+    end
 
     alias pbcopy 'xsel --clipboard --input'
     alias pbpaste 'xsel --clipboard --output'
@@ -192,7 +190,7 @@ THE THREE TYPES OF ALIAS
         function __mamba_lazy_init
             if not set -q --global __MAMBA_INITIALIZED
                 set -gx __MAMBA_INITIALIZED 1
-                $MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
+                source ($MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFX | psub)
             end
         end
 
@@ -257,6 +255,7 @@ end # /(INTERACTIVE)
 
 # always including noninteractive:
 if type -q direnv
-    direnv hook fish | source
-    # eval (direnv hook fish)
+    # previously used, but if direnv fails to load, it can break the shell
+    # eval (direnv hook fish) 
+    source (direnv hook fish | psub)
 end
