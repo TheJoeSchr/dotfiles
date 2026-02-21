@@ -53,6 +53,9 @@ if status --is-interactive
     if type -q rbenv
       source (rbenv init - fish | psub)
     end
+    if type -q mise
+      mise activate fish | source
+    end
     if type -q fnm
       fnm env --use-on-cd | source
     end
