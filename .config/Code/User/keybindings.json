@@ -1,0 +1,20 @@
+// Place your key bindings in this file to override the defaults
+[
+  // ESCAPE EDITOR
+  //{ "key": "space ctrl+h", "command": "workbench.action.focusSideBar", "when": "editorTextFocus" },
+  //{ "key": "space ctrl+j", "command": "workbench.action.terminal.focus", "when": "editorTextFocus" },
+  { "key": "ctrl+l", "command": "workbench.action.focusFirstEditorGroup", "when": "sideBarFocus || terminalFocus || searchViewletVisible" },
+  
+  // SIDEBAR (H/J/K/L + Jump H/L)
+  { "key": "j", "command": "list.focusDown", "when": "filesExplorerFocus && !inputFocus" },
+  { "key": "k", "command": "list.focusUp", "when": "filesExplorerFocus && !inputFocus" },
+  { "key": "h", "command": "list.collapse", "when": "filesExplorerFocus && !inputFocus" },
+  { "key": "l", "command": "list.select", "when": "filesExplorerFocus && !inputFocus" },
+  { "key": "shift+h", "command": "list.focusFirst", "when": "filesExplorerFocus && !inputFocus" },
+  { "key": "shift+l", "command": "list.focusLast", "when": "filesExplorerFocus && !inputFocus" },
+  
+  // AUTOCOMPLETE
+  { "key": "ctrl+n", "command": "selectNextSuggestion", "when": "suggestWidgetVisible" },
+  { "key": "ctrl+p", "command": "selectPrevSuggestion", "when": "suggestWidgetVisible" },
+  { "key": "ctrl+y", "command": "acceptSelectedSuggestion", "when": "suggestWidgetVisible" }
+]
