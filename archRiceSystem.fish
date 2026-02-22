@@ -314,7 +314,7 @@ if ask "Install fisher + theme + plugins?"
     fish -c 'fisher install PatrickF1/fzf.fish'
 
     # ssh-agent
-    # fish -c 'fisher install danhper/fish-ssh-agent'
+    fish -c 'fisher install danhper/fish-ssh-agent'
 
     # zoxide: fish helper
     # use:
