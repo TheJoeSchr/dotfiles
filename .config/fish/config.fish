@@ -29,7 +29,6 @@ set -gx DELTA_FEATURES diff-so-fancy
 # always try to set DISPLAY
 # set -q DISPLAY; or set -gx DISPLAY ":0"
 
-
 # =============================================================================
 # PATH SETUP
 # =============================================================================
@@ -279,7 +278,8 @@ THE THREE TYPES OF ALIAS
     end
 
     joe_banner
-    echo
+    echo ""
+    echo "⚠️ ESCAPE HATCH: \`bash --norc\`  or \`bash -c\`"
     # autostart ssh-add
     # fish_ssh_agent
 end # /(INTERACTIVE)
