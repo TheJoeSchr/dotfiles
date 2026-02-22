@@ -25,7 +25,9 @@ function fish_prompt
 
     # Setup colors
     set -l normal (set_color normal)
+    set -l blue (set_color blue)
     set -l red (set_color red)
+    set -l green (set_color green)
     set -l cyan (set_color cyan)
     set -l white (set_color white)
     set -l gray (set_color normal)
@@ -45,6 +47,7 @@ function fish_prompt
 
     # Get the exit status of the last command
     set -l last_status $status
+    set -l prompt_color $green
     if test $last_status -ne 0
         set -l prompt_color $red
     end
@@ -56,5 +59,7 @@ function fish_prompt
     # converted from `omf thme yimmy`: `echos` => `printf`
     # ┌ user@hostname (branch*)
     # └>
-    printf "%s┌ %s%s%s@%s%s%s\n%s└%s%s %s" "$red" "$cyan" "$USER" "$white" "$cyan" "$__fish_prompt_hostname" "$(fish_git_prompt)" "$red" "$pcolor" "$__fish_prompt_char" "$normal"
+    printf "%s┌ %s%s%s@%s%s %s%s%s:\n%s  └%s%s%s" "$prompt_color" "$blue" "$USER" "$white" "$blue" "$__fish_prompt_hostname" "$gray" "$(prompt_pwd)" "$(fish_git_prompt)" "$prompt_color" "$prompt_color" "$__fish_prompt_char" "$normal"
+    return
+
 end
