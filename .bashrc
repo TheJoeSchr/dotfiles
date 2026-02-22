@@ -1,4 +1,4 @@
-# Add this to the TOP of your ~/.bashrc to debug slow startup
+# Add this to the TOP of your ~/.bashrc to debug show slow startup
 
 # Enable debugging
 # export BASHRC_DEBUG=1
@@ -91,6 +91,7 @@ init_fish() {
       if [[ $(ps --no-header --pid=$PPID --format=cmd) != "fish" ]]; then
         # fish inherits the environment from the login shell (bash),
         # so it doesn't need to be a login shell itself, which would re-run .profile
+        #
         echo "Exec fish from \`.bashrc\`"
         exec fish "$@"
       fi
@@ -146,7 +147,6 @@ else
   #fi
   unset color_prompt force_color_prompt
 fi
-
 
 ## ALIASES AND COMMANDS
 
