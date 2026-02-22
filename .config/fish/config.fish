@@ -269,19 +269,31 @@ THE THREE TYPES OF ALIAS
     # <<< mamba initialize <<<
 
     # print big banner to visually confirm it's an interactive shell, and also for fun
+    #
     function joe_banner
         if type -q figlet; and type -q lolcat
-            figlet -tcX "JOE'S FIS4" | lolcat
+            figlet -t "JOE'S FIS4" | lolcat -a -d 3
         else
-            echo "Warning: figlet or lolcat not found. Banner skipped."
+            echo "(╯°□°）╯︵ ┻━┻"
+            echo ""
+            echo "❌ WARNING: Big Banner skipped!❌"
+            echo "🛠️\`figlet\` or \`lolcat\` not found."
         end
     end
 
+    # orint bfg banner
     joe_banner
+
+    # orint escaoenhatch anywsyd
     echo ""
-    echo "⚠️ ESCAPE HATCH: \`bash --norc\`  or \`bash -c\`"
-    # autostart ssh-add
-    # fish_ssh_agent
+    echo "⚠️ ============================================="
+    echo ""
+    echo "⚠️ ESCAPE HATCH: (╯°□°）╯︵ ┻━┻"
+    echo "   ............................................."
+    echo "⚠️ `bash --norc` || `bash -`"
+    echo "   ............................................."
+    echo "⚠️ ============================================="
+    echo ""
 end # /(INTERACTIVE)
 # 6. Non-interactive Hooks
 
