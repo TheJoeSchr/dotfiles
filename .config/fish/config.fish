@@ -269,16 +269,17 @@ THE THREE TYPES OF ALIAS
     end
     # <<< mamba initialize <<<
 
-    echo " _ _ _____ _ _ "
-    echo " | | ___ ___( )___ | ___(_)___ | | __ "
-    echo " _ | | / _ \ / _ \// __ | | | _ | / __ | '_ \      "
-    echo "   | |_| | (_) |  __/ \__ \ |  _| | \__ \ | | |     "
-    echo "    \___/ \___/ \___| |___/ |_|   |_|___/_| |_|     "
-    echo "                                                    "
-    echo "    ESCAPE HATCH: \`bash --norc\`  or \`bash -c \"\"\` "
-    echo "    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _   "
-    echo "                                                    "
-    echo "                                                    "
+    # print big banner to visually confirm it's an interactive shell, and also for fun
+    function joe_banner
+        if type -q figlet; and type -q lolcat
+            figlet -tcX "JOE'S FIS4" | lolcat
+        else
+            echo "Warning: figlet or lolcat not found. Banner skipped."
+        end
+    end
+
+    joe_banner
+    echo
     # autostart ssh-add
     # fish_ssh_agent
 end # /(INTERACTIVE)
