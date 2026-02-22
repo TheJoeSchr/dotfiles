@@ -12,7 +12,19 @@ set -gx VMUX_REALEDITOR_NVR /usr/bin/nvr
 set -e PAGER
 set -gx EDITOR nvim
 set -gx VISUAL ewrap
-set -gx BROWSER google-chrome-stable
+# test for browser so it works with flatpak or native, and set BROWSER accordingly
+if type -q google-chrome-stable
+    set -gx BROWSER google-chrome-stable
+end
+if type -q google-chrome
+    set -gx BROWSER google-chrome
+end
+# `-q` => grep silent
+# without 'Cc' for casing
+if flatpak list | grep -q hrome
+    set -gx BROWSER "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/chrome com.google.Chrome"
+end
+
 set -gx DELTA_FEATURES diff-so-fancy
 # always try to set DISPLAY
 # set -q DISPLAY; or set -gx DISPLAY ":0"
@@ -21,15 +33,11 @@ set -gx DELTA_FEATURES diff-so-fancy
 # =============================================================================
 # PATH SETUP
 # =============================================================================
-fish_add_path ~/.rvm/bin
-fish_add_path ~/.rbenv/bin
-fish_add_path ~/.fnm
 fish_add_path ~/.bun/bin
 fish_add_path ~/.config/composer/vendor/bin
 fish_add_path ~/.pub-cache/bin/
 fish_add_path ~/.docker/cli-plugins/
 fish_add_path ~/.krew/bin/
-fish_add_path ~/bin/
 # masons bin to have all formatters and linters also available in fish
 fish_add_path ~/.local/share/nvim/mason/bin/
 if [ ! -f /run/.containerenv ] && [ ! -f /.dockerenv ]
@@ -50,28 +58,46 @@ if status --is-interactive
     end
 
     # 1. Native Tool Hooks (No Fisher plugins required)
+    # using `psub` instead of direct `xy | source` 
+    # for bettererror handling
+    # command fails won't break the shell
     if type -q rbenv
         source (rbenv init - fish | psub)
     end
     if type -q mise
-        mise activate fish | source
+        source (mise activate fish | psub)
     end
     if type -q fnm
-        fnm env --use-on-cd | source
+        source (fnm env --use-on-cd | psub)
+    end
+    if type -q fzf
+        source (fzf --fish | psub)
     end
     if type -q zoxide
-        zoxide init fish | source
-        abbr cd z
+        source (zoxide init fish | psub) && abbr cd z
+    end
+    # use `uv` instead
+    # if type -q pyenv
+    #     source (pyenv init - | psub)
+    # end
+
+    if type -q uv
+        # for DEBUG
+        # echo "uv found, setting up auto-activation for uv virtualenvs..."
+        # Auto-activate uv virtualenv
+        function __auto_activate_venv --on-variable PWD
+            if test -f .venv/bin/activate.fish
+                source .venv/bin/activate.fish
+            end
+        end
     end
 
-    if type -q pyenv
-        pyenv init - | source
-    end
-
-
-    # using own prompt now
+    # omf is unmainted for years, don't use it:
+    # - using own prompt at `functions/fish_prompt.fish` now instead
+    # - `omf destroy` to remove
     # if type -q omf
-    #   omf theme yimmy
+    #     # omf theme yimmy
+    #     omf theme default
     # end
 
     # 2. Key Bindings & UI
@@ -161,15 +187,17 @@ THE THREE TYPES OF ALIAS
     abbr rmp rip
     abbr rsync-mv 'rsync -avzh --remove-source-files --progress'
     abbr ssh-add-all 'ssh-add ~/.ssh/id_rsa_*'
-    abbr ta 'tmux a'
-    abbr tff 'tf -y'
-    abbr tp tmux-sessionizer
+    # tmux attach
+    abbr ta "tmux a"
     abbr upgrade-paru 'paru -Syu --skipreview --useask --noconfirm'
     abbr vimdiff "$EDITOR -d"
     abbr vultr 'vultr-cli --config ~/vultr-cli.yaml'
     abbr wget wcurl
-    abbr Y 'sudo -E fish -c "y"'
-    abbr yfp y-filepicker
+    # abbr y is in functions/y.fish; and functions -q y; and functions y
+    if functions -q y
+        abbr Y 'sudo -E fish -c "y"'
+        abbr yfp y-filepicker
+    end
 
     alias pbcopy 'xsel --clipboard --input'
     alias pbpaste 'xsel --clipboard --output'
@@ -182,36 +210,6 @@ THE THREE TYPES OF ALIAS
     if functions -q fish_ssh_agent
         fish_ssh_agent
     end
-
-    # 5. Tool Loaders (Mamba, etc)
-    # >>> mamba initialize (LAZY LOADED) >>>
-    if type -q micromamba
-        set -gx MAMBA_EXE (command -v micromamba)
-        set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
-
-        function __mamba_lazy_init
-            if not set -q --global __MAMBA_INITIALIZED
-                set -gx __MAMBA_INITIALIZED 1
-                $MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
-            end
-        end
-
-        function micromamba
-            __mamba_lazy_init
-            micromamba $argv
-        end
-
-        function conda
-            __mamba_lazy_init
-            conda $argv
-        end
-
-        function mamba
-            __mamba_lazy_init
-            mamba $argv
-        end
-    end
-    # <<< mamba initialize <<<
 
     if type -q pgcli
         abbr pgcli 'VISUAL=nvim pgcli'
@@ -240,9 +238,40 @@ THE THREE TYPES OF ALIAS
                 set -gx DBUS_SESSION_BUS_ADDRESS unix:path=/run/user/1000/bus
         end
     end
-    echo "        _            _       _____ _     _          "
-    echo "       | | ___   ___( )___  |  ___(_)___| |__       "
-    echo "    _  | |/ _ \ / _ \// __| | |_  | / __| '_ \      "
+
+    # 5. Tool Loaders (Mamba, etc)
+    # >>> mamba initialize (LAZY LOADED) >>>
+    if type -q micromamba
+        set -gx MAMBA_EXE (command -v micromamba)
+        set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
+
+        function __mamba_lazy_init
+            if not set -q --global __MAMBA_INITIALIZED
+                set -gx __MAMBA_INITIALIZED 1
+                source ($MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFX | psub)
+            end
+        end
+
+        function micromamba
+            __mamba_lazy_init
+            micromamba $argv
+        end
+
+        function conda
+            __mamba_lazy_init
+            conda $argv
+        end
+
+        function mamba
+            __mamba_lazy_init
+            mamba $argv
+        end
+    end
+    # <<< mamba initialize <<<
+
+    echo " _ _ _____ _ _ "
+    echo " | | ___ ___( )___ | ___(_)___ | | __ "
+    echo " _ | | / _ \ / _ \// __ | | | _ | / __ | '_ \      "
     echo "   | |_| | (_) |  __/ \__ \ |  _| | \__ \ | | |     "
     echo "    \___/ \___/ \___| |___/ |_|   |_|___/_| |_|     "
     echo "                                                    "
@@ -257,6 +286,7 @@ end # /(INTERACTIVE)
 
 # always including noninteractive:
 if type -q direnv
-    direnv hook fish | source
-    # eval (direnv hook fish)
+    # previously used, but if direnv fails to load, it can break the shell
+    # eval (direnv hook fish) 
+    source (direnv hook fish | psub)
 end
