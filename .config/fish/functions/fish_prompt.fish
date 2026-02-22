@@ -44,7 +44,6 @@ function fish_prompt
     set -g __fish_git_prompt_color green
     set -g __fish_git_prompt_color_flags red
 
-
     # Get the exit status of the last command
     set -l last_status $status
     set -l prompt_color $green
@@ -56,10 +55,31 @@ function fish_prompt
     # fisher install zzhaolei/transient.fish
     # customized via in `functions/transient_prompt_func.fish`
     # 2 LINE: (interactivly)
-    # converted from `omf thme yimmy`: `echos` => `printf`
+    # converte from `omf thme yimmy`: `echos` => `printf`
     # ┌ user@hostname (branch*)
     # └>
-    printf "%s┌ %s%s%s@%s%s %s%s%s:\n%s  └%s%s%s" "$prompt_color" "$blue" "$USER" "$white" "$blue" "$__fish_prompt_hostname" "$gray" "$(prompt_pwd)" "$(fish_git_prompt)" "$prompt_color" "$prompt_color" "$__fish_prompt_char" "$normal"
+
+    function fish_mode_prompt_inline
+        if test "$fish_key_bindings" = fish_vi_key_bindings
+            switch $fish_bind_mode
+                case default
+                    set_color --bold red
+                    printf "🅽 "
+                case insert
+                    set_color --bold green
+                    printf "🅸 "
+                case replace_one
+                    set_color --bold green
+                    printf "🆁 "
+                case visual
+                    set_color --bold brmagenta
+                    printf "🆅 "
+            end
+            set_color normal
+        end
+    end
+
+    printf "%s┌ %smode %s%s%s@%s%s %s%s%s:\n%s└%s%s%s" "$prompt_color" "$(fish_mode_prompt_inline)" "$blue" "$USER" "$white" "$blue" "$__fish_prompt_hostname" "$gray" "$(prompt_pwd)" "$(fish_git_prompt)" "$prompt_color" "$prompt_color" "$__fish_prompt_char" "$normal"
     return
 
 end
