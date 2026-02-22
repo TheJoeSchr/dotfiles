@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "88990a6"
+rev = "b224ddf"
 hash = "270915fa8282a19908449530ff66f7e2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "88990a6"
-hash = "ce67445ebb1bf3d97b8e44f50904b2c5"
+rev = "b224ddf"
+hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
 use = "dawsers/toggle-view"
@@ -15,8 +15,8 @@ hash = "a5fefd7e796960eea67cebb29d77912a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "88990a6"
-hash = "3996fc74044bc44144b323686f887e1"
+rev = "b224ddf"
+hash = "6fa6a05a81c98dd000fbca3cca6e9682"
 
 [[plugin.deps]]
 use = "hankertrix/augment-command"
@@ -40,8 +40,8 @@ hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "88990a6"
-hash = "407d19bc4fb46eff5fa8ff8337644847"
+rev = "b224ddf"
+hash = "c887903a63a2ff520081b6d90a4b3392"
 
 [[plugin.deps]]
 use = "AnirudhG07/custom-shell"
@@ -50,8 +50,8 @@ hash = "8009873342496fdb042bba09e239eef3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "88990a6"
-hash = "8a7c58225816a163a6e8730c0adafbc8"
+rev = "b224ddf"
+hash = "4c0260feb50ea2437380690ffc241da7"
 
 [[plugin.deps]]
 use = "ciarandg/cd-git-root"
@@ -60,8 +60,8 @@ hash = "b84a85f3b513bd9c0a0ab93cc7c8e4c3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "88990a6"
-hash = "2f08b8249b57737e7257298a3b2a2edc"
+rev = "b224ddf"
+hash = "8b1af6b5a69797ee951f2a80ce570818"
 
 [[plugin.deps]]
 use = "GianniBYoung/rsync"
