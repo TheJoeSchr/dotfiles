@@ -272,7 +272,7 @@ THE THREE TYPES OF ALIAS
     #
     function joe_banner
         if type -q figlet; and type -q lolcat
-            figlet -t "JOE'S FIS4" | lolcat -a -d 3
+            figlet -t "JOE'S FIS4" | lolcat -a -d 1
         else
             echo "(╯°□°）╯︵ ┻━┻"
             echo ""
