@@ -237,6 +237,11 @@ THE THREE TYPES OF ALIAS
                 set -gx DBUS_SESSION_BUS_ADDRESS unix:path=/run/user/1000/bus
         end
     end
+    if type -q vp
+        # previously used, but if direnv fails to load, it can break the shell
+        # eval (direnv hook fish)
+        source "$HOME/.vite-plus/env.fish"
+    end
 
     # 5. Tool Loaders (Mamba, etc)
     # >>> mamba initialize (LAZY LOADED) >>>
