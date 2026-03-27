@@ -2,7 +2,10 @@ export DISPLAY=${DISPLAY-":0"}
 # disable don't know use anymore
 # export USERNAME=
 export OPENAI_API_KEY=
+# docker login -u $USERNAME -p $CR_PAT ghcr.io
+export USERNAME=
 export CR_PAT=
+
 export SRC_ACCESS_TOKEN=
 # jozeph.oftheinternet@gmail.com
 # joe.vandelay@gmail.com
@@ -14,6 +17,10 @@ export GEMINI_API_KEY=
 # or switch back empty & orignal key to use OpenAI again
 export OPENAI_API_BASE=
 export OPENAI_API_KEY=
+
+# echo $CI_TOKEN | docker login $DOCKER_REGISTRY -u $USERNAME --password-stdin
+export DOCKER_REGISTRY=
+export CI_TOKEN=
 
 # NODE, RUBY, PYTHON: use system defaults to be fast
 # But allow fish to override if it has them set up
