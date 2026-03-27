@@ -38,7 +38,7 @@ fish_add_path ~/.pub-cache/bin/
 fish_add_path ~/.docker/cli-plugins/
 fish_add_path ~/.krew/bin/
 # masons bin to have all formatters and linters also available in fish
-fish_add_path ~/.local/share/nvim/mason/bin/
+# fish_add_path ~/.local/share/nvim/mason/bin/
 if [ ! -f /run/.containerenv ] && [ ! -f /.dockerenv ]
     fish_add_path ~/.local/bin
     fish_add_path ~/.local/podman/bin
