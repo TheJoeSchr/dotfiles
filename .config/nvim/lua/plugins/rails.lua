@@ -12,4 +12,7 @@ return {
     "tpope/vim-rails",
     dependencies = { "tpope/vim-bundler", "tpope/vim-rake" },
   },
+  -- Other highly recommended Rails plugins
+  { "tpope/vim-bundler", ft = { "ruby" } },
+  { "tpope/vim-rake", ft = { "ruby" } },
 }
