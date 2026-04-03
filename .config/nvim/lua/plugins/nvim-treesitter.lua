@@ -30,6 +30,7 @@ return {
         "c_sharp",
         "clojure",
         "cmake",
+        "coffeescript",
         "comment",
         "cpp",
         "css",
