@@ -13,6 +13,18 @@ cat .ruby-version | rbenv local
 # install pnpm if not already installed (fnm doesn't install it by default)
 pnpm -v || npm install -g pnpm
 
+# for custom docker registry, e.g. ghcr.io for gh cli
+export REGISTRY=
+export CI_TOKEN=
+export GITLAB_HOST=
+# echo $CI_TOKEN | docker login $REGISTRY -u $USERNAME --password-stdin
+
+# glab-cli
+# glab: USE 1PASSWORD CLI INSTEAD
+# op signin
+# op plugin init glab
+# export GITLAB_TOKEN=
+# glab auth status
 
 ## DEBUG (Uncomment to verify)
 # printf "which ruby:" && which ruby
