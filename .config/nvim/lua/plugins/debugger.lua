@@ -7,7 +7,12 @@ return {
       -- PYTHON
       { "mfussenegger/nvim-dap-python" },
       -- RUBY
-      { "suketa/nvim-dap-ruby" },
+      {
+        "suketa/nvim-dap-ruby",
+        config = function()
+          require("dap-ruby").setup()
+        end,
+      },
       {
         "theHamsta/nvim-dap-virtual-text",
         enabled = true, -- enable this plugin (the default)
