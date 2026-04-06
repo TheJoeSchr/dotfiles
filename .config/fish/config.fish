@@ -161,7 +161,7 @@ THE THREE TYPES OF ALIAS
     abbr gla 'PAGER=/usr/bin/less git lga'
     abbr gs 'git st'
     abbr gh "op plugin run -- gh"
-    abbr glab "op plugin run -- glab"
+    # abbr glab "op plugin run -- glab"
     abbr install 'pikaur -S --needed --noconfirm'
     abbr lal 'la -l'
     abbr l y # goes to cd
@@ -237,6 +237,11 @@ THE THREE TYPES OF ALIAS
                 set -gx DBUS_SESSION_BUS_ADDRESS unix:path=/run/user/1000/bus
         end
     end
+
+    if type -q op
+        source ~/.config/op/plugins.sh
+    end
+
     if type -q vp
         # previously used, but if direnv fails to load, it can break the shell
         # eval (direnv hook fish)
