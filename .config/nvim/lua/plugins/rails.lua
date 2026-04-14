@@ -1,6 +1,7 @@
 -- gem install neovim
--- force enable "gem install neovim"
-vim.g.loaded_ruby_provider = 1
+-- force disable "gem install neovim"
+-- disalbe so no debug process is spawned when opening a ruby file, since we are using lsp for formatting and linting
+vim.g.loaded_ruby_provider = 0
 -- add rubocop autoformat
 vim.opt.signcolumn = "yes"
 vim.api.nvim_create_autocmd("FileType", {

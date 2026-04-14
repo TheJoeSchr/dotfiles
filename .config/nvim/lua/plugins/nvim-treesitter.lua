@@ -37,6 +37,7 @@ return {
         "dockerfile",
         "dot",
         "fish",
+        "eslint",
         "go",
         "gomod",
         "graphql",
