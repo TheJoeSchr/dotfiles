@@ -46,7 +46,10 @@ if vim.fn.has("gui_running") == 0 then
   })
 end
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = "plugins.lua",
-  command = "source <afile> | Lazy sync",
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
+  pattern = "*.eco",
+  callback = function()
+    vim.bo.filetype = "eco"
+    vim.bo.syntax = "eco"
+  end,
 })

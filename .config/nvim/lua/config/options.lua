@@ -107,3 +107,9 @@ local node_host = vim.fn.exepath("neovim-node-host")
 if node_host ~= "" then
   vim.g.node_host_prog = node_host
 end
+-- coffee, eco: use html for now, only one the works
+vim.filetype.add({
+  extension = {
+    eco = "html",
+  },
+})

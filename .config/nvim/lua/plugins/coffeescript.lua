@@ -1,12 +1,15 @@
 -- fix syntax highlighting for CoffeeScript files, which is currently broken in Treesitter
 return {
-  {
+  -- .eco syntax is also borked with Treesitter, so hardcode to use it here
+  "AndrewRadev/vim-eco",
+  lazy = false,
+  ft = { "eco" },
+  dependencies = {
     "kchmck/vim-coffee-script",
-    ft = "coffee",
-    init = function()
-      -- This forces Neovim to use the plugin's syntax engine
-      -- instead of the broken Treesitter one for this filetype
-      vim.g.coffee_indent_keep = 1
+    lazy = false,
+    ft = { "coffee", "eco", "haml" },
+    config = function()
+      vim.filetype.add({ extension = { eco = "eco" } })
     end,
   },
 }
