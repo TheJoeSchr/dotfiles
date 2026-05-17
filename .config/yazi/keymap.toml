@@ -64,75 +64,75 @@ desc = "Minimize the preview pane"
 # Use the augmented arrow up command for the k key
 [[mgr.prepend_keymap]]
 on = ["k"]
-run = "plugin augment-command 'arrow -1'"
+run = "plugin augment-command.arrow -1"
 desc = "Move cursor up"
 
 # Use the augmented arrow down command for the j key
 [[mgr.prepend_keymap]]
 on = ["j"]
-run = "plugin augment-command 'arrow 1'"
+run = "plugin augment-command.arrow 1"
 desc = "Move cursor down"
 
 # Use K to move up in the parent directory
 [[mgr.prepend_keymap]]
 on = ["K"]
-run = "plugin augment-command 'parent-arrow -1'"
+run = "plugin augment-command.parent-arrow -1"
 desc = "Move cursor up in the parent directory"
 
 # Use J to move down in the parent directory
 [[mgr.prepend_keymap]]
 on = ["J"]
-run = "plugin augment-command 'parent-arrow 1'"
+run = "plugin augment-command.parent-arrow 1"
 desc = "Move cursor down in the parent directory"
 
 # Use the augmented enter command for the l key
 [[mgr.prepend_keymap]]
 on = ["l"]
-run = "plugin augment-command 'enter'"
+run = "plugin augment-command.enter"
 desc = "Enter the child directory, or open the file"
 
 # Use the augmented enter command for the <Enter> key
 [[mgr.prepend_keymap]]
 on = ["<Enter>"]
-run = "plugin augment-command 'enter'"
+run = "plugin augment-command.enter"
 desc = "Enter the child directory, or open the file"
 
 # Use the augmented enter command for the <S-Enter> key
 [[mgr.prepend_keymap]]
 on = ["<S-Enter>"]
-run = "plugin augment-command 'enter --interactive'"
+run = "plugin augment-command.enter smart"
 desc = "Enter the child directory, or open the file interactively"
 
 # Use the augmented enter command for the <Right> key
 # but without skipping directories
 [[mgr.prepend_keymap]]
 on = ["<Right>"]
-run = "plugin augment-command 'enter --no-skip'"
+run = "plugin augment-command.enter --no-skip"
 desc = "Enter the child directory, or open the file"
 
 # Use the augmented leave command for the h key
 [[mgr.prepend_keymap]]
 on = ["h"]
-run = "plugin augment-command 'leave'"
+run = "plugin augment-command.leave"
 desc = "Go back to the parent directory"
 
 # Use the augmented leave command for the <Left> key
 # but without skipping directories
 [[mgr.prepend_keymap]]
 on = ["<Left>"]
-run = "plugin augment-command 'leave --no-skip'"
+run = "plugin augment-command.leave --no-skip"
 desc = "Go back to the parent directory"
 
 # Use the augmented open to open files interactively with O
 [[mgr.prepend_keymap]]
 on = ["O"]
-run = "plugin augment-command 'open --interactive'"
+run = "plugin augment-command.open --smart"
 desc = "Open selected files interactively"
 
 # smart paste via augment-command
 [[mgr.prepend_keymap]]
 on = "p"
-run = "plugin augment-command -- paste --smart"
+run = "plugin augment-command.paste --smart"
 desc = "Smart paste files into hovered directory"
 
 # Use u to unselect and unyank all files
@@ -144,7 +144,7 @@ desc = "Unselect all files and also unyank cut files"
 # Use o to open files using the editor
 [[mgr.prepend_keymap]]
 on = ["o"]
-run = "plugin augment-command 'editor'"
+run = "plugin augment-command.editor"
 desc = "Open files with the default editor"
 
 # Use e to open files using xdg-open
@@ -156,13 +156,13 @@ desc = "Open selected file(s)"
 # Use i to open files using the pager
 [[mgr.prepend_keymap]]
 on = "i"
-run = "plugin augment-command 'pager'"
+run = "plugin augment-command.pager"
 desc = "Open files with the default pager"
 
 # Use R to remove the whole file name when renaming
 [[mgr.prepend_keymap]]
 on = ["R"]
-run = "plugin augment-command 'rename --empty=all'"
+run = "plugin augment-command.rename -- --empty=all"
 desc = "Rename file and remove the whole file name"
 
 

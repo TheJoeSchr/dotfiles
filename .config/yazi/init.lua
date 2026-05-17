@@ -28,6 +28,7 @@ end
 require("folder-rules"):setup()
 require("full-border"):setup()
 
+-- takes too long to load, and the features are not that useful
 require("augment-command"):setup({
 	prompt = true,
 	default_item_group_for_prompt = "hovered",
