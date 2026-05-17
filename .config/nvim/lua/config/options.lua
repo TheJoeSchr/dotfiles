@@ -11,7 +11,7 @@ vim.g.snacks_animate = false
 -- set to `true` to follow the main branch
 -- you need to have a working rust toolchain to build the plugin
 -- in this case.
-vim.g.lazyvim_blink_main = true
+-- vim.g.lazyvim_blink_main = true
 
 -- Set 24-bit colors
 vim.o.termguicolors = true
