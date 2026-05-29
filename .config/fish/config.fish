@@ -67,9 +67,11 @@ if status --is-interactive
     if type -q mise
         source (mise activate fish | psub)
     end
-    if type -q fnm
-        source (fnm env --use-on-cd | psub)
-    end
+    # now in: conf.d/fnm.fish
+    # if type -q fnm
+    #     source (fnm env --use-on-cd --shell fish | psub)
+    #     source (fnm completions --shell fish | psub)
+    # end
     if type -q fzf
         source (fzf --fish | psub)
     end
