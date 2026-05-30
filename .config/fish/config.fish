@@ -242,7 +242,9 @@ THE THREE TYPES OF ALIAS
     end
 
     if type -q op
-        source ~/.config/op/plugins.sh
+        if test -e ~/.config/op/plugins.sh
+            source (~/.config/op/plugins.sh| psub)
+        end
     end
 
     if type -q vp
