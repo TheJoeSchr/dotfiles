@@ -318,3 +318,7 @@ if type -q direnv
     # eval (direnv hook fish) 
     source (direnv hook fish | psub)
 end
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/joe/.local/bin" $PATH
