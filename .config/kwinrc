@@ -388,3 +388,4 @@ Scale=1
 BorderSize=NoSides
 BorderSizeAuto=false
 ButtonsOnLeft=MNS
+library=org.kde.kwin.aurorae.v2
