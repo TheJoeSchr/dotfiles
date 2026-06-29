@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "c2c16c8"
+rev = "39aaf6d"
 hash = "88e56a64b7ce7c4314427452343fef17"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "c2c16c8"
+rev = "39aaf6d"
 hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
@@ -15,7 +15,7 @@ hash = "a5fefd7e796960eea67cebb29d77912a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "c2c16c8"
+rev = "39aaf6d"
 hash = "7b625412411be411153886894d9acaf"
 
 [[plugin.deps]]
@@ -35,7 +35,7 @@ hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "c2c16c8"
+rev = "39aaf6d"
 hash = "c887903a63a2ff520081b6d90a4b3392"
 
 [[plugin.deps]]
@@ -45,8 +45,8 @@ hash = "8009873342496fdb042bba09e239eef3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "c2c16c8"
-hash = "9c7987da2d2a2120dac33abb64132004"
+rev = "39aaf6d"
+hash = "15e5b67a241172cbb86b8fbf9e63692"
 
 [[plugin.deps]]
 use = "ciarandg/cd-git-root"
@@ -55,7 +55,7 @@ hash = "b84a85f3b513bd9c0a0ab93cc7c8e4c3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "c2c16c8"
+rev = "39aaf6d"
 hash = "8b1af6b5a69797ee951f2a80ce570818"
 
 [[plugin.deps]]
@@ -70,8 +70,8 @@ hash = "869884767c2ef592bfb7f5764f8fcae3"
 
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "6c1d866"
-hash = "909cc89d6388b52c8e04026368441e30"
+rev = "dd2d6cf"
+hash = "cba2bae0c4ad211f4219de550b3838a5"
 
 [flavor]
 deps = []
