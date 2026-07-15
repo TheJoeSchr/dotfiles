@@ -227,6 +227,9 @@ LayoutName=coverswitch
 [TabBoxAlternative]
 SwitchingMode=1
 
+[Tiling]
+padding=4
+
 [Tiling][0b3a115d-e4be-5d8d-9274-6f5cee3fdc46]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
