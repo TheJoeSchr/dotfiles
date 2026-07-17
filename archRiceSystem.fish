@@ -22,12 +22,12 @@ begin
     printf "  CXXFLAGS:  %s\n" "$CXXFLAGS"
     printf "  RUSTFLAGS: %s\n" "$RUSTFLAGS"
 
-    function install -d "Install packages using pikaur with optimizations"
-        pikaur -S --needed --noconfirm $argv
+    function install -d "Install packages using yay with optimizations"
+        yay -S --needed --noconfirm $argv
     end
 
-    function install-confirm -d "Install packages using pikaur with optimizations"
-        pikaur -S --needed $argv
+    function install-confirm -d "Install packages using yay with optimizations"
+        yay -S --needed $argv
     end
 
     function ask -d "Ask for confirmation"
@@ -110,24 +110,12 @@ if ask "Rank mirrors?"
 end
 
 # install AUR helper:
-if not command -sq pikaur
-    if ask "Install pikaur"
-        if test "$is_steam_host" = true
-            # need build tools first
-            sudo env bash ~/archlinux/install-buildtools.sh
-            cd ~/.local/sources/
-            git clone https://aur.archlinux.org/pikaur.git
-            cd pikaur
-            # pikaur > 1.20 needed python^3.12
-            # git checkout 75bc4f07
-            makepkg -si
-            cd ~/archlinux/
-        else
-            # need build tools first
-            sudo env bash ~/archlinux/install-buildtools.sh
-            env bash ~/archlinux/install-aur-and-mirror-helpers.sh
-        end
-        echo $PWD
+if not command -sq yay
+    if ask "Install yay"
+        mkdir -p ~/.local/sources
+        cd ~/.local/sources
+        sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+        cd ~
     end
 end
 
@@ -135,7 +123,7 @@ if test "$is_steam_host" = true
     if ask "Install steamos-btrfs"
         set t "$(mktemp -d)"
         curl -sSL https://gitlab.com/popsulfr/steamos-btrfs/-/archive/main/steamos-btrfs-main.tar.gz | tar -xzf - -C "$t" --strip-components=1
-        "$t/install.sh"
+        bash "$t"/install.sh
         env rm -rf "$t"
     end
 end
@@ -168,6 +156,36 @@ if ask "Install CLI essentials (and GUI on steamdeck)"
     end
 end
 
+if ask "Install install-gui-essentials (ghostty, signal, steam)"
+    # ESSENTIALS GUI & DESKTOP
+    echo "~/archlinux/install-gui-essentials.sh"
+    env bash ~/archlinux/install-gui-essentials.sh
+    if not test "$is_steam" = true
+        # not available on steamdeck
+        install \
+            appimagelauncher-git
+    else
+        # APPIMAGELAUNCHER
+        if ask "Manually install APPIMAGELAUNCHER?"
+            cd ~/.local/sources/
+            yay -G appimagelauncher-git
+            cd appimagelauncher-git
+            sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
+            makepkg --noconfirm --syncdeps --install --clean
+            cd ~
+        end
+
+        # 1PASSWORD
+        if ask "Manually install 1PASSWORD?"
+            cd ~/.local/sources/
+            curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
+            git clone https://aur.archlinux.org/1password.git
+            cd 1password && makepkg -si --overwrite "/opt/1Password/*"
+            cd ~
+        end
+    end
+end # GUI essentials
+
 # ESSENTIALS SYSTEM
 if ask "FIX (e.g. rbenv, sshuttle, fish-git)"
     install rustup
@@ -199,7 +217,7 @@ if ask "FIX (e.g. rbenv, sshuttle, fish-git)"
         # folder watchers
         inotify-tools
     end
-    if ask "install pikaur -G sshuttle"
+    if ask "install yay -G sshuttle"
         # sshuttle neovim-nightly see below for steamdeck special case
 
         # ESSENTIALS w/ STEAM special cases
@@ -232,9 +250,9 @@ printf "nvim --version: " && nvim --version
 if ask "Manually install NEOVIM-GIT (version >= 7 needed)?"
     install-confirm neovim-nightly-bin tree-sitter-cli xsel
     if ask "git install neovim-git?"
-        # pikaur -S --needed neovim-git 
+        # yay -S --needed neovim-git 
         cd ~/.local/sources
-        pikaur -G neovim-nightly
+        yay -G neovim-nightly
         cd neovim-nightly
         makepkg --syncdeps --install --clean
         cd
@@ -299,9 +317,9 @@ if ask "Setup fishlogin?"
     # 3. Add it to /etc/shells
     echo /usr/local/bin/fishlogin | sudo tee -a /etc/shells
     # 4. print Instructions
-    printf "4. Switch your login shell:\n
-  chsh -s /usr/local/bin/fishlogin $USER\n
-  # source: https://superuser.com/a/1046884\n"
+    printf "4. Switch your login shell:\n"
+    chsh -s /usr/local/bin/fishlogin $USER\n
+    # source: https://superuser.com/a/1046884\n
 end
 
 if ask "Install fisher + theme + plugins?"
@@ -372,9 +390,9 @@ end
 if ask "Install CLOJURE?"
     cd ~/.local/sources
     # build clojure
-    pikaur -G clojure && cd clojure/repos/community-any && makepkg --noconfirm --syncdeps --clean --force && sudo pacman -U --noconfirm clojure-*.pkg.tar.zst --overwrite "*" && \
+    yay -G clojure && cd clojure/repos/community-any && makepkg --noconfirm --syncdeps --clean --force && sudo pacman -U --noconfirm clojure-*.pkg.tar.zst --overwrite "*" && \
         # leiningen
-        gpg --receive-keys 040193357D0606ED && sudo pacman -S --noconfirm readline && pikaur -S --noconfirm leiningen rlwrap
+        gpg --receive-keys 040193357D0606ED && sudo pacman -S --noconfirm readline && yay -S --noconfirm leiningen rlwrap
     cd ~
 end
 
@@ -386,9 +404,9 @@ end
 if test "$is_steam" = true
     if ask "Create some space on steamdeck?"
         # delete unneeded docs/fonts
-        pikaur -R \
+        yay -R \
             qt5-examples qt5-doc
-        pikaur -R \
+        yay -R \
             noto-fonts-cjk
 
         # MOVE steam
@@ -409,36 +427,6 @@ if test "$is_steam" = true
         end
     end
 end
-
-if ask "Install install-gui-essentials (ghostty, signal, steam)"
-    # ESSENTIALS GUI & DESKTOP
-    echo "~/archlinux/install-gui-essentials.csv"
-    env bash ~/archlinux/install-gui-essentials.csv
-    if not test "$is_steam" = true
-        # not available on steamdeck
-        install \
-            appimagelauncher-git
-    else
-        # APPIMAGELAUNCHER
-        if ask "Manually install APPIMAGELAUNCHER?"
-            cd ~/.local/sources/
-            pikaur -G appimagelauncher-git
-            cd appimagelauncher-git
-            sudo pacman -S libxpm lib32-glibc make cmake glib2 cairo librsvg zlib sysprof
-            makepkg --noconfirm --syncdeps --install --clean
-            cd ~
-        end
-
-        # 1PASSWORD
-        if ask "Manually install 1PASSWORD?"
-            cd ~/.local/sources/
-            curl -sS https://downloads.1password.com/linux/keys/1password.asc | gpg --import
-            git clone https://aur.archlinux.org/1password.git
-            cd 1password && makepkg -si --overwrite "/opt/1Password/*"
-            cd ~
-        end
-    end
-end # GUI essentials
 
 if ask "Install ta-lib"
     # TA-LIB
@@ -468,7 +456,7 @@ if not test "$is_steam" = true
 
     if ask "Install docker/podman"
         # DOCKER/PODMAN
-        pikaur -S --noconfirm podman catatonit crun
+        yay -S --noconfirm podman catatonit crun
         # needed for cgroups
         # see: https://wiki.archlinux.org/index.php/Podman
         sudo touch /etc/sub{u,g}id
@@ -483,7 +471,7 @@ if not test "$is_steam" = true
 
         # OPEN SHIFT
         # Minishift & OC Cli
-        pikaur -Sy minishift origin-client
+        yay -Sy minishift origin-client
         # ODO Cli
         sudo curl -L https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-linux-amd64 -o /usr/local/bin/odo
         sudo chmod +x /usr/local/bin/odo
@@ -498,19 +486,19 @@ if not test "$is_steam" = true
     end
 
     # bluetooth a2dp
-    # pikaur -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
+    # yay -Sy pulseaudio-bt-auto-enable-a2dp pulseaudio-bluetooth
     # equalizer
-    # pikaur -Sy pulseeffects
+    # yay -Sy pulseeffects
     # NVIDIA INTEL HYBRID STUFF
     # sudo mhwd -i pci video-hybrid-intel-nvidia-450xx-prime
-    # pikaur -S cuda vulkan-mesa-layers vulkan-intel lib32-vulkan-intel  lib32-amdvlk  lib32-nvidia-utils  lib32-vulkan-mesa-layers
+    # yay -S cuda vulkan-mesa-layers vulkan-intel lib32-vulkan-intel  lib32-amdvlk  lib32-nvidia-utils  lib32-vulkan-mesa-layers
     # sudo mhwd -r pci video-nvidia-455xx
-    # sudo pikaur -S lib32-opencl-nvidia-455xx opencl-nvidia
+    # sudo yay -S lib32-opencl-nvidia-455xx opencl-nvidia
 
-    # sudo pikaur -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
+    # sudo yay -S nvidia-dkms-beta vulkan-mesa-layers lib32-vulkan-intel lib32-nvidia-utils-beta lib32-vulkan-mesa-layers
 
     if ask "Install qemu/libwirt"
-        pikaur -S libvirt qemu qemu-arch-extra
+        yay -S libvirt qemu qemu-arch-extra
         sudo pacman -Syu ebtables dnsmasq
         sudo systemctl restart libvirtd
     end
@@ -520,13 +508,13 @@ if not test "$is_steam" = true
     if ask "Install xenomod"
         ## xenomod
         gpg --receive-keys 38DBBDC86092693E
-        pikaur -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
+        yay -S linux-manjaro-xanmod linux-manjaro-xanmod-headers
         sudo ln -s /usr/src/linux-manjaro-xanmod /usr/src/linux
     end
 
     if ask "Install nvidia-beta driver?"
         # install beta, because of DKMS
-        pikaur -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
+        yay -Sy nvidia-beta-dkms xorg-server-devel lib32-nvidia-utils-beta nvidia-settings-beta opencl-nvidia-beta
         sudo groupadd plugdev
         sudo usermod -aG plugdev $USER
     end
