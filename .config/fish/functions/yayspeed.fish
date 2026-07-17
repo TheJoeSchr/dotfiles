@@ -1,7 +1,7 @@
-# Provides a wrapper for the pikaur command to ensure that builds
+# Provides a wrapper for the yay command to ensure that builds
 # are optimized with CPU-specific flags and ccache.
 
-function pikaurspeed --wraps pikaur --description "Wrapper for pikaur to set build optimizations."
+function yayspeed --wraps yay --description "Wrapper for yay to set build optimizations."
     set -l is_sync_op false
     for arg in $argv
         if string match -r -- '^-.*S' "$arg"
@@ -14,7 +14,7 @@ function pikaurspeed --wraps pikaur --description "Wrapper for pikaur to set bui
         if not set -q BUILD_ENV_SETUP
             # scope build setup to only this function
             begin
-                echo "Setting up optimized build environment for pikaur..." >&2
+                echo "Setting up optimized build environment for yay..." >&2
                 set -gx BUILD_ENV_SETUP 1
                 set -gx CFLAGS "-O2 -march=native -flto"
                 set -gx CXXFLAGS "-O2 -march=native -flto"
@@ -39,7 +39,7 @@ function pikaurspeed --wraps pikaur --description "Wrapper for pikaur to set bui
                 printf "  MAKEFLAGS: %s\n" "$MAKEFLAGS" >&2
                 printf "  USE_CCACHE: %s\n" "$USE_CCACHE" >&2
                 printf "  CCACHE_DIR: %s\n" "$CCACHE_DIR" >&2
-                command pikaur $argv
+                command yay $argv
 
                 set -e BUILD_ENV_SETUP
                 set -e CFLAGS
@@ -59,6 +59,6 @@ function pikaurspeed --wraps pikaur --description "Wrapper for pikaur to set bui
             end
         end
     else
-        command pikaur $argv
+        command yay $argv
     end
 end

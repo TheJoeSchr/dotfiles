@@ -141,9 +141,9 @@ THE THREE TYPES OF ALIAS
 '
     # no upgrade by default for steamdeck
     if not $is_steam_host
-        abbr upgrade 'VISUAL=nvim pikaurspeed -Syu --devel --needed --noconfirm'
+        abbr upgrade 'VISUAL=nvim yayspeed -Syu --devel --needed --noconfirm'
     else
-        abbr upgrade 'VISUAL=nvim pikaurspeed -Su --devel --needed --noconfirm'
+        abbr upgrade 'VISUAL=nvim yayspeed -Su --devel --needed --noconfirm'
     end
 
     abbr ai 'aider --read ~/.aider/AGENTS.md --no-gitignore --watch-files'
@@ -172,18 +172,18 @@ THE THREE TYPES OF ALIAS
     abbr n nvim
     abbr poetry 'SHELL=(which fish) poetry'
     abbr psax procs
-    abbr piks 'VISUAL=nvim pikaurspeed'
-    abbr pikss 'VISUAL=nvim pikaurspeed -S'
+    abbr piks 'VISUAL=nvim yayspeed'
+    abbr pikss 'VISUAL=nvim yayspeed -S'
     # alias pikss
-    abbr piss 'VISUAL=nvim pikaurspeed -S'
-    abbr piksy 'pikaurspeed -S --noconfirm'
+    abbr piss 'VISUAL=nvim yayspeed -S'
+    abbr piksy 'yayspeed -S --noconfirm'
     # alias piksy
-    abbr pyes 'pikaurspeed -S --noconfirm'
+    abbr pyes 'yayspeed -S --noconfirm'
     # ...g because --rebuild is mostly needed for -git packages
-    abbr piksg 'VISUAL=nvim pikaurspeed -S --rebuild'
+    abbr piksg 'VISUAL=nvim yayspeed -S --rebuild'
     # alias piksg
-    abbr pig 'VISUAL=nvim pikaurspeed -S --rebuild'
-    abbr pir 'pikaur -R --noconfirm'
+    abbr pig 'VISUAL=nvim yayspeed -S --rebuild'
+    abbr pir 'yay -R --noconfirm'
     abbr reboot-linux 'sudo grub-reboot "Manjaro Linux"'
     abbr rg 'rg -S'
     abbr rmp rip
@@ -207,6 +207,7 @@ THE THREE TYPES OF ALIAS
     alias df 'duf --hide-mp /var/lib/snapd/snap/\*'
     alias du 'dust -d 1'
     alias mail aerc
+    alias pikaur yay
 
     # 4. SSH Agent bridge (Fisher plugin)
     if functions -q fish_ssh_agent
@@ -318,7 +319,6 @@ if type -q direnv
     # eval (direnv hook fish) 
     source (direnv hook fish | psub)
 end
-
 
 # Added by Antigravity CLI installer
 set -gx PATH "/home/joe/.local/bin" $PATH

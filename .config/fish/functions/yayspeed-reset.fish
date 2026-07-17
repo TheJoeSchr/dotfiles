@@ -1,4 +1,4 @@
-function pikaurspeed-reset --description "Resets all env variables that pikaurspeed sets"
+function yayspeed-reset --description "Resets all env variables that pikaurspeed sets"
     set -e BUILD_ENV_SETUP
     set -e CFLAGS
     set -e CXXFLAGS
