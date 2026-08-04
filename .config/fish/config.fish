@@ -21,8 +21,10 @@ if type -q google-chrome
 end
 # `-q` => grep silent
 # without 'Cc' for casing
-if flatpak list | grep -q hrome
-    set -gx BROWSER "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/chrome com.google.Chrome"
+if type -q flatpak
+    if flatpak list | grep -q hrome
+        set -gx BROWSER "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/chrome com.google.Chrome"
+    end
 end
 
 set -gx DELTA_FEATURES diff-so-fancy
