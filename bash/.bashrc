@@ -127,7 +127,8 @@ if [ "$OS" == "Windows_NT" ]; then
   export PATH="$PATH:/c/msys64/usr/bin/"
   . ~/.bashrc.win
 else
-  alias config="$(which git)  --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+  # Alias for dotfiles git repository (stow work tree)
+  alias config="git -C $HOME/projects/dotfiles"
   __git_complete config _git
   alias config-changed="config checkout 2>&1 | egrep \s+\. | awk {'print $1'} | xargs -I{} echo {}"
   # alias config-changed="config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} git --git-dir=$HOME/.dotfiles-cfg/ --work-tree=$HOME add -- {}"

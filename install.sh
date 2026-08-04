@@ -1,60 +1,95 @@
 #! /bin/bash
 # call with
-#  curl -Lks https://github.com/TheJoeSchr/dotfiles/raw/main/install.sh -o install.sh && env bash -x install.sh
-ntpdate 0.us.pool.ntp.org >/dev/null 2>&1
+#  curl -Lks https://github.com/TheJoeSchr/dotfiles/raw/copilot/improve-repo-and-install-sh/install.sh -o install.sh && env bash -x install.sh
 
-putgitrepo() {
-  # Downloads a gitrepo $1 and places the files in $2 only overwriting conflicts
-  echo "Downloading and installing config files..."
-  [ -z "$3" ] && branch="main" || branch="$repobranch"
-  dir=$(mktemp -d)
-  [ ! -d "$2" ] && mkdir -p "$2"
-  chown "$name":wheel "$dir" "$2"
-  sudo -u "$name" git -C "$repodir" clone --depth 1 \
-    --single-branch --no-tags -q --recursive -b "$branch" \
-    --recurse-submodules "$1" "$dir"
-  sudo -u "$name" cp -rfT "$dir" "$2"
-}
+# Exit immediately if a command exits with a non-zero status.
+set -e
 
-read -p "Re-clone bare git at $HOME/.cfg?" -n 1 -r -t 15 REPLY
-echo # This is to move to a new line after reading input
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  rm -rf $HOME/.cfg
-  git clone --bare git@github.com:TheJoeSchr/dotfiles.git $HOME/.cfg
+# Detect termux
+if [ -n "$TERMUX_VERSION" ] || [ "$(uname -o 2>/dev/null)" = "Android" ]; then
+    IS_TERMUX=1
+else
+    IS_TERMUX=0
 fi
 
-config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-echo 'config="$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
-#$config fetch --all
-# doesn't work
-read -p "Deleting pre-existing dot files?" -n 1 -r -t 15 REPLY
-echo # This is to move to a new line after reading input
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  $config reset --hard main
+if [ "$IS_TERMUX" -eq 0 ]; then
+    # Sync time (fails on termux without root)
+    sudo ntpdate 0.us.pool.ntp.org >/dev/null 2>&1 || true
 fi
 
-$config checkout main
-$config config status.showUntrackedFiles no
-# Checkout submodules
-$config submodule update --init --recursive
+echo "Setting up dotfiles using GNU stow..."
+
+DOTFILES_DIR="$HOME/projects/dotfiles"
+REPO_URL="https://github.com/TheJoeSchr/dotfiles.git"
+BRANCH="copilot/improve-repo-and-install-sh"
+
+if ! command -v stow >/dev/null 2>&1; then
+    echo "GNU stow is not installed. Installing..."
+    if [ "$IS_TERMUX" -eq 1 ]; then
+        pkg install -y stow git
+    elif command -v pacman >/dev/null 2>&1; then
+        sudo pacman -Sy --noconfirm stow git
+    elif command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get update && sudo apt-get install -y stow git
+    else
+        echo "Please install stow and git manually."
+        exit 1
+    fi
+fi
+
+if [ ! -d "$DOTFILES_DIR" ]; then
+    echo "Cloning dotfiles repository..."
+    mkdir -p "$HOME/projects"
+    git clone -b "$BRANCH" "$REPO_URL" "$DOTFILES_DIR"
+else
+    echo "Dotfiles repository already exists at $DOTFILES_DIR. Pulling latest..."
+    git -C "$DOTFILES_DIR" fetch origin "$BRANCH"
+    git -C "$DOTFILES_DIR" checkout "$BRANCH"
+    git -C "$DOTFILES_DIR" pull origin "$BRANCH"
+fi
+
+cd "$DOTFILES_DIR"
+
+# Initialize submodules
+git submodule update --init --recursive
+
+# Packages to stow
+PACKAGES="bash git tmux vim x11 config scripts_pkg ssh python node aider misc projects_pkg downloads_pkg"
+
+echo "Stowing packages..."
+# Create common directories so stow doesn't symlink the directories themselves
+mkdir -p "$HOME/.config" "$HOME/.local" "$HOME/scripts" "$HOME/projects" "$HOME/Downloads" "$HOME/.ssh"
+
+for pkg in $PACKAGES; do
+    echo "Stowing $pkg..."
+    # Ensure target directories exist to avoid symlinking directories themselves
+    stow -R -t "$HOME" "$pkg" || echo "Failed to stow $pkg"
+done
 
 touch ~/.vimrc.local
 touch ~/.bashrc.local
 mkdir -p ~/Downloads
 
-read -p "run ~/archRiceSystem.fish ?" -n 1 -r -t 15 REPLY
-echo # This is to move to a new line after reading input
+# Fix any legacy bare repo config
+rm -rf "$HOME/.cfg"
+
+read -p "run ~/projects/dotfiles/archRiceSystem.fish ?" -n 1 -r -t 15 REPLY || REPLY="n"
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   # need to install fish first
-  sudo pacman -Sy --noconfirm fish
-
-  chmod +x ~/archRiceSystem.fish
-  /usr/bin/env fish ~/archRiceSystem.fish
+  if [ "$IS_TERMUX" -eq 1 ]; then
+      pkg install -y fish
+  elif command -v pacman >/dev/null 2>&1; then
+      sudo pacman -Sy --noconfirm fish
+  fi
+  chmod +x "$DOTFILES_DIR/archRiceSystem.fish"
+  /usr/bin/env fish "$DOTFILES_DIR/archRiceSystem.fish"
 fi
 
-read -p "source .bashrc?" -n 1 -r -t 15 REPLY
-echo # This is to move to a new line after reading input
+read -p "source .bashrc?" -n 1 -r -t 15 REPLY || REPLY="n"
+echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  # source new files
-  . .bashrc
+  . ~/.bashrc
 fi
+
+echo "Dotfiles installation complete!"
