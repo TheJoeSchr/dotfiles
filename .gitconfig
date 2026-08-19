@@ -130,6 +130,7 @@
   # log including every individual changed line
   lpa  = !git lg -p
   ldf  = !git lg -p
+  lgp  = !git lg -p
   # about the head commit
   # show everything
   last = !git lgl -1 --patch
@@ -137,7 +138,7 @@
   lgh  = !git lgl -1 --stat
   # show relationships between branches
   gov = !git hispure --all --simplify-by-decoration
-  lga  = !git lgn --all
+  lga  = !git lg --all
   gl = lg
 
   # show stats and last 5 commits
