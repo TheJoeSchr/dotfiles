@@ -23,7 +23,7 @@ end
 # without 'Cc' for casing
 if type -q flatpak
     if flatpak list | grep -q hrome
-        set -gx BROWSER "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/chrome com.google.Chrome"
+        set -gx BROWSER /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/chrome com.google.Chrome
     end
 end
 
