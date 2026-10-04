@@ -227,10 +227,10 @@ THE THREE TYPES OF ALIAS
 
     if type -q exa
         alias la 'exa --all -1'
-        alias ls 'exa -G --icons'
+        alias ls 'exa -G --icons auto'
         alias lll 'ls -lT --level=1'
         alias llla 'ls -alT --level=1'
-        alias tree 'exa -G --icons -T --level=3'
+        alias tree 'exa -G --icons auto -T --level=3'
     end
 
     if type -q tmux
