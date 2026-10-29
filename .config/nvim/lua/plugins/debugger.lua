@@ -183,20 +183,15 @@ return {
       -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
     },
   },
-  -- TODO: fix setup options
-  -- {
-  --   "aaronhallaert/continuous-testing.nvim",
-  --   -- %file will be replace with the test file
-  --   opts = {
-  --     notify = true, -- The default is false
-  --     run_tests_on_setup = true, -- The default is true, run test on attach
-  --     framework_setup = {
-  --       javascript = {
-  --         test_tool = "vitest", -- cwd of the executing test will be at package.json
-  --         test_cmd = "yarn vitest run %file",
-  --         root_pattern = "tsconfig.json", -- used to populate the root option of vitest
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "marilari88/neotest-vitest",
+    },
+    opts = function(_, opts)
+      -- This ensures 'neotest-vitest' is loaded only after lazy.nvim installs it
+      opts.adapters = opts.adapters or {}
+      table.insert(opts.adapters, require("neotest-vitest"))
+    end,
+  },
 }
